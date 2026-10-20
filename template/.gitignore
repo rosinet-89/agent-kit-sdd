@@ -1,0 +1,13 @@
+# Agentes / herramientas locales
+CLAUDE.local.md
+AGENTS.local.md
+.agents/local/
+.env*
+CLAUDE.md.bak
+PREFERENCIAS.md
+
+# Enlaces hacia .agents/ (se crean por entorno, ver .agents/sync-agents.md; no versionar)
+.claude/
+.cursor/
+.github/
+.gemini/
