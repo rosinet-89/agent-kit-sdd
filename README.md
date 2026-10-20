@@ -53,3 +53,7 @@ sesión y, si no existe, lo crean desde `.agents/preferencias.ejemplo.md`. Lo de
   se crea en el proyecto, nunca en el kit.
 - Cada versión se anota en `CHANGELOG.md` y `VERSION`. Para actualizar un proyecto existente,
   compara su `.agents/` con el del kit; la copia nunca sobrescribe.
+
+## Licencia
+
+MIT. Ver `LICENSE`.
