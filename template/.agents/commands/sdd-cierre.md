@@ -16,7 +16,9 @@ Fase `cierre` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
    Deuda técnica (`.docs/003_deuda/README.md`): pasa a `Resuelta` las que este feature resolvió (con "Atendida por"
    y "Cómo se atendió"), y propón dar de alta lo que quedó diferido. No crees deudas sin mi visto bueno.
 5. Propón entradas para `MEMORY.md` (decisiones duraderas y trampas). NO las escribas sin
-   mi aprobación.
+   mi aprobación. Si una decisión tomada durante la implementación tiene alternativas reales y
+   efecto duradero, propón un ADR (`.agents/skills/adr/SKILL.md`) en vez de una línea de memoria;
+   tampoco lo crees sin mi visto bueno.
 6. Registra la fila `cierre` en `05_avance.md` y actualiza la fila del feature en
    `.docs/002_specs/README.md` (estatus, fecha del último avance, pendiente).
 7. Si te lo pido, prepara el commit con `.agents/skills/git-commit/SKILL.md`. Nunca

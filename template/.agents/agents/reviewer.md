@@ -52,6 +52,10 @@ soluciones.
    lectura, salida de pruebas), sin exponer credenciales.
 4. Los RF de interfaz no los das por buenos: devuelve la lista de verificaciones manuales
    para el usuario, cada una con qué abrir, qué hacer y qué debe verse.
+5. Aplica `.agents/skills/seguridad-basica/SKILL.md` (secretos y checklist) a los archivos del
+   `git diff`. Un hallazgo CRÍTICO o ALTO es `CAMBIOS NECESARIOS`; el resto va en "Opcional".
+6. Si el feature trae `sql/`, revisa cada script con `.agents/skills/migracion-bd/SKILL.md`
+   (encabezado, orden, idempotencia, rollback, consulta de verificación de solo lectura).
 
 Nunca ejecutas escrituras de datos ni cambios de esquema (`INSERT`, `UPDATE`, `DELETE`, `ALTER`).
 

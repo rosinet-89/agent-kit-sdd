@@ -37,7 +37,9 @@ Clasificar cada archivo en grupos lógicos (módulo, capa, docs, config).
 ## Fase 2 — Verificación previa (pre-commit gate)
 
 1. **Lint / sintaxis**: los comandos de `AGENTS.md` › Comandos sobre cada archivo incluido.
-2. **Residuos**: sin archivos temporales, credenciales ni código de depuración.
+2. **Residuos**: sin archivos temporales, credenciales ni código de depuración. La búsqueda de
+   secretos sobre lo que entra al commit sigue `.agents/skills/seguridad-basica/SKILL.md` (sección 1);
+   si hay un hallazgo con valor real, detener el commit.
 3. **Versionados e ignorados**: `git ls-files -ci --exclude-standard`. Si lista algo (archivos que
    Git ya rastrea y el `.gitignore` ignora), no incluirlos en el commit; proponer al usuario un
    commit aparte con `git rm --cached <rutas>` (se conservan en disco). No ejecutarlo sin confirmación.

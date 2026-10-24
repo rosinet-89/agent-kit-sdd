@@ -13,7 +13,10 @@ Si `01_spec.md` no dice `Estado: aprobada` o tiene dudas abiertas, para y avísa
      preguntas abiertas.
    - `03_plan.md`: capas y patrón de la arquitectura del proyecto, archivos y RF que cubren,
      `sql/` con rollback si hay cambios de datos, seguridad, decisiones con su alternativa
-     descartada y fases F0..Fn con **estimado en horas**.
+     descartada y fases F0..Fn con **estimado en horas**. Si hay `sql/`, el planner sigue
+     `.agents/skills/migracion-bd/SKILL.md`.
+   - Si alguna decisión tiene alternativas reales y efecto duradero, el planner la marca y yo
+     decido si se registra como ADR (`.agents/skills/adr/SKILL.md`). No se crea sin mi visto bueno.
 3. Muéstrame un resumen de ambos. Si es solo análisis, cambia `01_spec.md` a
    `Estado: analisis` y termina aquí.
 4. Registra la fila `plan` en `05_avance.md` y el siguiente paso: `/sdd-tasks $1`.
