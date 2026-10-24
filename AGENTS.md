@@ -1,0 +1,111 @@
+# agent-kit-sdd – Instrucciones para agentes
+
+Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
+(constitución, planes, deuda). No duplicar.
+
+## Cada sesión (obligatorio)
+0. Si no existe `.agents/skills/`: el kit no está instalado en esta copia (clon nuevo). Dilo en
+   una línea y sigue `INSTALAR.md` › "Modo mantenimiento" (pregunta antes de copiar). Sin eso no hay
+   comandos `/sdd*` ni skills; no sigas con los pasos siguientes.
+1. Si este archivo contiene `SDD-INIT-PENDIENTE`: el proyecto aún no está personalizado. Dilo en
+   una línea y sugiere correr `/sdd-init`. No ejecutes otros comandos `/sdd*` hasta entonces.
+2. Leer `.agents/napkin.md` y aplicarlo en silencio.
+3. Leer `MEMORY.md` (decisiones y trampas vigentes).
+4. Estructura de agentes y skills nuevas: `.agents/README.md`.
+5. Leer `.docs/001_constitucion/constitution.md` antes de cambiar código.
+6. Si la petición es análisis o desarrollo nuevo, o toca un módulo, pantalla o tabla: seguir
+   "Antecedentes" (abajo) ANTES de buscar o diseñar.
+7. Verificar los enlaces hacia `.agents/` según `.agents/sync-agents.md`. Si falta alguno,
+   sugerir crearlo (sin ejecutar nada sin confirmación). Revisa también si hay skills, agentes o
+   comandos en una carpeta de herramienta que no estén en `.agents/` (o al revés) y sugiere
+   replicarlos (`sync-agents.md` paso 8). Si todo está bien, no decir nada.
+8. Revisar que no haya prefijos `NNN_` repetidos en `.docs/002_specs/` ni en `.docs/003_deuda/`
+   (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
+9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
+   (al final o justo antes de pedir una decisión). Solo se quita si el usuario lo pide.
+10. Leer `PREFERENCIAS.md` (raíz, no versionado: directivas personales de cada usuario según su
+    entorno) y aplicarlo en silencio. Si no existe, créalo copiando `.agents/preferencias.ejemplo.md`
+    sin las entradas de ejemplo y sigue; no lo pidas ni lo menciones. Las preferencias nuevas que el
+    usuario exprese sobre su entorno ("yo uso Zed", "no me limpies el chat") se proponen aquí, no en
+    el napkin ni en `MEMORY.md`.
+
+## Antecedentes (obligatorio en análisis y desarrollo nuevo)
+Índice de planes: `.docs/002_specs/README.md`.
+1. Ábrelo y busca el módulo, pantalla, tabla o palabra clave de la petición.
+2. Si hay coincidencia: dile al usuario qué carpeta es y lee SOLO esa (primero su `PUNTO DE RETOMO`).
+3. Si no hay: di "sin antecedentes en el índice" y confírmalo con un `grep` antes de afirmarlo.
+4. No recorras las carpetas de plan ni asumas que un proceso es nuevo, o que ya está resuelto, sin este paso.
+5. Si el índice y la carpeta discrepan, manda la carpeta: avisa para corregir el índice.
+6. Carpeta nueva o cambio de estatus = actualizar su fila. Lo hacen `/sdd-spec` y `/sdd-cierre`.
+
+## Deuda técnica
+Índice: `.docs/003_deuda/README.md` (un `NNN_<Nombre>.md` por deuda, con estado, origen y qué la resolvió).
+1. Al hacer "Antecedentes", busca también ahí deuda abierta del módulo, pantalla o tabla y dila al usuario.
+2. Si durante un requerimiento algo se difiere (por decisión del usuario o por recorte de alcance), o aparece un hallazgo que no se atiende ahora, PROPÓN darlo de alta; no la crees sin el visto bueno del usuario.
+3. Al cerrar un requerimiento, indica qué deudas resolvió (estado `Resuelta` + "Atendida por" + "Cómo se atendió") y cuáles dejó. Lo hace `/sdd-cierre`.
+4. Una deuda nunca se borra: pasa a `Resuelta` o `Descartada` (con motivo).
+
+## Formato y numeración
+Reglas completas en `.docs/002_specs/README.md`.
+- Toda carpeta de plan nace en formato SDD (skill `sdd`): lleva `01_spec.md`.
+- Un prefijo `NNN_` no se repite en `.docs/002_specs/` ni en `.docs/003_deuda/`. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
+
+## Skills de proyecto
+Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee todas.
+
+| Tema | Skill |
+|------|-------|
+| Saber si un proceso ya se trabajó en un plan anterior | `.docs/002_specs/README.md` (ver "Antecedentes") |
+| Análisis o desarrollo nuevo (spec, impacto, plan, tareas, avance con tiempos, flujo) | `.agents/skills/sdd/SKILL.md` |
+| Runbook vivo del repo (se aplica cada sesión) | `.agents/skills/napkin/SKILL.md` |
+| Registrar cambios en Git | `.agents/skills/git-commit/SKILL.md` |
+| Línea "quién responde" al cierre de cada respuesta (rol con color, skill, contexto, desvíos) | `.agents/skills/formato-respuesta/SKILL.md` |
+<!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
+
+Notas:
+- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (NNN = consecutivo de 3 dígitos) con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
+
+## Roles y comandos
+Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
+Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion` y `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices).
+Claude Code: sesión dedicada con `claude --agent coordinator`.
+
+## Git (regla obligatoria)
+Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
+- NUNCA `git commit` sin confirmación explícita del usuario.
+- NUNCA `push`/`pull`/`fetch`/`sync`.
+- Un commit por módulo; `git add <archivos>` explícito (nunca `.` ni `-A`).
+- Mensajes en español, imperativo, máx. 72 caracteres: `<tipo>(<módulo>): <descripción>`.
+
+## Stack y convenciones de código
+- Solo Markdown, UTF-8 sin BOM. Frontmatter YAML en agentes, comandos y skills.
+- Sin código ejecutable ni scripts de instalación versionados.
+- Idioma de docs, comandos y commits: español.
+
+## Comandos
+- Build: No aplica.
+- Test (ensayo de instalación): `tmp=$(mktemp -d); cp -R --update=none template/. "$tmp"/` y revisar
+  que se copie todo sin pisar nada. Nunca en un proyecto real.
+- Lint / sintaxis (por archivo tocado): `file -i <archivo>` da utf-8; sin BOM
+  (`grep -l $'^\xEF\xBB\xBF' <archivo>` vacío); `name` del frontmatter = nombre de su carpeta; rutas
+  citadas existentes; en `template/` sin marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
+- Consulta de datos de solo lectura: No aplica.
+
+## Reglas de negocio y del sistema
+- Lo distribuible se edita en `template/` y en los docs de la raíz (`README.md`, `INSTALAR.md`,
+  `CHANGELOG.md`, `VERSION`, `LICENSE`).
+- La raíz es el **entorno de mantenimiento** del kit (ver `INSTALAR.md` › "Modo mantenimiento"):
+  - **Versionado** (conocimiento propio del kit, no sale de `template/`): `AGENTS.md`, `CLAUDE.md`,
+    `MEMORY.md`, `.docs/` (constitución, specs, deuda, ADR) y `.agents/napkin.md`.
+  - **Local, excluido en `.git/info/exclude`** (sale de `template/` al instalar): el resto de
+    `.agents/`, `.gitignore`, `PREFERENCIAS.md`, `.claude/`, `.cursor/`.
+  - Las decisiones del kit se registran como ADR en `.docs/004_adr/` (skill `adr`); el `template/`
+    solo lleva el índice vacío.
+- Nada propio de un proyecto (stack, nombres, dominio) entra a `template/`.
+- Cada versión actualiza `VERSION` y `CHANGELOG.md`.
+- La instalación copia sin sobrescribir nunca.
+
+## Reglas duras
+- Nunca secretos ni credenciales en archivos versionados.
+- Cambios fuera del plan aprobado se consultan, no se improvisan.
+- Propón entradas para MEMORY.md; no las agregues sin aprobación.
