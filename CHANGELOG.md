@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.5.0 — 2026-10-24
+- Nueva skill `adr` y carpeta `.docs/004_adr/` (índice): decisiones de arquitectura con contexto,
+  alternativas descartadas y consecuencias. `/sdd-plan` y `/sdd-cierre` proponen el ADR (sin crearlo
+  sin visto bueno).
+- Nueva skill `migracion-bd`: cómo se escriben los scripts `sql/` (orden, encabezado, idempotencia,
+  rollback). El reviewer los revisa con ella; `sdd` y `/sdd-plan` la referencian.
+- Nueva skill `seguridad-basica`: búsqueda de secretos antes del commit y checklist OWASP ligero.
+  `git-commit` (fase 2) y el reviewer (`validate`) la invocan.
+- `AGENTS.md`: 3 filas nuevas en la tabla de skills.
+- Nuevo comando `/sdd-estructura` y `.agents/validar-estructura.md`: el agente valida la estructura del kit
+  (enlaces, réplicas, skills, agentes, comandos, índices, codificación) y propone correcciones sin aplicarlas.
+- `sync-agents.md` paso 8: al agregar una skill, agente o comando, sugiere replicarlo en las carpetas de cada
+  herramienta (o excluirlo si es una prueba local). `.agents/README.md` lo referencia al agregar cada tipo.
+- `INSTALAR.md`: elige modo al empezar. **Modo proyecto** instala solo `template/`; **Modo mantenimiento**
+  (clon del kit) conserva el conocimiento propio versionado (specs, ADR, memoria, reglas) y pregunta antes de copiar.
+
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
   agente detecte SO/shell y genere un script o dé el paso a paso (sin sobrescribir).

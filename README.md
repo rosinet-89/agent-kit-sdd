@@ -13,9 +13,10 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
   agents/    coordinator, planner, implementer, reviewer
   commands/  sdd, sdd-init, sdd-spec, -clarify, -plan, -tasks, -implement,
              -validate, -flujo, -cierre, -change, -status, -constitucion
-  skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta
+  skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta,
+             adr, migracion-bd, seguridad-basica
 .docs/
-  001_constitucion/  002_specs/ (índice)  003_deuda/ (índice)
+  001_constitucion/  002_specs/ (índice)  003_deuda/ (índice)  004_adr/ (índice)
 ```
 
 ## Instalación
@@ -24,6 +25,10 @@ El kit no trae scripts (dependen del SO y del shell). Abre esta carpeta con tu a
 **"instala el kit en `<ruta del proyecto>` siguiendo `INSTALAR.md`"**. El agente detecta tu SO y
 shell, te ofrece un script a tu medida o el paso a paso, y copia `template/` sin sobrescribir nada.
 También puedes hacerlo a mano: ver `INSTALAR.md`.
+
+Si lo instalas en un proyecto existente, solo se copia `template/`. Si abres el propio clon del kit, el
+agente te pregunta si lo quieres para un proyecto nuevo o para trabajar el kit (modo mantenimiento, que
+conserva sus specs, ADR y memoria).
 
 ## Primer uso: personalizar
 
