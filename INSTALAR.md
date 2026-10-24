@@ -41,3 +41,30 @@ robocopy template C:\ruta\al\proyecto /E /XC /XN /XO
 ```
 
 Revisa después el `.gitignore` del proyecto y fusiona a mano las reglas de `template/.gitignore`.
+
+## Instalar el kit dentro del propio repo del kit
+
+Sirve para mantener el kit con su mismo flujo (`/sdd-init`, `/sdd`…). Consideraciones:
+
+- La instalación en la raíz es **solo una herramienta de trabajo**: local, independiente de
+  `template/` y **nunca se versiona**. Los cambios al kit se siguen haciendo en `template/` y en los
+  docs de la raíz.
+- Exclúyela en `.git/info/exclude` (local, no se versiona), no en un `.gitignore`: así queda fuera
+  también el `.gitignore` que copia la instalación.
+- Las rutas van **ancladas con `/`**. Sin la barra, `AGENTS.md` o `.agents/` ignorarían también
+  `template/AGENTS.md` y `template/.agents/`, y el kit se rompería.
+
+```
+/AGENTS.md
+/CLAUDE.md
+/MEMORY.md
+/PREFERENCIAS.md
+/.gitignore
+/.agents/
+/.docs/
+/.claude/
+/.cursor/
+```
+
+Agrega las carpetas de las demás herramientas que uses (`/.gemini/`, `/.github/`). Comprueba con
+`git status --short`: solo deben aparecer cambios en `template/` y en los docs del kit.
