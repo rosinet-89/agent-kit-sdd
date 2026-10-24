@@ -15,7 +15,9 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 6. Si la petición es análisis o desarrollo nuevo, o toca un módulo, pantalla o tabla: seguir
    "Antecedentes" (abajo) ANTES de buscar o diseñar.
 7. Verificar los enlaces hacia `.agents/` según `.agents/sync-agents.md`. Si falta alguno,
-   sugerir crearlo (sin ejecutar nada sin confirmación); si todo está bien, no decir nada.
+   sugerir crearlo (sin ejecutar nada sin confirmación). Revisa también si hay skills, agentes o
+   comandos en una carpeta de herramienta que no estén en `.agents/` (o al revés) y sugiere
+   replicarlos (`sync-agents.md` paso 8). Si todo está bien, no decir nada.
 8. Revisar que no haya prefijos `NNN_` repetidos en `.docs/002_specs/` ni en `.docs/003_deuda/`
    (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
 9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
@@ -57,6 +59,9 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 | Runbook vivo del repo (se aplica cada sesión) | `.agents/skills/napkin/SKILL.md` |
 | Registrar cambios en Git | `.agents/skills/git-commit/SKILL.md` |
 | Línea "quién responde" al cierre de cada respuesta (rol con color, skill, contexto, desvíos) | `.agents/skills/formato-respuesta/SKILL.md` |
+| Decisión de arquitectura con alternativas (índice en `.docs/004_adr/README.md`) | `.agents/skills/adr/SKILL.md` |
+| Scripts SQL de un feature (`sql/`, rollback, idempotencia) | `.agents/skills/migracion-bd/SKILL.md` |
+| Secretos antes del commit y checklist de seguridad básica | `.agents/skills/seguridad-basica/SKILL.md` |
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
@@ -64,7 +69,7 @@ Notas:
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
-Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`.
+Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion` y `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 
 ## Git (regla obligatoria)

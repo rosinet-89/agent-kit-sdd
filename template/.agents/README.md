@@ -17,6 +17,7 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   README.md                       # este archivo: layout + cómo agregar skills/agentes/comandos
   napkin.md                       # runbook vivo; todos lo leen cada sesión
   sync-agents.md                  # enlaces de cada herramienta hacia .agents/
+  validar-estructura.md           # checklist de /sdd-estructura (estructura del kit)
   agents/<rol>.md                 # roles (coordinator, planner, implementer, reviewer)
   commands/<nombre>.md            # comandos /sdd* (flujo de la skill sdd)
   skills/<nombre>/SKILL.md        # skills (cuerpo canónico)
@@ -25,6 +26,7 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   002_specs/README.md             # índice de planes
   002_specs/<NNN>_<Feature>/      # un plan por requerimiento (01_spec … 06_flujo)
   003_deuda/README.md             # índice de deuda técnica
+  004_adr/README.md               # índice de decisiones de arquitectura (skill adr)
 ```
 
 ## Qué carpeta lee cada herramienta
@@ -49,13 +51,15 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
      las listas largas de disparadores van en el cuerpo.
 2. Si es de dominio del proyecto, agregar su fila en la tabla de `AGENTS.md` (solo la ruta, no un resumen).
 3. Napkin: solo si es una directiva recurrente, nunca el texto de la skill.
-4. Verificar los enlaces según `.agents/sync-agents.md`.
+4. Verificar los enlaces según `.agents/sync-agents.md` y **sugerir replicarla** en las carpetas de
+   cada herramienta (paso 8 de ese archivo). Si es una prueba local, proponer excluirla en
+   `.git/info/exclude` en vez de versionarla.
 
 ## Agregar un agente (rol)
 
 1. Crear `.agents/agents/<rol>.md` con frontmatter `name` y `description` (cuándo delegarle trabajo).
 2. Si cambia el proceso o los handoffs, documentarlo en `AGENTS.md` (sección Roles).
-3. Verificar los enlaces según `.agents/sync-agents.md`.
+3. Verificar los enlaces según `.agents/sync-agents.md` y sugerir replicarlo (paso 8).
 
 ## Agregar un comando
 
@@ -64,6 +68,13 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
 2. El comando dice qué skill sigue y en qué agente delega; no copia el cuerpo de la skill.
 3. Si es parte del flujo `sdd`, agregarlo a la tabla de fases de `.agents/skills/sdd/SKILL.md` y a
    "Roles y comandos" de `AGENTS.md`.
+4. Verificar los enlaces según `.agents/sync-agents.md` y sugerir replicarlo (paso 8).
+
+## Validar la estructura
+
+Pídele al agente `/sdd-estructura` (o "valida la estructura del kit"): sigue
+`.agents/validar-estructura.md`, revisa enlaces, réplicas, skills, agentes, comandos, índices y
+codificación, y propone las correcciones sin aplicarlas.
 
 ## Anti-patrones
 

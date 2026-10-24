@@ -65,6 +65,7 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `cierre` | `/sdd-cierre <NNN_Feature>` | sesión principal | `05_avance.md` (plan contra real) | Commit confirmado |
 | `change` | `/sdd-change <NNN_Feature> <cambio>` | planner | diff de `01_spec.md` | **Cambio aprobado** |
 | Estado | `/sdd-status <NNN_Feature>` | sesión principal | — (solo lectura) | — |
+| Estructura del kit | `/sdd-estructura [bloque]` | reviewer | — (solo lee y reporta) | — |
 | **Entrada única** | `/sdd <petición libre>` | coordinator (decide la fase) | según la fase | todas |
 
 `/sdd` es el único comando que usas. El coordinator clasifica la petición con la tabla
@@ -108,7 +109,7 @@ hay `VEREDICTO: APROBADO`.
 
 - Un paso a la vez; al terminarlo se marca en `04_tasks.md` y se para.
 - Las reglas de edición de archivos (encoding, herramientas permitidas) son las de `AGENTS.md` › Stack y convenciones.
-- Datos: los agentes solo ejecutan consultas de solo lectura. DDL/DML se **genera** en `sql/` con su rollback y lo ejecuta el usuario.
+- Datos: los agentes solo ejecutan consultas de solo lectura. DDL/DML se **genera** en `sql/` con su rollback y lo ejecuta el usuario. Cómo se escribe: `.agents/skills/migracion-bd/SKILL.md`.
 - Dominio: leer la skill del tema (tabla de `AGENTS.md`) antes de tocar esa parte.
 
 ## Anti-patrones

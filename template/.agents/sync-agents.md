@@ -34,6 +34,22 @@ Al inicio de la sesión (paso 7 de "Cada sesión" en `AGENTS.md`), el agente:
    conservan en disco) y un commit aparte con la skill `git-commit`. No lo ejecuta sin confirmación.
    Avisa que, al hacer `pull`, el resto del equipo verá esos archivos borrados en su copia. Una regla
    de `.gitignore` no afecta a los archivos que Git ya rastrea.
+8. Revisa **réplicas de skills, agentes y comandos** (cuando un dev prueba o agrega una nueva):
+   - **Huérfana:** existe en una carpeta de herramienta (`.claude/skills/<n>/`, `.cursor/agents/<n>.md`…)
+     y no en `.agents/`. Propón **moverla** a `.agents/<tipo>/<n>` (la copia canónica es una sola) y dejar
+     en la carpeta de la herramienta un enlace a ella.
+   - **Faltante:** existe en `.agents/` y una carpeta de herramienta que es real (no un enlace a toda la
+     carpeta) no la tiene. Propón un enlace por entrada (`../../.agents/skills/<n>`); si el SO no permite
+     enlaces, una copia avisando que se desactualiza.
+   - Si la carpeta de la herramienta ya es un enlace a `.agents/<tipo>`, no hay nada que replicar: lo
+     nuevo aparece solo.
+   - **En prueba:** si el dev solo la está probando, puede quedarse local. Propón excluirla en
+     `.git/info/exclude` (ruta anclada con `/`) y avisa que no llegará al resto del equipo.
+   - Al adoptarla de forma definitiva: fila en la tabla de skills de `AGENTS.md` si es de dominio, y
+     `.agents/README.md` › "Agregar una skill".
+   - Nunca borra ni mueve nada sin confirmación; muestra el comando exacto.
+   Se ejecuta al inicio de la sesión (con el paso 7 de `AGENTS.md`) y **cada vez que el agente crea o
+   agrega** una skill, agente o comando: al terminar, sugiere replicarlo según este paso.
 
 ## Tabla de enlaces
 

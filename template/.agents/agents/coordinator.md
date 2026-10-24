@@ -70,6 +70,7 @@ Antes de abrir el comando, dile en una línea cuál elegiste y por qué.
 | Pide cerrar o terminar el feature | `sdd-cierre.md` |
 | Pide cambiar un requisito ya escrito | `sdd-change.md` |
 | Pregunta cómo va, el estado o dónde quedamos | `sdd-status.md` |
+| Pide validar la estructura del kit (enlaces, réplicas, skills, comandos) | `sdd-estructura.md` |
 | Pide continuar o retomar, sin nombrar la fase | El comando que indique el PUNTO DE RETOMO de `05_avance.md` |
 | Pide el flujo completo, de punta a punta | `sdd-spec.md` y, tras cada puerta aprobada, el comando siguiente de la tabla de fases de la skill `sdd` |
 | Es un fix chico o algo fuera de un plan | Ninguno: dilo y sugiere hacerlo fuera del flujo |
