@@ -4,14 +4,14 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 15:50 |
+| Última sesión | 2026-10-25 17:04 |
 | Fase actual | Cerrada |
 | Último paso cerrado | `cierre` 2026-10-25 15:50; sin `06_flujo` (decisión 8) |
-| Siguiente paso | Ninguno en esta carpeta. Manifiesto y E20, quien cierre último. |
+| Siguiente paso | Ninguno en esta carpeta. Manifiesto y E20 regenerados por la `005` (F6 16:44, F8 16:49; decisión 10). |
 | Bloqueos abiertos | Ninguno |
 | Coordinación | Caso de origen el 2026-10-25 en `004_ModeloYPermisosAgentes`. No editar las carpetas `003`, `004` ni `005`. El cuerpo de `coordinator.md` y la skill ya llevan la regla de esta spec. La cabecera del coordinator queda para la `004`: no revertirla cuando la escriba. El manifiesto y E20, al cierre, quien termine último. |
 | Estado BD | No aplica |
-| Código | Skill, contrato, coordinator, nueve comandos y changelog en `template/`; copia local igual. Manifiesto pendiente del cierre. |
+| Código | Skill, contrato, coordinator, nueve comandos y changelog en `template/`; copia local igual. Manifiesto y E20 los regeneró la `005`; ningún archivo de `template/` es más nuevo que `manifiestos/0.5.0.md`. |
 
 ## Pasos
 - [x] F0.1 Releer lo compartido
@@ -32,6 +32,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 7. **[2026-10-25 15:43] F1 a F6 en este chat, en un turno.** Por qué: el usuario pidió implementar todas las fases. La `004` seguía en F0, así que el texto era el de la decisión 6. El frontmatter de `coordinator.md` no se tocó. `VERSION` sigue en `0.5.0`. El reloj del turno fue 15:42–15:43; cada fila usa el piso de 1 minuto del contrato. Alternativa descartada: un paso por turno.
 8. **[2026-10-25 15:50] `06_flujo.md` no es requerido.** Por qué: el usuario lo dijo al pedir el cierre. No se abre deuda. Alternativa descartada: redactar el flujo antes de cerrar.
 9. **[2026-10-25 15:51] Quedaron registrados el ADR 010 y la línea de MEMORY.** Por qué: el usuario lo pidió al cerrar («registralo»). El 010 no reemplaza al 009. Alternativa descartada: dejarlos solo propuestos.
+10. **[2026-10-25 17:04] El pendiente de manifiesto y E20 ya lo cerró la `005`.** F6 a las 16:44 y F8 a las 16:49 regeneraron `manifiestos/0.5.0.md` (42 de 42). Ningún archivo de `template/` es más nuevo que ese manifiesto. Esta nota solo corrige el retomo; no se regenera otra vez y no se edita `template/`. Alternativa descartada: regenerar el manifiesto sin un cambio de `template/`.
 
 ## Pruebas
 - **validate (2026-10-25 15:47).** VEREDICTO: APROBADO. Lint utf-8 sin BOM en 26 archivos. Seguridad modo «solo secretos»: sin hallazgos en 13 archivos. Frontmatter de `coordinator.md` igual a `HEAD`. Copia local igual en 12 pares. Verificación manual: no aplica. `README.md` mezcla la fila 006 con la fila 005; el resto no se revisó como propio.

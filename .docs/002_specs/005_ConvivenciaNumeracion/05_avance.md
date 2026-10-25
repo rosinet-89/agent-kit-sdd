@@ -4,14 +4,14 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 16:50 |
+| Última sesión | 2026-10-25 17:04 |
 | Fase actual | Cerrada |
 | Último paso cerrado | `cierre` 2026-10-25 16:50; F7.6 aprobada por el usuario; sin `06_flujo` (decisión 29) |
-| Siguiente paso | Ninguno en esta carpeta. Siguen propuestas sin crear (decisión 30): ADR de la fuente única en el grupo C y deuda de limitaciones. Commit si el usuario lo pide |
+| Siguiente paso | Ninguno en esta carpeta. ADR 015 y deuda 008 creados (decisión 32). |
 | Bloqueos abiertos | Ninguno |
 | Coordinación | Corre en paralelo con `004_ModeloYPermisosAgentes`. Las fases de documentación (`spec`, `clarify`, `plan`, `tasks`) no tocan `template/` y no chocan. **Implementación en serie:** no editar `template/` a la vez que la `004`. Archivos compartidos: `CHANGELOG.md` (mismo bloque de 0.5.0, líneas distintas), `template/AGENTS.md` (secciones distintas: `004` "Qué lee cada rol", esta "Formato y numeración") y `manifiestos/0.5.0.md` + E20: lo regenera quien cierre segundo, siempre al final. Partir del contenido actual de cada archivo y no revertir trabajo ajeno. Corlos puede estar editando otras carpetas; no tocar `003_OptimizarArnes`. |
 | Estado BD | No aplica |
-| Código | Ninguno |
+| Código | ADR 015 aceptado. Deuda 008 abierta. Sin código de producto |
 
 ## Pasos
 | Fase | Pasos | Estado |
@@ -58,6 +58,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 29. **[2026-10-25 16:50] `06_flujo.md` omitido por decisión del usuario** (como las `004` y `006`): es una regla de numeración y un aviso de actualización, sin pantallas ni flujo de usuario final. F7.6 aprobada. Cierre ejecutado.
 30. **[2026-10-25 16:50] Propuestas del cierre, SIN crear (esperan visto bueno del usuario).** MEMORY.md: (a) el protocolo P compara con copias hechas justo antes de editar y no delata ediciones ajenas previas: contrastar con `git diff` contra `HEAD`; (b) reanudar un subagente con `SendMessage` a veces no lo arranca: confirmar con `ListAgents` que figura como `running`; (c) en features que solo editan Markdown estimar en minutos. ADR candidatos: (1) regla de convivencia de anchos (conservar el ancho de la carpeta, comparar por valor numérico, no renumerar nunca; desempate por ítem publicado); (2) fuente única de la regla en el grupo C con aviso por nombres de carpeta y regla mínima de una frase repetida en las piezas como excepción acotada. Deuda candidata (lo diferido): las limitaciones de la decisión 28 (ceros de relleno, AVISO en el clon, ancho con ítem inválido, el índice de `template/` no declara el ancho del clon).
 31. **[2026-10-25 16:52] Propuestas del cierre aprobadas por el usuario y creadas:** 3 entradas en `MEMORY.md` (protocolo P frente a `git diff` contra `HEAD`; reanudar subagente y confirmar con `ListAgents`; estimar en minutos los features solo-Markdown) y el ADR 014 « Un ítem nuevo conserva el ancho de su carpeta » (`.docs/004_adr/014_ConvivenciaDeAnchosDeNumeracion.md`). No se creó el ADR de la fuente única en el grupo C ni la deuda de limitaciones: el usuario no las marcó; siguen como propuestas de la decisión 30.
+32. **[2026-10-25 17:04] El usuario pidió atender lo propuesto y no creado.** ADR [015](../../004_adr/015_FuenteUnicaDeNumeracionEnGrupoC.md) `FuenteUnicaDeNumeracionEnGrupoC`, Aceptado. Deuda [008](../../003_deuda/008_LimitacionesDeLaNumeracion.md) `LimitacionesDeLaNumeracion`, Abierta, Baja. Las tres líneas de `MEMORY.md` y el ADR 014 ya existían (decisión 31) y no se duplican. El siguiente libre se comprobó en la copia local y en `@{u}`: ambos terminan en el ADR 014 y en la deuda 007. Alternativa descartada: reabrir la spec.
 
 ## Pruebas
 Validación de F7 y F8 por reviewers, en `mktemp -d` (nunca en el kit ni en un proyecto real); la sesión principal contrastó con `git diff` contra `HEAD` y con un cálculo propio de E20.

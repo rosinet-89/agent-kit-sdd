@@ -4,14 +4,14 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 16:13 |
+| Última sesión | 2026-10-25 17:04 |
 | Fase actual | Cerrada |
 | Último paso cerrado | `cierre` 2026-10-25 16:13; sin `06_flujo` (decisión 36) |
 | Siguiente paso | Ninguno en esta carpeta. Commit si el usuario lo pide. |
 | Bloqueos abiertos | Ninguno |
 | Coordinación | Corlos cerró `003_OptimizarArnes` (verificado 2026-10-25 15:05: Fase actual Cerrada, cierre 2026-10-25 14:23, archivos `01`–`06`). No tocar esa carpeta. Esta spec cambia el frontmatter de los 4 agentes de `template/.agents/agents/`; partir de su contenido actual (la `003` ya reescribió sus cuerpos). Cualquier cambio a `template/` obliga a regenerar `manifiestos/0.5.0.md` y repetir E20 al cerrar. |
 | Estado BD | No aplica |
-| Código | F2 a F7 en `template/`, los dos `AGENTS.md`, `CHANGELOG.md` y `manifiestos/0.5.0.md` (42 filas, E20 en 0). Deuda 003 resuelta. Deuda 006 abierta. ADR 011, 012 y 013 aceptados. Refresco de `.agents/` propuesto, no hecho. |
+| Código | F2 a F7 en `template/`, los dos `AGENTS.md`, `CHANGELOG.md` y `manifiestos/0.5.0.md` (42 filas, E20 en 0). Deuda 003 resuelta. Deuda 006 abierta. ADR 011, 012 y 013 aceptados. Refresco de `.agents/` hecho el 2026-10-25 17:04 (decisión 38): se conservaron `napkin.md` y `.agents/skills/caveman/`. |
 
 ## Pasos
 - [x] F0.1 Comprobar la precondición y el árbol
@@ -79,6 +79,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 35. **[2026-10-25 16:10] Validate: APROBADO.** El reviewer contrastó el «Hecho cuando» y los RF citados contra `template/`. RF-1 a RF-21 pasan. Lint utf-8 sin BOM. `seguridad-basica: sin hallazgos en 15 archivos` (modo completo). No hay interfaz. No se escribió `07_pruebas_qa.md`. El manifiesto regenerado también actualiza huellas de archivos que esta spec no editó (`sdd-change.md`, `sdd-clarify.md`, `sdd-flujo.md`, `sdd-implement.md`, `sdd-plan.md`, `sdd-spec.md`, `sdd-tasks.md`, `sdd.md`, `avance-y-tiempos.md`); E20 sigue en 0 contra el árbol actual. Ajenos, sin revisar: índice de specs, carpeta `005`, deudas `004` y `005` y su README. Alternativa descartada: pedir cambios por la copia local desfasada; el refresco sigue propuesto y no bloquea.
 36. **[2026-10-25 16:13] Cierre sin `06_flujo`.** El usuario dijo que no se requiere flujo y que se proceda con el cierre. No hay `06_flujo.md`. Deuda `003_ModeloYPermisosDeAgentes` marcada `Resuelta` (Atendida por y Cómo se atendió). El índice local de ADR acaba en 010 (`RutaSiNoHayUnSoloPaso`, origen `006`); `git ls-tree` de `origin/main` no listó `.docs/004_adr/`. Los ADR que el plan numeraba 010, 011 y 012 se proponen como 011 `RestriccionesDeRolSinHooks`, 012 `OmitClaudeMdEnTresRoles` y 013 `ModeloExplicitoPorRol` (`inherit`, no `sonnet`) y no se crean. Se proponen, sin escribirlos, la deuda de que `/sdd-init` sugiera los fragmentos `allow` y `deny`, y la línea de `MEMORY.md` de que no hay revisión en la que F1.4 de `001_ActualizarKit` ya esté y F1.5 todavía no. Alternativa descartada: crear ADR, deuda o memoria sin visto bueno.
 37. **[2026-10-25 16:13] El usuario acepta crear los tres registros.** ADR [011](../../004_adr/011_RestriccionesDeRolSinHooks.md), [012](../../004_adr/012_OmitClaudeMdEnTresRoles.md) y [013](../../004_adr/013_ModeloExplicitoPorRol.md), estado Aceptado. Deuda `006_SddInitSugiereAllowDeny` abierta. Línea escrita en `MEMORY.md`. El 010 no se reutilizó. Alternativa descartada: conservar los números 010–012 del plan.
+38. **[2026-10-25 17:04] Refresco de la copia local `.agents/` desde `template/.agents/`.** El usuario lo pidió al atender lo que seguía propuesto. Copia con `rsync` sin `--delete`, excluyendo `napkin.md` y `skills/caveman/`. Tras el refresco, `diff -rq` solo deja el napkin distinto y `caveman` solo en la copia local. No se tocó `template/` ni el manifiesto. Alternativa descartada: copiar también el napkin de `template/` (pisaría el runbook local).
 
 ## Línea base (F0.2, 2026-10-25)
 Medición con `wc -c` sobre el árbol de trabajo. Coincide con `02` §3. El `02` no se reescribió. Heredado = `template/CLAUDE.md` 11 + `template/AGENTS.md` 8 403 = 8 414 bytes. Arranque = bytes del agente + heredado.

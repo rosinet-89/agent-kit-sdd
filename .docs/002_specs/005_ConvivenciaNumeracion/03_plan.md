@@ -65,6 +65,8 @@ Dentro de 0.5.0 sin publicar: `VERSION` y la fecha del bloque de 0.5.0 no cambia
 - **B.** La fuente única vive en un archivo del grupo C y la actualización avisa por nombres, sin leerlo (decisión 3). Alternativas reales: un archivo del grupo A, o comparar el README. Efecto: deja una limitación conocida (RNF-2).
 La decisión (2) (estado AVISO) no se propone como ADR: es un detalle del procedimiento del chequeo.
 
+Creados el 2026-10-25, con el visto bueno del usuario. La candidata A es el ADR [014](../../004_adr/014_ConvivenciaDeAnchosDeNumeracion.md) (decisión 31 del avance). La candidata B es el ADR [015](../../004_adr/015_FuenteUnicaDeNumeracionEnGrupoC.md). La deuda de las limitaciones de la decisión 28 es `008_LimitacionesDeLaNumeracion`. Las tres líneas de `MEMORY.md` ya estaban escritas (decisión 31) y no se duplican.
+
 ## 7. Fases y estimado
 Estimado en minutos porque solo se edita Markdown (la `003` mostró que 0,25 h por fase sobreestima unas 10 veces).
 
