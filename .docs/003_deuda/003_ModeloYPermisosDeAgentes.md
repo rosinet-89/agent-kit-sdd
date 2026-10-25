@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | En atención |
+| Estado | Resuelta |
 | Alta | 2026-10-25 |
 | Origen | Recorte de alcance en `003_OptimizarArnes` (duda 1, decisión del usuario, 2026-10-25) |
 | Módulo | Agentes del kit (`coordinator`, `planner`, `implementer`, `reviewer`) |
 | Prioridad | Media |
-| Atendida por | `004_ModeloYPermisosAgentes` (en curso) |
+| Atendida por | `004_ModeloYPermisosAgentes` (cierre 2026-10-25 16:13) |
 
 ## Descripción
 Dos asuntos de los agentes que `003_OptimizarArnes` dejó fuera:
@@ -30,9 +30,10 @@ Decisión del usuario: sin verificar el comportamiento real de la herramienta se
 3. Abrirlo como spec propia por el flujo `sdd`, con la medición del costo antes y después.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+`004_ModeloYPermisosAgentes`, cierre 2026-10-25 16:13. Verificación contra la documentación de subagentes de Claude Code (2026-10-25, decisión 2 del avance): `mode` y `permissions` no son campos soportados; `tools` sí; `omitClaudeMd` evita cargar `CLAUDE.md` y los `AGENTS.md` de proyecto; un `deny` de settings vale para toda la sesión. Los cuatro agentes de `template/.agents/agents/` declaran `model: inherit` (el alias `sonnet` no se sustituyó: no hubo corrida válida). `omitClaudeMd: true` en planner, reviewer y coordinator; el implementer no tiene la clave. Se quitaron `mode` y `permissions`. El reviewer quedó con `tools: Read, Glob, Grep, Bash`. La tabla de restricciones está en `template/.agents/skills/sdd/restricciones-de-rol.md` (ocho filas; filas 2 y 3 solo instrucción; el `deny` de Git es texto y no se copió a `.claude/`). Sin hooks. El paso 5 de `template/.agents/commands/sdd-validate.md` deja la evidencia formal en la sesión. «Qué lee cada rol» quedó en los dos `AGENTS.md`. Ítem en `CHANGELOG.md` dentro de 0.5.0. Manifiesto `0.5.0` regenerado (42 filas, E20 en 0). `/sdd-init` no sugiere `allow` ni `deny`: sigue fuera de este cierre, propuesto como deuda nueva.
 
 ## Historial
 - 2026-10-25 — Alta.
 - 2026-10-25 — Decisión del usuario: esperar a que `003_OptimizarArnes` esté implementada antes de atenderla (mismos archivos de agentes, medición limpia y un solo manifiesto). Al retomarla se abre como spec propia por el flujo `sdd`; el primer paso es verificar qué campos del frontmatter respeta Claude Code.
 - 2026-10-25 — Se retoma tras implementar `003_OptimizarArnes`. Paso 1 hecho: verificación contra la documentación de Claude Code (ver `004_ModeloYPermisosAgentes/05_avance.md`, decisión 2). En atención por la spec `004`.
+- 2026-10-25 16:13 — Resuelta por el cierre de `004_ModeloYPermisosAgentes`.

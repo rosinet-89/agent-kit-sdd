@@ -16,6 +16,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-10-25] Una fase del plan llamada Cierre no ejecuta `/sdd-cierre`.
 - [2026-10-25] El conteo de un análisis queda viejo si `template/` cambia antes de congelar el manifiesto; manda la medición.
 - [2026-10-25] Si no hay un solo paso, la sesión sigue «Si no hay un solo paso» en la skill `sdd` y no espera a que un subagente abra a otro. Detalle: `.docs/004_adr/010_RutaSiNoHayUnSoloPaso.md`.
+- [2026-10-25] No hay revisión en la que F1.4 de `001_ActualizarKit` ya esté y F1.5 todavía no. Rehacer ese paso no prueba un modelo.
 
 ## Referencias externas
 

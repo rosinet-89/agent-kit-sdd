@@ -1,5 +1,5 @@
 # 01 — Spec: Modelo por rol y permisos reales del frontmatter de los agentes
-Estado: aprobada
+Estado: implementada
 Ticket: sin ticket
 
 ## Contexto y objetivo

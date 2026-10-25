@@ -42,9 +42,10 @@ revisar) · `Alta manual` (la registró una persona).
 |---|---|---|---|---|---|---|---|
 | 001 | [Actualizar el clon del kit (modo mantenimiento)](001_ActualizarCloneDelKit.md) | Instalación / actualización | Recorte de alcance en `001_ActualizarKit` | Resuelta | Media | `INSTALAR.md` › Modo mantenimiento (sesión paralela; no es `001_ActualizarKit`) | 2026-10-24 |
 | 002 | [Versión 0.5.0 sin spec, plan ni avance](002_FlujoSddNoAplicadoEn050.md) | Proceso de mantenimiento | Hallazgo (flujo `sdd` no aplicado) | Resuelta | Media | `002_Kit050` | 2026-10-24 |
-| 003 | [Modelo por rol y permisos del frontmatter de los agentes](003_ModeloYPermisosDeAgentes.md) | Agentes del kit | Recorte de alcance en `003_OptimizarArnes` | En atención | Media | `004_ModeloYPermisosAgentes` | 2026-10-25 |
+| 003 | [Modelo por rol y permisos del frontmatter de los agentes](003_ModeloYPermisosDeAgentes.md) | Agentes del kit | Recorte de alcance en `003_OptimizarArnes` | Resuelta | Media | `004_ModeloYPermisosAgentes` (cierre 2026-10-25 16:13) | 2026-10-25 |
 | 004 | [Convivencia de la numeración de 3 y 4 dígitos en un proyecto que se actualiza](004_ConvivenciaNumeracion3y4Digitos.md) | Numeración de specs, deudas y ADR | Hallazgo al revisar 0.5.0 | Abierta | Media | — | 2026-10-25 |
 | 005 | [Verificar el frontmatter de los agentes en Cursor, Gemini, Copilot y Kiro](005_FrontmatterAgentesPorHerramienta.md) | Agentes del kit (frontmatter) | Alta manual | Abierta | Media | — | 2026-10-25 |
+| 006 | [/sdd-init sugiere los fragmentos allow y deny](006_SddInitSugiereAllowDeny.md) | `sdd-init` | Recorte de alcance en `004_ModeloYPermisosAgentes` | Abierta | Media | — | 2026-10-25 |
 
 ## Plantilla de un detalle
 

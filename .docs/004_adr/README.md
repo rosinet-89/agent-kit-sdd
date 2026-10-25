@@ -28,3 +28,6 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 008 | [Formato de manifiestos, huella y marcador](008_FormatoManifiestosHuellaMarcador.md) | Aceptado | 2026-10-25 | `001_ActualizarKit` |
 | 009 | [Una fuente por fase del flujo SDD](009_FuenteUnicaPorFase.md) | Aceptado | 2026-10-25 | `003_OptimizarArnes` |
 | 010 | [La ruta alterna vive en la skill sdd](010_RutaSiNoHayUnSoloPaso.md) | Aceptado | 2026-10-25 | `006_RutaSiNoDelega` |
+| 011 | [Restricciones de rol sin hooks](011_RestriccionesDeRolSinHooks.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
+| 012 | [omitClaudeMd en planner, reviewer y coordinator](012_OmitClaudeMdEnTresRoles.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
+| 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
