@@ -6,6 +6,8 @@ réplicas por herramienta como enlaces, y skills, agentes, comandos e índices c
 
 ## Alcance
 
+La sesión principal corre E1 a E20. No se delegan a un subagente.
+
 `/sdd-estructura` sin argumento corre todos los bloques. Con argumento corre uno:
 `enlaces`, `skills`, `agentes`, `comandos`, `docs`, `codificacion` o `kit` (solo en el repo del kit).
 

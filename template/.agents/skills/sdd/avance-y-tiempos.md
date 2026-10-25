@@ -73,6 +73,9 @@ agrega un renglón.
 - **Fin:** hora en que el paso queda cerrado (respuesta entregada o el usuario confirma que el script ya corrió).
 - **Minutos:** `fin - inicio - pausa`. Solo entra lo que fue trabajo de este feature: codear, revisar SQL juntos, decidir, probar.
 - **Pausa:** minutos que el usuario dijo que no fueron de este desarrollo (comida, otra tarea, junta, fin de día).
+- **Mínimo y lote.** En un feature abierto desde esta versión, cada paso real mide al menos 1 minuto. No se cierran varios pasos con filas en lote de 0 minutos. La única excepción es un paso trivial cuya Nota dice exactamente "sin trabajo real". Un feature ya cerrado conserva sus filas; ninguna comprobación le exige reescribirlas. `001_ActualizarKit` sigue válido con las suyas.
+
+Las reglas de pausa, de formato de la fila, de quién escribe este avance y de la leyenda de estados viven solo en este contrato. Los comandos las nombran; no las vuelven a definir. El arranque de sesión no vive aquí: su dueño es `AGENTS.md`.
 
 ### Hueco largo: preguntar antes de contar
 

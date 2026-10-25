@@ -8,6 +8,20 @@ description: Procedimiento ligero de seguridad antes de un commit o al validar u
 Refuerza la regla dura de `AGENTS.md`: **nunca secretos ni credenciales en archivos versionados**.
 Solo lee y reporta: no corrige ni borra nada sin que el usuario lo pida.
 
+## Modo
+
+La búsqueda de secretos (sección 1) aplica siempre. Hay dos modos:
+
+- **Solo secretos.** El cambio es solo documentación: prosa que explica, describe o enumera, sin
+  añadir ni modificar código ejecutable. Se aplica la sección 1 y se dice que el modo fue "solo secretos".
+- **Completo.** El cambio toca código ejecutable, datos, accesos o secretos. Se aplican la sección 1
+  y el checklist de la sección 2. Ante duda, este modo.
+
+Código ejecutable: lo que un agente, un shell o una herramienta ejecuta o interpreta como
+instrucción operativa (scripts, comandos de shell o bloques copiables, configuración con permisos,
+`tools` o `mode` en el frontmatter, SQL, y cualquier cambio de datos, accesos o secretos). Un
+`.md` cuenta como código ejecutable solo si añade o modifica uno de esos elementos.
+
 ## 1. Búsqueda de secretos (antes de cada commit)
 
 Sobre **lo que entra al commit**, no sobre todo el repo:

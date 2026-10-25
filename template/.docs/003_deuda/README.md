@@ -2,8 +2,8 @@
 
 Control de lo que quedó pendiente en el sistema: por una decisión tomada durante un
 requerimiento, por un hallazgo, o porque alguien la dio de alta a mano. Cada deuda tiene un
-archivo `NNNN_<Nombre>.md` con el detalle completo (4 dígitos en un proyecto, `0001`; 3 en el
-clon del kit). Este README es el resumen. El ancho está en `.docs/002_specs/README.md` ›
+archivo `NNNN_<Nombre>.md` con el detalle completo (4 dígitos en un proyecto, `0001`; en el
+clon, el ancho de Numeración única). Este README es el resumen. El ancho está en `.docs/002_specs/README.md` ›
 "Numeración única". Las carpetas de sección de `.docs/` siguen en 3 dígitos.
 
 Sirve para saber **qué está pendiente, de dónde viene, si ya se atendió y qué requerimiento la
@@ -71,7 +71,7 @@ revisar) · `Alta manual` (la registró una persona).
 
 - Número nuevo y revisión de duplicados: mismas reglas que `.docs/002_specs/README.md` › "Numeración única",
   aplicadas a los archivos `NNNN_<Nombre>.md` de esta carpeta (remota: `git ls-tree --name-only @{u} .docs/003_deuda/`).
-  Ancho del prefijo: el de `.docs/002_specs/README.md` › "Numeración única" (4 dígitos en un proyecto, 3 en el clon del kit).
+  Ancho del prefijo: el de `.docs/002_specs/README.md` › "Numeración única" (4 dígitos en un proyecto; en el clon, el de ese README).
   Si se renumera una deuda, se actualizan también las specs que la citen. Numeración
   **independiente** de la de las specs. No se reutilizan números.
 - Una fila por deuda, con su estado y su(s) referencia(s). El detalle vive en el archivo.

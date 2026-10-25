@@ -21,8 +21,8 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
 ## Reglas del flujo
 
 - Leer antes: `.docs/001_constitucion/constitution.md`, `AGENTS.md` y `MEMORY.md`.
-- Deuda técnica: `.docs/003_deuda/README.md`. Consultarla al analizar; proponer altas de lo diferido; marcar lo resuelto en `cierre`.
-- Índice de planes: `.docs/002_specs/README.md`. Consultarlo al analizar (¿ya se tocó este proceso?) y actualizarlo al abrir carpeta y en `cierre`.
+- Deuda técnica: `.docs/003_deuda/README.md`. Consultarla al analizar; proponer altas de lo diferido. Lo resuelto lo marca `/sdd-cierre`, que en todo feature revisa deuda y ADR.
+- Índice de planes: `.docs/002_specs/README.md`. Consultarlo al analizar (¿ya se tocó este proceso?) y actualizarlo al abrir carpeta y en `/sdd-cierre`.
 - **Nunca** pasar una puerta de aprobación sin el visto bueno explícito del usuario.
 - La spec manda: lo que no está en `01_spec.md` no se implementa. Si falta una decisión, se para y se pregunta.
 - Un cambio de requisitos va primero a `01_spec.md`, luego a `02`/`03`/`04`, y al final al código.
@@ -44,7 +44,7 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
   tests/                   # opcional: harness de solo lectura
 ```
 
-- `NNNN`: 4 dígitos en un proyecto (`0001`). Siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números. En el clon del kit el ancho sigue en 3 (`001`). La misma regla de ancho vale para deudas y ADR.
+- `NNNN`: 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR. Siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números. En el clon del kit manda el ancho de ese README. Las carpetas de sección de `.docs/` siguen en 3.
 - `NombreFeature`: PascalCase, sin espacios. Ej.: `0017_ReporteVentasPorZona`.
 - Plantillas de cada archivo: [plantillas.md](plantillas.md).
 - Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md).
@@ -53,27 +53,27 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
 
 Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son solo las fases y pasos del plan.
 
-| Fase | Comando | Lo hace | Archivo | Puerta |
-|---|---|---|---|---|
-| `spec` | `/sdd-spec <NNNN_Feature> <idea>` | planner | `01_spec.md` (crea carpeta y `05_avance.md`) | — |
-| `clarify` | `/sdd-clarify <NNNN_Feature>` | reviewer → planner corrige | `01_spec.md` | **Spec aprobada** |
-| `plan` (análisis y plan) | `/sdd-plan <NNNN_Feature>` | planner | `02_analisis_impacto.md`, `03_plan.md` | — |
-| `tasks` | `/sdd-tasks <NNNN_Feature>` | planner | `04_tasks.md` | **Plan y tareas aprobados** |
-| Implementación (pasos `Fn.m`) | `/sdd-implement <NNNN_Feature> <Fn o Fn.m>` | implementer | código, `sql/`, marca en `04_tasks.md` | tras cada paso |
-| `validate` | `/sdd-validate <NNNN_Feature>` | reviewer | resultado en `05_avance.md` (Pruebas) | UI verificada por el usuario |
-| `flujo` | `/sdd-flujo <NNNN_Feature>` | planner; reviewer contrasta con el código | `06_flujo.md` | **Flujo aprobado** |
-| `cierre` | `/sdd-cierre <NNNN_Feature>` | sesión principal | `05_avance.md` (plan contra real) | Commit confirmado |
-| `change` | `/sdd-change <NNNN_Feature> <cambio>` | planner | diff de `01_spec.md` | **Cambio aprobado** |
-| Estado | `/sdd-status <NNNN_Feature>` | sesión principal | — (solo lectura) | — |
-| Estructura del kit | `/sdd-estructura [bloque]` | reviewer | — (solo lee y reporta) | — |
-| **Entrada única** | `/sdd <petición libre>` | coordinator (decide la fase) | según la fase | todas |
+| Fase | Enlace | Rol | Documento |
+|---|---|---|---|
+| `spec` | `/sdd-spec` | planner | `01_spec.md` |
+| `clarify` | `/sdd-clarify` | reviewer | `01_spec.md` |
+| `plan` | `/sdd-plan` | planner | `02_analisis_impacto.md`, `03_plan.md` |
+| `tasks` | `/sdd-tasks` | planner | `04_tasks.md` |
+| Implementación | `/sdd-implement` | implementer | el paso `Fn.m` |
+| `validate` | `/sdd-validate` | reviewer | `05_avance.md` |
+| `flujo` | `/sdd-flujo` | planner, reviewer | `06_flujo.md` |
+| `cierre` | `/sdd-cierre` | sesión principal | `05_avance.md` |
+| `change` | `/sdd-change` | planner | `01_spec.md` |
+| Estado | `/sdd-status` | sesión principal | — |
+| Estructura del kit | `/sdd-estructura` | sesión principal | — |
+| Entrada única | `/sdd` | coordinator | según la fase |
 
 `/sdd` es el único comando que usas. El coordinator clasifica la petición con la tabla
 "Cómo decides qué hacer" de `.agents/agents/coordinator.md`, elige un comando de la tabla
 de arriba y lo ejecuta. Esos comandos también se pueden lanzar a mano.
 
 - **Solo análisis** (sin desarrollo): termina en `plan` con `Estado: analisis` en `01_spec.md`.
-- **`05_avance.md` lo escribe solo la sesión principal** (el comando o el coordinator): es la única que habla con el usuario y puede preguntar por pausas. Los subagentes devuelven qué hicieron; la sesión principal lo registra.
+- Tiempos, pausas y quién escribe `05_avance.md`: [avance-y-tiempos.md](avance-y-tiempos.md). No se redefinen aquí.
 - Los subagentes no ven la conversación: en cada llamada se les pasa fase, petición original, decisiones, rutas y el resultado de la fase anterior.
 
 ## Contenido mínimo por archivo

@@ -2,16 +2,16 @@
 description: SDD · Divide 03_plan.md en fases y pasos verificables (04_tasks.md)
 argument-hint: <NNNN_NombreFeature>
 ---
-Fase `tasks` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
+
+Fase `tasks`. Carpeta: `.docs/002_specs/$1/`.
+
+Qué lee: `01_spec.md`, `03_plan.md` y `AGENTS.md` › Comandos. La forma de `04_tasks.md` está en `.agents/skills/sdd/plantillas.md`, sección `## 04_tasks.md`.
+
+Qué hace:
 
 1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
-2. Delega en el subagente **planner** `04_tasks.md` a partir de `01_spec.md` y `03_plan.md`,
-   con la plantilla de la skill:
-   - Las fases F0..Fn del plan, con su estimado en horas.
-   - Pasos `Fn.m` pequeños, en orden de dependencia, cada uno con sus RF.
-   - Checklist "Hecho cuando" por paso: los comandos de verificación de `AGENTS.md` › Comandos,
-     evidencia de datos si toca datos, verificación manual de UI si aplica.
-3. Muéstrame fases, pasos y estimados. PARA hasta que yo apruebe plan y tareas; anota la
-   aprobación con su hora.
-4. Registra la fila `tasks` en `05_avance.md` y el siguiente paso:
-   `/sdd-implement $1 F0.1` (o el primer paso).
+2. Delega en el subagente **planner** `04_tasks.md` a partir de la spec y del plan, siguiendo la sección `## 04_tasks.md` de `plantillas.md`. No copies esa plantilla en el comando.
+3. Muestra fases, pasos y estimados. PARA hasta que se aprueben plan y tareas. Anota la aprobación con su hora.
+4. La sesión principal registra la fila `tasks` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-implement $1 F0.1` (o el primer paso).
+
+Qué no hace: no escribe código. No repite el contenido de `plantillas.md`. No copia el formato de la fila de tiempos ni el arranque de sesión.

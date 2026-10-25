@@ -5,12 +5,22 @@ argument-hint: <contexto adicional opcional>
 Personalización inicial del kit SDD en este proyecto. Usa la skill `sdd`. NO escribas código ni
 archivos hasta que yo apruebe la propuesta (paso 3).
 
+Qué lee: el reconocimiento de la sección 1, con tope de 30 archivos o 150 KB acumulados, lo que
+ocurra primero. Para pasar ese tope, pide confirmación.
+
+Qué hace: entrevista, propone y, tras la aprobación, personaliza el proyecto.
+
+Qué no hace: no escribe nada antes de esa aprobación. No tiene meta de reducción de lectura.
+
 Si `AGENTS.md` ya no contiene `SDD-INIT-PENDIENTE`, el proyecto ya está personalizado: dímelo y
 pregunta si quiero revisar o actualizar algo en concreto.
 
 Contexto adicional: $ARGUMENTS
 
 ## 1. Reconocimiento (solo lectura)
+
+Tope: 30 archivos o 150 KB acumulados, lo que ocurra primero. Si hace falta más, pide confirmación
+antes de seguir. No amplíes el tope por tu cuenta.
 
 Lee, sin modificar nada: `README*`, manifiestos de dependencias (`package.json`, `composer.json`,
 `pom.xml`, `requirements.txt`, `go.mod`, `*.csproj`, etc.), configuración de Docker/CI, la

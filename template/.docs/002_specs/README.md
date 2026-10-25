@@ -58,9 +58,9 @@ specs, de deuda **y de ADR**. No se limita a las carpetas `001`, `002` y `003`:
 `001_constitucion` no numera ítems. `004_adr` es carpeta de sección (el nombre sigue en 3
 dígitos); cada decisión dentro lleva su propio `0001`.
 
-En el clon del kit (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz) ese consecutivo
-sigue en **3 dígitos** (`001`), también en los ADR. No lo subas a 4 en el clon, ni lo bajes a 3
-en un proyecto.
+En el clon del kit (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz) el ancho de los
+ítems es el que ya declara el índice de esa copia; el chequeo E12 lo comprueba. No cambies el
+ancho del clon ni el de un proyecto.
 
 El prefijo no se repite dentro de su carpeta. Varias personas abren ítems en paralelo, así que
 dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. Specs, deuda
