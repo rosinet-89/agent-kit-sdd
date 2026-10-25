@@ -72,6 +72,12 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 "Cómo decides qué hacer" de `.agents/agents/coordinator.md`, elige un comando de la tabla
 de arriba y lo ejecuta. Esos comandos también se pueden lanzar a mano.
 
+Si quien aplica esta skill es el chat y no el agente `coordinator`, lanza a ese subagente
+con la petición y no ejecuta las fases. El coordinator elige el comando, lo sigue, delega
+en `planner`, `implementer` y `reviewer`, y lleva `05_avance.md`. El cierre, el estado y la
+estructura siguen en la sesión principal. Si la atención entra por el coordinator, él sigue
+esos comandos.
+
 - **Solo análisis** (sin desarrollo): termina en `plan` con `Estado: analisis` en `01_spec.md`.
 - Tiempos, pausas y quién escribe `05_avance.md`: [avance-y-tiempos.md](avance-y-tiempos.md). No se redefinen aquí.
 - Los subagentes no ven la conversación: en cada llamada se les pasa fase, petición original, decisiones, rutas y el resultado de la fase anterior.
