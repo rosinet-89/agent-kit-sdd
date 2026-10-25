@@ -27,6 +27,15 @@
   redacción en `AGENTS.md` llega a un proyecto por fusión manual.
 - La skill `sdd` manda que el chat lance al coordinator y no ejecute las fases.
 - Si una fase no cabe en un solo paso, sigue en esa misma entrada y deja constancia en el avance. Un pedido de hacerla en el chat se atiende en la sesión.
+- Modelo explícito por rol; `omitClaudeMd` en planner, reviewer y coordinator; se quitan `mode` y
+  `permissions`; el reviewer ya no tiene `Write` y la evidencia formal la escribe la sesión;
+  `restricciones-de-rol.md` es NUEVO (grupo A) y se incorpora junto con los agentes; «Qué lee cada rol»
+  llega por fusión manual. Quien personalizó un agente: (1) quitar `mode`/`permissions` (se ignoran);
+  (2) el reviewer ya no tiene `Write`; (3) sin `model` el agente hereda el de la sesión; (4) sin
+  `omitClaudeMd` el agente sigue cargando `AGENTS.md` completo. Hay que actualizar `reviewer.md` y
+  `sdd-validate.md` a la vez: si el reviewer es el anterior y el comando el nuevo, la sesión escribe la
+  evidencia y solo se pierde la garantía de que el reviewer no escriba; al revés, el procedimiento queda
+  desfasado porque el reviewer devuelve el contenido y la sesión lo escribe.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
