@@ -19,12 +19,21 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
   001_constitucion/  002_specs/ (índice)  003_deuda/ (índice)  004_adr/ (índice)
 ```
 
+En la raíz del kit, fuera de `template/` (no se copian al instalar):
+
+```
+ACTUALIZAR.md    procedimiento para actualizar un proyecto que ya tiene el kit
+manifiestos/     huellas por versión; no se distribuye
+```
+
 ## Instalación
 
 El kit no trae scripts (dependen del SO y del shell). Abre esta carpeta con tu agente y pídele:
 **"instala el kit en `<ruta del proyecto>` siguiendo `INSTALAR.md`"**. El agente detecta tu SO y
 shell, te ofrece un script a tu medida o el paso a paso, y copia `template/` sin sobrescribir nada.
 También puedes hacerlo a mano: ver `INSTALAR.md`.
+
+Si el proyecto ya tiene el kit, no lo instales otra vez. Sigue `ACTUALIZAR.md`.
 
 Si lo instalas en un proyecto existente, solo se copia `template/`. Si abres el propio clon del kit, el
 agente te pregunta si lo quieres para un proyecto nuevo o para trabajar el kit (modo mantenimiento, que
@@ -56,8 +65,8 @@ sesión y, si no existe, lo crean desde `.agents/preferencias.ejemplo.md`. Lo de
 
 - Lo genérico vive aquí; lo propio del proyecto (skills de dominio, reglas de negocio, trampas)
   se crea en el proyecto, nunca en el kit.
-- Cada versión se anota en `CHANGELOG.md` y `VERSION`. Para actualizar un proyecto existente,
-  compara su `.agents/` con el del kit; la copia nunca sobrescribe.
+- Cada versión se anota en `CHANGELOG.md` y `VERSION`. Para actualizar un proyecto que ya tiene
+  el kit, sigue `ACTUALIZAR.md`.
 
 ## Licencia
 

@@ -15,6 +15,10 @@
   herramienta (o excluirlo si es una prueba local). `.agents/README.md` lo referencia al agregar cada tipo.
 - `INSTALAR.md`: elige modo al empezar. **Modo proyecto** instala solo `template/`; **Modo mantenimiento**
   (clon del kit) conserva el conocimiento propio versionado (specs, ADR, memoria, reglas) y pregunta antes de copiar.
+- Actualización de un proyecto que ya tiene el kit: `ACTUALIZAR.md`, en lugar de reinstalar encima.
+- Manifiestos de huellas por versión en `manifiestos/` (fuera de `template/`, no se distribuyen).
+- Marcador de versión `.agents/.kit-version`, escrito al instalar en modo proyecto.
+- Chequeo E20, solo en el repo del kit: las huellas de `template/` coinciden con el manifiesto de `VERSION`.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
