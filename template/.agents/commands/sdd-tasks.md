@@ -1,6 +1,6 @@
 ---
 description: SDD · Divide 03_plan.md en fases y pasos verificables (04_tasks.md)
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Fase `tasks`. Carpeta: `.docs/002_specs/$1/`.

@@ -26,11 +26,11 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
 .docs/
   001_constitucion/constitution.md
   002_specs/README.md             # índice de planes
-  002_specs/<NNNN>_<Feature>/     # un plan (01_spec … 06_flujo); 4 dígitos en un proyecto
+  002_specs/<prefijo>_<Feature>/   # un plan (01_spec … 06_flujo)
   003_deuda/README.md             # índice de deuda técnica
-  003_deuda/<NNNN>_<Nombre>.md    # una deuda; mismo ancho que las specs
+  003_deuda/<prefijo>_<Nombre>.md  # una deuda
   004_adr/README.md               # índice de ADR (skill adr)
-  004_adr/<NNNN>_<Titulo>.md      # un ADR; mismo ancho de 4 dígitos en un proyecto
+  004_adr/<prefijo>_<Titulo>.md    # un ADR
 ```
 
 ## Qué carpeta lee cada herramienta

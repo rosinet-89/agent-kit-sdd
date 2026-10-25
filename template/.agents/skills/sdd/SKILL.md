@@ -4,7 +4,7 @@ description: >
   Flujo Spec-Driven Development (SDD) para todo análisis o desarrollo nuevo: spec,
   análisis de impacto, plan, tareas, implementación, validación, flujo operativo y cierre,
   con los agentes coordinator, planner, implementer y reviewer, en
-  `.docs/002_specs/<NNNN>_<Feature>/` (01_spec … 06_flujo + sql/) y registro de tiempos
+  `.docs/002_specs/<prefijo>_<Feature>/` (01_spec … 06_flujo + sql/) y registro de tiempos
   reales en `05_avance.md`. Activar cuando el usuario pida: desarrollo nuevo, feature,
   requerimiento, análisis de impacto, spec, plan, tareas, avance, tiempos, flujo operativo,
   o use un comando `/sdd*`. Disparadores: "SDD", "spec", "01_spec", "03_plan", "04_tasks",
@@ -32,7 +32,7 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
 ## Carpeta del feature
 
 ```
-.docs/002_specs/<NNNN>_<NombreFeature>/
+.docs/002_specs/<prefijo>_<NombreFeature>/
   01_spec.md               # QUÉ y POR QUÉ (RF en EARS) y Estado
   02_analisis_impacto.md   # módulos, tablas, archivos, datos reales, riesgos
   03_plan.md               # CÓMO: capas, archivos, sql/, fases con estimado (h)
@@ -44,8 +44,8 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
   tests/                   # opcional: harness de solo lectura
 ```
 
-- `NNNN`: 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR. Siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números. En el clon del kit manda el ancho de ese README. Las carpetas de sección de `.docs/` siguen en 3.
-- `NombreFeature`: PascalCase, sin espacios. Ej.: `0017_ReporteVentasPorZona`.
+- `<prefijo>`: consecutivo numérico de specs, deudas y ADR, sin repetir prefijos ni reutilizar números. Un ítem nuevo conserva el ancho de su carpeta (detalle: `.docs/002_specs/README.md` › « Numeración única »).
+- `NombreFeature`: PascalCase, sin espacios. Ej.: `ReporteVentasPorZona`.
 - Plantillas de cada archivo: [plantillas.md](plantillas.md).
 - Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md). Las restricciones de rol viven en [restricciones-de-rol.md](restricciones-de-rol.md); se enlaza y no se copia.
 

@@ -26,7 +26,7 @@ La sesión principal corre E1 a E20. No se delegan a un subagente.
 | E9 | comandos | Cada `commands/<n>.md` tiene `description` y `argument-hint` (si recibe argumentos); los comandos citados en `AGENTS.md` existen y los que existen están citados | Cruzar lista y carpeta |
 | E10 | comandos | Los comandos del flujo `sdd` están en la tabla de fases de `skills/sdd/SKILL.md` y en el ruteo de `coordinator.md` | Cruzar tablas |
 | E11 | rutas | Toda ruta citada con comillas inversas en `AGENTS.md`, `.agents/**/*.md` y `.docs/**/README.md` existe. No aplica a los manifiestos de versión: pueden listar rutas retiradas | `grep` de rutas + `ls` |
-| E12 | docs | Sin prefijos repetidos en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`. Ancho: 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR; 3 dígitos en el clon del kit. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
+| E12 | docs | Sin prefijos repetidos **por valor numérico** en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`, con el ancho de `.docs/002_specs/README.md` › « Numeración única ». `FALLA`: duplicado por valor aunque difiera el ancho; ancho inválido (ni 3 ni 4 dígitos, ni los que el valor necesite); y, en el clon del kit, un ítem de ancho distinto del que declara su índice, salvo el desbordamiento (más dígitos que el ancho declarado porque su valor los necesita). `AVISO`: carpeta de un proyecto con anchos mezclados válidos y sin duplicados; si esa carpeta tiene además un ítem inválido, el resultado es `FALLA` y no se añade `AVISO` por ella. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
 | E13 | docs | Cada índice (`002_specs`, `003_deuda`, `004_adr`) coincide con sus carpetas o archivos; si discrepan, manda la carpeta | Cruzar fila y archivo |
 | E14 | docs | Toda carpeta de `.docs/002_specs/` tiene `01_spec.md` | `ls` |
 | E15 | codificación | Archivos `.md` en UTF-8 sin BOM | `file -i`; `grep -l $'^\xEF\xBB\xBF'` vacío |
@@ -38,8 +38,9 @@ La sesión principal corre E1 a E20. No se delegan a un subagente.
 
 ## Cómo responder
 
-1. Corre los bloques pedidos y, de cada chequeo, anota `OK` o `FALLA` con `archivo:línea`.
-2. Reporta una tabla corta con solo lo que falla, severidad primero:
+1. Corre los bloques pedidos y, de cada chequeo, anota `OK`, `AVISO` o `FALLA` con `archivo:línea`.
+2. Reporta una tabla corta con solo lo que falla, severidad primero. Tras la tabla, un bloque
+   **Avisos** (carpeta y hecho, una línea cada uno) con los `AVISO`; no es una corrección:
 
 ```
 ALTA   | E2  | .claude/skills/probando/ | Skill fuera de .agents/ | Mover a .agents/skills/probando/ y enlazar
@@ -47,7 +48,8 @@ MEDIA  | E7  | .agents/skills/adr       | Falta fila en AGENTS.md | Agregar la r
 BAJA   | E15 | CHANGELOG.md             | BOM al inicio           | Quitar el BOM
 ```
 
-3. Sin fallos: `estructura OK (E1–E20, N archivos revisados)`. No listes los OK uno a uno.
+3. Sin fallos: `estructura OK (E1–E20, N archivos revisados)`; si hubo avisos, se añade
+   `, M avisos` y se listan en **Avisos**. No listes los OK uno a uno.
 4. Cierra con **Correcciones propuestas**: lista numerada, sin aplicarlas. Cada corrección se
    ejecuta solo si el usuario la confirma. Nunca borres ni muevas un archivo (estado `OCUPADO` o
    huérfano) sin esa confirmación.

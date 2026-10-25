@@ -38,7 +38,7 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 6. Carpeta nueva o cambio de estatus = actualizar su fila. Lo hacen `/sdd-spec` y `/sdd-cierre`.
 
 ## Deuda técnica
-Índice: `.docs/003_deuda/README.md` (un `NNNN_<Nombre>.md` por deuda, con estado, origen y qué la resolvió).
+Índice: `.docs/003_deuda/README.md` (un `<prefijo>_<Nombre>.md` por deuda, con estado, origen y qué la resolvió).
 1. Al hacer "Antecedentes", busca también ahí deuda abierta del módulo, pantalla o tabla y dila al usuario.
 2. Si durante un requerimiento algo se difiere (por decisión del usuario o por recorte de alcance), o aparece un hallazgo que no se atiende ahora, PROPÓN darlo de alta; no la crees sin el visto bueno del usuario.
 3. Al cerrar un requerimiento, indica qué deudas resolvió (estado `Resuelta` + "Atendida por" + "Cómo se atendió") y cuáles dejó. Lo hace `/sdd-cierre`.
@@ -48,7 +48,7 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 Reglas completas en `.docs/002_specs/README.md`.
 - Toda carpeta de plan nace en formato SDD (skill `sdd`): lleva `01_spec.md`.
 - Las carpetas de sección de `.docs/` (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 dígitos.
-- En un proyecto, cada spec, deuda y ADR lleva un prefijo de 4 dígitos (`0001`). No se repite dentro de su carpeta. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación. El ancho completo está en `.docs/002_specs/README.md` › "Numeración única".
+- Cada spec, deuda y ADR lleva un prefijo numérico. Un ítem nuevo conserva el ancho de su carpeta (detalle: `.docs/002_specs/README.md` › « Numeración única »). No se repite dentro de su carpeta. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
 
 ## Skills de proyecto
 Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee todas.
@@ -66,7 +66,7 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
-- `sdd` exige `.docs/002_specs/<NNNN>_<Feature>/` (NNNN = consecutivo de 4 dígitos, `0001`) con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
+- `sdd` exige `.docs/002_specs/<prefijo>_<Feature>/` (prefijo = consecutivo numérico) con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).

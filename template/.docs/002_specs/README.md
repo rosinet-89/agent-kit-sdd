@@ -22,7 +22,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 ## Índice
 
-| NNN | Carpeta | Qué resuelve | Estatus (al último avance) | Palabras clave | Pendiente / deuda |
+| Prefijo | Carpeta | Qué resuelve | Estatus (al último avance) | Palabras clave | Pendiente / deuda |
 |---|---|---|---|---|---|
 
 ## Mapa por tema
@@ -43,36 +43,42 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 ## Numeración única (sin prefijos repetidos)
 
+Esta es la única fuente de la regla de numeración. Las demás piezas remiten aquí.
+
 Las carpetas de sección de `.docs/` se quedan en **3 dígitos** y no se renumeran:
-`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`.
+`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`. No son ítems.
 
-El consecutivo de **4 dígitos** en un proyecto (`0001`, `0002`, …) vale para los ítems de
-specs, de deuda **y de ADR**. No se limita a las carpetas `001`, `002` y `003`:
+**Ancho.**
+- Un **ítem** es una carpeta de `.docs/002_specs/`, o un archivo de `.docs/003_deuda/` o `.docs/004_adr/`, cuyo nombre empieza con dígitos y `_`. `README.md` y los marcadores de carpeta vacía no son ítems.
+- **Ancho válido** de un prefijo: 3 o 4 dígitos, o los que el valor necesita (sin ceros de relleno) si supera 9999. Uno de 1 o 2 dígitos es inválido.
+- **Ancho de una carpeta**: el del ítem de mayor valor numérico entre los de ancho válido. Un ítem nuevo conserva el ancho de su carpeta. **Empate de valor con anchos distintos** (`017_A` y `0017_B`): es un duplicado que se resuelve antes (« Revisión de duplicados »); mientras no se resuelva, el ancho de la carpeta es el del ítem publicado en la rama remota y, si ninguno lo está, el mayor ancho. Cada carpeta (specs, deuda, ADR) lleva el suyo: un ADR nuevo en una carpeta de ADR de 3 dígitos usa 3 aunque las specs estén en 4.
+- **Carpeta vacía**: usa el ancho del ítem de mayor valor numérico entre las otras dos carpetas con ítems; si empatan en valor, manda el orden specs, deuda, ADR. Si ninguna tiene ítems (proyecto nuevo), usa 4 dígitos.
+- **Clon del kit** (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz): el ancho es el que declara el índice de esa copia, y el chequeo E12 lo comprueba. No lo cambies. Un ítem con más dígitos que el ancho declarado porque su valor los necesita (1000 en una carpeta de 3) es un desbordamiento, no un ancho distinto del declarado.
+- **Desbordamiento**: si el valor siguiente necesita más dígitos que el ancho de la carpeta (1000 en una de 3), se usan los que necesita, sin rellenar ni truncar. La carpeta pasa a tener anchos mezclados y su ancho pasa a ser el del ítem de mayor valor.
+
+Ejemplos de rutas (sin número):
 
 ```
-.docs/002_specs/0001_SpecUno/
-.docs/003_deuda/0001_DeudaUno.md
-.docs/004_adr/0001_Titulo.md
+.docs/002_specs/<prefijo>_SpecUno/
+.docs/003_deuda/<prefijo>_DeudaUno.md
+.docs/004_adr/<prefijo>_Titulo.md
 ```
 
-`001_constitucion` no numera ítems. `004_adr` es carpeta de sección (el nombre sigue en 3
-dígitos); cada decisión dentro lleva su propio `0001`.
+**Siguiente libre** (carpeta nueva):
+1. Siguiente = mayor valor numérico + 1. El prefijo se lee como entero (`017` y `0017` valen 17), nunca como texto. Se cuentan la copia local **y** la rama remota ya descargada: `git ls-tree --name-only @{u} .docs/002_specs/` (u `origin/<rama principal>` si la rama no tiene upstream). Es solo lectura; el agente no hace `fetch` ni `pull`. El ancho no interviene en la comparación: solo se aplica al escribir el número nuevo.
+2. Si no hay rama remota ni upstream, el cálculo usa solo la copia local; si hay duplicado, se pregunta cuál conservar.
+3. Los huecos no se rellenan ni se reutiliza un número ya usado, sea cual sea el ancho.
+4. Recomendar al usuario subir pronto la carpeta con su fila del índice, para reservar el número.
 
-En el clon del kit (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz) el ancho de los
-ítems es el que ya declara el índice de esa copia; el chequeo E12 lo comprueba. No cambies el
-ancho del clon ni el de un proyecto.
+**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta, `.docs/003_deuda/` o `.docs/004_adr/` (skill `git-commit`). Varias personas abren ítems en paralelo, así que dos ramas pueden tomar el mismo número. El contador de cada carpeta es independiente.
+1. Hay duplicado si dos ítems comparten **valor numérico** en la copia local (`017_A` y `0017_B`), o si un ítem local sin publicar usa un valor que la rama remota ya tiene con otro nombre o con otro ancho.
+2. Con el mismo nombre tras el prefijo (`017_A` remoto y `0017_A` local), es probable que sea el mismo ítem con el prefijo escrito en otro ancho: se propone renombrar el local al nombre publicado, con confirmación. Solo si el usuario indica que son ítems distintos se trata como duplicado.
+3. Conserva el número la que ya está en la rama remota (se publicó primero). La otra pasa al siguiente libre, contando local y remota. Si ninguna está publicada, o no hay rama remota, se pregunta cuál conservar.
+4. El agente avisa con los dos nombres y el número propuesto, y no renombra sin confirmación. Al confirmar: `git mv` de la carpeta, su fila en el índice y cada referencia al nombre viejo (búsqueda con `grep`), incluidas las de su propio avance, `sql/` y las deudas que la citen.
 
-El prefijo no se repite dentro de su carpeta. Varias personas abren ítems en paralelo, así que
-dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. Specs, deuda
-y ADR comparten esta regla de ancho y de duplicados. El contador de cada carpeta es
-independiente.
+**Regla:** nunca se renumera por un cambio de ancho ni de versión del kit: solo se renombra para resolver un duplicado, con confirmación.
 
-**Al asignar un número** (carpeta nueva):
-1. Siguiente = prefijo mayor + 1, mirando la copia local **y** la rama remota ya descargada: `git ls-tree --name-only @{u} .docs/002_specs/` (u `origin/<rama principal>` si la rama no tiene upstream). Es solo lectura; el agente no hace `fetch` ni `pull`.
-2. Recomendar al usuario subir pronto la carpeta con su fila del índice, para reservar el número.
-
-**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta, `.docs/003_deuda/` o `.docs/004_adr/` (skill `git-commit`):
-1. Hay duplicado si dos carpetas comparten prefijo en la copia local, o si una carpeta local sin publicar usa un prefijo que la rama remota ya tiene con otro nombre.
-2. Conserva el número la que ya está en la rama remota (se publicó primero). La otra pasa al siguiente libre: prefijo mayor + 1, contando local y remota. Si ninguna está publicada, o no hay rama remota, se pregunta cuál conservar.
-3. El agente avisa con los dos nombres y el número propuesto, y no renombra sin confirmación. Al confirmar: `git mv` de la carpeta, su fila en el índice y cada referencia al nombre viejo (búsqueda con `grep`), incluidas las de su propio avance, `sql/` y las deudas que la citen.
-4. Un número no se reutiliza: los huecos se quedan como están.
+**Referencias cortas** (`017`):
+- La cita al ítem que conservó el número sigue válida.
+- La cita al ítem renombrado por un duplicado se actualiza como parte del renombrado.
+- Mientras `017` identifique a dos ítems sin resolver, la cita es ambigua: usa el nombre completo de la carpeta.

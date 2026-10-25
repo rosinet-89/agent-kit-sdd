@@ -1,6 +1,6 @@
 ---
 description: SDD · Dónde estamos - fase actual, avance, horas y siguiente paso de un feature
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Informa el estado de `.docs/002_specs/$1/`. No modifica archivos.

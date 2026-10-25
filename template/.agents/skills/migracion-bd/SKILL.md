@@ -1,6 +1,6 @@
 ---
 name: migracion-bd
-description: Reglas para escribir los scripts SQL de un feature en `.docs/002_specs/<NNN>_<Feature>/sql/` - nombre, orden, idempotencia, rollback, encabezado EJECUCIÓN MANUAL y verificación posterior. Usar al planear (`03_plan.md`), al implementar un paso que cambie datos o esquema (`/sdd-implement`) y al validar scripts (`/sdd-validate`). Los agentes generan el SQL, nunca lo ejecutan. Disparadores - "script SQL", "migración", "DDL", "seed", "rollback", "sql/", "cambio de esquema", "ALTER TABLE".
+description: Reglas para escribir los scripts SQL de un feature en `.docs/002_specs/<prefijo_Feature>/sql/` - nombre, orden, idempotencia, rollback, encabezado EJECUCIÓN MANUAL y verificación posterior. Usar al planear (`03_plan.md`), al implementar un paso que cambie datos o esquema (`/sdd-implement`) y al validar scripts (`/sdd-validate`). Los agentes generan el SQL, nunca lo ejecutan. Disparadores - "script SQL", "migración", "DDL", "seed", "rollback", "sql/", "cambio de esquema", "ALTER TABLE".
 ---
 
 # Skill: Migración de base de datos (scripts `sql/`)
@@ -25,7 +25,7 @@ Lo ejecuta el usuario, y `05_avance.md` › "Estado BD" registra qué script cor
 
 ```sql
 -- EJECUCIÓN MANUAL. Un agente no ejecuta este script.
--- Feature:   <NNNN_Feature>     Paso: <Fn.m>
+-- Feature:   <prefijo_Feature>     Paso: <Fn.m>
 -- Propósito: <una línea>
 -- Requiere:  <scripts previos NN, o "ninguno">
 -- Rollback:  99_rollback_<desc>.sql   (o "irreversible: respaldo previo")

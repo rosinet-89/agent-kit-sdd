@@ -1,6 +1,6 @@
 ---
 description: SDD · Genera 06_flujo.md, el flujo operativo de lo implementado
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Fase `flujo`. Carpeta: `.docs/002_specs/$1/`.

@@ -1,6 +1,6 @@
 ---
 description: SDD · Cambio de requisito - primero la spec, luego el plan y el código
-argument-hint: <NNNN_NombreFeature> <cambio solicitado>
+argument-hint: <prefijo_NombreFeature> <cambio solicitado>
 ---
 
 Cambio de requisitos. Carpeta: `.docs/002_specs/$1/`. Cambio: el resto de `$ARGUMENTS` después de `$1`.

@@ -1,6 +1,6 @@
 ---
 description: SDD · Implementa UN paso de 04_tasks.md (uso - /sdd-implement 0017_NombreFeature F1.2)
-argument-hint: <NNNN_NombreFeature> <Fn.m>
+argument-hint: <prefijo_NombreFeature> <Fn.m>
 ---
 
 Implementa un solo paso. Carpeta: `.docs/002_specs/$1/`. Paso: `$2`.

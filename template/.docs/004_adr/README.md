@@ -1,21 +1,21 @@
 # Índice de decisiones de arquitectura (ADR)
 
-Un archivo `NNNN_<Titulo>.md` por decisión (4 dígitos en un proyecto, `0001`; en el clon, el
-ancho de Numeración única), creado con la skill `adr`
-(`.agents/skills/adr/SKILL.md`). Este índice es el resumen: búscalo antes de decidir algo que
+Un archivo `<prefijo>_<Titulo>.md` por decisión, creado con la skill `adr`
+(`.agents/skills/adr/SKILL.md`). El ancho del prefijo está en `.docs/002_specs/README.md` ›
+"Numeración única". Este índice es el resumen: búscalo antes de decidir algo que
 ya pudo decidirse.
 
 ## Cómo usarlo
 
 1. Antes de proponer una decisión técnica, busca aquí el tema.
 2. Un ADR no se borra ni se reescribe: se reemplaza por otro o se descarta con motivo.
-3. El prefijo no se repite y usa el ancho de `.docs/002_specs/README.md` › "Numeración única"
-   (4 dígitos en un proyecto; en el clon, el de Numeración única). La carpeta `004_adr` sigue en 3 dígitos.
+3. El prefijo no se repite y sigue la regla de `.docs/002_specs/README.md` › "Numeración única".
+   La carpeta `004_adr` sigue en 3 dígitos.
 4. Si el índice y el archivo discrepan, manda el archivo: corrige el índice.
 
-Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
+Estados: `Propuesto` · `Aceptado` · `Reemplazado por <prefijo>` · `Descartado`.
 
 ## Índice
 
-| NNN | Decisión | Estado | Fecha | Origen |
+| Prefijo | Decisión | Estado | Fecha | Origen |
 |---|---|---|---|---|

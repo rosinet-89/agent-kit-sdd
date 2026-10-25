@@ -1,6 +1,6 @@
 ---
 description: SDD · Cierra el feature - plan contra real, deuda, MEMORY y commit
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Fase `cierre`. Carpeta: `.docs/002_specs/$1/`. La ejecuta la sesión principal.

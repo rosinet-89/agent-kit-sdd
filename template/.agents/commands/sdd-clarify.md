@@ -1,6 +1,6 @@
 ---
 description: SDD · Revisa 01_spec.md como un QA (solo detecta, no resuelve)
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Fase `clarify`. Carpeta: `.docs/002_specs/$1/`.

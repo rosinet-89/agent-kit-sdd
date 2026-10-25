@@ -1,6 +1,6 @@
 ---
 description: SDD · Genera 02_analisis_impacto.md y 03_plan.md de una spec aprobada
-argument-hint: <NNNN_NombreFeature>
+argument-hint: <prefijo_NombreFeature>
 ---
 
 Fase `plan`. Carpeta: `.docs/002_specs/$1/`.
