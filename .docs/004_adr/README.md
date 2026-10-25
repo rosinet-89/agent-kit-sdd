@@ -32,3 +32,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 012 | [omitClaudeMd en planner, reviewer y coordinator](012_OmitClaudeMdEnTresRoles.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 014 | [Un ítem nuevo conserva el ancho de su carpeta](014_ConvivenciaDeAnchosDeNumeracion.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
+| 015 | [La fuente única de la numeración vive en el grupo C](015_FuenteUnicaDeNumeracionEnGrupoC.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
