@@ -26,7 +26,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 |---|---|---|---|---|---|
 | 001 | `001_ActualizarKit` | Actualizar un proyecto con el kit instalado a una versión nueva, sin pisar lo personalizado | Implementado (2026-10-25) | actualizar, .kit-version, ACTUALIZAR.md, INSTALAR.md, migración 0.4.0 | cierre 2026-10-25 12:50; flujo aprobado; commits no; MEMORY escrita |
 | 002 | `002_Kit050` | Registro retroactivo de lo ya publicado en 0.5.0, sin comportamiento nuevo | Implementado (retroactivo, 2026-10-25) | 0.5.0, adr, migracion-bd, seguridad-basica, sdd-estructura, modo mantenimiento | deuda 002 resuelta; sin `02`–`04` ni `06`; tiempos de los commits no reconstruidos |
-| 003 | `003_OptimizarArnes` | Reducir tokens y pasos innecesarios de agentes y comandos sin bajar la calidad | Planificado (2026-10-25) | tokens, agentes, comandos, lecturas, permisos, status, implementer | plan y tareas aprobados 2026-10-25 13:38; siguiente F0.1; F1 espera coordinación |
+| 003 | `003_OptimizarArnes` | Reducir tokens y pasos innecesarios de agentes y comandos sin bajar la calidad | Implementado (2026-10-25) | tokens, agentes, comandos, lecturas, permisos, status, implementer | cierre 2026-10-25 14:23; flujo aprobado; deuda 003 abierta; ADR 009 aceptado; commits no |
 
 ## Mapa por tema
 

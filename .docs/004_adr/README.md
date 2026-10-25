@@ -26,3 +26,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 006 | [Graphify no entra al kit](006_GraphifyNoEntra.md) | Aceptado | 2026-10-24 | Evaluación de https://github.com/Graphify-Labs/graphify |
 | 007 | [La actualización reemplaza solo archivos KIT-VIEJO, con confirmación](007_ActualizarSoloKitViejo.md) | Aceptado | 2026-10-24 | `001_ActualizarKit` (clarify) |
 | 008 | [Formato de manifiestos, huella y marcador](008_FormatoManifiestosHuellaMarcador.md) | Aceptado | 2026-10-25 | `001_ActualizarKit` |
+| 009 | [Una fuente por fase del flujo SDD](009_FuenteUnicaPorFase.md) | Aceptado | 2026-10-25 | `003_OptimizarArnes` |
