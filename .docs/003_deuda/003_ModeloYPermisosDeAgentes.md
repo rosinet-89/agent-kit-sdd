@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | En atención |
 | Alta | 2026-10-25 |
 | Origen | Recorte de alcance en `003_OptimizarArnes` (duda 1, decisión del usuario, 2026-10-25) |
 | Módulo | Agentes del kit (`coordinator`, `planner`, `implementer`, `reviewer`) |
 | Prioridad | Media |
-| Atendida por | — |
+| Atendida por | `004_ModeloYPermisosAgentes` (en curso) |
 
 ## Descripción
 Dos asuntos de los agentes que `003_OptimizarArnes` dejó fuera:
@@ -35,3 +35,4 @@ Decisión del usuario: sin verificar el comportamiento real de la herramienta se
 ## Historial
 - 2026-10-25 — Alta.
 - 2026-10-25 — Decisión del usuario: esperar a que `003_OptimizarArnes` esté implementada antes de atenderla (mismos archivos de agentes, medición limpia y un solo manifiesto). Al retomarla se abre como spec propia por el flujo `sdd`; el primer paso es verificar qué campos del frontmatter respeta Claude Code.
+- 2026-10-25 — Se retoma tras implementar `003_OptimizarArnes`. Paso 1 hecho: verificación contra la documentación de Claude Code (ver `004_ModeloYPermisosAgentes/05_avance.md`, decisión 2). En atención por la spec `004`.
