@@ -26,6 +26,7 @@ comando de actualización ni scripts: el agente sigue estos pasos con el kit que
 - [Conflicto de ruta](#conflicto-de-ruta)
 - [Marcador al cerrar](#marcador-al-cerrar)
 - [Reporte](#reporte)
+- [Aviso de numeración](#aviso-de-numeración)
 - [Enlaces](#enlaces)
 - [Commit propuesto](#commit-propuesto)
 - [Idempotencia y retoma](#idempotencia-y-retoma)
@@ -406,6 +407,14 @@ de ese elemento tomado de `template/`.
 
 Incluye un NUEVO que el proyecto borró a propósito: al marcarlo «mantener» queda en este registro.
 
+Para el aviso de numeración (`## Aviso de numeración`), la primera columna es
+`aviso de numeración`, la clase es `aviso` y la huella es la del texto de la sección
+« Numeración única » de `template/.docs/002_specs/README.md`; los fragmentos de los README de
+deuda y de ADR no entran en la huella. El aviso reaparece solo si esa huella cambia.
+El fragmento va desde la línea del título `## Numeración única (sin prefijos repetidos)` hasta la
+línea anterior al siguiente encabezado de nivel 2 (`## `). Se normaliza como en `## Huella` y su
+huella se calcula sobre ese texto como si fuera un archivo.
+
 ## Conflicto de ruta
 
 Si el destino de un NUEVO está ocupado por otro tipo (una carpeta donde iría un archivo, un
@@ -427,6 +436,8 @@ aplicado o con «mantener» explícito, y no queda ninguno de estos pendientes:
 - faltantes del grupo B sin incorporar ni marcar «mantener»;
 - conflictos.
 
+El aviso de numeración no es un pendiente y no bloquea el marcador (`## Aviso de numeración`).
+
 El archivo queda en una sola línea numérica, la de la versión destino. El formato es el de
 `## Marcador de versión`.
 
@@ -445,7 +456,33 @@ Al terminar, cuenta por separado:
   del grupo B sin resolver, más conflictos.
 - **Retirados.**
 
-Los huérfanos van aparte y no entran en esas cuentas (`## Huérfanos`).
+Los huérfanos van aparte y no entran en esas cuentas (`## Huérfanos`). El aviso de numeración
+también va aparte y no entra en esas cuentas (`## Aviso de numeración`).
+
+## Aviso de numeración
+
+Un bloque más del reporte. Lo calcula la sesión al armarlo, **solo por nombres**: lista
+`.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/` y mira los nombres de carpeta y de
+archivo. No lee el contenido de ningún README ni compara su texto: el grupo C no cambia
+(`### Grupo C`).
+
+Aparece si al menos una de las tres carpetas tiene un ítem con prefijo de 3 dígitos y `_`. Si
+ninguna lo tiene, no hay aviso. Se calcula igual con o sin marcador de versión.
+
+Contenido:
+
+- El ancho detectado en cada carpeta.
+- Si hay anchos mezclados dentro de una carpeta.
+- La constancia de que no se renumera ni se renombra nada.
+- El texto ofrecido: la sección « Numeración única » de `template/.docs/002_specs/README.md`
+  (la única fuente de la regla; este documento no repite ningún ancho) y los párrafos
+  equivalentes de los README de deuda y de ADR de `template/`.
+
+Solo escribe en un README del proyecto si el usuario lo confirma, con la diferencia a la vista,
+y uno por uno. Sin confirmación no cambia nada.
+
+El aviso no cuenta como pendiente y no bloquea el marcador (`## Marcador al cerrar`). Se muestra
+en cada actualización hasta que el usuario lo marque «mantener» (`## Registro «mantener»`).
 
 ## Enlaces
 
@@ -519,4 +556,7 @@ que se marque «mantener».
     (`## Huella`).
 21. Entorno sin herramienta de huella: se informa y no se modifica nada. `## Precondiciones`
     (punto 3) y `## Prueba de humo`.
+22. Aviso de numeración: se decide solo por nombres, no cuenta como pendiente ni bloquea el
+    marcador, y «mantener» lo oculta mientras no cambie el texto ofrecido.
+    `## Aviso de numeración` y `## Registro «mantener»`.
 
