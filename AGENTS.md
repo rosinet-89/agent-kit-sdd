@@ -71,6 +71,18 @@ Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md
 Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion` y `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 
+## Qué lee cada rol
+La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite
+(enlaces, prefijos, preferencias) y no se supone que la herramienta le inyecta este archivo. Lee
+solo las secciones que su instrucción nombra:
+
+| Rol | Secciones |
+|---|---|
+| coordinator | Ninguna para enrutar. Solo comprueba si este archivo contiene `SDD-INIT-PENDIENTE`. |
+| planner | "Comandos" y, al planear, "Stack y convenciones de código". |
+| implementer | "Comandos" y "Stack y convenciones de código". |
+| reviewer | "Comandos" y "Stack y convenciones de código". |
+
 ## Git (regla obligatoria)
 Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
 - NUNCA `git commit` sin confirmación explícita del usuario.

@@ -23,6 +23,8 @@
   sección de `.docs/` y el consecutivo del clon del kit siguen en 3. Lo aplican los comandos `/sdd-*`, las skills
   `adr`, `git-commit`, `migracion-bd` y `sdd`, y el chequeo E12. Un proyecto que ya tenga carpetas de 3 dígitos
   verá la regla nueva al actualizar; esa regla de convivencia no está definida todavía.
+- Menos lectura por rol y por comando, y una sola fuente por fase del flujo `sdd`. El cambio de
+  redacción en `AGENTS.md` llega a un proyecto por fusión manual.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
