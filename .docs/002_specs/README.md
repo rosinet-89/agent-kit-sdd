@@ -28,6 +28,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 | 002 | `002_Kit050` | Registro retroactivo de lo ya publicado en 0.5.0, sin comportamiento nuevo | Implementado (retroactivo, 2026-10-25) | 0.5.0, adr, migracion-bd, seguridad-basica, sdd-estructura, modo mantenimiento | deuda 002 resuelta; sin `02`–`04` ni `06`; tiempos de los commits no reconstruidos |
 | 003 | `003_OptimizarArnes` | Reducir tokens y pasos innecesarios de agentes y comandos sin bajar la calidad | Implementado (2026-10-25) | tokens, agentes, comandos, lecturas, permisos, status, implementer | cierre 2026-10-25 14:23; flujo aprobado; ADR 009 aceptado; commits `e170ad4`, `307ab59`, `ccd7906`; deuda 003 resuelta por la `004` |
 | 004 | `004_ModeloYPermisosAgentes` | Modelo por rol y permisos reales del frontmatter de los 4 agentes (atiende la deuda 003) | Implementado (2026-10-25) | model, permissionMode, tools, omitClaudeMd, mode, permissions, frontmatter, agentes | cierre 2026-10-25 16:13; sin `06_flujo` por decisión del usuario; deuda 003 resuelta; ADR 011, 012 y 013 aceptados; deuda 006 abierta; refresco de `.agents/` propuesto |
+| 005 | `005_ConvivenciaNumeracion` | Regla de convivencia de carpetas de 3 y 4 dígitos en un proyecto que se actualiza (atiende la deuda 004) | Implementado (2026-10-25) | numeración, 3 dígitos, 4 dígitos, E12, siguiente libre, actualizar | cierre 2026-10-25 16:50; sin `06_flujo` por decisión del usuario; deuda 004 resuelta; manifiesto y E20 al día; MEMORY, 2 ADR y deuda de limitaciones propuestos |
 | 006 | `006_RutaSiNoDelega` | Si un agente no puede delegar, el flujo sigue por otra ruta y deja constancia, sin quedarse atascado | Implementado (2026-10-25) | delegar, subagente, coordinator, planner, ruta alterna, atasco, Cursor | cierre 2026-10-25; sin `06_flujo` por decisión del usuario; manifiesto y E20 los regenera quien cierre último |
 
 ## Mapa por tema
@@ -49,8 +50,8 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 ## Numeración única (sin prefijos repetidos)
 
 Cada carpeta lleva un prefijo `NNN_` de 3 dígitos que no se repite. En este clon no se sube a 4.
-En un proyecto el consecutivo de specs, deudas y ADR es de 4 dígitos (`0001`); la regla está en
-`template/.docs/002_specs/README.md`. Las carpetas de sección de `.docs/` siguen en 3.
+El ancho en un proyecto y la convivencia de anchos están en
+`template/.docs/002_specs/README.md` › « Numeración única ». Las carpetas de sección de `.docs/` siguen en 3.
 Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/` y a `.docs/004_adr/`.
 
 **Al asignar un número** (carpeta nueva):

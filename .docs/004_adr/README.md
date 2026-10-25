@@ -9,7 +9,7 @@ ya pudo decidirse.
 1. Antes de proponer una decisión técnica, busca aquí el tema.
 2. Un ADR no se borra ni se reescribe: se reemplaza por otro o se descarta con motivo.
 3. El prefijo `NNN_` no se repite (mismo criterio que `.docs/002_specs/README.md` › "Numeración única").
-   En un proyecto el archivo es `NNNN_<Titulo>.md` (4 dígitos), igual que specs y deudas. La carpeta `004_adr` sigue en 3.
+   En un proyecto el archivo es `<prefijo>_<Titulo>.md`, con el ancho de `template/.docs/002_specs/README.md` › « Numeración única ». La carpeta `004_adr` sigue en 3.
 4. Si el índice y el archivo discrepan, manda el archivo: corrige el índice.
 
 Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
@@ -31,3 +31,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 011 | [Restricciones de rol sin hooks](011_RestriccionesDeRolSinHooks.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 012 | [omitClaudeMd en planner, reviewer y coordinator](012_OmitClaudeMdEnTresRoles.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
+| 014 | [Un ítem nuevo conserva el ancho de su carpeta](014_ConvivenciaDeAnchosDeNumeracion.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
