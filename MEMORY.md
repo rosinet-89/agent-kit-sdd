@@ -12,7 +12,9 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 
 ## Trampas conocidas
 
-(vacío)
+- [2026-10-25] Un archivo que termina en CR sin LF no entra en la prueba de humo: `sed` lo quita y el normalizador de Python lo conserva.
+- [2026-10-25] Una fase del plan llamada Cierre no ejecuta `/sdd-cierre`.
+- [2026-10-25] El conteo de un análisis queda viejo si `template/` cambia antes de congelar el manifiesto; manda la medición.
 
 ## Referencias externas
 

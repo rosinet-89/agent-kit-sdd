@@ -24,6 +24,9 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 | NNN | Carpeta | Qué resuelve | Estatus (al último avance) | Palabras clave | Pendiente / deuda |
 |---|---|---|---|---|---|
+| 001 | `001_ActualizarKit` | Actualizar un proyecto con el kit instalado a una versión nueva, sin pisar lo personalizado | Implementado (2026-10-25) | actualizar, .kit-version, ACTUALIZAR.md, INSTALAR.md, migración 0.4.0 | cierre 2026-10-25 12:50; flujo aprobado; commits no; MEMORY escrita |
+| 002 | `002_Kit050` | Registro retroactivo de lo ya publicado en 0.5.0, sin comportamiento nuevo | Implementado (retroactivo, 2026-10-25) | 0.5.0, adr, migracion-bd, seguridad-basica, sdd-estructura, modo mantenimiento | deuda 002 resuelta; sin `02`–`04` ni `06`; tiempos de los commits no reconstruidos |
+| 003 | `003_OptimizarArnes` | Reducir tokens y pasos innecesarios de agentes y comandos sin bajar la calidad | Planificado (2026-10-25) | tokens, agentes, comandos, lecturas, permisos, status, implementer | plan y tareas aprobados 2026-10-25 13:38; siguiente F0.1; F1 espera coordinación |
 
 ## Mapa por tema
 
@@ -43,7 +46,10 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 ## Numeración única (sin prefijos repetidos)
 
-Cada carpeta lleva un prefijo `NNN_` que no se repite. Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/`.
+Cada carpeta lleva un prefijo `NNN_` de 3 dígitos que no se repite. En este clon no se sube a 4.
+En un proyecto el consecutivo de specs, deudas y ADR es de 4 dígitos (`0001`); la regla está en
+`template/.docs/002_specs/README.md`. Las carpetas de sección de `.docs/` siguen en 3.
+Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/` y a `.docs/004_adr/`.
 
 **Al asignar un número** (carpeta nueva):
 1. Siguiente = prefijo mayor + 1, mirando la copia local **y** la rama remota ya descargada: `git ls-tree --name-only @{u} .docs/002_specs/` (u `origin/<rama principal>` si la rama no tiene upstream). Es solo lectura; el agente no hace `fetch` ni `pull`.

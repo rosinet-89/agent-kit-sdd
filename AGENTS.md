@@ -19,8 +19,8 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
    sugerir crearlo (sin ejecutar nada sin confirmación). Revisa también si hay skills, agentes o
    comandos en una carpeta de herramienta que no estén en `.agents/` (o al revés) y sugiere
    replicarlos (`sync-agents.md` paso 8). Si todo está bien, no decir nada.
-8. Revisar que no haya prefijos `NNN_` repetidos en `.docs/002_specs/` ni en `.docs/003_deuda/`
-   (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
+8. Revisar que no haya prefijos repetidos en `.docs/002_specs/`, `.docs/003_deuda/` ni
+   `.docs/004_adr/` (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
 9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
    (al final o justo antes de pedir una decisión). Solo se quita si el usuario lo pide.
 10. Leer `PREFERENCIAS.md` (raíz, no versionado: directivas personales de cada usuario según su
@@ -48,7 +48,8 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 ## Formato y numeración
 Reglas completas en `.docs/002_specs/README.md`.
 - Toda carpeta de plan nace en formato SDD (skill `sdd`): lleva `01_spec.md`.
-- Un prefijo `NNN_` no se repite en `.docs/002_specs/` ni en `.docs/003_deuda/`. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
+- En este clon, specs, deudas y ADR siguen en 3 dígitos (`001`). No renumerar a 4. En un proyecto el ancho es de 4 (`0001`) y también cubre los ADR; la regla está en `template/.docs/002_specs/README.md`. Las carpetas de sección de `.docs/` siguen en 3 en ambos.
+- Un prefijo no se repite en `.docs/002_specs/`, `.docs/003_deuda/` ni `.docs/004_adr/`. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
 
 ## Skills de proyecto
 Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee todas.
@@ -63,7 +64,7 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
-- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (NNN = consecutivo de 3 dígitos) con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
+- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, NNN = 3 dígitos; en un proyecto, 4) con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
@@ -88,7 +89,8 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   que se copie todo sin pisar nada. Nunca en un proyecto real.
 - Lint / sintaxis (por archivo tocado): `file -i <archivo>` da utf-8; sin BOM
   (`grep -l $'^\xEF\xBB\xBF' <archivo>` vacío); `name` del frontmatter = nombre de su carpeta; rutas
-  citadas existentes; en `template/` sin marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
+  citadas existentes (no aplica a `manifiestos/`: pueden listar rutas retiradas); en `template/` sin
+  marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
 - Consulta de datos de solo lectura: No aplica.
 
 ## Reglas de negocio y del sistema
@@ -103,7 +105,9 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
     solo lleva el índice vacío.
 - Nada propio de un proyecto (stack, nombres, dominio) entra a `template/`.
 - Cada versión actualiza `VERSION` y `CHANGELOG.md`.
-- La instalación copia sin sobrescribir nunca.
+- La instalación copia sin sobrescribir nunca. Actualizar un proyecto que ya tiene el kit solo
+  reemplaza archivos KIT-VIEJO confirmados (`.docs/004_adr/007_ActualizarSoloKitViejo.md`).
+- Los manifiestos viven en `manifiestos/`, fuera de `template/`, y no se distribuyen.
 
 ## Reglas duras
 - Nunca secretos ni credenciales en archivos versionados.
