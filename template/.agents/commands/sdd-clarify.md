@@ -1,6 +1,6 @@
 ---
 description: SDD · Revisa 01_spec.md como un QA (solo detecta, no resuelve)
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Fase `clarify` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 

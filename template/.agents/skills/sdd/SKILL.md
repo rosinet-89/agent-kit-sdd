@@ -4,7 +4,7 @@ description: >
   Flujo Spec-Driven Development (SDD) para todo análisis o desarrollo nuevo: spec,
   análisis de impacto, plan, tareas, implementación, validación, flujo operativo y cierre,
   con los agentes coordinator, planner, implementer y reviewer, en
-  `.docs/002_specs/<NNN>_<Feature>/` (01_spec … 06_flujo + sql/) y registro de tiempos
+  `.docs/002_specs/<NNNN>_<Feature>/` (01_spec … 06_flujo + sql/) y registro de tiempos
   reales en `05_avance.md`. Activar cuando el usuario pida: desarrollo nuevo, feature,
   requerimiento, análisis de impacto, spec, plan, tareas, avance, tiempos, flujo operativo,
   o use un comando `/sdd*`. Disparadores: "SDD", "spec", "01_spec", "03_plan", "04_tasks",
@@ -32,7 +32,7 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
 ## Carpeta del feature
 
 ```
-.docs/002_specs/<NNN>_<NombreFeature>/
+.docs/002_specs/<NNNN>_<NombreFeature>/
   01_spec.md               # QUÉ y POR QUÉ (RF en EARS) y Estado
   02_analisis_impacto.md   # módulos, tablas, archivos, datos reales, riesgos
   03_plan.md               # CÓMO: capas, archivos, sql/, fases con estimado (h)
@@ -44,8 +44,8 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
   tests/                   # opcional: harness de solo lectura
 ```
 
-- `NNN`: siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números.
-- `NombreFeature`: PascalCase, sin espacios. Ej.: `017_ReporteVentasPorZona`.
+- `NNNN`: 4 dígitos en un proyecto (`0001`). Siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números. En el clon del kit el ancho sigue en 3 (`001`). La misma regla de ancho vale para deudas y ADR.
+- `NombreFeature`: PascalCase, sin espacios. Ej.: `0017_ReporteVentasPorZona`.
 - Plantillas de cada archivo: [plantillas.md](plantillas.md).
 - Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md).
 
@@ -55,16 +55,16 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 
 | Fase | Comando | Lo hace | Archivo | Puerta |
 |---|---|---|---|---|
-| `spec` | `/sdd-spec <NNN_Feature> <idea>` | planner | `01_spec.md` (crea carpeta y `05_avance.md`) | — |
-| `clarify` | `/sdd-clarify <NNN_Feature>` | reviewer → planner corrige | `01_spec.md` | **Spec aprobada** |
-| `plan` (análisis y plan) | `/sdd-plan <NNN_Feature>` | planner | `02_analisis_impacto.md`, `03_plan.md` | — |
-| `tasks` | `/sdd-tasks <NNN_Feature>` | planner | `04_tasks.md` | **Plan y tareas aprobados** |
-| Implementación (pasos `Fn.m`) | `/sdd-implement <NNN_Feature> <Fn o Fn.m>` | implementer | código, `sql/`, marca en `04_tasks.md` | tras cada paso |
-| `validate` | `/sdd-validate <NNN_Feature>` | reviewer | resultado en `05_avance.md` (Pruebas) | UI verificada por el usuario |
-| `flujo` | `/sdd-flujo <NNN_Feature>` | planner; reviewer contrasta con el código | `06_flujo.md` | **Flujo aprobado** |
-| `cierre` | `/sdd-cierre <NNN_Feature>` | sesión principal | `05_avance.md` (plan contra real) | Commit confirmado |
-| `change` | `/sdd-change <NNN_Feature> <cambio>` | planner | diff de `01_spec.md` | **Cambio aprobado** |
-| Estado | `/sdd-status <NNN_Feature>` | sesión principal | — (solo lectura) | — |
+| `spec` | `/sdd-spec <NNNN_Feature> <idea>` | planner | `01_spec.md` (crea carpeta y `05_avance.md`) | — |
+| `clarify` | `/sdd-clarify <NNNN_Feature>` | reviewer → planner corrige | `01_spec.md` | **Spec aprobada** |
+| `plan` (análisis y plan) | `/sdd-plan <NNNN_Feature>` | planner | `02_analisis_impacto.md`, `03_plan.md` | — |
+| `tasks` | `/sdd-tasks <NNNN_Feature>` | planner | `04_tasks.md` | **Plan y tareas aprobados** |
+| Implementación (pasos `Fn.m`) | `/sdd-implement <NNNN_Feature> <Fn o Fn.m>` | implementer | código, `sql/`, marca en `04_tasks.md` | tras cada paso |
+| `validate` | `/sdd-validate <NNNN_Feature>` | reviewer | resultado en `05_avance.md` (Pruebas) | UI verificada por el usuario |
+| `flujo` | `/sdd-flujo <NNNN_Feature>` | planner; reviewer contrasta con el código | `06_flujo.md` | **Flujo aprobado** |
+| `cierre` | `/sdd-cierre <NNNN_Feature>` | sesión principal | `05_avance.md` (plan contra real) | Commit confirmado |
+| `change` | `/sdd-change <NNNN_Feature> <cambio>` | planner | diff de `01_spec.md` | **Cambio aprobado** |
+| Estado | `/sdd-status <NNNN_Feature>` | sesión principal | — (solo lectura) | — |
 | Estructura del kit | `/sdd-estructura [bloque]` | reviewer | — (solo lee y reporta) | — |
 | **Entrada única** | `/sdd <petición libre>` | coordinator (decide la fase) | según la fase | todas |
 

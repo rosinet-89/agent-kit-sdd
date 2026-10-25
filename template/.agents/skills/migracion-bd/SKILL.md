@@ -25,7 +25,7 @@ Lo ejecuta el usuario, y `05_avance.md` › "Estado BD" registra qué script cor
 
 ```sql
 -- EJECUCIÓN MANUAL. Un agente no ejecuta este script.
--- Feature:   <NNN_Feature>      Paso: <Fn.m>
+-- Feature:   <NNNN_Feature>     Paso: <Fn.m>
 -- Propósito: <una línea>
 -- Requiere:  <scripts previos NN, o "ninguno">
 -- Rollback:  99_rollback_<desc>.sql   (o "irreversible: respaldo previo")

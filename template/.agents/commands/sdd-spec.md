@@ -1,6 +1,6 @@
 ---
-description: SDD · Entrevista y genera 01_spec.md (uso - /sdd-spec 017_NombreFeature idea inicial)
-argument-hint: <NNN_NombreFeature | NombreFeature> <idea inicial>
+description: SDD · Entrevista y genera 01_spec.md (uso - /sdd-spec 0017_NombreFeature idea inicial)
+argument-hint: <NNNN_NombreFeature | NombreFeature> <idea inicial>
 ---
 Fase `spec` de la skill `sdd`. NO escribas código en ningún momento.
 
@@ -9,9 +9,10 @@ Lee `.agents/skills/sdd/SKILL.md`, `.agents/skills/sdd/avance-y-tiempos.md`,
 (si la idea toca un proceso ya trabajado, dime qué carpeta coincide y léela antes de seguir;
 al crear la carpeta, agrega su fila al README con estatus `Análisis`).
 
-- Carpeta: `.docs/002_specs/$1/`. Si `$1` no trae el prefijo `NNN_`, calcula el siguiente
-  libre con la regla "Numeración única" de `.docs/002_specs/README.md` (copia local y rama remota)
-  y confírmalo conmigo. Si `$1` trae un prefijo que ya existe, avísame y propón el siguiente libre.
+- Carpeta: `.docs/002_specs/$1/`. Si `$1` no trae el prefijo numérico, calcula el siguiente
+  libre con la regla "Numeración única" de `.docs/002_specs/README.md` (copia local y rama remota):
+  4 dígitos en un proyecto (`0001`), 3 en el clon del kit. El mismo ancho vale para deudas y ADR.
+  Confírmalo conmigo. Si `$1` trae un prefijo que ya existe, avísame y propón el siguiente libre.
   Al terminar, recomiéndame subir pronto la carpeta para reservar el número.
 - Idea inicial: el resto de `$ARGUMENTS` después de `$1`.
 

@@ -16,6 +16,8 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
 .agents/
   README.md                       # este archivo: layout + cómo agregar skills/agentes/comandos
   napkin.md                       # runbook vivo; todos lo leen cada sesión
+  .kit-version                    # marcador de versión del procedimiento; versionable; no es del kit
+  .kit-mantener                   # registro de «mantener» del procedimiento; versionable; no es del kit
   sync-agents.md                  # enlaces de cada herramienta hacia .agents/
   validar-estructura.md           # checklist de /sdd-estructura (estructura del kit)
   agents/<rol>.md                 # roles (coordinator, planner, implementer, reviewer)
@@ -24,9 +26,11 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
 .docs/
   001_constitucion/constitution.md
   002_specs/README.md             # índice de planes
-  002_specs/<NNN>_<Feature>/      # un plan por requerimiento (01_spec … 06_flujo)
+  002_specs/<NNNN>_<Feature>/     # un plan (01_spec … 06_flujo); 4 dígitos en un proyecto
   003_deuda/README.md             # índice de deuda técnica
-  004_adr/README.md               # índice de decisiones de arquitectura (skill adr)
+  003_deuda/<NNNN>_<Nombre>.md    # una deuda; mismo ancho que las specs
+  004_adr/README.md               # índice de ADR (skill adr)
+  004_adr/<NNNN>_<Titulo>.md      # un ADR; mismo ancho de 4 dígitos en un proyecto
 ```
 
 ## Qué carpeta lee cada herramienta

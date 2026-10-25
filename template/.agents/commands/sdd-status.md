@@ -1,6 +1,6 @@
 ---
 description: SDD · Dónde estamos - fase actual, avance, horas y siguiente paso de un feature
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Lee `.docs/002_specs/$1/` (los archivos `01`–`06` que existan) y `MEMORY.md`.
 No modifiques ningún archivo.

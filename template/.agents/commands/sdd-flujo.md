@@ -1,6 +1,6 @@
 ---
 description: SDD · Genera 06_flujo.md, el flujo operativo de lo implementado
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Fase `flujo` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 

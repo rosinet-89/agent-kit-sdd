@@ -1,6 +1,6 @@
 ---
-description: SDD · Implementa UN paso de 04_tasks.md (uso - /sdd-implement 017_NombreFeature F1.2)
-argument-hint: <NNN_NombreFeature> <Fn.m>
+description: SDD · Implementa UN paso de 04_tasks.md (uso - /sdd-implement 0017_NombreFeature F1.2)
+argument-hint: <NNNN_NombreFeature> <Fn.m>
 ---
 Implementación de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`. Paso: `$2`.
 

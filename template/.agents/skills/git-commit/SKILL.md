@@ -44,8 +44,10 @@ Clasificar cada archivo en grupos lógicos (módulo, capa, docs, config).
    Git ya rastrea y el `.gitignore` ignora), no incluirlos en el commit; proponer al usuario un
    commit aparte con `git rm --cached <rutas>` (se conservan en disco). No ejecutarlo sin confirmación.
 4. **Numeración única**: si el commit incluye carpetas de `.docs/002_specs/` o archivos de
-   `.docs/003_deuda/`, revisar que su prefijo `NNN_` no exista ya con otro nombre en la copia
+   `.docs/003_deuda/` o `.docs/004_adr/`, revisar que su prefijo no exista ya con otro nombre en la copia
    local ni en la rama remota descargada (`git ls-tree --name-only @{u} <carpeta>`, sin fetch).
+   El ancho es el de "Numeración única": 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR;
+   3 dígitos en el clon del kit. Las carpetas de sección de `.docs/` siguen en 3.
    Si choca, detener el commit, avisar y proponer el siguiente libre (regla completa en
    `.docs/002_specs/README.md` › Numeración única). No renombrar sin confirmación.
 

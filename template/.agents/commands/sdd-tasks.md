@@ -1,6 +1,6 @@
 ---
 description: SDD · Divide 03_plan.md en fases y pasos verificables (04_tasks.md)
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Fase `tasks` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 

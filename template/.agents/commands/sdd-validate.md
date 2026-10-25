@@ -1,6 +1,6 @@
 ---
 description: SDD · Valida la spec RF por RF (consultas de solo lectura + comandos de verificación + verificación manual)
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Fase `validate` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 

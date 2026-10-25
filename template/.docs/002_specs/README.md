@@ -43,13 +43,35 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 ## Numeración única (sin prefijos repetidos)
 
-Cada carpeta lleva un prefijo `NNN_` que no se repite. Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/`.
+Las carpetas de sección de `.docs/` se quedan en **3 dígitos** y no se renumeran:
+`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`.
+
+El consecutivo de **4 dígitos** en un proyecto (`0001`, `0002`, …) vale para los ítems de
+specs, de deuda **y de ADR**. No se limita a las carpetas `001`, `002` y `003`:
+
+```
+.docs/002_specs/0001_SpecUno/
+.docs/003_deuda/0001_DeudaUno.md
+.docs/004_adr/0001_Titulo.md
+```
+
+`001_constitucion` no numera ítems. `004_adr` es carpeta de sección (el nombre sigue en 3
+dígitos); cada decisión dentro lleva su propio `0001`.
+
+En el clon del kit (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz) ese consecutivo
+sigue en **3 dígitos** (`001`), también en los ADR. No lo subas a 4 en el clon, ni lo bajes a 3
+en un proyecto.
+
+El prefijo no se repite dentro de su carpeta. Varias personas abren ítems en paralelo, así que
+dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. Specs, deuda
+y ADR comparten esta regla de ancho y de duplicados. El contador de cada carpeta es
+independiente.
 
 **Al asignar un número** (carpeta nueva):
 1. Siguiente = prefijo mayor + 1, mirando la copia local **y** la rama remota ya descargada: `git ls-tree --name-only @{u} .docs/002_specs/` (u `origin/<rama principal>` si la rama no tiene upstream). Es solo lectura; el agente no hace `fetch` ni `pull`.
 2. Recomendar al usuario subir pronto la carpeta con su fila del índice, para reservar el número.
 
-**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta o `.docs/003_deuda/` (skill `git-commit`):
+**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta, `.docs/003_deuda/` o `.docs/004_adr/` (skill `git-commit`):
 1. Hay duplicado si dos carpetas comparten prefijo en la copia local, o si una carpeta local sin publicar usa un prefijo que la rama remota ya tiene con otro nombre.
 2. Conserva el número la que ya está en la rama remota (se publicó primero). La otra pasa al siguiente libre: prefijo mayor + 1, contando local y remota. Si ninguna está publicada, o no hay rama remota, se pregunta cuál conservar.
 3. El agente avisa con los dos nombres y el número propuesto, y no renombra sin confirmación. Al confirmar: `git mv` de la carpeta, su fila en el índice y cada referencia al nombre viejo (búsqueda con `grep`), incluidas las de su propio avance, `sql/` y las deudas que la citen.

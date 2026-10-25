@@ -1,6 +1,6 @@
 ---
 description: SDD · Cambio de requisito - primero la spec, luego el plan y el código
-argument-hint: <NNN_NombreFeature> <cambio solicitado>
+argument-hint: <NNNN_NombreFeature> <cambio solicitado>
 ---
 Cambio de requisitos de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 Cambio: el resto de `$ARGUMENTS` después de `$1`. NO toques código.

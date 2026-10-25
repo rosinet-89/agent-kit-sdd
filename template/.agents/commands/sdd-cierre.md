@@ -1,6 +1,6 @@
 ---
 description: SDD · Cierra el feature - plan contra real, deuda, MEMORY y commit
-argument-hint: <NNN_NombreFeature>
+argument-hint: <NNNN_NombreFeature>
 ---
 Fase `cierre` de la skill `sdd`. Carpeta: `.docs/002_specs/$1/`.
 

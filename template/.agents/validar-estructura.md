@@ -23,15 +23,16 @@ réplicas por herramienta como enlaces, y skills, agentes, comandos e índices c
 | E8 | agentes | Cada `agents/<rol>.md` tiene `name` (= archivo), `description` y `tools`; los roles coinciden con "Roles y comandos" de `AGENTS.md` | Leer frontmatter |
 | E9 | comandos | Cada `commands/<n>.md` tiene `description` y `argument-hint` (si recibe argumentos); los comandos citados en `AGENTS.md` existen y los que existen están citados | Cruzar lista y carpeta |
 | E10 | comandos | Los comandos del flujo `sdd` están en la tabla de fases de `skills/sdd/SKILL.md` y en el ruteo de `coordinator.md` | Cruzar tablas |
-| E11 | rutas | Toda ruta citada con comillas inversas en `AGENTS.md`, `.agents/**/*.md` y `.docs/**/README.md` existe | `grep` de rutas + `ls` |
-| E12 | docs | Sin prefijos `NNN_` repetidos en `.docs/002_specs/`, `.docs/003_deuda/` ni `.docs/004_adr/` | Listar y contar prefijos |
+| E11 | rutas | Toda ruta citada con comillas inversas en `AGENTS.md`, `.agents/**/*.md` y `.docs/**/README.md` existe. No aplica a los manifiestos de versión: pueden listar rutas retiradas | `grep` de rutas + `ls` |
+| E12 | docs | Sin prefijos repetidos en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`. Ancho: 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR; 3 dígitos en el clon del kit. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
 | E13 | docs | Cada índice (`002_specs`, `003_deuda`, `004_adr`) coincide con sus carpetas o archivos; si discrepan, manda la carpeta | Cruzar fila y archivo |
 | E14 | docs | Toda carpeta de `.docs/002_specs/` tiene `01_spec.md` | `ls` |
 | E15 | codificación | Archivos `.md` en UTF-8 sin BOM | `file -i`; `grep -l $'^\xEF\xBB\xBF'` vacío |
 | E16 | sesión | Existen `AGENTS.md`, `CLAUDE.md` (solo `@AGENTS.md`), `MEMORY.md`, `.agents/napkin.md` y `.docs/001_constitucion/constitution.md` | `ls` y leer `CLAUDE.md` |
 | E17 | sesión | Sin copias del cuerpo de una skill en `AGENTS.md` ni `CLAUDE.md`; napkin solo en `.agents/napkin.md` | Revisar anti-patrones de `.agents/README.md` |
 | E18 | kit | Solo en el repo del kit: los comandos de verificación de `AGENTS.md` › Comandos (sin marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`; ensayo de instalación en `mktemp -d`) | `AGENTS.md` › Comandos |
-| E19 | kit | Solo en el repo del kit: `diff -rq template/.agents .agents` solo debe mostrar `napkin.md`; cualquier otra diferencia es una réplica desfasada | `diff -rq` |
+| E19 | kit | Solo en el repo del kit: `diff -rq template/.agents .agents` solo debe mostrar `napkin.md`. Otra diferencia es una réplica desfasada: proponer el refresco de `INSTALAR.md` › Modo mantenimiento › "Refrescar la copia local" (sobrescribe desde `template/.agents/` y restaura `napkin.md`; no borra lo que solo está en `.agents/`). No ejecutarlo sin confirmación | `diff -rq` |
+| E20 | kit | Solo en el repo del kit: recalcula la huella de cada archivo de `template/` con el algoritmo de `ACTUALIZAR.md` y la compara con manifiestos/<VERSION>.md. Falla por diferencia, por archivo sin fila o por fila sin archivo. En un proyecto instalado no aplica: ahí no hay manifiestos | Algoritmo de `ACTUALIZAR.md` |
 
 ## Cómo responder
 
@@ -44,7 +45,7 @@ MEDIA  | E7  | .agents/skills/adr       | Falta fila en AGENTS.md | Agregar la r
 BAJA   | E15 | CHANGELOG.md             | BOM al inicio           | Quitar el BOM
 ```
 
-3. Sin fallos: `estructura OK (E1–E19, N archivos revisados)`. No listes los OK uno a uno.
+3. Sin fallos: `estructura OK (E1–E20, N archivos revisados)`. No listes los OK uno a uno.
 4. Cierra con **Correcciones propuestas**: lista numerada, sin aplicarlas. Cada corrección se
    ejecuta solo si el usuario la confirma. Nunca borres ni muevas un archivo (estado `OCUPADO` o
    huérfano) sin esa confirmación.
