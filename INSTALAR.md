@@ -4,6 +4,8 @@ Este documento es para el **agente** (y para quien prefiera hacerlo a mano). El 
 de instalación: dependen del SO y del shell, y el kit es genérico. Instalar = **copiar el contenido
 de `template/` a la raíz del proyecto destino, sin sobrescribir nada**.
 
+Si el destino ya tiene el kit, no instales de nuevo: sigue `ACTUALIZAR.md`.
+
 ## Primero: elegir el modo
 
 Antes de copiar nada, el agente decide dónde está parado:
@@ -24,7 +26,12 @@ Si la respuesta no es clara, no asumas: pregunta de nuevo. En ningún modo se so
 
 ## Modo proyecto
 
-Los pasos de la sección siguiente.
+Antes de copiar, comprueba si el destino ya tiene el kit: existe `.agents/.kit-version` o
+`.agents/skills/sdd/SKILL.md`. Si existe cualquiera de los dos, no instales: remite a
+`ACTUALIZAR.md` y detente.
+
+Los pasos de la sección siguiente. El marcador de versión se escribe solo en este modo. El modo
+mantenimiento no lo escribe.
 
 ### Qué hace el agente
 
@@ -44,8 +51,9 @@ Los pasos de la sección siguiente.
      (en `.gitignore`: las reglas de `template/.gitignore`, incluida `PREFERENCIAS.md`).
    - No crear enlaces hacia `.claude/`, `.cursor/`, etc.: eso lo propone el agente dentro del
      proyecto con `.agents/sync-agents.md`.
-6. Al terminar, reporta: copiados, omitidos y pendientes de fusionar, más la versión del kit
-   (archivo `VERSION`).
+6. Escribe `.agents/.kit-version` en el destino copiando la única línea de `VERSION` del kit
+   usado (no la escribas a mano). Al terminar, reporta: copiados, omitidos y pendientes de
+   fusionar, más la versión del kit (archivo `VERSION`).
 7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr `/sdd-init`.
 
 ### A mano (sin agente)
@@ -60,6 +68,15 @@ cp -Rn template/. /ruta/al/proyecto/
 ```powershell
 # Windows: copia omitiendo los existentes
 robocopy template C:\ruta\al\proyecto /E /XC /XN /XO
+```
+
+Después de copiar, deja el marcador de versión: una línea, la del archivo `VERSION` del kit.
+
+```sh
+printf '%s\n' <versión> > .agents/.kit-version
+```
+```powershell
+Set-Content -Path .agents\.kit-version -Value '<versión>'
 ```
 
 Revisa después el `.gitignore` del proyecto y fusiona a mano las reglas de `template/.gitignore`.
@@ -97,6 +114,47 @@ Pasos del agente:
 6. Comprueba con `git status --short`: solo deben aparecer cambios en `template/`, en los docs de la
    raíz o en el conocimiento versionado del kit. Si aparece `.agents/skills/` u otro archivo copiado,
    falta una exclusión.
+7. Si `template/.agents/` cambió desde la última copia, refresca la copia local con la subsección
+   siguiente. Aquí sí se sobrescribe: no uses `--update=none` (eso es solo para instalar).
+
+### Refrescar la copia local
+
+La copia del paso 2 no sobrescribe, así que al editar el producto (`template/.agents/`) la copia
+local `.agents/` se queda vieja. `/sdd-estructura` (chequeo E19) lo detecta y no lo corrige solo:
+propone este refresco y espera confirmación.
+
+Esto es solo el clon en modo mantenimiento. No actualiza un proyecto externo y no usa el
+procedimiento de actualización de proyectos.
+
+- Sobrescribe en `.agents/` los archivos que también están en `template/.agents/`.
+- Al terminar restaura `napkin.md` del clon: es conocimiento versionado, no del producto.
+- No borra archivos que solo existen en `.agents/`.
+- No toca `AGENTS.md`, `CLAUDE.md`, `MEMORY.md`, `.docs/`, `PREFERENCIAS.md` ni `.git/info/exclude`
+  (las exclusiones de arriba se quedan como están).
+- El agente muestra los comandos y los ejecuta solo con confirmación.
+
+```sh
+# macOS / Linux — sí sobrescribe; al final devuelve el napkin del clon
+napkin_tmp=$(mktemp)
+cp -a .agents/napkin.md "$napkin_tmp"
+cp -R template/.agents/. .agents/
+cp -a "$napkin_tmp" .agents/napkin.md
+rm -f "$napkin_tmp"
+```
+
+```powershell
+# Windows — sí sobrescribe; al final devuelve el napkin del clon
+Copy-Item .agents\napkin.md $env:TEMP\napkin.md.kit -Force
+Get-ChildItem -Force template\.agents | ForEach-Object {
+  Copy-Item $_.FullName -Destination .agents\ -Recurse -Force
+}
+Copy-Item $env:TEMP\napkin.md.kit .agents\napkin.md -Force
+Remove-Item $env:TEMP\napkin.md.kit
+```
+
+Después, `diff -rq template/.agents .agents` no debe mostrar archivos de `template/.agents/`
+distintos de su copia, salvo `napkin.md`. Lo que solo está en `.agents/` sigue en el `diff`: no se
+borra en este paso.
 
 Lo que cambie en `AGENTS.md`, `MEMORY.md`, `.docs/` o `napkin.md` se commitea como cualquier otro
 cambio del kit (skill `git-commit`, con confirmación). Las decisiones se registran como ADR en
