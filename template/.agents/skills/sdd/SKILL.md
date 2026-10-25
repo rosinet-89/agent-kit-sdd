@@ -47,7 +47,7 @@ Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado
 - `NNNN`: 4 dígitos en un proyecto (`0001`) para specs, deudas y ADR. Siguiente libre contando la copia local y la rama remota, sin repetir prefijos (`.docs/002_specs/README.md` › "Numeración única"). No se reutilizan números. En el clon del kit manda el ancho de ese README. Las carpetas de sección de `.docs/` siguen en 3.
 - `NombreFeature`: PascalCase, sin espacios. Ej.: `0017_ReporteVentasPorZona`.
 - Plantillas de cada archivo: [plantillas.md](plantillas.md).
-- Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md).
+- Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md). Las restricciones de rol viven en [restricciones-de-rol.md](restricciones-de-rol.md); se enlaza y no se copia.
 
 ## Fases, comandos y responsables
 
@@ -86,7 +86,6 @@ Un solo paso es un lanzamiento entre quien escribe el avance y el rol que la fas
 - El cierre, el estado y la validación de estructura siguen en la sesión principal.
 - La entrada siguiente vuelve a la ruta diseñada, salvo que el usuario pida de nuevo hacerla en el chat.
 - La constancia y la fila de tiempos están en [avance-y-tiempos.md](avance-y-tiempos.md). No se copian aquí.
-
 
 - **Solo análisis** (sin desarrollo): termina en `plan` con `Estado: analisis` en `01_spec.md`.
 - Tiempos, pausas y quién escribe `05_avance.md`: [avance-y-tiempos.md](avance-y-tiempos.md). No se redefinen aquí.

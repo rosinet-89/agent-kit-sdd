@@ -19,7 +19,7 @@ Qué hace:
    - Clasifica el cambio y aplica el modo que declara `.agents/skills/seguridad-basica/SKILL.md`.
 3. No arregles nada. Muestra el veredicto y la lista de verificaciones manuales. Si el veredicto es CAMBIOS NECESARIOS, se vuelve al implementer con la lista exacta y después otra vez al reviewer. Máximo 2 vueltas; si sigue fallando, se para y se explica qué ocurre.
 4. Cuando se confirme cada verificación manual, anótala con su hora en Pruebas de `05_avance.md`. Sin eso, el RF queda pendiente.
-5. Si se pide evidencia formal, el reviewer genera `07_pruebas_qa.md`.
+5. Si se pide evidencia formal, la sesión escribe `07_pruebas_qa.md` y el harness de `tests/` con lo que el reviewer devuelve; el reviewer, en una segunda invocación, ejecuta el harness en modo lectura y devuelve el resultado; la sesión lo anota en `07_pruebas_qa.md`. Esa invocación cuenta como una de las 2 vueltas. Si una vuelta ya se gastó en CAMBIOS NECESARIOS, queda una para esa invocación. El comando no exige que el reviewer carezca de `Write` para seguir: con el reviewer anterior la sesión escribe igual y solo se pierde la garantía de la fila 1 (RF-21 b). El reviewer nuevo, aunque el comando que tenga delante sea el anterior, devuelve el contenido y no escribe esos archivos (RF-21 a).
 6. La sesión principal registra la fila `validate` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-flujo $1` (o la corrección que toque).
 
 Qué no hace: no corrige código. No lee las tareas ni la spec enteras. No revisa como propio lo "ajeno o no atribuible". No copia la regla de los dos alcances ni el formato de la fila de tiempos. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

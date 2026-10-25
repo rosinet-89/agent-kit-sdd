@@ -75,15 +75,16 @@ Claude Code: sesión dedicada con `claude --agent coordinator`.
 
 ## Qué lee cada rol
 La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite
-(enlaces, prefijos, preferencias) y no se supone que la herramienta le inyecta este archivo. Lee
-solo las secciones que su instrucción nombra:
+(enlaces, prefijos, preferencias). El implementer puede recibir el archivo inyectado; planner,
+reviewer y coordinator no, porque declaran `omitClaudeMd`. Cada rol lee solo las secciones que su
+instrucción nombra:
 
 | Rol | Secciones |
 |---|---|
-| coordinator | Ninguna para enrutar. Solo comprueba si este archivo contiene `SDD-INIT-PENDIENTE`. |
-| planner | "Comandos" y, al planear, "Stack y convenciones de código". |
+| coordinator | Comprueba si este archivo contiene `SDD-INIT-PENDIENTE`. También «Git» y «Reglas duras». |
+| planner | "Comandos" y, al planear, "Stack y convenciones de código", más «Git» y «Reglas duras». |
 | implementer | "Comandos" y "Stack y convenciones de código". |
-| reviewer | "Comandos" y "Stack y convenciones de código". |
+| reviewer | "Comandos" y "Stack y convenciones de código", más «Git» y «Reglas duras». |
 
 ## Git (regla obligatoria)
 Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
