@@ -65,6 +65,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 32. **[2026-10-25 14:23] El usuario aprobó `06_flujo.md`.** Siguiente paso: `/sdd-cierre 003_OptimizarArnes`.
 33. **[2026-10-25 14:23] Cierre.** Los pasos de este avance están en `[x]`. No hay verificación manual pendiente ni fila `pausa por confirmar`. `06_flujo.md` estaba aprobado. La spec pasa a `implementada`. La deuda 003 sigue abierta: este feature no la resolvió. Se propone un ADR de fuente única por fase; no se crea sin visto bueno. No se pidió commit.
 34. **[2026-10-25 14:25] ADR 009 aceptado.** El usuario pidió crearlo. Archivo `.docs/004_adr/009_FuenteUnicaPorFase.md`, enlazado desde la decisión 11 del plan. La deuda 003 sigue abierta. No se pidió commit.
+35. **[2026-10-25 14:31] El chat lanza al coordinator.** El usuario pidió escribirlo en la skill `sdd`. Quedó en `template/.agents/skills/sdd/SKILL.md` y en la copia local. La huella de ese archivo en `manifiestos/0.5.0.md` se actualizó. `template/` sigue en 41 archivos. No se pidió commit.
 
 ## Pruebas
 - **F0.1 (2026-10-25 13:39).** Línea base copiada de `02_analisis_impacto.md` §3, sin recalcular. Origen: `wc -c` del 2026-10-25. El `AGENTS.md` de la raíz (8 667) no entra.

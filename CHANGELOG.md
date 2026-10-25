@@ -25,6 +25,7 @@
   verá la regla nueva al actualizar; esa regla de convivencia no está definida todavía.
 - Menos lectura por rol y por comando, y una sola fuente por fase del flujo `sdd`. El cambio de
   redacción en `AGENTS.md` llega a un proyecto por fusión manual.
+- La skill `sdd` manda que el chat lance al coordinator y no ejecute las fases.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
