@@ -19,6 +19,10 @@
 - Manifiestos de huellas por versión en `manifiestos/` (fuera de `template/`, no se distribuyen).
 - Marcador de versión `.agents/.kit-version`, escrito al instalar en modo proyecto.
 - Chequeo E20, solo en el repo del kit: las huellas de `template/` coinciden con el manifiesto de `VERSION`.
+- Numeración en un proyecto: el consecutivo de specs, deudas y ADR pasa a 4 dígitos (`0001`). Las carpetas de
+  sección de `.docs/` y el consecutivo del clon del kit siguen en 3. Lo aplican los comandos `/sdd-*`, las skills
+  `adr`, `git-commit`, `migracion-bd` y `sdd`, y el chequeo E12. Un proyecto que ya tenga carpetas de 3 dígitos
+  verá la regla nueva al actualizar; esa regla de convivencia no está definida todavía.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
