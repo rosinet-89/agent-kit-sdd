@@ -47,6 +47,7 @@ revisar) · `Alta manual` (la registró una persona).
 | 005 | [Verificar el frontmatter de los agentes en Cursor, Gemini, Copilot y Kiro](005_FrontmatterAgentesPorHerramienta.md) | Agentes del kit (frontmatter) | Alta manual | Abierta | Media | — | 2026-10-25 |
 | 006 | [/sdd-init sugiere los fragmentos allow y deny](006_SddInitSugiereAllowDeny.md) | `sdd-init` | Recorte de alcance en `004_ModeloYPermisosAgentes` | Abierta | Media | — | 2026-10-25 |
 | 007 | [Nombres de archivo que chocan con otras herramientas](007_NombresQueChocanConHerramientas.md) | Nombres en la raíz del clon y en `template/` | Hallazgo (revisión pedida por el usuario) | Abierta | Alta | — | 2026-10-25 |
+| 008 | [Limitaciones de la numeración que dejó la 005](008_LimitacionesDeLaNumeracion.md) | Numeración de specs, deudas y ADR (E12 y aviso) | Recorte de alcance en `005_ConvivenciaNumeracion` | Abierta | Baja | — | 2026-10-25 |
 
 ## Plantilla de un detalle
 
