@@ -15,4 +15,4 @@ Qué hace:
 4. Muestra un resumen de ambos. Si es solo análisis, cambia `01_spec.md` a `Estado: analisis` y termina aquí.
 5. La sesión principal registra la fila `plan` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-tasks $1`.
 
-Qué no hace: no escribe código. No repite el contenido de `plantillas.md`. No copia el formato de la fila de tiempos ni el arranque de sesión.
+Qué no hace: no escribe código. No repite el contenido de `plantillas.md`. No copia el formato de la fila de tiempos ni el arranque de sesión. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

@@ -26,6 +26,7 @@
 - Menos lectura por rol y por comando, y una sola fuente por fase del flujo `sdd`. El cambio de
   redacción en `AGENTS.md` llega a un proyecto por fusión manual.
 - La skill `sdd` manda que el chat lance al coordinator y no ejecute las fases.
+- Si una fase no cabe en un solo paso, sigue en esa misma entrada y deja constancia en el avance. Un pedido de hacerla en el chat se atiende en la sesión.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el

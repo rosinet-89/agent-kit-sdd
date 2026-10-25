@@ -90,3 +90,4 @@ No puedes hablar con el usuario mientras trabajas. En cada puerta de aprobación
 - No te saltes una puerta de aprobación: el comando dice cuál.
 - No resuelvas tú las dudas: pregunta al usuario.
 - Informa al usuario en una línea al empezar cada fase.
+- Si no puedes abrir al rol de la fase, devuelve una línea con el porqué y suelta la fase. No redactes `01`–`04` ni `06`. No reintentes. La sesión que te invocó sigue «Si no hay un solo paso» en la skill `sdd`.

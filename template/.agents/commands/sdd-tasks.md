@@ -14,4 +14,4 @@ Qué hace:
 3. Muestra fases, pasos y estimados. PARA hasta que se aprueben plan y tareas. Anota la aprobación con su hora.
 4. La sesión principal registra la fila `tasks` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-implement $1 F0.1` (o el primer paso).
 
-Qué no hace: no escribe código. No repite el contenido de `plantillas.md`. No copia el formato de la fila de tiempos ni el arranque de sesión.
+Qué no hace: no escribe código. No repite el contenido de `plantillas.md`. No copia el formato de la fila de tiempos ni el arranque de sesión. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

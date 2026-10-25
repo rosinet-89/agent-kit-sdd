@@ -15,4 +15,4 @@ Qué hace:
 4. Delega en el subagente **planner** `01_spec.md`: plantilla de `plantillas.md`, RF en EARS, `Estado: borrador`, solo el QUÉ y el POR QUÉ. Pásale constitución y memoria ya leídas e indícale que no las relea. Si devuelve preguntas, házmelas de UNA en UNA (máximo 5) y vuelve a llamarle con mis respuestas.
 5. La sesión principal registra la fila `spec` según el contrato de tiempos, y el siguiente paso: `/sdd-clarify $1`.
 
-Qué no hace: no escribe código. No reescribe el contrato de avance y tiempos. No hace que el planner relea constitución ni memoria.
+Qué no hace: no escribe código. No reescribe el contrato de avance y tiempos. No hace que el planner relea constitución ni memoria. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

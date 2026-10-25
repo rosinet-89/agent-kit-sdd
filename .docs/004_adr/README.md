@@ -27,3 +27,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 007 | [La actualización reemplaza solo archivos KIT-VIEJO, con confirmación](007_ActualizarSoloKitViejo.md) | Aceptado | 2026-10-24 | `001_ActualizarKit` (clarify) |
 | 008 | [Formato de manifiestos, huella y marcador](008_FormatoManifiestosHuellaMarcador.md) | Aceptado | 2026-10-25 | `001_ActualizarKit` |
 | 009 | [Una fuente por fase del flujo SDD](009_FuenteUnicaPorFase.md) | Aceptado | 2026-10-25 | `003_OptimizarArnes` |
+| 010 | [La ruta alterna vive en la skill sdd](010_RutaSiNoHayUnSoloPaso.md) | Aceptado | 2026-10-25 | `006_RutaSiNoDelega` |

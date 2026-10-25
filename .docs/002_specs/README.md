@@ -28,6 +28,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 | 002 | `002_Kit050` | Registro retroactivo de lo ya publicado en 0.5.0, sin comportamiento nuevo | Implementado (retroactivo, 2026-10-25) | 0.5.0, adr, migracion-bd, seguridad-basica, sdd-estructura, modo mantenimiento | deuda 002 resuelta; sin `02`–`04` ni `06`; tiempos de los commits no reconstruidos |
 | 003 | `003_OptimizarArnes` | Reducir tokens y pasos innecesarios de agentes y comandos sin bajar la calidad | Implementado (2026-10-25) | tokens, agentes, comandos, lecturas, permisos, status, implementer | cierre 2026-10-25 14:23; flujo aprobado; ADR 009 aceptado; commits `e170ad4`, `307ab59`, `ccd7906`; deuda 003 en atención por la `004` |
 | 004 | `004_ModeloYPermisosAgentes` | Modelo por rol y permisos reales del frontmatter de los 4 agentes (atiende la deuda 003) | Análisis, spec aprobada (2026-10-25) | model, permissionMode, tools, omitClaudeMd, mode, permissions, frontmatter, agentes | falta plan; espera el cierre de la 003 |
+| 006 | `006_RutaSiNoDelega` | Si un agente no puede delegar, el flujo sigue por otra ruta y deja constancia, sin quedarse atascado | Implementado (2026-10-25) | delegar, subagente, coordinator, planner, ruta alterna, atasco, Cursor | cierre 2026-10-25; sin `06_flujo` por decisión del usuario; manifiesto y E20 los regenera quien cierre último |
 
 ## Mapa por tema
 

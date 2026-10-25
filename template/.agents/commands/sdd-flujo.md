@@ -17,4 +17,4 @@ Qué hace:
 4. Muestra el flujo. PARA hasta que se apruebe. Anota la aprobación con su hora.
 5. La sesión principal registra la fila `flujo` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-cierre $1`.
 
-Qué no hace: no describe lo planeado. No revisa como propio lo "ajeno o no atribuible". No copia la plantilla ni el formato de la fila de tiempos.
+Qué no hace: no describe lo planeado. No revisa como propio lo "ajeno o no atribuible". No copia la plantilla ni el formato de la fila de tiempos. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla. El orden de esta fase sigue siendo planner y luego reviewer.

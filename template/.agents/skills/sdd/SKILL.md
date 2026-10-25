@@ -72,11 +72,21 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 "Cómo decides qué hacer" de `.agents/agents/coordinator.md`, elige un comando de la tabla
 de arriba y lo ejecuta. Esos comandos también se pueden lanzar a mano.
 
-Si quien aplica esta skill es el chat y no el agente `coordinator`, lanza a ese subagente
-con la petición y no ejecuta las fases. El coordinator elige el comando, lo sigue, delega
-en `planner`, `implementer` y `reviewer`, y lleva `05_avance.md`. El cierre, el estado y la
-estructura siguen en la sesión principal. Si la atención entra por el coordinator, él sigue
-esos comandos.
+## Si no hay un solo paso
+
+Un solo paso es un lanzamiento entre quien escribe el avance y el rol que la fase nombra. Un agente intermedio que solo volvería a delegar es un segundo paso.
+
+- Si quien atiende puede hacer ese lanzamiento, la entrada usa la ruta diseñada: ese rol hace el trabajo.
+- Si la atención entra por el coordinator y él puede lanzar en un solo paso, elige el comando, lo sigue y delega. Lleva `05_avance.md`.
+- Si no puede, o la ruta diseñada insertaría un segundo paso, la misma entrada sigue sin esperar y sin reintentar esa llamada. La sesión que atiende lanza al rol de la fase y escribe el avance.
+- Si el usuario pide que la fase se haga en el chat, esa entrada se hace en la sesión. No se intenta antes la ruta diseñada. La constancia dice que la ruta la eligió el usuario.
+- El trabajo, las puertas de aprobación y los documentos son los de esa fase. El rol que la fase nombra los redacta, salvo el pedido de hacerla en el chat.
+- Si la fase nombra más de un rol, se lanzan en el orden que la fase ya define. Si uno posterior no arranca, se conserva lo que los anteriores devolvieron, se detiene la fase, se avisa en una línea y no se relanza a los que ya arrancaron.
+- Si la otra ruta tampoco puede lanzar al rol y el usuario no pidió hacerla en el chat, se detiene, se avisa en una línea y no se insiste.
+- El cierre, el estado y la validación de estructura siguen en la sesión principal.
+- La entrada siguiente vuelve a la ruta diseñada, salvo que el usuario pida de nuevo hacerla en el chat.
+- La constancia y la fila de tiempos están en [avance-y-tiempos.md](avance-y-tiempos.md). No se copian aquí.
+
 
 - **Solo análisis** (sin desarrollo): termina en `plan` con `Estado: analisis` en `01_spec.md`.
 - Tiempos, pausas y quién escribe `05_avance.md`: [avance-y-tiempos.md](avance-y-tiempos.md). No se redefinen aquí.

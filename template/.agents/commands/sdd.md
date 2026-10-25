@@ -9,7 +9,7 @@ Qué lee: la tabla "Cómo decides qué hacer" de `.agents/agents/coordinator.md`
 
 Qué hace: con esa tabla elige UN comando y lo dice en una línea (carpeta nueva o existente, y hasta dónde llega). Si la petición es ambigua, pregunta antes de crear o escribir nada. Luego lee ese comando y lo sigue. Para en cada puerta de aprobación.
 
-Qué no hace: no reescribe el procedimiento de la fase, no escribe código ni los documentos `01`–`04` y `06`, y no carga la skill ni el contrato para `status` o `estructura`.
+Qué no hace: no reescribe el procedimiento de la fase, no escribe código ni los documentos `01`–`04` y `06`, y no carga la skill ni el contrato para `status` o `estructura`. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.
 
 Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, para y sugiere `/sdd-init`.
 

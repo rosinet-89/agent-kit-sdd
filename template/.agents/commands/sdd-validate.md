@@ -22,4 +22,4 @@ Qué hace:
 5. Si se pide evidencia formal, el reviewer genera `07_pruebas_qa.md`.
 6. La sesión principal registra la fila `validate` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-flujo $1` (o la corrección que toque).
 
-Qué no hace: no corrige código. No lee las tareas ni la spec enteras. No revisa como propio lo "ajeno o no atribuible". No copia la regla de los dos alcances ni el formato de la fila de tiempos.
+Qué no hace: no corrige código. No lee las tareas ni la spec enteras. No revisa como propio lo "ajeno o no atribuible". No copia la regla de los dos alcances ni el formato de la fila de tiempos. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.
