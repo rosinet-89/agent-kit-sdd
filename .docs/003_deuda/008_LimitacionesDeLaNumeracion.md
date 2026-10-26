@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-10-25 |
 | Origen | Decisión de requerimiento. Diferido en `005_ConvivenciaNumeracion` (decisión 28 del avance; alta pedida en la decisión 30) |
 | Módulo | Numeración de specs, deudas y ADR (E12 y aviso) |
 | Prioridad | Baja |
-| Atendida por | — |
+| Atendida por | `007_DeudasAbiertas` (cierre 2026-10-25) |
 
 ## Descripción
 La revalidación de la `005` dejó cuatro bordes que no bloquean el cierre. No cambian la regla del ADR 014 ni la fuente del ADR 015.
@@ -33,7 +33,9 @@ E12 puede marcar inválido un prefijo con ceros de relleno, callar una mezcla v�
 4. No renumerar ítems existentes.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+`template/.docs/002_specs/README.md` › « Numeración única » dice que el prefijo vale su entero, que el relleno no es fallo, que el mismo entero es `FALLA` y no `AVISO`, que `abc_Mal` no cuenta, y que un ítem nuevo del clon se escribe con 4 dígitos sin renumerar los ya creados. La fila E12 dice ese resultado y remite. `AGENTS.md` y los índices de planes y de ADR de este clon remiten y no copian la regla. No se editaron los ADR 014 y 015 ni el grupo C.
 
 ## Historial
 - 2026-10-25 — Alta, al atender la decisión 30 de `005_ConvivenciaNumeracion`, con el visto bueno del usuario.
+- 2026-10-25 — Pasa a En atención: la spec `007_DeudasAbiertas` la incluye junto con las deudas 005, 006 y 007.
+- 2026-10-25 — Resuelta en el cierre de `007_DeudasAbiertas`.

@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-10-25 |
 | Origen | Hallazgo (revisión pedida por el usuario, 2026-10-25) |
 | Módulo | Nombres en la raíz del clon y en `template/` |
 | Prioridad | Alta |
-| Atendida por | — |
+| Atendida por | `007_DeudasAbiertas` (cierre 2026-10-25) |
 
 ## Descripción
 Varios archivos del kit usan un nombre que otras herramientas ya reclaman. En un disco que no distingue mayúsculas (`Changelog.md` y `CHANGELOG.md` son el mismo archivo), un plugin puede pisar el del kit sin aviso. La revisión cubre la raíz del clon y lo que `template/` copia a un proyecto. No se renombró nada.
@@ -28,7 +28,7 @@ Raíz del clon y raíz de `template/`. Los `README.md` anidados (`.docs/`, `.age
 4. Actualizar citas, `INSTALAR.md`, `ACTUALIZAR.md` y el manifiesto si el archivo vive en `template/`.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+Se renombraron solo tres archivos de la raíz: `VERSION` → `VersionAgentKitSdd`, `CHANGELOG.md` → `ChangelogAgentKitSdd.md` y `LICENSE` → `LicenseAgentKitSdd`. El contenido de versión sigue `0.5.0`, sin salto de línea final. Las citas vivas de `AGENTS.md`, `ACTUALIZAR.md`, `INSTALAR.md`, `README.md`, el índice del producto y el ejemplo de E15 usan esos nombres. Siguen `<VERSION>` y `.agents/skills/napkin/LICENSE`. `.agents/` y el resto del corte no se renombraron. El punto 6 de la constitución ya nombraba los dos primeros.
 
 ## Hallazgo (2026-10-25)
 
@@ -58,3 +58,5 @@ Raíz del clon y raíz de `template/`. Los `README.md` anidados (`.docs/`, `.age
 
 ## Historial
 - 2026-10-25 — Alta, con el visto bueno del usuario. Sin renombrar.
+- 2026-10-25 — Pasa a En atención: la spec `007_DeudasAbiertas` la incluye junto con las deudas 005, 006 y 008. Sin renombrar.
+- 2026-10-25 — Resuelta en el cierre de `007_DeudasAbiertas`. Renombrados los tres nombres aprobados.

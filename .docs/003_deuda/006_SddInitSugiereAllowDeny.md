@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-10-25 |
 | Origen | Decisión de requerimiento. Recorte de alcance en `004_ModeloYPermisosAgentes` (decisión 15 del avance, decisión 10 del plan) |
 | Módulo | `sdd-init` |
 | Prioridad | Media |
-| Atendida por | — |
+| Atendida por | `007_DeudasAbiertas` (cierre 2026-10-25) |
 
 ## Descripción
 `template/.agents/skills/sdd/restricciones-de-rol.md` documenta dos fragmentos opcionales: `permissions.deny` (cinco patrones Bash de Git) y `permissions.allow` (los comandos de `AGENTS.md` › Comandos). Ningún agente los aplica. `/sdd-init` no los sugiere ni los copia a la configuración local.
@@ -28,7 +28,9 @@ Quien instala el kit no ve los fragmentos. Las restricciones que no cubre `tools
 4. El `allow` sigue siendo genérico: lo llena el responsable con los comandos de su `AGENTS.md` › Comandos.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+`template/.agents/commands/sdd-init.md` manda leer y mostrar los dos fragmentos de `restricciones-de-rol.md` en la propuesta y cuando el proyecto ya está personalizado. El paso de aplicar no los escribe, no los activa y no los copia. No hay una segunda copia del YAML.
 
 ## Historial
 - 2026-10-25 — Alta, al cerrar `004_ModeloYPermisosAgentes`, con el visto bueno del usuario.
+- 2026-10-25 — Pasa a En atención: la spec `007_DeudasAbiertas` la incluye junto con las deudas 005, 007 y 008.
+- 2026-10-25 — Resuelta en el cierre de `007_DeudasAbiertas`.
