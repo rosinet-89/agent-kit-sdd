@@ -1,6 +1,6 @@
 # Índice de decisiones de arquitectura (ADR)
 
-Un archivo `NNN_<Titulo>.md` por decisión (en este clon, 3 dígitos; no subirlos a 4), creado con la skill `adr`
+Un archivo `NNN_<Titulo>.md` por decisión (en este clon, la numeración remite a la declaración de `template/.docs/002_specs/README.md` › « Numeración única »), creado con la skill `adr`
 (`.agents/skills/adr/SKILL.md`). Este índice es el resumen: búscalo antes de decidir algo que
 ya pudo decidirse.
 
@@ -33,3 +33,6 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 014 | [Un ítem nuevo conserva el ancho de su carpeta](014_ConvivenciaDeAnchosDeNumeracion.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
 | 015 | [La fuente única de la numeración vive en el grupo C](015_FuenteUnicaDeNumeracionEnGrupoC.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
+| 0016 | [Un ítem nuevo del clon se escribe con 4 dígitos](0016_ItemNuevoDelClonEnCuatroDigitos.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
+| 0017 | [Un prefijo numérico cuenta como entero](0017_PrefijoNumericoCuentaComoEntero.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
+| 0018 | [Solo tres nombres salen del patrón de un plugin de release](0018_TresNombresFueraDelPatronDeRelease.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
