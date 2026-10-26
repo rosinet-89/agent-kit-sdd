@@ -72,6 +72,19 @@ El destino es relativo a la carpeta donde vive el enlace. Las carpetas padre (`.
 | GitHub | `.github/skills` | `../.agents/skills` | Si usa Copilot |
 | GitHub | `.github/copilot-instructions.md` | `../AGENTS.md` | Si usa Copilot |
 
+### Kiro
+
+Lectura del 2026-10-25: https://kiro.dev/docs/custom-agents/configuration-reference/
+y https://kiro.dev/docs/custom-agents/. Kiro usa otro formato. Los agentes son
+archivos de configuración, JSON o Markdown, en `.kiro/agents/[name].json` o
+`.kiro/agents/[name].md` del workspace y en `~/.kiro/agents/` global. En Markdown
+el frontmatter es la configuración y el cuerpo es el prompt. El del workspace se
+versiona y gana si el nombre coincide. El comando de actualización recorre
+`.kiro/agents/` y `~/.kiro/agents/`. Las skills se citan con
+`skill://.kiro/skills/**/SKILL.md`. Por defecto el agente hereda steering, skills
+y `AGENTS.md`. Ese almacén no es un enlace de `agents`, `commands` y `skills`
+hacia `.agents/`.
+
 ## Notas para el usuario
 
 - En Windows, los enlaces simbólicos requieren Modo desarrollador o permisos de administrador; si no,

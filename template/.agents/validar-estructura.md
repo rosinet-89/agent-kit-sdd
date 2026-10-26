@@ -26,7 +26,7 @@ La sesión principal corre E1 a E20. No se delegan a un subagente.
 | E9 | comandos | Cada `commands/<n>.md` tiene `description` y `argument-hint` (si recibe argumentos); los comandos citados en `AGENTS.md` existen y los que existen están citados | Cruzar lista y carpeta |
 | E10 | comandos | Los comandos del flujo `sdd` están en la tabla de fases de `skills/sdd/SKILL.md` y en el ruteo de `coordinator.md` | Cruzar tablas |
 | E11 | rutas | Toda ruta citada con comillas inversas en `AGENTS.md`, `.agents/**/*.md` y `.docs/**/README.md` existe. No aplica a los manifiestos de versión: pueden listar rutas retiradas | `grep` de rutas + `ls` |
-| E12 | docs | Sin prefijos repetidos **por valor numérico** en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`, con el ancho de `.docs/002_specs/README.md` › « Numeración única ». `FALLA`: duplicado por valor aunque difiera el ancho; ancho inválido (ni 3 ni 4 dígitos, ni los que el valor necesite); y, en el clon del kit, un ítem de ancho distinto del que declara su índice, salvo el desbordamiento (más dígitos que el ancho declarado porque su valor los necesita). `AVISO`: carpeta de un proyecto con anchos mezclados válidos y sin duplicados; si esa carpeta tiene además un ítem inválido, el resultado es `FALLA` y no se añade `AVISO` por ella. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
+| E12 | docs | Sin prefijos repetidos **por valor numérico** en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`. Remite a `.docs/002_specs/README.md` › « Numeración única ». El prefijo numérico vale su entero: los ceros de relleno y el ancho escrito no son `FALLA` y el nombre no se reescribe. Dos ítems con el mismo entero son `FALLA` y esa igualdad no es `AVISO`. Un nombre que no empieza por dígitos y `_` no entra en el consecutivo ni en el ancho. En el clon, los 4 dígitos valen para el ítem nuevo: el ancho ya escrito no pasa a `FALLA` y una mezcla válida no es `AVISO`. El `AVISO` de mezcla válida sigue siendo solo de proyecto. El desbordamiento sin relleno (`1000` en ancho 3) sigue en el ADR 014. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
 | E13 | docs | Cada índice (`002_specs`, `003_deuda`, `004_adr`) coincide con sus carpetas o archivos; si discrepan, manda la carpeta | Cruzar fila y archivo |
 | E14 | docs | Toda carpeta de `.docs/002_specs/` tiene `01_spec.md` | `ls` |
 | E15 | codificación | Archivos `.md` en UTF-8 sin BOM | `file -i`; `grep -l $'^\xEF\xBB\xBF'` vacío |
@@ -45,7 +45,7 @@ La sesión principal corre E1 a E20. No se delegan a un subagente.
 ```
 ALTA   | E2  | .claude/skills/probando/ | Skill fuera de .agents/ | Mover a .agents/skills/probando/ y enlazar
 MEDIA  | E7  | .agents/skills/adr       | Falta fila en AGENTS.md | Agregar la ruta a la tabla
-BAJA   | E15 | CHANGELOG.md             | BOM al inicio           | Quitar el BOM
+BAJA   | E15 | ChangelogAgentKitSdd.md  | BOM al inicio           | Quitar el BOM
 ```
 
 3. Sin fallos: `estructura OK (E1–E20, N archivos revisados)`; si hubo avisos, se añade

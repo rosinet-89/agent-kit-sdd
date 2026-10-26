@@ -13,7 +13,11 @@ Qué hace: entrevista, propone y, tras la aprobación, personaliza el proyecto.
 Qué no hace: no escribe nada antes de esa aprobación. No tiene meta de reducción de lectura.
 
 Si `AGENTS.md` ya no contiene `SDD-INIT-PENDIENTE`, el proyecto ya está personalizado: dímelo y
-pregunta si quiero revisar o actualizar algo en concreto.
+pregunta si quiero revisar o actualizar algo en concreto. También entonces, lee y muestra enteras
+las secciones «Fragmento opcional permissions.deny» y «Fragmento opcional permissions.allow» de
+`.agents/skills/sdd/restricciones-de-rol.md`, tal cual. El allow queda genérico, para que quien
+instala lo llene: no traigas comandos de este kit ni de ningún proyecto. No los apliques, no los
+actives y no los copies a `.claude/`, a un settings versionado ni a ninguna configuración del repo.
 
 Contexto adicional: $ARGUMENTS
 
@@ -51,6 +55,12 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
    después una por una con las reglas de `.agents/README.md`.
 6. **Ajustes a agentes o comandos** si el proyecto necesita algo distinto (por ejemplo, comandos de
    verificación específicos). Solo si es necesario.
+7. **Deny y allow, solo mostrar.** Lee y muestra enteras las secciones «Fragmento opcional
+   permissions.deny» y «Fragmento opcional permissions.allow» de
+   `.agents/skills/sdd/restricciones-de-rol.md`. Tal cual: no las reescribas ni pegues otra copia.
+   El allow queda genérico, para que quien instala lo llene con los comandos de su proyecto; no
+   traigas comandos de este kit ni de ningún proyecto. No los apliques, no los actives y no los
+   copies a `.claude/`, a un settings versionado ni a ninguna configuración del repo.
 
 ## 4. Aplicar (tras mi aprobación)
 
@@ -62,3 +72,5 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
 4. Dime el siguiente paso: `/sdd <mi primer requerimiento>`.
 5. Si te lo pido, prepara el commit con `.agents/skills/git-commit/SKILL.md`. Nunca hagas
    `git commit` sin mi confirmación explícita.
+6. No escribas el deny ni el allow. No los apliques, no los actives y no los copies a `.claude/`,
+   a un settings versionado ni a ninguna configuración del repo.

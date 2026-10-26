@@ -23,8 +23,22 @@ Cada campo queda soportado en Claude Code, ignorado, o no verificado.
 | `disallowedTools` | Soportado como lista de herramientas enteras. Hecho (b): no acepta patrones con argumentos. |
 | `hooks` | Existen por subagente. Se descartan. |
 
-`model`, `omitClaudeMd`, `mode` y `permissions`: no verificado en Cursor, Gemini y Copilot.
-Quitar `mode` y `permissions` puede quitarles una función que aquí no se conoce.
+Fecha de lectura de Cursor, Gemini CLI, GitHub Copilot y Kiro: 2026-10-25. Sin fecha y fuente, esa herramienta no tiene veredicto.
+
+| Herramienta | Fuente |
+|---|---|
+| Cursor | https://cursor.com/docs/subagents |
+| Gemini CLI | https://geminicli.com/docs/core/subagents/ |
+| GitHub Copilot | https://docs.github.com/en/copilot/reference/custom-agents-configuration |
+| Kiro | https://kiro.dev/docs/custom-agents/configuration-reference/ |
+
+Una celda «Sin veredicto» no clasifica el campo. Los hechos (a), (c) y (d) siguen siendo los de Claude Code.
+
+| Campo | Cursor | Gemini CLI | GitHub Copilot | Kiro |
+|---|---|---|---|---|
+| `model` | Soportado. La tabla de campos lo lista: `inherit` o un id, con parámetros entre corchetes. No viaja igual que el hecho (c): si el admin bloquea el modelo, el plan no lo trae o hace falta Max Mode, Cursor cae a un modelo compatible. El hecho (c) permanece. | Soportado. El esquema lo lista. El valor por defecto documentado es `inherit` (el modelo de la sesión principal). No viaja igual que el hecho (c): la página no documenta ese orden de resolución. El hecho (c) permanece. | Soportado. La tabla de propiedades lo lista. Si no se pone, hereda el modelo por defecto. No viaja igual que el hecho (c): la página no documenta el valor `inherit` ni ese orden. El hecho (c) permanece. | Soportado. Es el id del modelo. Si no se indica, usa el modelo por defecto. No viaja igual que el hecho (c): si el id no está disponible, el primer prompt puede fallar en lugar de caer solo. El hecho (c) permanece. |
+| `omitClaudeMd` | Sin veredicto. La página no nombra la clave. Falta una frase que la clasifique como soportada, ignorada o que provoca error. | Sin veredicto. El esquema no nombra la clave. Falta una frase que la clasifique como soportada, ignorada o que provoca error. | Sin veredicto. La tabla de propiedades no nombra la clave. La nota que ignora `argument-hint` y `handoffs` en el cloud agent no incluye esta clave. Falta una frase que la clasifique. | Sin veredicto. La lista de campos no nombra la clave. Falta una frase que la clasifique como soportada, ignorada o que provoca error. |
+| `tools` | Sin veredicto. La tabla de campos lista `name`, `description`, `model`, `readonly` e `is_background`, y no incluye `tools`. La pregunta de MCP dice que el subagente hereda las herramientas del padre; esa frase no clasifica la clave. Falta si `tools` en el frontmatter se soporta, se ignora o provoca error. | Soportado. Lista de nombres, con comodines `*`, `mcp_*` y `mcp_server_*`. Si se omite, hereda las de la sesión padre. No viaja igual que el hecho (a): la página no documenta `Agent(tipo1, tipo2)`. En la misma página, un subagente no puede llamar a otros subagentes aunque tenga `*`. El hecho (a) permanece. | Soportado. Lista o cadena separada por comas. Si no se pone, vale todas; `tools: []` no deja ninguna. Los nombres no reconocidos se ignoran. Alias sin distinción de mayúsculas: `Write` y `Edit` son `edit`; `WebFetch` y `WebSearch` son `web`; `Agent` y `Task` son `agent`. No viaja igual que el hecho (a): `Agent(tipo1, tipo2)` no está en esa tabla. El hecho (a) permanece. | Soportado. Lista de nombres, con etiquetas `read`, `write`, `shell`, `web` y `subagent`, y selectores `@`, `@builtin` y `*`. El formato Markdown usa el mismo campo en el frontmatter. No viaja igual que el hecho (a): la página no documenta `Agent(tipo1, tipo2)`. El hecho (a) permanece. |
 
 Hechos verificados el 2026-10-25:
 
@@ -41,13 +55,13 @@ Tres columnas. Ocho filas. Las filas 2 y 3 quedan NO garantizada, solo instrucci
 
 | Restricción | Mecanismo | Garantizada |
 |---|---|---|
-| `reviewer` sin `Write` ni `Edit`. Que no modifique archivos por Bash (`sed -i`, redirecciones, `tee`) | `tools`. Instrucción de texto del agente | GARANTIZADA por `tools`. NO garantizada, instrucción de texto del agente |
+| `reviewer` sin `Write` ni `Edit`. Que no modifique archivos por Bash (`sed -i`, redirecciones, `tee`) | `tools`. Instrucción de texto del agente | GARANTIZADA en Claude Code por `tools`. En GitHub Copilot también: `Write` y `Edit` son alias de `edit` (sin distinción de mayúsculas) y `tools` es la lista de permiso. No se extiende a Cursor, porque `tools` no tiene veredicto. No se extiende a Gemini CLI ni a Kiro: su fuente no documenta esos nombres. NO garantizada, instrucción de texto del agente |
 | `planner` escribe solo los cinco documentos de su carpeta de feature | instrucción (tiene `Write`/`Edit`). Sin deny de ruta | NO garantizada (tiene `Write`/`Edit`); instrucción. Sin deny de ruta |
 | `coordinator` escribe solo `05_avance.md` y usa el shell solo para la hora | instrucción. Sin deny de ruta | NO garantizada; instrucción. Sin deny de ruta |
 | `implementer` no hace `git commit`, `push`, `fetch`, `pull` ni `sync`, y no ejecuta SQL | instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) | NO garantizada; instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) |
 | `planner`, `reviewer` y `coordinator`, que conservan `Bash`, tampoco registran en Git | instrucción más el `deny` opcional de Git | NO garantizada; instrucción más el `deny` opcional de Git |
-| Ningún subagente lanza otros subagentes salvo el `coordinator` a los tres roles | `planner`, `implementer` y `reviewer` no listan `Agent`. La lista `Agent(planner, implementer, reviewer)` del `coordinator` solo restringe cuando corre como hilo principal; como subagente se ignora y podría lanzar subagentes hasta 3 capas | GARANTIZADA para `planner`, `implementer` y `reviewer` (no listan `Agent`). Para el `coordinator`, NO garantizada en ese caso |
-| Ningún agente usa la red (`webfetch` y búsqueda web denegados) | `tools`, que no lista esas herramientas | GARANTIZADA por `tools`, que no lista esas herramientas |
+| Ningún subagente lanza otros subagentes salvo el `coordinator` a los tres roles | `planner`, `implementer` y `reviewer` no listan `Agent`. La lista `Agent(planner, implementer, reviewer)` del `coordinator` solo restringe cuando corre como hilo principal; como subagente se ignora y podría lanzar subagentes hasta 3 capas | GARANTIZADA en Claude Code para `planner`, `implementer` y `reviewer` (no listan `Agent`). En GitHub Copilot, no listar `agent` (alias `Agent` y `Task`, sin distinción de mayúsculas) deja fuera esa herramienta; el hecho (a) no viaja, porque `Agent(tipo1, tipo2)` no está en los alias. Para el `coordinator`, NO garantizada en ese caso, y esa mitad no se extiende. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro. Gemini CLI dice, en otra frase de su fuente, que un subagente no llama a otros subagentes; eso no es la garantía de esta fila |
+| Ningún agente usa la red (`webfetch` y búsqueda web denegados) | `tools`, que no lista esas herramientas | GARANTIZADA en Claude Code por `tools`, que no lista esas herramientas. En GitHub Copilot, `WebFetch` y `WebSearch` son alias de `web` (sin distinción de mayúsculas) y no listarlos deja fuera esa herramienta donde el alias aplica. La fuente dice que `web` no aplica al cloud agent, y ahí esta fila no afirma la garantía por `tools`. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro |
 | `planner` consulta datos solo en modo lectura, con el comando de `AGENTS.md` › Comandos | instrucción (tiene `Bash`) | NO garantizada (tiene `Bash`); instrucción |
 
 ## Fragmento opcional `permissions.deny`
