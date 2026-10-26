@@ -4,14 +4,14 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 23:26 |
+| Última sesión | 2026-10-25 23:45 |
 | Fase actual | `cierre` |
 | Último paso cerrado | ADR 0016, 0017 y 0018, y la línea de `MEMORY.md`, 2026-10-25 23:26 |
-| Siguiente paso | Ninguno. Falta el commit, si el usuario lo pide |
+| Siguiente paso | Ninguno. Commits hechos: `6f9e21a`, `6516e1c`, `6784948`, `63f19b2`, `3770895` |
 | Bloqueos abiertos | Ninguno |
 | Coordinación | Deudas 005, 006, 007 y 008 resueltas en este cierre. |
 | Estado BD | No aplica |
-| Código | `template/` editado. Renombres en la raíz. Manifiesto regenerado. Sin commit |
+| Código | `template/` editado. Renombres en la raíz. Manifiesto regenerado. Commits `6f9e21a`, `6516e1c`, `6784948`, `63f19b2`, `3770895` |
 
 ## Pasos
 ## Decisiones
