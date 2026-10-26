@@ -10,6 +10,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
   (`AGENTS.md`, `CLAUDE.md`, `MEMORY.md`, `.docs/`, `.agents/napkin.md`) y lo que sale de `template/` queda
   local en `.git/info/exclude`. Detalle y alternativas: `.docs/004_adr/001_ModoMantenimientoDelKit.md`.
 - [2026-10-25] En un feature que solo edita Markdown y lo ejecutan agentes, estima las fases en minutos; el real ronda un tercio del estimado. Un ítem nuevo conserva el ancho de su carpeta: `.docs/004_adr/014_ConvivenciaDeAnchosDeNumeracion.md`.
+- [2026-10-25] Un implementer por paso no baja el tiempo a un tercio: en `007_DeudasAbiertas` el real de F0 a F6 fue 84 min contra 85 estimados. El tercio de la línea anterior vale cuando una persona edita el Markdown en una sentada.
 
 ## Trampas conocidas
 
