@@ -65,9 +65,9 @@ sesión y, si no existe, lo crean desde `.agents/preferencias.ejemplo.md`. Lo de
 
 - Lo genérico vive aquí; lo propio del proyecto (skills de dominio, reglas de negocio, trampas)
   se crea en el proyecto, nunca en el kit.
-- Cada versión se anota en `CHANGELOG.md` y `VERSION`. Para actualizar un proyecto que ya tiene
+- Cada versión se anota en `ChangelogAgentKitSdd.md` y `VersionAgentKitSdd`. Para actualizar un proyecto que ya tiene
   el kit, sigue `ACTUALIZAR.md`.
 
 ## Licencia
 
-MIT. Ver `LICENSE`.
+MIT. Ver `LicenseAgentKitSdd`.

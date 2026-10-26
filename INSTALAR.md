@@ -13,7 +13,7 @@ Antes de copiar nada, el agente decide dónde está parado:
 | Situación | Qué hace |
 |---|---|
 | Destino = **proyecto existente** (ruta distinta del kit, con código o historial) | **Modo proyecto**: instala solo `template/`. No pregunta nada más. |
-| Se abrió el **clon del kit** (hay `template/`, `VERSION` y `CHANGELOG.md` en la raíz) o el destino es un proyecto **nuevo** | **Pregunta** al usuario cuál de las dos opciones de abajo. |
+| Se abrió el **clon del kit** (hay `template/`, `VersionAgentKitSdd` y `ChangelogAgentKitSdd.md` en la raíz) o el destino es un proyecto **nuevo** | **Pregunta** al usuario cuál de las dos opciones de abajo. |
 
 Pregunta (una sola, con estas dos opciones):
 
@@ -51,9 +51,9 @@ mantenimiento no lo escribe.
      (en `.gitignore`: las reglas de `template/.gitignore`, incluida `PREFERENCIAS.md`).
    - No crear enlaces hacia `.claude/`, `.cursor/`, etc.: eso lo propone el agente dentro del
      proyecto con `.agents/sync-agents.md`.
-6. Escribe `.agents/.kit-version` en el destino copiando la única línea de `VERSION` del kit
+6. Escribe `.agents/.kit-version` en el destino copiando la única línea de `VersionAgentKitSdd` del kit
    usado (no la escribas a mano). Al terminar, reporta: copiados, omitidos y pendientes de
-   fusionar, más la versión del kit (archivo `VERSION`).
+   fusionar, más la versión del kit (archivo `VersionAgentKitSdd`).
 7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr `/sdd-init`.
 
 ### A mano (sin agente)
@@ -70,7 +70,7 @@ cp -Rn template/. /ruta/al/proyecto/
 robocopy template C:\ruta\al\proyecto /E /XC /XN /XO
 ```
 
-Después de copiar, deja el marcador de versión: una línea, la del archivo `VERSION` del kit.
+Después de copiar, deja el marcador de versión: una línea, la del archivo `VersionAgentKitSdd` del kit.
 
 ```sh
 printf '%s\n' <versión> > .agents/.kit-version
@@ -94,7 +94,7 @@ versionado en el clon** y no se sobrescribe:
 
 Pasos del agente:
 
-1. Comprueba que está en la raíz del clon (existen `template/`, `VERSION` y `AGENTS.md`).
+1. Comprueba que está en la raíz del clon (existen `template/`, `VersionAgentKitSdd` y `AGENTS.md`).
 2. Copia `template/` a la raíz **sin sobrescribir** (como en "Modo proyecto"). `AGENTS.md`, `MEMORY.md`,
    `.docs/` y `napkin.md` quedan como están en el clon; los archivos de `template/` que falten en
    `.docs/` (por ejemplo un índice nuevo) se copian y aparecerán como nuevos para revisar.

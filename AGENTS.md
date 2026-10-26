@@ -48,7 +48,7 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 ## Formato y numeración
 Reglas completas en `.docs/002_specs/README.md`.
 - Toda carpeta de plan nace en formato SDD (skill `sdd`): lleva `01_spec.md`.
-- En este clon, specs, deudas y ADR siguen en 3 dígitos (`001`). No renumerar a 4. El ancho en un proyecto y la convivencia de anchos están en `template/.docs/002_specs/README.md` › « Numeración única ». Las carpetas de sección de `.docs/` siguen en 3 en ambos.
+- En este clon, un ítem nuevo de specs, deudas y ADR se escribe con 4 dígitos. Los ya creados no se renumeran (`001` sigue `001`). El ancho en un proyecto y la convivencia de anchos están en `template/.docs/002_specs/README.md` › « Numeración única ». Las carpetas de sección de `.docs/` siguen en 3 en ambos.
 - Un prefijo no se repite en `.docs/002_specs/`, `.docs/003_deuda/` ni `.docs/004_adr/`. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
 
 ## Skills de proyecto
@@ -64,7 +64,7 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
-- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, NNN = 3 dígitos; en un proyecto, el ancho de su carpeta según `template/.docs/002_specs/README.md` › « Numeración única ») con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
+- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, un ítem nuevo se escribe con 4 dígitos y los ya creados no se renumeran; en un proyecto, el ancho de su carpeta según `template/.docs/002_specs/README.md` › « Numeración única ») con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
@@ -108,7 +108,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
 
 ## Reglas de negocio y del sistema
 - Lo distribuible se edita en `template/` y en los docs de la raíz (`README.md`, `INSTALAR.md`,
-  `CHANGELOG.md`, `VERSION`, `LICENSE`).
+  `ChangelogAgentKitSdd.md`, `VersionAgentKitSdd`, `LicenseAgentKitSdd`).
 - La raíz es el **entorno de mantenimiento** del kit (ver `INSTALAR.md` › "Modo mantenimiento"):
   - **Versionado** (conocimiento propio del kit, no sale de `template/`): `AGENTS.md`, `CLAUDE.md`,
     `MEMORY.md`, `.docs/` (constitución, specs, deuda, ADR) y `.agents/napkin.md`.
@@ -117,7 +117,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   - Las decisiones del kit se registran como ADR en `.docs/004_adr/` (skill `adr`); el `template/`
     solo lleva el índice vacío.
 - Nada propio de un proyecto (stack, nombres, dominio) entra a `template/`.
-- Cada versión actualiza `VERSION` y `CHANGELOG.md`.
+- Cada versión actualiza `VersionAgentKitSdd` y `ChangelogAgentKitSdd.md`.
 - La instalación copia sin sobrescribir nunca. Actualizar un proyecto que ya tiene el kit solo
   reemplaza archivos KIT-VIEJO confirmados (`.docs/004_adr/007_ActualizarSoloKitViejo.md`).
 - Los manifiestos viven en `manifiestos/`, fuera de `template/`, y no se distribuyen.

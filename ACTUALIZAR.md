@@ -48,13 +48,13 @@ Con el kit disponible en local basta.
 
 Antes de modificar nada, comprueba todo lo siguiente. Si falla una, informa y detente.
 
-1. El kit está en local y su raíz tiene `template/`, `VERSION` y `manifiestos/`.
+1. El kit está en local y su raíz tiene `template/`, `VersionAgentKitSdd` y `manifiestos/`.
 2. Existe el manifiesto de la versión destino: un archivo de `manifiestos/` cuyo nombre es esa
    versión y la extensión `.md` (`manifiestos/<VERSION>.md`). Si no existe, informa y no
    modifiques nada.
 3. El entorno puede calcular SHA-256. La prueba de humo de abajo lo confirma. Si no se puede
    calcular, informa y no modifiques nada.
-4. Si la raíz del **destino** tiene `template/`, `VERSION` y `manifiestos/`, ese destino es el
+4. Si la raíz del **destino** tiene `template/`, `VersionAgentKitSdd` y `manifiestos/`, ese destino es el
    clon del kit. No corras este procedimiento. El refresco del clon ya está en `INSTALAR.md`,
    sección «Modo mantenimiento» (deuda 001, resuelta).
 
@@ -181,7 +181,7 @@ conserva, porque solo sustituye la pareja CR LF. El comando de Linux queda como 
 
 ## Versión destino
 
-La versión destino es el contenido de una sola línea del archivo `VERSION` del kit que se está
+La versión destino es el contenido de una sola línea del archivo `VersionAgentKitSdd` del kit que se está
 usando.
 
 No propongas cambios hasta conocer la versión base y la versión destino.
@@ -310,7 +310,7 @@ paso de «Cada sesión» o una regla de ignorados.
 Se compara por identidad del elemento (nombre de la skill, propósito del paso, regla), no por
 redacción exacta.
 
-`CHANGELOG.md` es la guía de qué se agregó. Sin Git no hay contenido de la base: la lista es
+`ChangelogAgentKitSdd.md` es la guía de qué se agregó. Sin Git no hay contenido de la base: la lista es
 conservadora (lo que el destino tiene y el proyecto no). El usuario lo incorpora o lo marca
 «mantener». No exijas Git.
 

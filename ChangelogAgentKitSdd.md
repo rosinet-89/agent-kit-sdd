@@ -18,10 +18,11 @@
 - Actualización de un proyecto que ya tiene el kit: `ACTUALIZAR.md`, en lugar de reinstalar encima.
 - Manifiestos de huellas por versión en `manifiestos/` (fuera de `template/`, no se distribuyen).
 - Marcador de versión `.agents/.kit-version`, escrito al instalar en modo proyecto.
-- Chequeo E20, solo en el repo del kit: las huellas de `template/` coinciden con el manifiesto de `VERSION`.
+- Chequeo E20, solo en el repo del kit: las huellas de `template/` coinciden con el manifiesto de `VersionAgentKitSdd`.
 - Numeración: un proyecto nuevo numera specs, deudas y ADR con 4 dígitos (`0001`); un proyecto con ítems
   conserva el ancho de cada carpeta (`017_` sigue en 3). El siguiente libre se calcula por valor numérico
-  (`017` = `0017`) y nunca se renumera. Las carpetas de sección de `.docs/` y el clon del kit siguen en 3.
+  (`017` = `0017`) y nunca se renumera. Las carpetas de sección de `.docs/` siguen en 3 y el clon remite a
+  la declaración de `template/.docs/002_specs/README.md` › « Numeración única »: los ya creados no se renumeran.
   Lo aplican los comandos `/sdd-*`, las skills `adr`, `git-commit`, `migracion-bd` y `sdd`, y el chequeo E12,
   que informa los anchos mezclados como `AVISO`.
 - `ACTUALIZAR.md` avisa, por los nombres de carpeta y sin leer los README, si el proyecto tiene ítems de 3
@@ -40,6 +41,10 @@
   `sdd-validate.md` a la vez: si el reviewer es el anterior y el comando el nuevo, la sesión escribe la
   evidencia y solo se pierde la garantía de que el reviewer no escriba; al revés, el procedimiento queda
   desfasado porque el reviewer devuelve el contenido y la sesión lo escribe.
+- Veredicto de `model`, `omitClaudeMd` y `tools` en Cursor, Gemini CLI, GitHub Copilot y Kiro, con fecha y
+  fuente, y celda vacía si la fuente no alcanza. `/sdd-init` muestra el deny y el allow y no los aplica. Los
+  tres archivos de la raíz pasan a `VersionAgentKitSdd`, `ChangelogAgentKitSdd.md` y `LicenseAgentKitSdd`. Un
+  ítem nuevo del clon se escribe con 4 dígitos y los ya creados no se renumeran.
 
 ## 0.4.0 — 2026-10-20
 - Se eliminan `install.ps1` e `install.sh`: el kit es genérico. Nuevo `INSTALAR.md` con instrucciones para que el
