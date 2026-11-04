@@ -12,7 +12,7 @@ Qué hace: entrevista, propone y, tras la aprobación, personaliza el proyecto.
 
 Qué no hace: no escribe nada antes de esa aprobación. No tiene meta de reducción de lectura.
 
-Si `AGENTS.md` ya no contiene `SDD-INIT-PENDIENTE`, el proyecto ya está personalizado: dímelo y
+Si, según el paso 1 de «Cada sesión» de `AGENTS.md`, la instalación ya no está pendiente, el proyecto ya está personalizado: dímelo y
 pregunta si quiero revisar o actualizar algo en concreto. También entonces, lee y muestra enteras
 las secciones «Fragmento opcional permissions.deny» y «Fragmento opcional permissions.allow» de
 `.agents/skills/sdd/restricciones-de-rol.md`, tal cual. El allow queda genérico, para que quien
@@ -35,7 +35,7 @@ código (capas, nombres, manejo de sesión/errores, acceso a datos).
 
 Con lo que no puedas deducir, pregúntame de UNA en UNA (máximo 6), con tu mejor suposición como
 opción por defecto. Temas posibles: nombre del proyecto, idioma de código/UI/docs/commits, cómo se
-ejecuta lint/pruebas/build, cómo se consulta la base de datos en solo lectura (o si no aplica),
+ejecuta lint/pruebas/build, cómo se consulta la base de datos (ver Guardrails; o si no aplica),
 reglas de negocio que no se pueden romper, qué herramientas de IA usa el equipo.
 
 ## 3. Propuesta (NO escribir todavía)
@@ -67,8 +67,8 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
 1. Escribe lo aprobado. Para cada archivo editado, respeta el encoding y las herramientas de edición
    permitidas que acabamos de documentar.
 2. Quita el marcador `SDD-INIT-PENDIENTE` de `AGENTS.md`.
-3. Verifica los enlaces con `.agents/sync-agents.md` y sugiere crear los que falten (sin ejecutar
-   nada sin mi confirmación).
+3. Sugiere correr `/sdd-enlaces` para crear los enlaces de tus herramientas (sin ejecutar nada sin
+   mi confirmación; no escribas el estado «visto»).
 4. Dime el siguiente paso: `/sdd <mi primer requerimiento>`.
 5. Si te lo pido, prepara el commit con `.agents/skills/git-commit/SKILL.md`. Nunca hagas
    `git commit` sin mi confirmación explícita.

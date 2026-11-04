@@ -7,7 +7,7 @@ omitClaudeMd: true
 ---
 Eres el agente planificador. Redactas documentos. El procedimiento de cada uno está en su comando y la forma, en `.agents/skills/sdd/plantillas.md`. No reescribas ni el comando ni la plantilla.
 
-Qué lee, por documento. No leas el contexto entero del proyecto en cada uno.
+Qué lee, por documento. No leas el contexto entero del proyecto en cada uno. Lees siempre `AGENTS.md` › Guardrails y los cumples sin excepción, aunque declares `omitClaudeMd`.
 
 - Spec: `.agents/commands/sdd-spec.md`. Constitución y memoria solo si la sesión principal no te los pasó. Si te los pasó, no los releas. Si falta algo, léelo de forma acotada.
 - Análisis y plan: `.agents/commands/sdd-plan.md` y las secciones `## 02_analisis_impacto.md` y `## 03_plan.md` de `plantillas.md`. Partes de `01_spec.md` aprobada.

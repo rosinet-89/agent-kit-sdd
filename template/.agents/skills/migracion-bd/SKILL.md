@@ -1,16 +1,17 @@
 ---
 name: migracion-bd
-description: Reglas para escribir los scripts SQL de un feature en `.docs/002_specs/<prefijo_Feature>/sql/` - nombre, orden, idempotencia, rollback, encabezado EJECUCIÓN MANUAL y verificación posterior. Usar al planear (`03_plan.md`), al implementar un paso que cambie datos o esquema (`/sdd-implement`) y al validar scripts (`/sdd-validate`). Los agentes generan el SQL, nunca lo ejecutan. Disparadores - "script SQL", "migración", "DDL", "seed", "rollback", "sql/", "cambio de esquema", "ALTER TABLE".
+description: Reglas para escribir los scripts SQL de un feature en `.docs/002_specs/<prefijo_Feature>/sql/` - nombre, orden, idempotencia, rollback, encabezado EJECUCIÓN MANUAL y verificación posterior. Usar al planear (`03_plan.md`), al implementar un paso que cambie datos o esquema (`/sdd-implement`) y al validar scripts (`/sdd-validate`). Disparadores - "script SQL", "migración", "DDL", "seed", "rollback", "sql/", "cambio de esquema", "ALTER TABLE".
 ---
 
 # Skill: Migración de base de datos (scripts `sql/`)
 
-Complementa a `sdd` y al implementer: ellos fijan **que** el SQL se genera y no se ejecuta; esta
-skill fija **cómo se escribe**. Es independiente del motor: el dialecto lo dicta `AGENTS.md`.
+Complementa a `sdd` y al implementer: lo que un agente puede hacer con la base de datos está en
+`AGENTS.md` › Guardrails, regla 1; esta skill fija **cómo se escribe**. Es independiente del
+motor: el dialecto lo dicta `AGENTS.md`.
 
 ## Regla de oro
 
-El agente **genera** DDL/DML en `sql/` y **nunca lo ejecuta**. Solo consultas de solo lectura.
+Qué puede hacer un agente con la base de datos: `AGENTS.md` › Guardrails, regla 1.
 Lo ejecuta el usuario, y `05_avance.md` › "Estado BD" registra qué script corrió y cuándo.
 
 ## Nombre y orden
@@ -55,11 +56,11 @@ Lo ejecuta el usuario, y `05_avance.md` › "Estado BD" registra qué script cor
 | Rol | Hace |
 |---|---|
 | planner | Lista en `03_plan.md` cada script con tipo y rollback; marca lo irreversible |
-| implementer | Escribe los scripts con esta skill; no los ejecuta; los reporta como "pendiente de ejecutar" |
+| implementer | Escribe los scripts con esta skill; los reporta como "pendiente de ejecutar" |
 | reviewer | Revisa encabezado, orden, idempotencia, rollback y que la consulta "Verificar" sea de solo lectura |
 
 ## No hacer
 
-- Ejecutar SQL de escritura desde un agente.
+- Lo que un agente no hace con la base de datos: `AGENTS.md` › Guardrails, regla 1.
 - SQL suelto fuera de `sql/`.
 - Editar un script ya ejecutado por el usuario: se agrega uno nuevo con el siguiente `NN`.

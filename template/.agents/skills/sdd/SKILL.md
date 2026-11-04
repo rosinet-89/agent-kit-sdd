@@ -16,7 +16,7 @@ description: >
 Flujo canónico para **análisis y desarrollos nuevos**: toda carpeta nueva nace con este formato.
 No aplica a un fix chico sin carpeta. Si el alcance crece a feature, se abre carpeta con este flujo.
 
-Si `AGENTS.md` contiene `SDD-INIT-PENDIENTE`, el proyecto no está personalizado: corre `/sdd-init` primero.
+Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, el proyecto no está personalizado: corre `/sdd-init` primero.
 
 ## Reglas del flujo
 
@@ -66,6 +66,7 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `change` | `/sdd-change` | planner | `01_spec.md` |
 | Estado | `/sdd-status` | sesión principal | — |
 | Estructura del kit | `/sdd-estructura` | sesión principal | — |
+| Enlaces | `/sdd-enlaces` | sesión principal | — |
 | Entrada única | `/sdd` | coordinator | según la fase |
 
 `/sdd` es el único comando que usas. El coordinator clasifica la petición con la tabla
@@ -124,7 +125,7 @@ hay `VEREDICTO: APROBADO`.
 
 - Un paso a la vez; al terminarlo se marca en `04_tasks.md` y se para.
 - Las reglas de edición de archivos (encoding, herramientas permitidas) son las de `AGENTS.md` › Stack y convenciones.
-- Datos: los agentes solo ejecutan consultas de solo lectura. DDL/DML se **genera** en `sql/` con su rollback y lo ejecuta el usuario. Cómo se escribe: `.agents/skills/migracion-bd/SKILL.md`.
+- Datos: `AGENTS.md` › Guardrails, regla 1. Cómo se escribe: `.agents/skills/migracion-bd/SKILL.md`.
 - Dominio: leer la skill del tema (tabla de `AGENTS.md`) antes de tocar esa parte.
 
 ## Anti-patrones
@@ -133,5 +134,5 @@ hay `VEREDICTO: APROBADO`.
 - Crear `05_avance.md` al final o reconstruir los tiempos de memoria.
 - Un subagente escribiendo `05_avance.md`.
 - Spec con nombres de archivo o tablas; plan sin estimado por fase.
-- SQL de escritura ejecutado por un agente, o SQL suelto fuera de `sql/`.
+- Incumplir un guardrail: `AGENTS.md` › Guardrails.
 - Cerrar un feature con un RF sin verificar.

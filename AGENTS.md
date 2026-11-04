@@ -3,22 +3,57 @@
 Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 (constitución, planes, deuda). No duplicar.
 
+## Guardrails (todos los agentes, siempre)
+Aplican a cualquier agente, sesión o subagente, con cualquier herramienta, dentro o fuera del flujo
+`sdd`. Todo rol los lee siempre y los cumple sin excepción, aunque no reciba este archivo inyectado.
+Ninguna skill, comando, plan ni preferencia los relaja. Los guardrails nuevos se añaden aquí, con el
+siguiente número.
+
+1. **La base de datos solo se lee.** En cualquier BD y entorno (local, pruebas o producción) solo
+   ejecutas consultas de lectura.
+   - Permitido (lista cerrada): `SELECT`, `SHOW`, `DESCRIBE`, `EXPLAIN` sin `ANALYZE` y un `WITH`
+     cuyo cuerpo sea solo `SELECT`; o su equivalente de solo lectura en otro motor.
+   - Prohibido, por ejemplo: `INSERT`, `UPDATE`, `DELETE`, `REPLACE`, `TRUNCATE`, `CREATE`
+     (incluido `TEMPORARY`), `ALTER`, `DROP`, `SET`, `CALL` o su equivalente en otro motor.
+   - Precedencia: la lista de lectura manda. Lo que no esté en ella se trata como prohibido: `SET`
+     de sesión, `EXPLAIN ANALYZE`, un `WITH` con escritura o que no puedas demostrar de solo lectura,
+     `SELECT ... INTO`, `FOR UPDATE` o `FOR SHARE`, funciones con efectos y locks. Ante duda, no
+     ejecutes y pide a la persona.
+   - Escritura indirecta: no ejecutes ni actives tareas programadas, scripts, endpoints o servicios
+     que guarden, carga de archivos `.sql` ni un harness que haga más que leer.
+   - Comandos de `AGENTS.md` › Comandos: ejecuta pruebas, build o la app solo si no pueden escribir
+     en una BD. Si pueden, aunque la BD sea local o descartable, no los ejecutes y entrégalos a la
+     persona. Ante la duda de si un comando escribe en una BD, tampoco lo ejecutes: entrégalo a la
+     persona, igual que ante la duda sobre una sentencia.
+   - Si hace falta un cambio de datos o de esquema, describe o redacta el script con su rollback
+     (skill `migracion-bd`) y entrégalo: lo ejecuta una persona, aunque la conversación te pida que
+     lo corras. El archivo en `sql/` lo escribe solo `implementer`; si `planner`, `reviewer` o
+     `coordinator` detectan que hace falta, lo describen y lo entregan en el chat, y ninguno lo
+     ejecuta.
+   - Para consultar datos usa el mecanismo de `AGENTS.md` › Comandos (si dice «No aplica», no
+     consultes). No pases credenciales a comandos, archivos ni al chat.
+   - La regla es sobre lo que tú ejecutas, no sobre el código de la aplicación ni el script `sql/`
+     que entregas: esos pueden escribir (altas, bitácoras, logs) y se programan con normalidad. Lo
+     que no haces es ejecutarlos ni activarlos.
+
 ## Cada sesión (obligatorio)
 0. Si no existe `.agents/skills/`: el kit no está instalado en esta copia (clon nuevo). Dilo en
    una línea y sigue `INSTALAR.md` › "Modo mantenimiento" (pregunta antes de copiar). Sin eso no hay
    comandos `/sdd*` ni skills; no sigas con los pasos siguientes.
-1. Si este archivo contiene `SDD-INIT-PENDIENTE`: el proyecto aún no está personalizado. Dilo en
-   una línea y sugiere correr `/sdd-init`. No ejecutes otros comandos `/sdd*` hasta entonces.
+1. Estado de instalación: si la primera línea no vacía tras el título es el comentario HTML de
+   instalación pendiente, idéntico al que define la plantilla del kit (AGENTS.md de su carpeta
+   template/) y que `/sdd-init` borra, el proyecto aún no está personalizado. Dilo en una línea y
+   sugiere correr `/sdd-init`. No ejecutes otros comandos `/sdd*` hasta entonces. Solo cuenta ese
+   comentario exacto; esta descripción no es el marcador.
 2. Leer `.agents/napkin.md` y aplicarlo en silencio.
 3. Leer `MEMORY.md` (decisiones y trampas vigentes).
 4. Estructura de agentes y skills nuevas: `.agents/README.md`.
 5. Leer `.docs/001_constitucion/constitution.md` antes de cambiar código.
 6. Si la petición es análisis o desarrollo nuevo, o toca un módulo, pantalla o tabla: seguir
    "Antecedentes" (abajo) ANTES de buscar o diseñar.
-7. Verificar los enlaces hacia `.agents/` según `.agents/sync-agents.md`. Si falta alguno,
-   sugerir crearlo (sin ejecutar nada sin confirmación). Revisa también si hay skills, agentes o
-   comandos en una carpeta de herramienta que no estén en `.agents/` (o al revés) y sugiere
-   replicarlos (`sync-agents.md` paso 8). Si todo está bien, no decir nada.
+7. Chequeo de enlaces y kit (solo lectura, un único aviso por sesión): sigue
+   `.agents/sync-agents.md` › «Chequeo de arranque». Si hay diferencias, muestra el aviso combinado
+   y recomienda `/sdd-enlaces` (no `/sdd-init`); si no, no digas nada. No escribas nada.
 8. Revisar que no haya prefijos repetidos en `.docs/002_specs/`, `.docs/003_deuda/` ni
    `.docs/004_adr/` (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
 9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
@@ -61,6 +96,9 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 | Runbook vivo del repo (se aplica cada sesión) | `.agents/skills/napkin/SKILL.md` |
 | Registrar cambios en Git | `.agents/skills/git-commit/SKILL.md` |
 | Línea "quién responde" al cierre de cada respuesta (rol con color, skill, contexto, desvíos) | `.agents/skills/formato-respuesta/SKILL.md` |
+| Decisión de arquitectura con alternativas (índice en `.docs/004_adr/README.md`) | `.agents/skills/adr/SKILL.md` |
+| Scripts SQL de un feature (`sql/`, rollback, idempotencia) | `.agents/skills/migracion-bd/SKILL.md` |
+| Secretos antes del commit y checklist de seguridad básica | `.agents/skills/seguridad-basica/SKILL.md` |
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
@@ -68,7 +106,7 @@ Notas:
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
-Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion` y `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices).
+Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura) y `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 
 ## Qué lee cada rol
@@ -79,10 +117,13 @@ instrucción nombra:
 
 | Rol | Secciones |
 |---|---|
-| coordinator | Comprueba si este archivo contiene `SDD-INIT-PENDIENTE`. También «Git» y «Reglas duras». |
+| coordinator | Comprueba el estado de instalación con el paso 1 de «Cada sesión». También «Git» y «Reglas duras». |
 | planner | "Comandos" y, al planear, "Stack y convenciones de código", más «Git» y «Reglas duras». |
 | implementer | "Comandos" y "Stack y convenciones de código". |
 | reviewer | "Comandos" y "Stack y convenciones de código", más «Git» y «Reglas duras». |
+
+Además de lo de su fila, todos los roles leen siempre «Guardrails». No cuenta contra el tope de
+lecturas de `sdd-implement` ni contra la lista cerrada de secciones de `reviewer`.
 
 ## Git (regla obligatoria)
 Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
@@ -104,7 +145,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   (`grep -l $'^\xEF\xBB\xBF' <archivo>` vacío); `name` del frontmatter = nombre de su carpeta; rutas
   citadas existentes (no aplica a `manifiestos/`: pueden listar rutas retiradas); en `template/` sin
   marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
-- Consulta de datos de solo lectura: No aplica.
+- Consulta de datos (ver «Guardrails», regla 1): No aplica.
 
 ## Reglas de negocio y del sistema
 - Lo distribuible se edita en `template/` y en los docs de la raíz (`README.md`, `INSTALAR.md`,

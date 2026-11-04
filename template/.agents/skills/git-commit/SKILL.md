@@ -40,9 +40,9 @@ Clasificar cada archivo en grupos lógicos (módulo, capa, docs, config).
 2. **Residuos**: sin archivos temporales, credenciales ni código de depuración. La búsqueda de
    secretos sobre lo que entra al commit sigue `.agents/skills/seguridad-basica/SKILL.md` (sección 1);
    si hay un hallazgo con valor real, detener el commit.
-3. **Versionados e ignorados**: `git ls-files -ci --exclude-standard`. Si lista algo (archivos que
-   Git ya rastrea y el `.gitignore` ignora), no incluirlos en el commit; proponer al usuario un
-   commit aparte con `git rm --cached <rutas>` (se conservan en disco). No ejecutarlo sin confirmación.
+3. **Versionados e ignorados**: aplica el paso 7 de `.agents/sync-agents.md` (la regla la ejecuta
+   `/sdd-enlaces`; quien commitea sigue ese paso para obtenerla). Si detecta archivos rastreados que
+   el `.gitignore` ignora, no los incluyas en el commit y consulta al usuario según ese paso.
 4. **Numeración única**: si el commit incluye carpetas de `.docs/002_specs/` o archivos de
    `.docs/003_deuda/` o `.docs/004_adr/`, revisar por valor numérico del prefijo que no exista ya con otro nombre en la copia
    local ni en la rama remota descargada (`git ls-tree --name-only @{u} <carpeta>`, sin fetch).

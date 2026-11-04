@@ -22,7 +22,7 @@ cubran:
 2. El plan manda (flujo `sdd` en `.docs/002_specs/`).
 3. Capas separadas (según la arquitectura del proyecto).
 4. Verificación (checklist "Hecho cuando"; qué pruebas automatizadas existen o no).
-5. Datos y seguridad (solo lectura para agentes, `sql/` con rollback, sesión/permisos, sin secretos).
+5. Datos y seguridad: `AGENTS.md` › Guardrails.
 6. Codificación e idioma.
 
 Cada principio debe apoyarse en algo verificable del repo; lo que no, márcalo

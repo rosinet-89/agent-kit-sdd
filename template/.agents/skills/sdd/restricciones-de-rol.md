@@ -51,18 +51,24 @@ Los hooks por subagente existen y se descartan (exigirían un script; no se enmi
 
 ## Tabla de restricciones (RF-7)
 
-Tres columnas. Ocho filas. Las filas 2 y 3 quedan NO garantizada, solo instrucción; el deny de ruta no se incluye (decisión 12 del plan).
+Tres columnas. Nueve filas. Las filas 2 y 3 quedan NO garantizada, solo instrucción; el deny de ruta no se incluye (decisión 12 del plan).
 
 | Restricción | Mecanismo | Garantizada |
 |---|---|---|
 | `reviewer` sin `Write` ni `Edit`. Que no modifique archivos por Bash (`sed -i`, redirecciones, `tee`) | `tools`. Instrucción de texto del agente | GARANTIZADA en Claude Code por `tools`. En GitHub Copilot también: `Write` y `Edit` son alias de `edit` (sin distinción de mayúsculas) y `tools` es la lista de permiso. No se extiende a Cursor, porque `tools` no tiene veredicto. No se extiende a Gemini CLI ni a Kiro: su fuente no documenta esos nombres. NO garantizada, instrucción de texto del agente |
 | `planner` escribe solo los cinco documentos de su carpeta de feature | instrucción (tiene `Write`/`Edit`). Sin deny de ruta | NO garantizada (tiene `Write`/`Edit`); instrucción. Sin deny de ruta |
 | `coordinator` escribe solo `05_avance.md` y usa el shell solo para la hora | instrucción. Sin deny de ruta | NO garantizada; instrucción. Sin deny de ruta |
-| `implementer` no hace `git commit`, `push`, `fetch`, `pull` ni `sync`, y no ejecuta SQL | instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) | NO garantizada; instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) |
+| `implementer` no hace `git commit`, `push`, `fetch`, `pull` ni `sync` | instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) | NO garantizada; instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) |
 | `planner`, `reviewer` y `coordinator`, que conservan `Bash`, tampoco registran en Git | instrucción más el `deny` opcional de Git | NO garantizada; instrucción más el `deny` opcional de Git |
 | Ningún subagente lanza otros subagentes salvo el `coordinator` a los tres roles | `planner`, `implementer` y `reviewer` no listan `Agent`. La lista `Agent(planner, implementer, reviewer)` del `coordinator` solo restringe cuando corre como hilo principal; como subagente se ignora y podría lanzar subagentes hasta 3 capas | GARANTIZADA en Claude Code para `planner`, `implementer` y `reviewer` (no listan `Agent`). En GitHub Copilot, no listar `agent` (alias `Agent` y `Task`, sin distinción de mayúsculas) deja fuera esa herramienta; el hecho (a) no viaja, porque `Agent(tipo1, tipo2)` no está en los alias. Para el `coordinator`, NO garantizada en ese caso, y esa mitad no se extiende. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro. Gemini CLI dice, en otra frase de su fuente, que un subagente no llama a otros subagentes; eso no es la garantía de esta fila |
 | Ningún agente usa la red (`webfetch` y búsqueda web denegados) | `tools`, que no lista esas herramientas | GARANTIZADA en Claude Code por `tools`, que no lista esas herramientas. En GitHub Copilot, `WebFetch` y `WebSearch` son alias de `web` (sin distinción de mayúsculas) y no listarlos deja fuera esa herramienta donde el alias aplica. La fuente dice que `web` no aplica al cloud agent, y ahí esta fila no afirma la garantía por `tools`. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro |
-| `planner` consulta datos solo en modo lectura, con el comando de `AGENTS.md` › Comandos | instrucción (tiene `Bash`) | NO garantizada (tiene `Bash`); instrucción |
+| `planner` consulta datos con el comando de `AGENTS.md` › Comandos, según `AGENTS.md` › Guardrails, regla 1 | instrucción (tiene `Bash`) | NO garantizada (tiene `Bash`); instrucción |
+| Ningún agente escribe en la base de datos (`AGENTS.md` › Guardrails, regla 1) | instrucción | NO garantizada; instrucción. Sin permisos de BD que la impongan |
+
+## Recomendación: usuario de BD de solo lectura
+
+Sugerencia, no garantía del kit. La regla 1 de «Guardrails» es una instrucción. Como refuerzo
+externo, las consultas de los agentes conviene que usen un usuario de BD con permisos solo de lectura.
 
 ## Fragmento opcional `permissions.deny`
 
