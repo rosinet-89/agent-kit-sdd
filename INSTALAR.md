@@ -109,7 +109,7 @@ Pasos del agente:
    ```
    Agrega `/.gemini/` y `/.github/` si usa esas herramientas. Sin la barra inicial se ignorarían
    también `template/AGENTS.md` y `template/.agents/`, y el kit se rompería.
-4. Propone los enlaces de `.agents/sync-agents.md` y crea `PREFERENCIAS.md` (paso 10 de `AGENTS.md`).
+4. Propone `/sdd-enlaces` y crea `PREFERENCIAS.md` (paso 10 de `AGENTS.md`).
 5. No corre `/sdd-init`: el `AGENTS.md` del clon ya está personalizado.
 6. Comprueba con `git status --short`: solo deben aparecer cambios en `template/`, en los docs de la
    raíz o en el conocimiento versionado del kit. Si aparece `.agents/skills/` u otro archivo copiado,

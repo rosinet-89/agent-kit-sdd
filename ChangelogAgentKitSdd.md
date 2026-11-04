@@ -1,5 +1,44 @@
 # Changelog
 
+## 0.6.0 — 2026-11-02
+- `AGENTS.md` incorpora la sección «Guardrails (todos los agentes, siempre)», con la regla 1: la base de
+  datos solo se lee. Los agentes, las skills `sdd` y `migracion-bd`, los comandos de implementación,
+  constitución e inicio y `restricciones-de-rol.md` remiten a ella; esta suma la fila correspondiente
+  (instrucción, no garantía) y la recomendación de un usuario de BD de solo lectura.
+- `AGENTS.md` es grupo B: en un proyecto existente la sección llega como faltante y se incorpora a
+  mano, junto a la nota «Qué lee cada rol» de 0.5.0. Los agentes (grupo A) salen KIT-VIEJO o
+  PERSONALIZADO según cada proyecto.
+- Falso positivo tras `/sdd-init`: el paso 1 de «Cada sesión» y la fila coordinator de `AGENTS.md`
+  describen el marcador de instalación pendiente sin escribir el literal y remiten al comentario de
+  la plantilla. `/sdd`, el coordinator, la skill `sdd`, `/sdd-init` y el README remiten al paso 1.
+- Nuevo chequeo E21 en `validar-estructura` (bloque sesión, solo con `.agents/.kit-version`): FALLA si
+  `AGENTS.md` no existe, si contiene el literal fuera del marcador válido, o si la cadena del
+  marcador falta o no coincide con la plantilla (con `template/` presente).
+- `AGENTS.md` es grupo B: los proyectos existentes incorporan a mano el paso 1 y la fila coordinator
+  nuevos. Hasta entonces, E21 da FALLA en un proyecto ya personalizado con una versión anterior
+  (esperado).
+- Nuevo comando `/sdd-enlaces`: crea o corrige los enlaces de cada herramienta tras un pull o un clon
+  nuevo. Pregunta qué herramientas usas, muestra el comando exacto de cada enlace y confirma por tipo de
+  acción, nunca por enlace. No borra contenido real: un destino ocupado se pregunta como excepción.
+- Aviso al arranque (paso 7 de «Cada sesión», solo lectura): si cambió la versión del kit o sus piezas, o
+  faltan enlaces de tus herramientas, muestra un único aviso de hasta 3 líneas y recomienda `/sdd-enlaces`.
+  Compara con el estado local `.agents/local/kit-visto` (ignorado por Git), que solo escribe
+  `/sdd-enlaces` al terminar bien. El arranque ya no detecta réplicas ni ignorados versionados: eso lo
+  hace `/sdd-enlaces` y lo reporta `/sdd-estructura`.
+- `/sdd-estructura` es solo lectura: propone y remite a `/sdd-enlaces` para enlaces y réplicas. E1 se mide
+  sobre las herramientas declaradas y E19 ignora `.agents/local/`.
+- `sync-agents.md`: nuevas secciones «Estado «visto»» y «Chequeo de arranque»; los pasos 7 y 8 pasan a
+  ser reglas que ejecuta `/sdd-enlaces` y el disparador de piezas nuevas sugiere `/sdd-enlaces`.
+- `ACTUALIZAR.md`: nueva sección «Qué hacer después de un pull que actualiza el kit» (no correr
+  `/sdd-init`; abrir sesión, `/sdd-enlaces`, comprobar con `/sdd-estructura`).
+- `AGENTS.md` es grupo B: en los proyectos existentes el paso 7 nuevo de «Cada sesión» (chequeo de
+  enlaces y kit) se incorpora a mano, como el paso 1 y la sección Guardrails.
+- Ajustes de `validar-estructura` y `sync-agents.md`: E1 sin «visto» legible mide todas las filas y un
+  `FALTA` de herramienta no declarada es `AVISO` (`DIFERENTE` y `OCUPADO` sin `excepcion:` siguen en
+  `FALLA`); E7 exime en el repo del kit las skills locales presentes en `.agents/skills/` y ausentes de
+  `template/` (3 filas en la raíz). El ejemplo del aviso lleva los enlaces pendientes en la línea 2, y
+  `git-commit` remite al paso 7 de `sync-agents.md` para la regla de enlaces.
+
 ## 0.5.0 — 2026-10-24
 - Nueva skill `adr` y carpeta `.docs/004_adr/` (índice): decisiones de arquitectura con contexto,
   alternativas descartadas y consecuencias. `/sdd-plan` y `/sdd-cierre` proponen el ADR (sin crearlo

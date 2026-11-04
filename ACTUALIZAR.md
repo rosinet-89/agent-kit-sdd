@@ -27,6 +27,7 @@ comando de actualización ni scripts: el agente sigue estos pasos con el kit que
 - [Marcador al cerrar](#marcador-al-cerrar)
 - [Reporte](#reporte)
 - [Aviso de numeración](#aviso-de-numeración)
+- [Qué hacer después de un pull que actualiza el kit](#qué-hacer-después-de-un-pull-que-actualiza-el-kit)
 - [Enlaces](#enlaces)
 - [Commit propuesto](#commit-propuesto)
 - [Idempotencia y retoma](#idempotencia-y-retoma)
@@ -200,6 +201,11 @@ Si el proyecto no tiene marcador, o está malformado, asume 0.4.0 como versión 
 suposición y pide confirmación antes de continuar. Si el usuario indica otra versión, úsala. Si
 no la sabe o no responde, trátala como base sin manifiesto o detente sin modificar nada.
 
+Sin `.agents/.kit-version` legible y sin `template/` (proyecto, no clon del kit), el aviso de
+arranque lo trata como «todo nuevo». `/sdd-enlaces` crea los enlaces, no escribe «visto» e informa
+que falta el marcador. Esto no contradice «asume 0.4.0»: esa es la suposición, con confirmación,
+del flujo de actualización; `/sdd-enlaces` no usa ninguna versión supuesta.
+
 ### Vacío
 
 Si `.agents/.kit-version` existe y está vacío, es malformado: no lo uses, infórmalo y procede
@@ -268,6 +274,9 @@ existe». Nunca como KIT-VIEJO. Avísalo.
 Un archivo del proyecto que no está en ningún manifiesto (base ni destino) es un huérfano: no se
 clasifica, no se toca y se informa aparte.
 
+`.agents/local/` (por ejemplo `kit-visto`) es estado local del proyecto, no un huérfano: no se
+informa ni se toca.
+
 ## Grupos por ruta
 
 La ruta es la del proyecto, sin el prefijo `template/`. El grupo lo da la ruta, no el manifiesto.
@@ -300,6 +309,8 @@ Pasan por la clasificación de la sección Clasificación.
 
 Exactamente `AGENTS.md`, `CLAUDE.md` y `.gitignore`. Nunca se reemplazan ni se clasifican. Solo se
 muestran los faltantes, para que el usuario los incorpore a mano o los marque «mantener».
+El paso 7 de «Cada sesión» de `AGENTS.md` (chequeo de enlaces y kit) también se incorpora a mano en
+los proyectos existentes.
 
 ### Faltante
 
@@ -484,11 +495,21 @@ y uno por uno. Sin confirmación no cambia nada.
 El aviso no cuenta como pendiente y no bloquea el marcador (`## Marcador al cerrar`). Se muestra
 en cada actualización hasta que el usuario lo marque «mantener» (`## Registro «mantener»`).
 
+## Qué hacer después de un pull que actualiza el kit
+
+1. No corras `/sdd-init`: ya se corrió al instalar y vuelve a personalizar el proyecto.
+2. Abre una sesión: el paso 7 muestra el aviso con lo que cambió.
+3. Corre `/sdd-enlaces`: elige tus herramientas y confirma por tipo de acción; marca «visto» solo si
+   termina bien. Si cambiaste de rama o clonaste de nuevo, vale lo mismo.
+4. `/sdd-estructura` sirve para comprobar (solo lectura).
+5. Si `PREFERENCIAS.md` no existe, se crea sola en la sesión (paso 10).
+6. Un hook Git post-merge es opción manual de cada persona; el kit no lo incluye (ADR 004).
+
 ## Enlaces
 
 Tras el reporte, verifica los enlaces hacia las carpetas de cada herramienta según
-`template/.agents/sync-agents.md`. Si faltan o están mal, propón corregirlos. No ejecutes nada
-sin confirmación.
+`template/.agents/sync-agents.md`, solo en lectura. Si faltan o están mal, remite a `/sdd-enlaces`,
+que los corrige con confirmación. No ejecutes nada desde aquí.
 
 ## Commit propuesto
 

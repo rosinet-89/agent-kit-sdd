@@ -51,7 +51,7 @@ conserva sus specs, ADR y memoria).
    (ver `.agents/sync-agents.md`).
 5. Empieza a trabajar con **`/sdd <lo que necesitas>`**.
 
-Mientras exista `SDD-INIT-PENDIENTE` en `AGENTS.md`, los agentes piden correr `/sdd-init` antes de
+Mientras el paso 1 de «Cada sesión» de `AGENTS.md` marque instalación pendiente, los agentes piden correr `/sdd-init` antes de
 cualquier otro comando `/sdd*`.
 
 ## Preferencias por usuario
