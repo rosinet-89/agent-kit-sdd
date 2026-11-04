@@ -21,6 +21,8 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-10-25] No hay revisión en la que F1.4 de `001_ActualizarKit` ya esté y F1.5 todavía no. Rehacer ese paso no prueba un modelo.
 - [2026-10-25] El protocolo P de las tareas compara con copias hechas justo antes de editar y no delata ediciones ajenas previas: contrasta también con `git diff` contra `HEAD`.
 - [2026-10-25] Reanudar un subagente con `SendMessage` a veces no lo arranca: confirma con `ListAgents` que figura como `running` antes de esperar.
+- [2026-11-03] `.agents/` de la raíz está fuera de Git (`.git/info/exclude`): un cambio en `template/.agents` se replica con `cp` y se comprueba con `diff -rq template/.agents .agents`, que solo admite `napkin.md` y `skills/caveman`. `git status` no lo muestra.
+- [2026-11-03] Un `awk` que busca la primera línea no vacía falla con CRLF: la línea en blanco es `\r` y cuenta como no vacía. Quita el `\r` con `sed` antes de `awk`.
 
 ## Referencias externas
 
