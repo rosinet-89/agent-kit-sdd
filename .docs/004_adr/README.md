@@ -36,3 +36,7 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0016 | [Un ítem nuevo del clon se escribe con 4 dígitos](0016_ItemNuevoDelClonEnCuatroDigitos.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
 | 0017 | [Un prefijo numérico cuenta como entero](0017_PrefijoNumericoCuentaComoEntero.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
 | 0018 | [Solo tres nombres salen del patrón de un plugin de release](0018_TresNombresFueraDelPatronDeRelease.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
+| 0019 | [Regla global de la base de datos solo lectura en AGENTS.md › Guardrails](0019_ReglaGlobalBdSoloLectura.md) | Aceptado | 2026-11-01 | `0008_GuardrailsBdSoloLectura` |
+| 0020 | [El marcador de instalación pendiente no lleva el literal fuera de su comentario](0020_MarcadorSinLiteralFueraDelComentario.md) | Aceptado | 2026-11-01 | `0010_FalsoPositivoInitPendiente` |
+| 0021 | [Estado local `kit-visto` y aviso al arranque; solo `/sdd-enlaces` escribe](0021_EstadoLocalKitVistoYAvisoAlArranque.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
+| 0022 | [El arranque ya no detecta réplicas ni ignorados versionados](0022_ArranqueSinDeteccionDeReplicasNiIgnoradosVersionados.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
