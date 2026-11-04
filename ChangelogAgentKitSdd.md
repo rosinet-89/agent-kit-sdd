@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.7.0 — 2026-11-03
+- Tope de clarify: 3 pasadas por spec en modo completo (1 en ligero). Una pasada es cada revisión del
+  reviewer sobre `01_spec.md`; la sesión principal anota «pasada n de 3» en `05_avance.md`. Al llegar al
+  tope no se abre otra pasada automática: lo pendiente pasa a marcadores o a supuestos explícitos y la
+  persona decide.
+- Marcador único `[ACLARAR: <duda>]`, que reemplaza a `[NECESITA ACLARACIÓN]` en la plantilla de la
+  spec. Tope de 3 por spec, con prioridad alcance > seguridad > experiencia > detalle técnico; el resto
+  pasa a supuestos explícitos. Un marcador sin resolver bloquea `/sdd-plan` (en ligero, `/sdd-tasks`).
+- Modo ligero para cambios chicos, con 8 condiciones (3 archivos o menos, sin archivo compartido con
+  otra spec en curso, sin cambio de reglas globales, sin ADR, sin `sql/`, sin comportamiento nuevo,
+  estimado de 1 hora o menos, un solo módulo). Documentos: spec corta (hasta 5 000 bytes y 8 RF),
+  `04_tasks.md` con el plan dentro (hasta 8 000 bytes) y `05_avance.md`; sin `02`, `03` ni `06`. Si una
+  condición se incumple o un documento excede su límite, se promueve a completo con `/sdd-change`,
+  conservando `01` y `04`.
+- Revisión cruzada como modo del reviewer, sin comando nuevo: a petición, cruza `01_spec.md`,
+  `03_plan.md` y `04_tasks.md` en solo lectura y lista requisitos sin tarea y contradicciones.
+- Pieza nueva `skills/sdd/topes-y-modos.md`, fuente única de estas reglas; los comandos y agentes la
+  enlazan sin copiarla. Es ruta nueva: se agrega en los proyectos instalados. Las piezas del grupo A
+  que la enlazan (agentes, comandos y skill `sdd`) salen KIT-VIEJO o PERSONALIZADO según cada proyecto.
+- Nota para proyectos ya instalados: `AGENTS.md` es grupo B y no se pisa. Cada proyecto debe incorporar
+  a mano en `AGENTS.md` la línea de documentos por feature («`01_spec.md`, `04_tasks.md` y
+  `05_avance.md` siempre; `02_analisis_impacto.md`, `03_plan.md` y `06_flujo.md` en modo completo;
+  `sql/` si hay cambios de datos», con enlace a `.agents/skills/sdd/topes-y-modos.md`) **antes de usar
+  el modo ligero**. Hasta entonces sigue operando el flujo completo. La línea 17 de
+  `.docs/002_specs/README.md` (grupo C) es opcional.
+- Honestidad sobre el alcance: ninguna de las specs 001 a 0010 habría calificado para el modo ligero.
+  Los umbrales de 3 archivos y 1 hora son provisionales y se revisan tras 3 usos reales.
+
 ## 0.6.0 — 2026-11-02
 - `AGENTS.md` incorpora la sección «Guardrails (todos los agentes, siempre)», con la regla 1: la base de
   datos solo se lee. Los agentes, las skills `sdd` y `migracion-bd`, los comandos de implementación,
