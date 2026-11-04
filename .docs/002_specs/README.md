@@ -14,7 +14,7 @@ nuevo**, si ya se tocó ese proceso y qué carpeta leer, sin recorrerlas todas.
 
 ## Formato de cada carpeta
 
-Toda carpeta nace en formato SDD (skill `sdd`): `01_spec` … `06_flujo`, `05_avance.md`, `sql/`.
+Toda carpeta nace en formato SDD (skill `sdd`): `01_spec` … `06_flujo`, `05_avance.md`, `sql/`. El modo ligero admite menos documentos (`.agents/skills/sdd/topes-y-modos.md`).
 Una carpeta sin `01_spec.md` es de otro origen: preguntar al usuario antes de seguir.
 
 Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En curso` · `En pruebas`
@@ -34,6 +34,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 | 0009 | `0009_EnlacesTrasPull` | Detectar cambios del kit tras un pull y ofrecer crear o corregir los enlaces de cada herramienta (issue #2) | Implementado (2026-11-03) | enlaces, pull, .kit-version, kit-visto, sdd-estructura, sync-agents, junction, Windows | cierre 2026-11-03 21:37; validate aprobado (delta E1/E7 incluido); sin prueba manual de `/sdd-enlaces` (riesgo aceptado); sin `06_flujo` pendiente de confirmar; ADR 0021 y 0022 aceptados; manifiesto 0.6.0 con E20 43/43; sin commits |
 | 0008 | `0008_GuardrailsBdSoloLectura` | Sección global «Guardrails» en AGENTS.md: ningún agente escribe en la base de datos, dentro o fuera del flujo (issue #1) | Implementado (2026-11-03) | guardrails, base de datos, solo lectura, AGENTS.md, omitClaudeMd, migracion-bd, restricciones-de-rol | cierre 2026-11-03 21:33; sin `06_flujo` (por confirmar por el usuario); validate aprobado; ADR 0019 aceptado; changelog 0.6.0 y manifiesto verificados; sin deuda; MEMORY por aprobar; sin commits |
 | 0010 | `0010_FalsoPositivoInitPendiente` | La regla de «proyecto sin personalizar» no deja el marcador literal en `AGENTS.md` tras `/sdd-init`; chequeo nuevo E21 (issue #3) | Implementado (2026-11-03) | SDD-INIT-PENDIENTE, sdd-init, falso positivo, marcador, AGENTS.md, validar-estructura, E21 | cierre 2026-11-03 21:33; sin `06_flujo`; validate aprobado 2026-11-01 19:10; ADR 0020 aceptado; bump 0.6.0, Changelog y manifiesto hechos con 0009; altas de deuda y MEMORY propuestas sin crear; ancho de 4 dígitos asignado por el usuario |
+| 0011 | `0011_ReducirCeremoniaSdd` | Reducir tokens del flujo SDD en el proceso: tope de 3 pasadas de clarify y de marcadores `[ACLARAR]`, modo ligero para cambios chicos y revisión cruzada como modo del reviewer (0.7.0) | Implementado (2026-11-03) | tokens, clarify, modo ligero, ceremonia, revisión cruzada, topes-y-modos, spec-kit, 0.7.0 | cierre 2026-11-03 23:03; validate aprobado (Corlos, pasada 1 de 3); ADR 0023 aceptado; versión 0.7.0, changelog y manifiesto con 44/44 huellas; M1 −57 % en bytes leídos (no tokens); modo ligero sin uso real (apuesta); altas de deuda y MEMORY propuestas sin crear; sin commits |
 
 ## Mapa por tema
 
