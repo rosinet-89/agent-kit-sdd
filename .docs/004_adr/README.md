@@ -40,3 +40,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0020 | [El marcador de instalación pendiente no lleva el literal fuera de su comentario](0020_MarcadorSinLiteralFueraDelComentario.md) | Aceptado | 2026-11-01 | `0010_FalsoPositivoInitPendiente` |
 | 0021 | [Estado local `kit-visto` y aviso al arranque; solo `/sdd-enlaces` escribe](0021_EstadoLocalKitVistoYAvisoAlArranque.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
 | 0022 | [El arranque ya no detecta réplicas ni ignorados versionados](0022_ArranqueSinDeteccionDeReplicasNiIgnoradosVersionados.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
+| 0023 | [Ceremonia proporcional: modo ligero, tope de pasadas y marcador único](0023_CeremoniaProporcional.md) | Aceptado | 2026-11-03 | `0011_ReducirCeremoniaSdd` |
