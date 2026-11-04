@@ -48,6 +48,9 @@ revisar) · `Alta manual` (la registró una persona).
 | 006 | [/sdd-init sugiere los fragmentos allow y deny](006_SddInitSugiereAllowDeny.md) | `sdd-init` | Recorte de alcance en `004_ModeloYPermisosAgentes` | Resuelta | Media | `007_DeudasAbiertas` | 2026-10-25 |
 | 007 | [Nombres de archivo que chocan con otras herramientas](007_NombresQueChocanConHerramientas.md) | Nombres en la raíz del clon y en `template/` | Hallazgo (revisión pedida por el usuario) | Resuelta | Alta | `007_DeudasAbiertas` | 2026-10-25 |
 | 008 | [Limitaciones de la numeración que dejó la 005](008_LimitacionesDeLaNumeracion.md) | Numeración de specs, deudas y ADR (E12 y aviso) | Recorte de alcance en `005_ConvivenciaNumeracion` | Resuelta | Baja | `007_DeudasAbiertas` | 2026-10-25 |
+| 0009 | [Garantía técnica de que la base de datos solo se lee](0009_GarantiaTecnicaBdSoloLectura.md) | Guardrails (`AGENTS.md`), `restricciones-de-rol.md` | Hallazgo al cerrar `0008_GuardrailsBdSoloLectura` | Abierta | Media | — | 2026-11-03 |
+| 0010 | [La raíz del clon no tiene chequeo automático del marcador](0010_RaizSinChequeoAutomaticoDelMarcador.md) | `/sdd-estructura` (E21), raíz del clon | Recorte de alcance en `0010_FalsoPositivoInitPendiente` | Abierta | Baja | — | 2026-11-03 |
+| 0011 | [`/sdd-constitucion` fuera de la tabla de fases y del ruteo](0011_SddConstitucionFueraDeTablaYRuteo.md) | Skill `sdd`, agente `coordinator` | Hallazgo al validar `0009_EnlacesTrasPull` | Abierta | Baja | — | 2026-11-03 |
 
 ## Plantilla de un detalle
 
