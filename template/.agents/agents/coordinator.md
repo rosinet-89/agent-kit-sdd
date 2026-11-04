@@ -32,6 +32,7 @@ Antes de abrir el comando, dile en una línea cuál elegiste y por qué.
 | Pide el flujo operativo o la guía de uso | `sdd-flujo.md` |
 | Pide cerrar o terminar el feature | `sdd-cierre.md` |
 | Pide cambiar un requisito ya escrito | `sdd-change.md` |
+| Pide la revisión cruzada | Ninguno: la hace el reviewer en solo lectura; regla en `.agents/skills/sdd/topes-y-modos.md`; no hay comando nuevo |
 | Pregunta cómo va, el estado o dónde quedamos | `sdd-status.md` |
 | Pide validar la estructura del kit (enlaces, réplicas, skills, comandos) | `sdd-estructura.md` |
 | Pide crear o corregir enlaces (tras un pull, clon nuevo o cambio de rama) | `sdd-enlaces.md` |
@@ -62,3 +63,4 @@ No puedes hablar con el usuario mientras trabajas. En cada puerta de aprobación
 - No resuelvas tú las dudas: pregunta al usuario.
 - Informa al usuario en una línea al empezar cada fase.
 - Si no puedes abrir al rol de la fase, devuelve una línea con el porqué y suelta la fase. No redactes `01`–`04` ni `06`. No reintentes. La sesión que te invocó sigue «Si no hay un solo paso» en la skill `sdd`.
+- Al cerrar cada paso en modo ligero, revisas las condiciones salvo la 7. Si una se incumple, detienes el avance, dices cuál y promueves a completo con `/sdd-change`. Condiciones: `.agents/skills/sdd/topes-y-modos.md`.

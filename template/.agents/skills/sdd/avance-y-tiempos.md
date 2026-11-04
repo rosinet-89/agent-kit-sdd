@@ -26,6 +26,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 
 | Dato | Contenido |
 |---|---|
+| Modo | `completo` o `ligero`, con la lista de condiciones evaluada. Reglas y promoción: [topes-y-modos.md](topes-y-modos.md) |
 | Última sesión | `AAAA-MM-DD HH:MM` |
 | Fase actual | `spec`, `clarify`, `plan`, `tasks`, `Fn.m`, `validate`, `flujo` o `cierre` |
 | Último paso cerrado | Qué se hizo |
@@ -73,6 +74,7 @@ agrega un renglón.
 - **Fin:** hora en que el paso queda cerrado (respuesta entregada o el usuario confirma que el script ya corrió).
 - **Minutos:** `fin - inicio - pausa`. Solo entra lo que fue trabajo de este feature: codear, revisar SQL juntos, decidir, probar.
 - **Pausa:** minutos que el usuario dijo que no fueron de este desarrollo (comida, otra tarea, junta, fin de día).
+- **Clarify:** la Nota de la fila `clarify` lleva «pasada n de 3»; qué cuenta como pasada está en [topes-y-modos.md](topes-y-modos.md).
 - **Mínimo y lote.** En un feature abierto desde esta versión, cada paso real mide al menos 1 minuto. No se cierran varios pasos con filas en lote de 0 minutos. La única excepción es un paso trivial cuya Nota dice exactamente "sin trabajo real". Un feature ya cerrado conserva sus filas; ninguna comprobación le exige reescribirlas. `001_ActualizarKit` sigue válido con las suyas.
 
 Las reglas de pausa, de formato de la fila, de quién escribe este avance y de la leyenda de estados viven solo en este contrato. Los comandos las nombran; no las vuelven a definir. El arranque de sesión no vive aquí: su dueño es `AGENTS.md`. Cuándo se toma la otra ruta vive en la skill `sdd`, sección «Si no hay un solo paso». Aquí no se copia.

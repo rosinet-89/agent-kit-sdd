@@ -22,8 +22,10 @@ Ticket: <COM-NNN o "sin ticket">
 ## Fuera de alcance
 ## Criterios de finalización
 ## Dudas abiertas
-- [NECESITA ACLARACIÓN] <duda>
+- [ACLARAR: <duda>]
 ```
+
+Spec corta (modo ligero): omite Usuarios y roles, Historias, Definiciones, Requisitos no funcionales y Fuera de alcance, con el límite de 5 000 bytes y 8 RF. Reglas en [topes-y-modos.md](topes-y-modos.md).
 
 ## 02_analisis_impacto.md
 
@@ -84,6 +86,8 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
     - [ ] Verificación manual UI: <qué revisar> (o "No aplica")
 ```
 
+En modo ligero, `04_tasks.md` lleva antes de las fases una sección «Plan» (archivos que se tocan, decisiones y estimado) y no pasa de 8 000 bytes. Si el cambio se distribuye, incluye la tarea de bump y changelog.
+
 ## 05_avance.md
 
 Estructura y reglas en [avance-y-tiempos.md](avance-y-tiempos.md).
@@ -95,6 +99,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
+| Modo | completo \| ligero (con la lista de condiciones evaluada; ver [topes-y-modos.md](topes-y-modos.md)) |
 | Última sesión | |
 | Fase actual | |
 | Último paso cerrado | |

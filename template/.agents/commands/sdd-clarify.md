@@ -18,6 +18,6 @@ Qué hace:
    Formato: lista numerada.
 3. Muestra la lista. Si se aprueban correcciones, delega en **planner** el ajuste de `01_spec.md` y muestra el contenido que cambió: el párrafo de antes y el de después. Si el archivo no tiene seguimiento en Git, o el proyecto no usa Git, ese contraste es el medio. No dependas de `git diff`.
 4. PARA hasta que la spec se apruebe. Entonces cambia `Estado: aprobada` y anota la decisión con su hora.
-5. La sesión principal registra la fila `clarify` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-plan $1`.
+5. La sesión principal registra la fila `clarify` según `.agents/skills/sdd/avance-y-tiempos.md`: cuenta la pasada, anota «pasada n de 3» y aplica el cierre de tope y la pasada única en ligero de `.agents/skills/sdd/topes-y-modos.md`. Siguiente paso: `/sdd-plan $1`; en ligero, `/sdd-tasks $1`.
 
 Qué no hace: no resuelve ambigüedades ni propone la solución. No depende de `git diff`. No copia el formato de la fila de tiempos. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

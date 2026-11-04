@@ -47,6 +47,7 @@ Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, el
 - `<prefijo>`: consecutivo numérico de specs, deudas y ADR, sin repetir prefijos ni reutilizar números. Un ítem nuevo conserva el ancho de su carpeta (detalle: `.docs/002_specs/README.md` › « Numeración única »).
 - `NombreFeature`: PascalCase, sin espacios. Ej.: `ReporteVentasPorZona`.
 - Plantillas de cada archivo: [plantillas.md](plantillas.md).
+- Modo completo o ligero (qué documentos lleva cada uno), tope de pasadas de clarify, marcadores, promoción y revisión cruzada: [topes-y-modos.md](topes-y-modos.md). En ligero no hay `02`, `03` ni `06`; una carpeta sin ellos no está incompleta.
 - Contrato de avance, decisiones y tiempos: [avance-y-tiempos.md](avance-y-tiempos.md). Las restricciones de rol viven en [restricciones-de-rol.md](restricciones-de-rol.md); se enlaza y no se copia.
 
 ## Fases, comandos y responsables
@@ -94,7 +95,7 @@ Un solo paso es un lanzamiento entre quien escribe el avance y el rol que la fas
 
 ## Contenido mínimo por archivo
 
-- **01_spec.md** — Estado (`borrador | aprobada | analisis | implementada`), contexto y objetivo, usuarios y roles, historias, RF en EARS, RNF, casos límite, fuera de alcance, criterios de finalización, dudas abiertas `[NECESITA ACLARACIÓN]`. Solo el QUÉ y el POR QUÉ: nada de archivos, tablas ni arquitectura.
+- **01_spec.md** — Estado (`borrador | aprobada | analisis | implementada`), contexto y objetivo, usuarios y roles, historias, RF en EARS, RNF, casos límite, fuera de alcance, criterios de finalización, dudas abiertas (marcadores: forma en [plantillas.md](plantillas.md), regla en [topes-y-modos.md](topes-y-modos.md)). En modo ligero la spec es corta y omite usuarios y roles, historias, RNF y fuera de alcance ([topes-y-modos.md](topes-y-modos.md)). Solo el QUÉ y el POR QUÉ: nada de archivos, tablas ni arquitectura.
 - **02_analisis_impacto.md** — resumen, antecedentes y deuda relacionada, módulos/tablas/archivos involucrados (con ruta), datos reales (consultas de solo lectura con fecha), flujo actual, reglas de negocio conocidas contra código, riesgos y casos borde, preguntas abiertas.
 - **03_plan.md** — por RF: capas y patrón de la arquitectura del proyecto, archivos que se crean o modifican, scripts `sql/` con su rollback, decisiones con su alternativa descartada y **fases F0..Fn con estimado en horas**.
 - **04_tasks.md** — fases F0..Fn (las del plan, con su estimado) y pasos `Fn.m` pequeños, en orden de dependencia, cada uno con sus RF y su checklist "Hecho cuando".

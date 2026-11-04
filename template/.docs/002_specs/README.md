@@ -14,7 +14,7 @@ nuevo**, si ya se tocó ese proceso y qué carpeta leer, sin recorrerlas todas.
 
 ## Formato de cada carpeta
 
-Toda carpeta nace en formato SDD (skill `sdd`): `01_spec` … `06_flujo`, `05_avance.md`, `sql/`.
+Toda carpeta nace en formato SDD (skill `sdd`): `01_spec` … `06_flujo`, `05_avance.md`, `sql/`. El modo ligero admite menos documentos (`.agents/skills/sdd/topes-y-modos.md`).
 Una carpeta sin `01_spec.md` es de otro origen: preguntar al usuario antes de seguir.
 
 Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En curso` · `En pruebas`

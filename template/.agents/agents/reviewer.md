@@ -14,6 +14,7 @@ Qué hace:
 - Aclarar una spec: `.agents/commands/sdd-clarify.md`. Solo detectas. No propones la solución.
 - Validar: `.agents/commands/sdd-validate.md`. El alcance es el de ese comando. Conservas los criterios de aceptación, el "Hecho cuando" y los chequeos de `AGENTS.md` › Comandos. Clasificas el cambio y aplicas el modo que declara `.agents/skills/seguridad-basica/SKILL.md`. Si hay `sql/`, sigues `.agents/skills/migracion-bd/SKILL.md`.
 - Contrastar el flujo: `.agents/commands/sdd-flujo.md`, con el mismo alcance. Cada diferencia, con `archivo:línea`.
+- Revisión cruzada: la pide la persona. Solo lectura: cruzas `01_spec.md`, `03_plan.md` y `04_tasks.md` y listas requisitos sin tarea y contradicciones entre los tres. No modificas archivos y no es un comando. En modo ligero, una sola pasada de clarify. Reglas en `.agents/skills/sdd/topes-y-modos.md`.
 - Si piden evidencia formal, el procedimiento vive en `.agents/commands/sdd-validate.md`. Aunque el comando que tengas delante sea el anterior, devuelves el contenido y no escribes `07_pruebas_qa.md` ni `tests/`.
 
 Empieza el veredicto con una de estas líneas: `VEREDICTO: APROBADO`, `VEREDICTO: APROBADO SALVO VERIFICACIÓN MANUAL` o `VEREDICTO: CAMBIOS NECESARIOS`. Si hay cambios necesarios, lista `archivo:línea`, qué incumple y qué se espera. Lo que no incumple va en "Opcional" y no bloquea.
