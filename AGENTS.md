@@ -102,7 +102,7 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:
-- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, un ítem nuevo se escribe con 4 dígitos y los ya creados no se renumeran; en un proyecto, el ancho de su carpeta según `template/.docs/002_specs/README.md` › « Numeración única ») con `01_spec.md`, `02_analisis_impacto.md`, `03_plan.md`, `04_tasks.md`, `05_avance.md` (tiempos reales), `06_flujo.md` y `sql/` si hay cambios de datos. Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
+- `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, un ítem nuevo se escribe con 4 dígitos y los ya creados no se renumeran; en un proyecto, el ancho de su carpeta según `template/.docs/002_specs/README.md` › « Numeración única ») con `01_spec.md`, `04_tasks.md` y `05_avance.md` siempre; `02_analisis_impacto.md`, `03_plan.md` y `06_flujo.md` en modo completo; `sql/` si hay cambios de datos (`.agents/skills/sdd/topes-y-modos.md`). Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
