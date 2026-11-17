@@ -41,3 +41,7 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0021 | [Estado local `kit-visto` y aviso al arranque; solo `/sdd-enlaces` escribe](0021_EstadoLocalKitVistoYAvisoAlArranque.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
 | 0022 | [El arranque ya no detecta réplicas ni ignorados versionados](0022_ArranqueSinDeteccionDeReplicasNiIgnoradosVersionados.md) | Aceptado | 2026-11-02 | `0009_EnlacesTrasPull` |
 | 0023 | [Ceremonia proporcional: modo ligero, tope de pasadas y marcador único](0023_CeremoniaProporcional.md) | Aceptado | 2026-11-03 | `0011_ReducirCeremoniaSdd` |
+| 0024 | [La leyenda de estatus vive en el índice](0024_LeyendaDeEstatusEnElIndice.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
+| 0025 | [Aviso de estatus tras E21](0025_AvisoDeEstatusTrasE21.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
+| 0026 | [Antecedentes remite a la leyenda](0026_AntecedentesRemitenALaLeyenda.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
+| 0027 | [La leyenda se copia en el índice del clon](0027_LeyendaCopiadaEnElIndiceDelClon.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
