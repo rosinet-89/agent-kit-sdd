@@ -7,7 +7,7 @@ dejan con "No aplica", no se borran.
 
 ```markdown
 # 01 — Spec: <Nombre del feature>
-Estado: borrador | aprobada | analisis | implementada
+Estado: borrador | aprobada | analisis | implementada | cerrada | descartada
 Ticket: <COM-NNN o "sin ticket">
 
 ## Contexto y objetivo

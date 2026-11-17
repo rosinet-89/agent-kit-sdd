@@ -10,15 +10,61 @@ nuevo**, si ya se tocó ese proceso y qué carpeta leer, sin recorrerlas todas.
 3. Si la coincidencia es parcial, anótala como dependencia en `02_analisis_impacto.md`.
 4. Revisa también la deuda técnica abierta del módulo: `.docs/003_deuda/README.md`.
 5. Este archivo se actualiza en cada `cierre` de feature (`/sdd-cierre`) y al abrir una carpeta
-   nueva (`/sdd-spec`). Si una fila no coincide con la carpeta, manda la carpeta.
+   nueva (`/sdd-spec`). Si la fila del índice no coincide con la carpeta, al consultar esa carpeta manda la carpeta; para responder el pendiente desde el índice manda la celda y no se abren las carpetas.
 
 ## Formato de cada carpeta
 
 Toda carpeta nace en formato SDD (skill `sdd`): `01_spec` … `06_flujo`, `05_avance.md`, `sql/`. El modo ligero admite menos documentos (`.agents/skills/sdd/topes-y-modos.md`).
 Una carpeta sin `01_spec.md` es de otro origen: preguntar al usuario antes de seguir.
 
-Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En curso` · `En pruebas`
-(código listo, falta validar) · `Implementado` · `Diferido`.
+Estatus: ver "Leyenda de estatus".
+
+## Leyenda de estatus
+
+La respuesta del índice es la celda.
+
+La celda, al escribirla, empieza por la palabra exacta, con sus mayúsculas y tildes, seguida de ` (AAAA-MM-DD): ` y de un detalle no vacío. La fecha es la del último avance y es la única.
+
+Palabras: `Análisis`, `Planificado`, `En curso`, `En pruebas`, `Implementado`, `Diferido`, `Cerrado`, `Descartado`.
+
+El grupo es el de la celda: `Análisis` y `Planificado`, diseño; `En curso` y `En pruebas`, desarrollo; `Implementado`, por cerrar; `Diferido`, aparte, y se informa aparte; `Cerrado`, cerrado; `Descartado`, no se hará; `sin clasificar`, sin clasificar (pendiente sí). La etapa de la carpeta no asigna grupo ni pendiente.
+
+Pendiente = la celda no es un `Cerrado` bien formado ni un `Descartado` bien formado. Pendiente de desarrollo = pendiente salvo `Implementado` y `Diferido`. Incluye diseño, el grupo desarrollo y `sin clasificar`. No es el grupo desarrollo.
+
+La línea del documento es la línea `Estado:` de `01_spec.md`. Bien formado: `Cerrado` exige la forma de la celda, la línea del documento en `cerrada` y una sola fila `cierre` (leer no juzga los criterios); `Descartado` exige la forma de la celda, la línea del documento en `descartada`, y el motivo y quién en la columna de pendiente de la fila del índice; `Diferido` exige la forma de la celda, el motivo y las deudas en esa columna, y el motivo y el estatus de regreso en la anotación de la pausa del punto de retomo. En `Análisis`, `Planificado`, `En curso`, `En pruebas` e `Implementado` la palabra clasifica aunque falten fecha o detalle, y el chequeo avisa. Una palabra fuera de la lista, una fila del índice ausente, o un `Cerrado`, `Descartado` o `Diferido` sin su forma se leen como `sin clasificar`. `sin clasificar` no se escribe.
+
+Si la celda y la etapa discrepan, los conteos siguen la celda. Un desfase en `Planificado`, `En curso` o `En pruebas` no cambia los conteos. El estado y el chequeo avisan y no escriben.
+
+Estados de la línea del documento, en minúsculas: `borrador`, `aprobada`, `analisis`, `implementada`, `cerrada`, `descartada`. `analisis` va sin tilde. `implementada` no es cerrado. `cerrada` y `descartada` solo acompañan a un `Cerrado` o un `Descartado` bien formados.
+
+Quién escribe: la apertura, `Análisis`; el cierre, `Implementado`, `Cerrado` o `Descartado`; la persona, `Diferido` con motivo y estatus de regreso, y al reactivar devuelve la celda. La línea del documento no cambia en `Diferido`. El cierre no escribe `Planificado`, `En curso`, `En pruebas` ni `Diferido`. La persona anota la pausa en el punto de retomo y al reactivar la retira. Sin fila del índice, el cierre crea esa única fila del índice. Con la fila del índice duplicada, el cierre se detiene sin escribir.
+
+Un paso que cuenta es una fila de implementación en la tabla Pasos de `05_avance.md`. Hecho: `[x]`. Empezado: `[x]`, `[~]` o `[!]`. Paso vacío: ni empezado ni hecho. Prueba, flujo y cierre no cuentan. Un paso diferido, con decisión y deuda propuesta, deja de contar. Hay plan si, en completo, está el documento de plan y, en ligero, el plan va en las tareas.
+
+Comprobación previa, antes de escribir `Implementado`, `Cerrado`, `implementada` o `cerrada`: todo paso de implementación que cuenta está hecho; no hay verificaciones manuales pendientes en pruebas ni en el punto de retomo; el flujo está aprobado si el modo lo incluye; no hay `pausa por confirmar`; el punto de retomo registra la validación del conjunto aprobada. Tres resultados: si la previa falla, parar sin escribir `Implementado`, `Cerrado`, `implementada` ni `cerrada`; si falta un criterio, `Implementado` e `implementada` y se enumeran los que faltan; si los cinco pasan, `Cerrado` y `cerrada`. Con la línea `analisis` no se exige la validación del conjunto («todo paso está hecho» se cumple si no queda un paso de implementación abierto). `Descartado` y `Diferido` no usan la previa. `implementada` y `cerrada` son el resultado del cierre y no cuentan como commit pendiente.
+
+Criterios, cada uno con su dato y su valor:
+
+1. Fila `cierre` y tabla de plan contra real. Valor: una sola fila `cierre` y una sola tabla; si ya existen, se actualizan. Vale para `Cerrado` y para `Implementado`.
+2. Commits pendientes de este requerimiento: los cambios sin registrar de este requerimiento, salvo los archivos que el mismo cierre escribe en la corrida. Valor: no queda ninguno. `DEPLOY-<ID>` solo si el proyecto los usa.
+3. Aviso o ticket en el punto de retomo. El aviso aplica si hay una comunicación abierta anotada; el ticket, si la spec o el punto de retomo lo nombran. Valor: si había aviso o ticket, se cumplió ahí; si hay ticket y no consta la confirmación, falla; sin nota y sin ticket, se cumple. El agente no cierra ni consulta el gestor.
+4. Columna de pendiente de la fila del índice. Valor, en `Cerrado` e `Implementado`: solo enlaces a deudas numeradas cuyo detalle tiene visto bueno, o vacía. Sin visto bueno, falla. Un texto libre no es enlace. En `Análisis`, `Planificado`, `En curso` y `En pruebas`, ese texto es el siguiente paso: no coincide si nombra `plan`, `tareas`, `flujo`, `validar` o `cierre` y eso ya está (documento de plan, tareas, documento de flujo, validación registrada en el punto de retomo, o fila `cierre`); si no nombra ninguno, no hay aviso.
+5. Deuda que bloquea por Atendida por. Valor: no queda una que bloquee. Qué deuda bloquea y las transiciones están en `.docs/003_deuda/README.md` › Estados. Sin la decisión de la persona, falla.
+
+Productivo y los cambios de datos no son criterio de `Cerrado`. No existe `Liberado`.
+
+Etapa de la carpeta (la primera que cuadra). El estado la cita y no la copia. «Todo paso que cuenta está hecho» exige al menos un paso de implementación, de modo que una carpeta con plan y ningún paso empezado es `Planificado`.
+
+1. Pausa anotada en el punto de retomo → `Diferido`, salvo un `Cerrado` bien formado.
+2. Validación del conjunto aprobada y, si el modo incluye flujo, flujo aprobado → `Implementado`.
+3. Todo paso que cuenta está hecho y falta esa validación o ese flujo → `En pruebas`.
+4. Hay un paso empezado y no todos → `En curso`.
+5. Hay plan y ninguno empezado → `Planificado`.
+6. Si no → `Análisis`.
+
+El modo sale de la fila de modo del punto de retomo. Sin fila de modo no se exige el flujo. Carpeta anterior sin fila de modo: con plan, `Planificado`; sin plan, `Análisis`. La validación y el flujo están aprobados solo si el punto de retomo los registra. Sin punto de retomo, manda la línea del documento: `implementada` → `Implementado`, `descartada` → `Descartado`, `analisis` → `Análisis`, `cerrada` solo si `Cerrado` está bien formado, y el resto → `Análisis`.
+
+Reapertura: `Cerrado` y `Descartado` son terminales; reabrirlos lo decide la persona. `Cerrado` vuelve a `Implementado` e `implementada`. `Descartado` vuelve a `Análisis` y `borrador` si el punto de retomo no conserva otra etapa. Motivo, quién y fecha quedan en el punto de retomo. Lo escribe el cierre. Una pausa no baja un `Cerrado` bien formado.
 
 ## Índice
 
@@ -38,7 +84,7 @@ Estatus: `Análisis` · `Planificado` (análisis y plan, sin código) · `En cur
 
 - Una fila por carpeta, con estatus, fecha del último avance y pendiente. Sin detalle: el detalle
   vive en la carpeta.
-- Estatus y fechas salen del `PUNTO DE RETOMO` de cada carpeta, no de memoria.
+- El pendiente, el pendiente de desarrollo, el grupo y el cerrado salen de la celda (ver "Leyenda de estatus").
 - Numeración: ver "Numeración única". No se reutilizan números, aunque queden huecos.
 
 ## Numeración única (sin prefijos repetidos)

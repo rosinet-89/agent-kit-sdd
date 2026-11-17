@@ -19,4 +19,4 @@ Qué hace:
 
 Empieza el veredicto con una de estas líneas: `VEREDICTO: APROBADO`, `VEREDICTO: APROBADO SALVO VERIFICACIÓN MANUAL` o `VEREDICTO: CAMBIOS NECESARIOS`. Si hay cambios necesarios, lista `archivo:línea`, qué incumple y qué se espera. Lo que no incumple va en "Opcional" y no bloquea.
 
-Qué no hace: no corriges código. No escribes `05_avance.md`. No ejecutas un chequeo E1–E21. No copias el modo de `.agents/skills/seguridad-basica/SKILL.md`: esa skill lo declara. Sin excepciones: `AGENTS.md` › Guardrails.
+Qué no hace: no corriges código. No escribes `05_avance.md`. No ejecutas un chequeo E1–E22. No copias el modo de `.agents/skills/seguridad-basica/SKILL.md`: esa skill lo declara. Sin excepciones: `AGENTS.md` › Guardrails.

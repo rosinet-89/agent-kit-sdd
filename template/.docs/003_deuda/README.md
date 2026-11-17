@@ -33,6 +33,14 @@ resolvió**.
 
 Las deudas `Resuelta` y `Descartada` no se borran: se quedan como historial.
 
+Deuda cerrada = `Resuelta` o `Descartada`, palabra exacta, salvo `Resuelta` sin «Cómo se atendió», que es deuda pendiente sin clasificar. Deuda pendiente = `Abierta`, `En atención` u otra palabra. Esa otra es deuda pendiente sin clasificar: el chequeo avisa y, si la columna Atendida por es este requerimiento, bloquea igual que `En atención`.
+
+Atendida por es la columna del índice de deuda. La referencia de origen es el Origen del detalle (tipo + referencia). La columna Origen del índice es solo el tipo. Si el índice y el detalle discrepan, manda el detalle. Hay un solo Atendida por: si dos carpetas reclaman la misma deuda, manda el detalle, bloquea solo a ese y el otro no la modifica.
+
+Bloquea `Cerrado` una `En atención` o una deuda pendiente sin clasificar cuya columna Atendida por es este requerimiento. Si el origen es este y la atiende otro, no bloquea. Una `Abierta` no bloquea: va enlazada en la columna de pendiente de la fila del índice. Se juzgan una por una. El criterio de `Cerrado` está en `.docs/002_specs/README.md` › «Leyenda de estatus»; esta sección no pega esa leyenda.
+
+Transiciones de deuda. El agente propone y no escribe. Las escribe el cierre del requerimiento de Atendida por, con la decisión de la persona: `Abierta` → `En atención` al empezar, con visto bueno; `En atención` → `Resuelta` al atenderla, con cómo se atendió, o → `Abierta` si el trabajo se detiene; `Abierta` o `En atención` → `Descartada` con motivo y quién. `Resuelta` y `Descartada` permanecen. Al descartar la spec, ese cierre elige `Abierta` o `Descartada` para cada `En atención` de este requerimiento. Una `Abierta` cuyo origen es este sigue `Abierta`, salvo descarte en esa decisión. La que atiende otro no se toca. Al diferir no corre el cierre: la persona deja esa elección en el detalle al anotar la pausa.
+
 ## Origen (tipo)
 
 `Decisión de requerimiento` (se difirió a propósito) · `Hallazgo` (se encontró al analizar o

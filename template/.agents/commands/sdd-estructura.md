@@ -7,6 +7,6 @@ La sesión principal valida la estructura. No lanza un subagente. Alcance: `$1` 
 
 Qué lee: `.agents/validar-estructura.md`. Para el bloque `enlaces`, también `.agents/sync-agents.md`.
 
-Qué hace: ejecuta los chequeos E1 a E21 de ese archivo. Muestra solo lo que falla, en la tabla de "Cómo responder", y las correcciones propuestas sin aplicarlas. Si todo está bien, una línea. Para corregir enlaces y réplicas remite a `/sdd-enlaces`; las demás correcciones las pide la persona como acción aparte.
+Qué hace: ejecuta los chequeos E1 a E22 de ese archivo. Muestra solo lo que falla, en la tabla de "Cómo responder", y las correcciones propuestas sin aplicarlas. Si todo está bien, una línea. Para corregir enlaces y réplicas remite a `/sdd-enlaces`; las demás correcciones las pide la persona como acción aparte.
 
-Qué no hace: no asigna E1–E21 al `reviewer` ni a ningún subagente. No redefine qué comprueba cada chequeo ni E20. No borra ni mueve nada sin visto bueno. No toca `05_avance.md`: este comando no es una fase del flujo.
+Qué no hace: no asigna E1–E22 al `reviewer` ni a ningún subagente. No redefine qué comprueba cada chequeo ni E20. No borra ni mueve nada sin visto bueno. No toca `05_avance.md`: este comando no es una fase del flujo.
