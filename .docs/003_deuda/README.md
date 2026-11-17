@@ -59,6 +59,8 @@ revisar) · `Alta manual` (la registró una persona).
 | 0009 | [Garantía técnica de que la base de datos solo se lee](0009_GarantiaTecnicaBdSoloLectura.md) | Guardrails (`AGENTS.md`), `restricciones-de-rol.md` | Hallazgo al cerrar `0008_GuardrailsBdSoloLectura` | Abierta | Media | — | 2026-11-03 |
 | 0010 | [La raíz del clon no tiene chequeo automático del marcador](0010_RaizSinChequeoAutomaticoDelMarcador.md) | `/sdd-estructura` (E21), raíz del clon | Recorte de alcance en `0010_FalsoPositivoInitPendiente` | Abierta | Baja | — | 2026-11-03 |
 | 0011 | [`/sdd-constitucion` fuera de la tabla de fases y del ruteo](0011_SddConstitucionFueraDeTablaYRuteo.md) | Skill `sdd`, agente `coordinator` | Hallazgo al validar `0009_EnlacesTrasPull` | Abierta | Baja | — | 2026-11-03 |
+| 0012 | [Ningún comando de fase actualiza la celda del índice en `Planificado`, `En curso` y `En pruebas`](0012_CadaComandoDeFaseActualizaLaCelda.md) | Comandos de fase, índice de planes, E22 | Recorte de alcance en `0012_EstatusDeSpecYCierre` | Abierta | Media | — | 2026-11-16 |
+| 0013 | [Pulido de lo entregado en la spec 0012: duplicación, una tensión de la spec, una frase y E13](0013_PulidoDeLaSpec0012.md) | `sdd-cierre.md`, leyenda de estatus, E13 | Hallazgo al validar `0012_EstatusDeSpecYCierre` | Abierta | Baja | — | 2026-11-16 |
 
 ## Plantilla de un detalle
 
