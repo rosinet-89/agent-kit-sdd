@@ -1,5 +1,5 @@
 # 01 — Spec: Estatus de spec y criterio de cerrado
-Estado: implementada
+Estado: cerrada
 Ticket: issue #5
 
 ## Contexto y objetivo

@@ -5,13 +5,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Dato | Contenido |
 |---|---|
 | Modo | `completo`, sin flujo. Condiciones de [topes-y-modos.md](../../../.agents/skills/sdd/topes-y-modos.md): la 1, 3, 4, 6 y 8 no se cumplen (cruza índice, deuda, cierre y estado; cambia contratos; hay alternativa real sin cerrar); la 5 sí; la 2 y la 7 no se pudieron comprobar. Propuesto por Corlos (planner). La persona confirmó el 2026-11-16 17:41 que esta spec no lleva `06_flujo.md` (el plan ya lo dejó fuera) |
-| Última sesión | 2026-11-16 18:02 |
-| Fase actual | `Implementado`. La persona aceptó las 3 observaciones el 2026-11-16 17:57: la validación del conjunto queda aprobada. Sin flujo. El issue #5 quedó cerrado el 2026-11-16 18:02. Falta el criterio 2 para `Cerrado` |
-| Último paso cerrado | Cierre con resultado `Implementado` (2026-11-16 17:57). Implementación: 40 de 40 pasos (F0 a F10) |
-| Siguiente paso | Para `Cerrado`: commits de este feature. El issue #5 ya está cerrado. El commit no está pedido |
+| Última sesión | 2026-11-16 18:08 |
+| Fase actual | `Cerrado` (2026-11-16). Cierre en dos corridas: `Implementado` a las 17:57 y `Cerrado` a las 18:08 |
+| Último paso cerrado | Segunda corrida de `/sdd-cierre`: 5 commits locales registrados, deudas 0012 y 0013 dadas de alta con el visto bueno de la persona, 3 entradas de `MEMORY.md`, issue #5 cerrado, celda en `Cerrado` y línea `Estado:` en `cerrada` |
+| Siguiente paso | Registrar en Git lo que escribió esta corrida del cierre (celda y línea `Estado:`, `05_avance.md`, deudas 0012 y 0013 y `MEMORY.md`) con la skill `git-commit` y confirmación explícita de la persona. Después, sin push, la spec no tiene pasos pendientes |
 | Bloqueos abiertos | Ninguno |
 | Estado BD | No aplica |
-| Código | Solo Markdown. El kit ya está editado (F1 a F10). Sin commits |
+| Código | Solo Markdown. Kit editado y registrado en 5 commits (`c3764c7`, `d105602`, `214cd8c`, `4094e09`, `1fa2fa1`). Sin push |
 
 ## Pasos
 (se llena en `tasks`)
@@ -88,6 +88,8 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 
 37. **[2026-11-16 18:02] La persona pide validar el issue #5 y, si la spec lo atiende, cerrar la spec y la issue.** La issue queda cubierta: estatus terminales, pendiente, criterios de cierre, deuda, E22, nota de migración y los dos vocabularios. Se cerró en GitHub. El criterio 3 queda cumplido (confirmación en este punto de retomo). No se escribe `Cerrado` ni `cerrada`: el criterio 2 sigue abierto (commits de este feature sin registrar). La celda permanece en `Implementado`.
 
+38. **[2026-11-16 18:08] Segunda corrida de `/sdd-cierre`: `Cerrado`.** La sesión revisó lo que la persona hizo fuera de ella (cierre en `Implementado` a las 17:57, issue #5 cerrado en GitHub a las 18:02; aritmética de «Plan contra real» verificada: documentación 153 min, implementación 48 min) y lo acepta como válido. Previa cumplida. Criterios: 1 (una sola fila `cierre` y una sola tabla de plan contra real, actualizadas); 2 (con la persona confirmando 5 commits locales: `c3764c7`, `d105602`, `214cd8c`, `4094e09` y `1fa2fa1`; verificación previa sin secretos, residuos ni archivos ignorados rastreados; lo único sin registrar es lo que escribe este cierre); 3 (el issue #5 está cerrado y la persona lo confirmó); 4 (lo no hecho queda como deudas numeradas con el visto bueno de la persona: `0012_CadaComandoDeFaseActualizaLaCelda` y `0013_PulidoDeLaSpec0012`; la columna de pendiente solo las enlaza); 5 (no hay deuda `En atención`). Resultado: `Cerrado` en la celda y `cerrada` en la línea `Estado:`. Entradas de `MEMORY.md` aprobadas por la persona: A (fuente única de la leyenda, ADR 0024), B (definir la fuente única antes de repartir pasos y revisores) y C (E19 admite `agents/claudio.md`). ADR: 0024 a 0027, ya registrados. Alternativa no elegida: dejar la spec en `Implementado` sin deuda.
+
 ## Pruebas
 **Validación `/sdd-validate` (2026-11-16 17:32), reviewer de Claude, solo lectura, 94 s, 21 llamadas.** Veredicto: **APROBADO SALVO VERIFICACIÓN MANUAL**. Sin bloqueantes. Alcance: todos los archivos citados en avance, plan y tareas más los nuevos sin seguimiento; `git status` no muestra archivos ajenos o no atribuibles (22 entradas, todas del feature). Cambio solo de Markdown: sin interfaz, sin pantallas, sin scripts y sin BD; no hay verificaciones manuales de interfaz.
 - RF-1 a RF-12: CUMPLEN (con línea de respaldo en `sdd-spec.md`, `sdd-cierre.md`, `sdd-status.md`, la leyenda, el README de deuda, E22 en `validar-estructura.md`, `ACTUALIZAR.md`, `reviewer.md`, `SKILL.md`, `plantillas.md` y los dos `AGENTS.md`).
@@ -122,15 +124,15 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | F8.1-F8.3 | 2026-11-16 17:29 | 2026-11-16 17:31 | 2 | 0 | implementer de Claude (36 s) y verificación independiente de la sesión |
 | F10.1 y comandos de F10.7 | 2026-11-16 17:30 | 2026-11-16 17:30 | 1 | 0 | codificación, E19, E20 y ensayo de instalación, por la sesión |
 | validate | 2026-11-16 17:30 | 2026-11-16 17:32 | 3 | 0 | reviewer de Claude (94 s) sobre el estado definitivo y registro de la sesión |
-| cierre | 2026-11-16 17:57 | 2026-11-16 17:59 | 2 | 0 | la persona acepta las 3 observaciones; resultado `Implementado` |
+| cierre | 2026-11-16 17:57 | 2026-11-16 18:08 | 11 | 0 | primera corrida (17:57): la persona acepta las 3 observaciones, resultado `Implementado`; segunda corrida tras los 5 commits, la alta de las deudas 0012 y 0013 y las 3 entradas de `MEMORY.md`: resultado `Cerrado` |
 
 ## Plan contra real
 
-El real es la suma de la columna Minutos. Las filas que cubren varias fases no se parten. Documentación SDD = `spec`, `clarify`, `plan`, `tasks`, `validate` y `cierre` (153 min).
+El real es la suma de la columna Minutos. Las filas que cubren varias fases no se parten. Documentación SDD = `spec`, `clarify`, `plan`, `tasks`, `validate` y `cierre` (162 min).
 
 | Fase | Estimado | Real | Delta |
 |---|---|---|---|
-| Documentación SDD | sin estimado | 2.6 h | — |
+| Documentación SDD | sin estimado | 2.7 h | — |
 | F0 | 0.4 h | 0.1 h | −0.3 h |
 | F1 | 1.2 h | 0.2 h | −1.0 h |
 | F2, F4, F5 y F6 | 2.5 h | 0.1 h | −2.4 h |
@@ -139,4 +141,4 @@ El real es la suma de la columna Minutos. Las filas que cubren varias fases no s
 | F8 | 0.7 h | 0.03 h | −0.7 h |
 | F10 | 0.7 h | 0.02 h | −0.7 h |
 
-Ajuste para el siguiente plan: los 8.1 h estimados de edición no sirven. La implementación cupo en unos 48 min de la tabla y la documentación en 2.6 h, sobre todo `tasks` (98 min, 88 de ellos porque la persona dijo que no eran pausa) y las rondas de revisión. Estimar la espera de decisiones y las correcciones, no el tiempo de escribir Markdown.
+Ajuste para el siguiente plan: los 8.1 h estimados de edición no sirven. La implementación cupo en unos 48 min de la tabla y la documentación en 2.7 h, sobre todo `tasks` (98 min, 88 de ellos porque la persona dijo que no eran pausa) y las rondas de revisión. Estimar la espera de decisiones y las correcciones, no el tiempo de escribir Markdown.
