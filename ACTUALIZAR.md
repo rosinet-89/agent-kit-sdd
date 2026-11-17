@@ -19,6 +19,7 @@ comando de actualización ni scripts: el agente sigue estos pasos con el kit que
 - [Base sin manifiesto](#base-sin-manifiesto)
 - [Huérfanos](#huérfanos)
 - [Grupos por ruta](#grupos-por-ruta)
+- [Reclasificación de filas ya escritas](#reclasificación-de-filas-ya-escritas)
 - [Plan completo](#plan-completo)
 - [Confirmación](#confirmación)
 - [Aplicación](#aplicación)
@@ -338,6 +339,19 @@ no se comparan, no se reemplazan ni se muestran faltantes. `.docs/` mezcla plant
 documentos del proyecto, por eso toda su existencia se respeta.
 
 Una ruta que no cae en A, B ni D recibe este mismo trato.
+
+### Reclasificación de filas ya escritas
+
+Esta nota guía a la persona. El procedimiento no reescribe el índice: no cambia
+las celdas de las filas del índice ya escritas. El mapa no es la fila `cierre`
+ni la fila de modo. No es un pendiente y no bloquea `.agents/.kit-version`.
+
+Cuando una fila del índice ya trae una palabra del mapa, la persona lo aplica:
+`Plan` → `Planificado`; `Spec aprobada` → `Análisis` sin plan y `Planificado`
+con plan; `Implementado en local` → `Implementado`. Un `Cerrado` ya escrito
+sigue la fila de la leyenda (`## Leyenda de estatus` de
+`template/.docs/002_specs/README.md`). Esta nota no copia esa leyenda. Qué
+cuenta como plan lo dice esa leyenda.
 
 ### Grupo D
 

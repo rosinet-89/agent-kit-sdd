@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.8.0 — 2026-11-16
+- Estatus terminal de una spec: `Cerrado` y `Descartado`. La leyenda de estatus es la fuente única y vive
+  en `## Leyenda de estatus` de `.docs/002_specs/README.md` (la definición de deuda, bajo `## Estados`
+  de `.docs/003_deuda/README.md`). Comandos, skill, plantilla y `AGENTS.md` remiten a ella y no la copian.
+  Los puntos 5 y 6 de «Antecedentes» de `AGENTS.md` también remiten a la leyenda.
+- El cierre (`/sdd-cierre`) tiene tres resultados, y deja la fila del índice con el estatus que le
+  corresponde según la leyenda.
+- Chequeo nuevo E22 en `/sdd-estructura` (`.agents/validar-estructura.md`), después de E21. Es solo
+  `AVISO`: no bloquea. E13 no cambia.
+- Nota para proyectos ya instalados: `AGENTS.md` es grupo B y no se pisa. Cada proyecto debe incorporar
+  a mano en `AGENTS.md` los puntos 5 y 6 de «Antecedentes» que remiten a la leyenda de estatus. Hasta
+  entonces sigue valiendo el texto anterior. Las piezas del grupo A (agentes, comandos, skill `sdd` y
+  `validar-estructura.md`) salen KIT-VIEJO o PERSONALIZADO según cada proyecto. El `.docs/` es grupo C
+  y no se pisa: la leyenda y la definición de deuda se copian a mano a sus README.
+- Filas ya escritas del índice, sin reescribir (mapa de `ACTUALIZAR.md` › `### Reclasificación de filas
+  ya escritas`, que se aplica a mano): `Plan` → `Planificado`; `Spec aprobada` → `Análisis` sin plan y
+  `Planificado` con plan; `Implementado en local` → `Implementado`. Un `Cerrado` ya escrito sigue la
+  fila de la leyenda. Qué cuenta como plan lo dice la leyenda.
+
 ## 0.7.0 — 2026-11-03
 - Tope de clarify: 3 pasadas por spec en modo completo (1 en ligero). Una pasada es cada revisión del
   reviewer sobre `01_spec.md`; la sesión principal anota «pasada n de 3» en `05_avance.md`. Al llegar al
