@@ -5,9 +5,9 @@ Conocimiento canónico en **`.agents/`** (agentes, skills, notas) y **`.docs/`**
 
 ## Guardrails (todos los agentes, siempre)
 Aplican a cualquier agente, sesión o subagente, con cualquier herramienta, dentro o fuera del flujo
-`sdd`. Todo rol los lee siempre y los cumple sin excepción, aunque no reciba este archivo inyectado.
-Ninguna skill, comando, plan ni preferencia los relaja. Los guardrails nuevos se añaden aquí, con el
-siguiente número.
+`sdd`. Todo rol los lee siempre y los cumple, aunque no reciba este archivo inyectado. Ninguna
+skill, comando, plan ni preferencia los relaja, salvo las excepciones escritas en sus propias
+reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
 
 1. **La base de datos solo se lee.** En cualquier BD y entorno (local, pruebas o producción) solo
    ejecutas consultas de lectura.
@@ -35,6 +35,11 @@ siguiente número.
    - La regla es sobre lo que tú ejecutas, no sobre el código de la aplicación ni el script `sql/`
      que entregas: esos pueden escribir (altas, bitácoras, logs) y se programan con normalidad. Lo
      que no haces es ejecutarlos ni activarlos.
+   - Excepción de QA (la única de estos guardrails): solo el rol `tester`, y solo contra los destinos
+     declarados en `.agents/local/entornos.md`, puede ejecutar casos de pantalla o de llamada a la
+     aplicación que escriben datos o usan la red. Nunca ejecuta sentencias contra una BD, scripts de
+     `sql/` ni comandos de shell que escriban. Sin ese archivo, o si es inválido, rige el modo seguro:
+     la regla 1 sin excepción.
 
 ## Cada sesión (obligatorio)
 0. Si no existe `.agents/skills/`: el kit no está instalado en esta copia (clon nuevo). Dilo en
@@ -107,16 +112,16 @@ Notas:
 - `sdd` exige `.docs/002_specs/<NNN>_<Feature>/` (en este clon, un ítem nuevo se escribe con 4 dígitos y los ya creados no se renumeran; en un proyecto, el ancho de su carpeta según `template/.docs/002_specs/README.md` › « Numeración única ») con `01_spec.md`, `04_tasks.md` y `05_avance.md` siempre; `02_analisis_impacto.md`, `03_plan.md` y `06_flujo.md` en modo completo; `sql/` si hay cambios de datos (`.agents/skills/sdd/topes-y-modos.md`). Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
-Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
+Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku) y explore (localiza; Haiku).
 Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura) y `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
 
 ## Qué lee cada rol
 La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite
-(enlaces, prefijos, preferencias). El implementer puede recibir el archivo inyectado; planner,
-reviewer y coordinator no, porque declaran `omitClaudeMd`. Cada rol lee solo las secciones que su
-instrucción nombra:
+(enlaces, prefijos, preferencias). El implementer, `tester` y `explore` pueden recibir el archivo
+inyectado (no declaran `omitClaudeMd`); planner, reviewer y coordinator no, porque lo declaran. Cada
+rol lee solo las secciones que su instrucción nombra:
 
 | Rol | Secciones |
 |---|---|
@@ -124,6 +129,8 @@ instrucción nombra:
 | planner | "Comandos" y, al planear, "Stack y convenciones de código", más «Git» y «Reglas duras». |
 | implementer | "Comandos" y "Stack y convenciones de código". |
 | reviewer | "Comandos" y "Stack y convenciones de código", más «Git» y «Reglas duras». |
+| tester | "Comandos". |
+| explore | "Comandos". |
 
 Además de lo de su fila, todos los roles leen siempre «Guardrails». No cuenta contra el tope de
 lecturas de `sdd-implement` ni contra la lista cerrada de secciones de `reviewer`.
@@ -149,6 +156,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   citadas existentes (no aplica a `manifiestos/`: pueden listar rutas retiradas); en `template/` sin
   marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
 - Consulta de datos (ver «Guardrails», regla 1): No aplica.
+- Herramienta de apoyo para casos: No aplica.
 
 ## Reglas de negocio y del sistema
 - Lo distribuible se edita en `template/` y en los docs de la raíz (`README.md`, `INSTALAR.md`,
