@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.11.0 — 2026-11-21
+- Cierre en una corrida con sus commits (ADR 0031): si pasan la previa y los criterios 1, 3, 4 y 5,
+  `/sdd-cierre` escribe `Cerrado` y propone en la misma corrida los commits del requerimiento y, al
+  final, el de sus propios archivos, con una sola confirmación. Confirmados, queda `Cerrado`; sin
+  confirmación, o si un commit falla, baja a `Implementado` en esa corrida. Ya no hace falta una
+  segunda corrida ni un commit solo para el estatus.
+- Leyenda de estatus (`.docs/002_specs/README.md`): el criterio 2 pasa a «ningún cambio del
+  requerimiento fuera de los commits confirmados en la corrida del cierre», y la frase de los tres
+  resultados lo refleja.
+- Nota para proyectos actualizados: `.docs/002_specs/README.md` es del proyecto; la leyenda nueva se
+  copia a mano en su sección «Leyenda de estatus».
+
 ## 0.10.0 — 2026-11-21
 - Asistente nuevo `/sdd-config` (`.agents/commands/sdd-config.md`): configura paso a paso, por dev y
   sin versionar, los modelos por rol, los roles que corren siempre como subagente, el tope y el modo de
