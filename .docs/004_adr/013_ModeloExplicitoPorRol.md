@@ -1,6 +1,6 @@
 # ADR 013: model inherit en los cuatro roles
 
-- **Estado:** Aceptado
+- **Estado:** Reemplazado por [0028](0028_ModeloPorRolYRolEnElChat.md)
 - **Fecha:** 2026-10-25
 - **Origen:** `004_ModeloYPermisosAgentes`
 

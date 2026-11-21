@@ -30,7 +30,7 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 010 | [La ruta alterna vive en la skill sdd](010_RutaSiNoHayUnSoloPaso.md) | Aceptado | 2026-10-25 | `006_RutaSiNoDelega` |
 | 011 | [Restricciones de rol sin hooks](011_RestriccionesDeRolSinHooks.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 012 | [omitClaudeMd en planner, reviewer y coordinator](012_OmitClaudeMdEnTresRoles.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
-| 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Aceptado | 2026-10-25 | `004_ModeloYPermisosAgentes` |
+| 013 | [model inherit en los cuatro roles](013_ModeloExplicitoPorRol.md) | Reemplazado por 0028 | 2026-10-25 | `004_ModeloYPermisosAgentes` |
 | 014 | [Un ítem nuevo conserva el ancho de su carpeta](014_ConvivenciaDeAnchosDeNumeracion.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
 | 015 | [La fuente única de la numeración vive en el grupo C](015_FuenteUnicaDeNumeracionEnGrupoC.md) | Aceptado | 2026-10-25 | `005_ConvivenciaNumeracion` |
 | 0016 | [Un ítem nuevo del clon se escribe con 4 dígitos](0016_ItemNuevoDelClonEnCuatroDigitos.md) | Aceptado | 2026-10-25 | `007_DeudasAbiertas` |
@@ -45,3 +45,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0025 | [Aviso de estatus tras E21](0025_AvisoDeEstatusTrasE21.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
 | 0026 | [Antecedentes remite a la leyenda](0026_AntecedentesRemitenALaLeyenda.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
 | 0027 | [La leyenda se copia en el índice del clon](0027_LeyendaCopiadaEnElIndiceDelClon.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
+| 0028 | [Modelo por rol, rol en el chat salvo cambio de modelo y excepción de QA](0028_ModeloPorRolYRolEnElChat.md) | Aceptado | 2026-11-21 | `0013_ModelosPorAgente` |
