@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 12:53 |
-| Fase actual | `cierre` hecho |
+| Última sesión | 2026-11-21 11:11 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 11:11) |
 | Último paso cerrado | `cierre` el 2026-10-25 12:50; las tres trampas quedaron en `MEMORY.md` a las 12:53 |
-| Siguiente paso | Ninguno en el plan. Los commits siguen sin hacerse |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aceptada con el visto bueno de la persona (2026-11-21 11:10): no se corrió `validate`; la evidencia son las pruebas F5 (59 comprobaciones en `mktemp`, visto de la persona 2026-10-25 12:27) y F6 (E20 OK, visto 12:30), y el flujo revisado por el reviewer y aprobado el 2026-10-25 12:50. Los pasos viven en `04_tasks.md` (todos en `[x]` según la nota del cierre del 2026-10-25) |
 | Coordinación | 2026-10-25: otra sesión cerró la deuda 001 (refresco del clon) y la deuda 002 (spec retroactiva `002_Kit050`). No editar `INSTALAR.md` desde "## Modo mantenimiento" hasta el final, ni la fila E19 de `validar-estructura.md` (en `.agents/` y en `template/.agents/`), ni `.docs/003_deuda/001_ActualizarCloneDelKit.md`, ni `.docs/002_specs/002_Kit050/`. El número 002 de specs ya está usado. El clon y el registro de 0.5.0 ya publicado siguen fuera de esta spec. El resto de `INSTALAR.md` (modo proyecto y el enlace al procedimiento de actualización) y el changelog de 0.5.0 para este requerimiento siguen en este plan. Numeración de proyectos: specs, deudas y ADR pasan a 4 dígitos en `template/` (`0001`); no renumerar las carpetas de este clon (siguen en 3, ADR incluidos) ni la fila E12 más allá de ese ancho. |
 | Traspaso (Claudio → Corlos) | Claudio documentó spec, análisis, plan y tareas y no implementó. **Pendiente al retomar:** (1) tras tu trabajo de 4 dígitos en `template/`, `03_plan.md`/`04_tasks.md` siguen válidos pero hay que releer los pasos F2.2, F2.3 y F3.x que editan `template/AGENTS.md`, `.agents/README.md`, `validar-estructura.md` e `INSTALAR.md` (parten del contenido actual; no revertir). (2) `02_analisis_impacto.md` tomó sus cifras (41 archivos en `template/`, oráculo 6 NUEVO / 8 KIT-VIEJO / 19 IGUAL) el 2026-10-24; con los cambios de hoy hay que recontarlas antes de F0. (3) Hecho 2026-10-25 11:55: en KIT-VIEJO se compara el archivo del proyecto (P = B) con `template/`; en PERSONALIZADO con cambio del kit solo se muestran las huellas y el archivo destino, sin inventar el texto de la base. (4) F5 (3,5 h) y F5.4 son los pasos más densos. (5) Hecho 2026-10-25 10:57: la spec y el análisis ya dicen la deuda 001 resuelta y fuera de alcance. (6) 0.5.0 sigue sin subirse (7 commits locales): este feature sale dentro de 0.5.0. Decisiones 1 a 16 de abajo siguen vigentes. |
 | Estado BD | No aplica |
@@ -208,7 +209,7 @@ kit_huella() {
 | F6.2 | 2026-10-25 12:28 | 2026-10-25 12:29 | 0 | 0 | mismo tramo; sin valores de secreto |
 | F6.3 | 2026-10-25 12:28 | 2026-10-25 12:30 | 0 | 0 | mismo tramo de ejecución; visto del usuario a las 12:30; sin ADR ni commits |
 | flujo | 2026-10-25 12:36 | 2026-10-25 12:50 | 14 | 0 | planner, reviewer y tres correcciones; el usuario aprobó a las 12:50 |
-| cierre | 2026-10-25 12:50 | 2026-10-25 12:50 | 0 | 0 | plan contra real, estado implementada, índice; sin commit |
+| cierre | 2026-10-25 12:50 | 2026-10-25 12:50 | 0 | 0 | plan contra real, estado implementada, índice; sin commit; re-cierre 2026-11-21 11:11 a `Cerrado` (corrida conjunta de 001, 002 y 003 con la leyenda de la 0012): evidencia aceptada como validación del conjunto, registrada en el retomo, y columna del índice vaciada |
 
 ## Plan contra real
 | Fase | Estimado | Real | Delta |

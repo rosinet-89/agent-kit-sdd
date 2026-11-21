@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 14:23 |
-| Fase actual | Cerrada |
+| Última sesión | 2026-11-21 11:11 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 11:11) |
 | Último paso cerrado | `cierre` el 2026-10-25 14:23 |
-| Siguiente paso | Ninguno. ADR 009 aceptado. Commit no pedido. |
+| Siguiente paso | Ninguno. ADR 009 aceptado |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aceptada con el visto bueno de la persona (2026-11-21 11:10): no se corrió `validate`; la evidencia son los pasos F0.1 a F8.8 en `[x]` con sus pruebas (ver Pruebas) y el flujo revisado por el reviewer (15 ajustes) y aprobado por la persona el 2026-10-25 14:23 |
 | Coordinación | Corlos edita `AGENTS.md`, `template/.agents/commands/` y otros archivos que este feature también tocaría (26 archivos modificados sin commit al abrir la carpeta). Antes de implementar, acordar con el usuario quién commitea 001 y 002 y partir del contenido actual de esos archivos, sin revertirlos. |
 | Traspaso (Claudio → siguiente agente) | La spec está aprobada; `02` a `06` no existen. **Antes de `/sdd-plan`:** (1) acordar con el usuario quién commitea las carpetas `001`, `002` y `003`, las deudas, los ADR 007/008 y los cambios de `template/` (decisión 5; hay decenas de archivos sin commit). (2) La spec exige fijar la línea base de lectura en este `05_avance.md` ANTES de cambiar nada (definición de línea base y pasos de referencia: mínimo, mediana y máximo de `001_ActualizarKit/04_tasks.md`). (3) La deuda del modelo por rol y los permisos del frontmatter ya está dada de alta (`.docs/003_deuda/003_ModeloYPermisosDeAgentes.md`). (4) Partir del contenido actual de `AGENTS.md`, `template/.agents/commands/` y `validar-estructura.md` (otro agente los editó); no revertirlos. (5) Orden de cierre: cambios en `template/`, manifiesto de 0.5.0, E20, contraste 0.4.0 vs 0.5.0, chequeos de Comandos y medición. Decisiones 1 a 13 vigentes. |
 | Estado BD | No aplica |
@@ -287,7 +288,7 @@ Tope de la mediana: 26 701. Quedan 11 520 para el texto final de `implementer.md
 | F8.7 | 2026-10-25 14:04 | 2026-10-25 14:06 | 1 | 0 | mismo tramo de F8; 1 por el mínimo de RF-22 |
 | F8.8 | 2026-10-25 14:04 | 2026-10-25 14:06 | 1 | 0 | mismo tramo de F8; 1 por el mínimo de RF-22 |
 | flujo | 2026-10-25 14:08 | 2026-10-25 14:23 | 15 | 0 | planner redacta, reviewer pide 15 ajustes, planner corrige, usuario aprueba |
-| cierre | 2026-10-25 14:23 | 2026-10-25 14:23 | 1 | 0 | mismo minuto que la aprobación del flujo; 1 por el mínimo de RF-22 |
+| cierre | 2026-10-25 14:23 | 2026-10-25 14:23 | 1 | 0 | mismo minuto que la aprobación del flujo; 1 por el mínimo de RF-22; re-cierre 2026-11-21 11:11 a `Cerrado` (corrida conjunta de 001, 002 y 003 con la leyenda de la 0012): evidencia aceptada como validación del conjunto, registrada en el retomo, y columna del índice vaciada |
 
 ## Plan contra real
 

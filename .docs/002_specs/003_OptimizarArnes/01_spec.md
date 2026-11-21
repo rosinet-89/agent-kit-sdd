@@ -1,5 +1,5 @@
 # 01 — Spec: Optimizar el arnés SDD (agentes y comandos)
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

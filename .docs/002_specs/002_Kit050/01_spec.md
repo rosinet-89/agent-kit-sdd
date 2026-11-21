@@ -1,5 +1,5 @@
 # 01 — Spec: Registro retroactivo de la versión 0.5.0
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

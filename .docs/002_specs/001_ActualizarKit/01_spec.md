@@ -1,5 +1,5 @@
 # 01 — Spec: Actualizar un proyecto a una versión nueva del kit
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 10:36 |
-| Fase actual | `cierre` (retroactivo) |
+| Última sesión | 2026-11-21 11:11 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 11:11; retroactivo) |
 | Último paso cerrado | Spec retroactiva escrita (RF y criterios). Deuda 002 marcada resuelta |
 | Siguiente paso | Ninguno. No abrir `02`, `03`, `04` ni `06` para rellenar el hueco |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aceptada con el visto bueno de la persona (2026-11-21 11:10): no se corrió `validate`; la evidencia es el contraste por escrito de cada RF contra el changelog de 0.5.0 y los ADR 001, 005 y 006 (ver Pruebas). No hay pasos ni plan: la deuda 002 prohíbe reconstruirlos |
 | Estado BD | No aplica |
 | Código | Ninguno. El comportamiento ya está en los commits `b13e406` a `1c35f0c` |
 
@@ -35,7 +36,14 @@ los ADR 001, 005 y 006. No se ejecutó el kit ni se modificó `template/`.
 | Paso | Inicio | Fin | Minutos | Pausa | Nota |
 |---|---|---|---|---|---|
 | spec retroactiva | 2026-10-25 10:32 | 2026-10-25 10:36 | 4 | 0 | Solo esta escritura. Los commits de 0.5.0 no tienen minutos: no se reconstruyen |
+| cierre | 2026-11-21 11:09 | 2026-11-21 11:11 | 2 | 0 | Primera fila `cierre` de la carpeta (corrida conjunta de 001, 002 y 003 con la leyenda de la 0012): evidencia aceptada como validación del conjunto, registrada en el retomo, y columna del índice vaciada |
 
 ## Plan contra real
+| Fase | Estimado | Real | Delta |
+|---|---|---|---|
+| Documentación SDD | sin estimado | 0.10 h | — |
+
+Documentación SDD = spec retroactiva 4 + cierre 2 = 6 minutos.
+
 No hay plan estimado. El trabajo original se commiteó sin fases. Esta carpeta solo registra el
 qué y el por qué, el 2026-10-25.
