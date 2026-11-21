@@ -110,6 +110,7 @@ Notas:
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
 Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura) y `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
+OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
 
 ## Qué lee cada rol
 La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite
@@ -156,7 +157,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   - **Versionado** (conocimiento propio del kit, no sale de `template/`): `AGENTS.md`, `CLAUDE.md`,
     `MEMORY.md`, `.docs/` (constitución, specs, deuda, ADR) y `.agents/napkin.md`.
   - **Local, excluido en `.git/info/exclude`** (sale de `template/` al instalar): el resto de
-    `.agents/`, `.gitignore`, `PREFERENCIAS.md`, `.claude/`, `.cursor/`.
+    `.agents/`, `.gitignore`, `PREFERENCIAS.md`, `.claude/`, `.cursor/`, `.opencode/`.
   - Las decisiones del kit se registran como ADR en `.docs/004_adr/` (skill `adr`); el `template/`
     solo lleva el índice vacío.
 - Nada propio de un proyecto (stack, nombres, dominio) entra a `template/`.

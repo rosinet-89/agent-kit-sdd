@@ -78,8 +78,8 @@ pieza: skills/sdd
 - Prefijos válidos: `version`, `herramientas`, `excepcion`, `copia`, `pieza`. Orden: `version`,
   `herramientas`, `excepcion*`, `copia*`, `pieza*`.
 - `version`: `X.Y.Z`, la de `.agents/.kit-version`. Nunca `ninguna`: sin versión legible no se escribe.
-- `herramientas`: lista separada por comas de `claude`, `cursor`, `gemini`, `github`. Nunca vacía: sin
-  herramientas no se escribe.
+- `herramientas`: lista separada por comas de `claude`, `cursor`, `gemini`, `github`, `opencode`. Nunca
+  vacía: sin herramientas no se escribe.
 - `excepcion`: ruta de enlace de la tabla que la persona declaró intencional (OCUPADO aceptado).
 - `copia`: ruta de enlace de la tabla que `/sdd-enlaces` creó como copia. Se descarta si la ruta pasó a
   ser un enlace.
@@ -143,6 +143,44 @@ El destino es relativo a la carpeta donde vive el enlace. Las carpetas padre (`.
 | GitHub | `.github/commands` | `../.agents/commands` | Si usa Copilot |
 | GitHub | `.github/skills` | `../.agents/skills` | Si usa Copilot |
 | GitHub | `.github/copilot-instructions.md` | `../AGENTS.md` | Si usa Copilot |
+| OpenCode | `.opencode/skills` | `../.agents/skills` | Si usa OpenCode |
+| OpenCode | `.opencode/commands` | `../.agents/commands` | Si usa OpenCode |
+| OpenCode | `.opencode/agents/` | adaptador de `.agents/agents/` (no es enlace) | Si usa OpenCode |
+
+### OpenCode
+
+OpenCode lee `AGENTS.md` y descubre `.agents/skills` por sí solo: las skills funcionan sin enlace. Aun así se
+crean `.opencode/skills` y `.opencode/commands` para que use su carpeta propia y no dependa de la
+compatibilidad con `.agents/` y `.claude/`.
+
+`.opencode/agents` **no** se enlaza a `.agents/agents`: el frontmatter de Claude (`tools: Agent(...)`,
+`omitClaudeMd`) no es válido en OpenCode V2 y el archivo se descarta con
+`agent file skipped … at ["tools"]`. En su lugar se crea un **adaptador** por rol: cuerpo corto y el detalle en
+el archivo canónico de `.agents/agents/`, que el rol lee al arrancar.
+
+```md
+---
+description: <la misma description del archivo canónico de .agents/agents/>
+mode: all          # coordinator
+# mode: subagent   # planner, implementer, reviewer
+color: <color del rol en la skill formato-respuesta>
+permissions:
+  - action: skill
+    resource: "*"
+    effect: allow
+---
+
+Actúas como <rol>. Lee el archivo canónico de `.agents/agents/` y sigue su «Qué lee», «Qué hace» y «Qué no hace».
+Cumple `AGENTS.md` › Guardrails sin excepción.
+```
+
+- `coordinator`: `mode: all` y `subagent` permitido solo para `planner`, `implementer` y `reviewer`.
+- `planner` e `implementer`: `mode: subagent`.
+- `reviewer`: `mode: subagent`, `edit` denegado (solo lectura) y `subagent` denegado.
+- El permiso `skill` es lo que deja al subagente cargar las skills; sin él no las ve.
+- `claudio` no se adapta: envuelve el CLI `claude`, y para E3 su ausencia en `.opencode/agents/` no es réplica
+  faltante.
+- Para la fila de adaptadores, `OK` = el archivo existe con el `mode` indicado; `FALTA` si no.
 
 ### Kiro
 
@@ -167,7 +205,7 @@ hacia `.agents/`.
 - Copilot lee `.github/copilot-instructions.md`: se enlaza a `AGENTS.md` en vez de mantener una
   copia escrita a mano. Si ya existe como archivo real (estado `OCUPADO`), pasa su contenido útil a
   `AGENTS.md` antes de reemplazarlo; lo mismo con `.github/agents/*.agent.md` heredados.
-- El `.gitignore` del kit ignora `.claude/`, `.cursor/`, `.github/` y `.gemini/`: los enlaces son
+- El `.gitignore` del kit ignora `.claude/`, `.cursor/`, `.github/`, `.gemini/` y `.opencode/`: los enlaces son
   por entorno y no se versionan; cada desarrollador los siembra en su copia con este archivo. Ojo: eso también ignora la configuración propia de la herramienta
   (por ejemplo `.claude/settings.json`) y, en `.github/`, workflows y plantillas. Si tu proyecto los
   versiona, quita esa línea o acota la regla (por ejemplo `.github/agents`, `.github/commands`,

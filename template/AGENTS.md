@@ -109,6 +109,7 @@ Notas:
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación).
 Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura) y `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
+OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
 
 ## Qué lee cada rol
 La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite

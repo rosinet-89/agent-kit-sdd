@@ -41,6 +41,7 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
 | Claude Code | `CLAUDE.md`, `.claude/` (`agents/`, `commands/`, `skills/`) | `CLAUDE.md` importa `AGENTS.md`; enlaces de `.agents/sync-agents.md` |
 | Cursor | `AGENTS.md`, `.cursor/` (`rules/`, `agents/`, `commands/`, `skills/`) | enlaces de `.agents/sync-agents.md` |
 | GitHub Copilot | `.github/copilot-instructions.md`, `.github/` (`agents/`, `commands/`, `skills/`) | enlaces de `.agents/sync-agents.md` (el archivo apunta a `AGENTS.md`; `.github/` no se versiona, cada quien lo siembra) |
+| OpenCode | `AGENTS.md`, `.opencode/` (`agents/`, `commands/`, `skills/`) | `.opencode/skills` y `.opencode/commands` son enlaces; `.opencode/agents/` son adaptadores con `mode` (ver `.agents/sync-agents.md` › «OpenCode») |
 | Otras | su propia carpeta | agregar su fila en `.agents/sync-agents.md` |
 
 Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: solo enlaces hacia

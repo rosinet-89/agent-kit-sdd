@@ -19,14 +19,14 @@ Lee los dos archivos de «Qué lee». Un «visto» ausente o corrupto (según `s
 - Detecta si es un repositorio Git con `git rev-parse --is-inside-work-tree`. Si falla: omite `check-ignore` y la edición de `.gitignore`, avisa que «visto» no queda protegido por Git y pide confirmación antes de crear `.agents/local/` y `kit-visto`. El `git rm --cached` del paso 7 de `sync-agents.md` tampoco aplica.
 
 ### 3. Preguntar las herramientas
-Pregunta qué herramientas usa la persona entre las de la tabla de `sync-agents.md` (Claude Code, Cursor, Gemini, Copilot). Solo esas se tratan. Si no declara ninguna: no crea enlaces, no escribe «visto», lo informa y termina; el aviso de arranque volverá en la siguiente sesión.
+Pregunta qué herramientas usa la persona entre las de la tabla de `sync-agents.md` (Claude Code, Cursor, Gemini, Copilot, OpenCode). Solo esas se tratan. Si no declara ninguna: no crea enlaces, no escribe «visto», lo informa y termina; el aviso de arranque volverá en la siguiente sesión.
 
 ### 4. Clasificar
 - Clasifica solo las filas de las herramientas declaradas, con los estados de `sync-agents.md`; las demás filas se omiten.
 - Detecta, remitiendo a las reglas de `sync-agents.md` (pasos 7 y 8) sin repetirlas: enlaces colgantes (apuntan a una pieza retirada), réplicas huérfanas o faltantes y archivos versionados que `.gitignore` ya ignora.
 
 ### 5. Mostrar el plan y pedir confirmaciones
-Muestra un plan con un comando exacto por enlace, según el sistema detectado y el criterio de `sync-agents.md` (enlace simbólico, junction en Windows sin administrador, copia solo si fallan los anteriores, avisando que la copia no se sincroniza). Antes de ejecutar, valida cada ruta contra la tabla de `sync-agents.md`: no se usan rutas libres.
+Muestra un plan con un comando exacto por enlace, según el sistema detectado y el criterio de `sync-agents.md` (enlace simbólico, junction en Windows sin administrador, copia solo si fallan los anteriores, avisando que la copia no se sincroniza). Antes de ejecutar, valida cada ruta contra la tabla de `sync-agents.md`: no se usan rutas libres. Los adaptadores de OpenCode no son enlaces: se crean con el contenido de `sync-agents.md` › «OpenCode», sin copiar el cuerpo del agente canónico.
 
 Pide una confirmación por tipo de acción, nunca por enlace, con los comandos visibles, en este orden fijo (de menos a más riesgo; el estado propio al final):
 1. Crear enlaces y réplicas faltantes.

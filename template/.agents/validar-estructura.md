@@ -16,8 +16,8 @@ La sesión principal corre E1 a E22. No se delegan a un subagente.
 | # | Bloque | Qué se comprueba | Cómo |
 |---|---|---|---|
 | E1 | enlaces | Se mide sobre las herramientas declaradas en `.agents/local/kit-visto`; sin «visto» legible (ausente o corrupto) se miden todas las filas y ninguna herramienta está declarada: `FALTA` es `AVISO` con el texto exacto «enlace FALTA de herramienta no declarada: correr `/sdd-enlaces`», y `DIFERENTE` u `OCUPADO` sin `excepcion:` son `FALLA`. Con «visto» legible: cada fila de `.agents/sync-agents.md` está `OK`; ningún `OCUPADO` ni `DIFERENTE`. Filas de herramientas no declaradas, `excepcion:` y `copia:` son `AVISO`, no `FALLA` | Estados de `sync-agents.md` |
-| E2 | enlaces | **Réplicas huérfanas:** skill, agente o comando que existe en una carpeta de herramienta (`.claude/`, `.cursor/`, `.gemini/`, `.github/`) y no en `.agents/` | `sync-agents.md` paso 8 |
-| E3 | enlaces | **Réplicas faltantes:** entrada de `.agents/` que una carpeta de herramienta real (no enlace) no tiene | `sync-agents.md` paso 8 |
+| E2 | enlaces | **Réplicas huérfanas:** skill, agente o comando que existe en una carpeta de herramienta (`.claude/`, `.cursor/`, `.gemini/`, `.github/`, `.opencode/`) y no en `.agents/` | `sync-agents.md` paso 8 |
+| E3 | enlaces | **Réplicas faltantes:** entrada de `.agents/` que una carpeta de herramienta real (no enlace) no tiene. En `.opencode/agents/` los roles son adaptadores: una entrada de `.agents/agents/` sin adaptador no es faltante | `sync-agents.md` paso 8 |
 | E4 | skills | Cada carpeta de `.agents/skills/` tiene `SKILL.md`; sin archivos sueltos en `skills/` | `ls` |
 | E5 | skills | `name` del frontmatter = nombre de la carpeta (minúsculas, guiones, sin acentos) | Leer la línea `name:` |
 | E6 | skills | `description` presente, con qué hace **y** cuándo activarla; máx. 1024 caracteres | Contar la descripción |
