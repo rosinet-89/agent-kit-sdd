@@ -1,5 +1,5 @@
 # 01 — Spec: Deudas abiertas del kit
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

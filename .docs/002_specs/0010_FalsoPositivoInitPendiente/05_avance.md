@@ -4,12 +4,14 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-11-03 21:33 |
-| Fase actual | cierre |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | F4.5: ensayo mktemp: espacio inicial, BOM antes del titulo, BOM antes del comentario, 
  suelto, segundo comentario y marcador movido dan FALLA; control OK; copia borrada |
-| Siguiente paso | Visto bueno del usuario a las propuestas de deuda y MEMORY y a los commits (orden 0008, 0010, 0009) |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: validate del 2026-11-01 19:07, APROBADO (Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
+| Aviso o ticket | Issue #3 cerrado en GitHub; lo confirmó la persona el 2026-11-21 |
 | Estado BD | No aplica |
 | Código | Solo Markdown: `template/AGENTS.md`, `AGENTS.md` raíz, `README.md`, 6 piezas de `template/.agents/` con su réplica en `.agents/` (fuera de Git), ADR 0020 y su fila. Sin commits |
 
@@ -130,7 +132,7 @@ Nota de merge: orden 0008, 0010, 0009. El bump de `VersionAgentKitSdd` a 0.6.0, 
 | ADR.2 | 2026-11-01 19:05 | 2026-11-01 19:06 | 1 | 0 | ADR 0020 creado en .docs/004_adr/ (0020_MarcadorSinLiteralFueraDelComentario.md); lint OK; |
 | ADR.3 | 2026-11-01 19:06 | 2026-11-01 19:07 | 1 | 0 | fila 0020 en .docs/004_adr/README.md y referencia al ADR en 03_plan.md; template/.docs sin |
 | validate | 2026-11-01 19:07 | 2026-11-01 19:10 | — | 0 | reviewer; incluye lectura de 22 archivos |
-| cierre | 2026-11-03 21:32 | 2026-11-03 21:33 | — | 0 | sesión principal; verificación de manifiesto y E20 en solo lectura |
+| cierre | 2026-11-03 21:32 | 2026-11-03 21:33 | — | 0 | sesión principal; verificación de manifiesto y E20 en solo lectura; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 
 ## Plan contra real
 | Fase | Estimado (min) | Real (min) | Nota |

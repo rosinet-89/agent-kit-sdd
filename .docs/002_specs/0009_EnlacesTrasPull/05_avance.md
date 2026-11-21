@@ -4,11 +4,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-11-03 21:37 |
-| Fase actual | `cierre` hecho (sin commit) |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | F0 a F7, `validate` del delta y `cierre` el 2026-11-03 21:37 |
-| Siguiente paso | Commits propuestos por la sesión principal con confirmación del usuario; abrir `/sdd-flujo` si se decide hacer `06_flujo.md` |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno (ver riesgo aceptado y `06_flujo.md` en Decisiones 23 y 28) |
+| Validación del conjunto | Aprobada: validate del 2026-11-02 17:03, APROBADO (decisión 21), y validate del delta F7 el 2026-11-03 21:37, APROBADO (decisión 28); la prueba manual de `/sdd-enlaces` la sustituyó el riesgo aceptado por la persona (decisión 23). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
+| Aviso o ticket | Issue #2 cerrado en GitHub; lo confirmó la persona el 2026-11-21 |
 | Coordinación | Otras sesiones trabajan en `0008` (issue #1) y `0010` (issue #3). No tocar sus carpetas. Si se edita un archivo de `template/` que otra pueda tocar, usar Edit mínimo y releer antes. |
 | Estado BD | No aplica |
 | Código | Hecho en el árbol, sin commitear: `sdd-enlaces.md`, `sync-agents.md`, `validar-estructura.md`, `sdd-estructura.md`, ambos `AGENTS.md`, README, SKILL, coordinator, `sdd.md`, `reviewer.md`, `sdd-init.md` (template y clon), `ACTUALIZAR.md`, `INSTALAR.md`, `VersionAgentKitSdd` 0.6.0, `ChangelogAgentKitSdd.md`, `manifiestos/0.6.0.md`, ADR 0021 y 0022 |
@@ -99,7 +101,7 @@ Espejo de `04_tasks.md` (53 pasos): todos `[x]` al cierre.
 | F1 a F6 + validate | 2026-11-02 16:52 | 2026-11-02 17:03 | 11 | — | Implementer por fase y reviewer. Las horas por fase no se tomaron una a una; se registra el total del reloj real |
 | change + plan/tareas del delta | 2026-11-03 21:22 | 2026-11-03 21:31 | — | — | planner (spec del Cambio 1, 02, 03, F7) y reviewer |
 | F7.1 a F7.8 + validate del delta | 2026-11-03 21:31 | 2026-11-03 21:37 | 6 | — | Un implementer por paso; reviewer; corrección de git-commit |
-| cierre | 2026-11-03 21:37 | 2026-11-03 21:37 | 0 | — | Plan contra real, índice, propuestas |
+| cierre | 2026-11-03 21:37 | 2026-11-03 21:37 | 0 | — | Plan contra real, índice, propuestas; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 
 ## Plan contra real
 | Fase | Estimado (h) | Real | Nota |

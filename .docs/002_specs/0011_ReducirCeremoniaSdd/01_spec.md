@@ -1,5 +1,5 @@
 # 01 — Spec: Reducir la ceremonia del flujo SDD
-Estado: implementada (2026-11-03 23:03)
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

@@ -4,11 +4,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 23:45 |
-| Fase actual | `cierre` |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | ADR 0016, 0017 y 0018, y la línea de `MEMORY.md`, 2026-10-25 23:26 |
-| Siguiente paso | Ninguno. Commits hechos: `6f9e21a`, `6516e1c`, `6784948`, `63f19b2`, `3770895` |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: validate del 2026-10-25 23:22, APROBADO (decisión 26 y Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
+| Pausas | Hueco del 2026-10-25 de 17:16 a 20:50 (214 min): pausa, confirmada por la persona el 2026-11-21; no entra al total |
 | Coordinación | Deudas 005, 006, 007 y 008 resueltas en este cierre. |
 | Estado BD | No aplica |
 | Código | `template/` editado. Renombres en la raíz. Manifiesto regenerado. Commits `6f9e21a`, `6516e1c`, `6784948`, `63f19b2`, `3770895` |
@@ -94,8 +96,8 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | F6.7 | 2026-10-25 23:05 | 2026-10-25 23:10 | 5 | 0 | siete casos de numeración en mktemp. Mismo hueco que F6.6 |
 | F6.8 | 2026-10-25 23:10 | 2026-10-25 23:13 | 3 | 0 | encoding, E19 y 42 huellas. Mismo hueco que F6.6 |
 | validate | 2026-10-25 23:17 | 2026-10-25 23:22 | 5 | 0 | reviewer, VEREDICTO: APROBADO; el chat lo lanzó |
-| cierre | 2026-10-25 23:24 | 2026-10-25 23:25 | 1 | 0 | sin `06_flujo`; deudas 005 a 008 resueltas; la sesión lo escribió |
-| clarify | 2026-10-25 20:50 | 2026-10-25 20:57 | 7 | 0 | reviewer, CAMBIOS NECESARIOS, 11 hallazgos. Hueco 17:16–20:50 (214 min): pausa por confirmar; no entra en este renglón |
+| cierre | 2026-10-25 23:24 | 2026-10-25 23:25 | 1 | 0 | sin `06_flujo`; deudas 005 a 008 resueltas; la sesión lo escribió; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
+| clarify | 2026-10-25 20:50 | 2026-10-25 20:57 | 7 | 0 | reviewer, CAMBIOS NECESARIOS, 11 hallazgos. Hueco 17:16–20:50 (214 min): pausa (confirmada por la persona el 2026-11-21); no entra en este renglón |
 
 ## Plan contra real
 | Fase | Estimado | Real | Delta |

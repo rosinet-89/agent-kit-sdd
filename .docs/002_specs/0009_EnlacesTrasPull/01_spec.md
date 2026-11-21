@@ -1,5 +1,5 @@
 # 01 — Spec: Enlaces tras un pull
-Estado: implementada (2026-11-03 21:37)
+Estado: cerrada
 Ticket: issue #2 rosinet-89/agent-kit-sdd
 
 ## Contexto y objetivo

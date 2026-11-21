@@ -4,12 +4,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-11-03 23:04 |
-| Fase actual | **Cerrada** (`Estado: implementada`). F0 a F9 hechas; sin commit |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Cierre (23:04) | ADR 0023 aceptado; versión 0.7.0, changelog y `manifiestos/0.7.0.md` (44 filas, 0 diferencias). Observación 2 de F8 corregida (decisión 18); 1, 3, 4 y 5 diferidas. Altas de deuda y entradas de `MEMORY.md` **propuestas, sin crear** (decisión 18). Árbol con 23 rutas modificadas o nuevas, **sin commit**: los commits los hace Claudio con confirmación explícita |
 | Último paso cerrado | F5.3 (22:51): Corlos editó `reviewer.md`, `coordinator.md`, `AGENTS.md` (plantilla y raíz) y los dos README de specs; Claudio revisó diff y lint, todo OK. Antes, F3.7 (22:47): Corlos editó los 7 comandos; Claudio revisó el diff, lint OK, y corrigió `sdd-tasks.md` («`03_plan.md` solo en modo completo»). Antes, F2.3 (22:38). `04_tasks.md` aprobada por el usuario (decisión 16). F0 a F2 hechas por Claudio: `topes-y-modos.md` creada en `template/` y editadas `SKILL.md`, `plantillas.md` y `avance-y-tiempos.md`; lint OK. Sin réplica a `.agents/` todavía (F6) |
-| Siguiente paso | F6 (réplicas a `.agents/`) y F7 (verificación y medición) los hace Claudio; F8 (`/sdd-validate`, solo lectura) puede ir a Corlos como subagente en segundo plano; F9 Claudio |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: F8.1 del 2026-11-03 23:01, pasada 1 de 3, APROBADO (Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
 | Estado BD | No aplica |
 | Código | Ninguno. Solo documentos de esta carpeta (`01` a `05`) y la fila 0011 del índice de specs |
 | Traspaso (Claudio → siguiente agente) | Ver el bloque «Traspaso» de abajo |
@@ -78,6 +79,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | F6 y F7 | 2026-11-03 22:51 | 2026-11-03 22:56 | 5 | 0 | Claudio: 13 réplicas, chequeos, ensayo de instalación y medición M1/M2 |
 | F8 | 2026-11-03 22:56 | 2026-11-03 23:01 | 5 | 0 | Corlos (reviewer, solo lectura) en subagente de segundo plano; pasada 1 de 3, APROBADO, sin correcciones (F8.2 sin cambios) |
 | F9 | 2026-11-03 23:01 | 2026-11-03 23:04 | 3 | 0 | Tres subagentes en paralelo (ADR 0023, versión y changelog, manifiesto); Claudio verificó (44 huellas, 0 diferencias) y cerró la spec. El tiempo de espera del usuario no está descontado |
+| cierre | 2026-11-21 10:02 | 2026-11-21 10:04 | 2 | 0 | re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada; antes no tenía fila `cierre` |
 
 ## Plan contra real
 Estimado del plan (`03_plan.md` § 7, 163 min y 173 min en `04_tasks.md`) frente a lo medido. Los tiempos de F0 a F9 son minutos de reloj entre filas, no trabajo medido por separado; las esperas del usuario no se descontaron.

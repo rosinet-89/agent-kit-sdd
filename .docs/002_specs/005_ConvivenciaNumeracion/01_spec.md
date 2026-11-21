@@ -1,5 +1,5 @@
 # 01 — Spec: Convivencia de la numeración de 3 y 4 dígitos
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 17:04 |
-| Fase actual | Cerrada |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | `cierre` 2026-10-25 16:50; F7.6 aprobada por el usuario; sin `06_flujo` (decisión 29) |
-| Siguiente paso | Ninguno en esta carpeta. ADR 015 y deuda 008 creados (decisión 32). |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: F7.1 a F7.5 por dos reviewers el 2026-10-25 16:47 y F8.4 a las 16:49, APROBADO (decisiones 24 y 27); verificaciones manuales F1.3, F4.1 y F7.6 aprobadas (Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
 | Coordinación | Corre en paralelo con `004_ModeloYPermisosAgentes`. Las fases de documentación (`spec`, `clarify`, `plan`, `tasks`) no tocan `template/` y no chocan. **Implementación en serie:** no editar `template/` a la vez que la `004`. Archivos compartidos: `CHANGELOG.md` (mismo bloque de 0.5.0, líneas distintas), `template/AGENTS.md` (secciones distintas: `004` "Qué lee cada rol", esta "Formato y numeración") y `manifiestos/0.5.0.md` + E20: lo regenera quien cierre segundo, siempre al final. Partir del contenido actual de cada archivo y no revertir trabajo ajeno. Corlos puede estar editando otras carpetas; no tocar `003_OptimizarArnes`. |
 | Estado BD | No aplica |
 | Código | ADR 015 aceptado. Deuda 008 abierta. Sin código de producto |
@@ -108,7 +109,7 @@ Validación de F7 y F8 por reviewers, en `mktemp -d` (nunca en el kit ni en un p
 | F8.3 | 2026-10-25 16:46 | 2026-10-25 16:49 | 1 | 0 | F6 repetido: manifiesto regenerado una vez (solo cambiaron las filas de `template/.docs/002_specs/README.md` y `validar-estructura.md`); E20 42/42 |
 | F8.4 | 2026-10-25 16:46 | 2026-10-25 16:49 | 1 | 0 | revalidación por reviewer: 9 casos de E12 y desempate OK; huella del aviso `9903c8f8…d213` con dos extracciones independientes; E20 42/42; fila E20 sin cambios |
 | F7.6 | 2026-10-25 16:49 | 2026-10-25 16:50 | 1 | 0 | visto final del usuario (F7.6) |
-| cierre | 2026-10-25 16:50 | 2026-10-25 16:50 | 1 | 0 | plan contra real, deuda 004 resuelta, propuestas de MEMORY y ADR |
+| cierre | 2026-10-25 16:50 | 2026-10-25 16:50 | 1 | 0 | plan contra real, deuda 004 resuelta, propuestas de MEMORY y ADR; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 
 ## Plan contra real
 

@@ -4,11 +4,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-11-03 21:33 |
-| Fase actual | `cierre` |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | cierre de 0008 (spec `implementada`, plan contra real, índice), 2026-11-03 21:33 |
-| Siguiente paso | Ninguno en esta carpeta. Pendiente del usuario: commits, altas de deuda y entradas de MEMORY propuestas |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: validate del reviewer APROBADO de F0 a F6; RF-16 a RF-18 cumplidos con F7 (Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
+| Aviso o ticket | Issue #1 cerrado en GitHub; lo confirmó la persona el 2026-11-21 |
 | Estado BD | No aplica |
 | Código | Solo Markdown: `template/` (11 archivos) y `AGENTS.md` de la raíz; réplica en `.agents/` de la raíz (fuera de Git); ADR 0019. Sin commits |
 
@@ -53,7 +55,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | tasks | 2026-11-01 13:56 | 2026-11-01 14:01 | ~5 | — | Incluye 04, corrección de 02 y revisión |
 | implement F0-F7 | 2026-11-01 15:17 | 2026-11-01 15:44 | ~28 | — | Un implementer por paso; incluye F6 (reviewer), validate y ADR. Estimado 150 min |
 | pulido de redacción | 2026-11-01 16:02 | 2026-11-01 16:04 | ~3 | — | Seis archivos de template/ y réplica a la raíz |
-| cierre | 2026-11-03 21:33 | 2026-11-03 21:33 | ~5 | — | Comprobaciones de changelog, manifiesto, ADR 0019 e índice |
+| cierre | 2026-11-03 21:33 | 2026-11-03 21:33 | ~5 | — | Comprobaciones de changelog, manifiesto, ADR 0019 e índice; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 ## Plan contra real
 | Fase | Estimado (min) | Real (min) | Nota |
 |---|---|---|---|

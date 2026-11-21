@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 17:04 |
-| Fase actual | Cerrada |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | `cierre` 2026-10-25 16:13; sin `06_flujo` (decisión 36) |
-| Siguiente paso | Ninguno en esta carpeta. Commit si el usuario lo pide. |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: validate del 2026-10-25 16:10, APROBADO (decisión 35). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
 | Coordinación | Corlos cerró `003_OptimizarArnes` (verificado 2026-10-25 15:05: Fase actual Cerrada, cierre 2026-10-25 14:23, archivos `01`–`06`). No tocar esa carpeta. Esta spec cambia el frontmatter de los 4 agentes de `template/.agents/agents/`; partir de su contenido actual (la `003` ya reescribió sus cuerpos). Cualquier cambio a `template/` obliga a regenerar `manifiestos/0.5.0.md` y repetir E20 al cerrar. |
 | Estado BD | No aplica |
 | Código | F2 a F7 en `template/`, los dos `AGENTS.md`, `CHANGELOG.md` y `manifiestos/0.5.0.md` (42 filas, E20 en 0). Deuda 003 resuelta. Deuda 006 abierta. ADR 011, 012 y 013 aceptados. Refresco de `.agents/` hecho el 2026-10-25 17:04 (decisión 38): se conservaron `napkin.md` y `.agents/skills/caveman/`. |
@@ -209,7 +210,7 @@ Validate 2026-10-25 16:10. Veredicto: APROBADO. Lint utf-8 sin BOM en el alcance
 | F7.6 | 2026-10-25 16:01 | 2026-10-25 16:01 | 1 | 0 | medición final y RF-14; mismo minuto que F4–F7, mínimo 1 del contrato avance-y-tiempos.md |
 | F7.7 | 2026-10-25 16:01 | 2026-10-25 16:01 | 1 | 0 | refresco propuesto, no ejecutado; mismo minuto que F4–F7, mínimo 1 del contrato avance-y-tiempos.md |
 | validate | 2026-10-25 16:02 | 2026-10-25 16:10 | 8 | 0 | reviewer, RF-1 a RF-21 pasan; seguridad-basica sin hallazgos en 15 archivos |
-| cierre | 2026-10-25 16:11 | 2026-10-25 16:13 | 2 | 0 | sin flujo, por decisión del usuario; deuda 003 resuelta |
+| cierre | 2026-10-25 16:11 | 2026-10-25 16:13 | 2 | 0 | sin flujo, por decisión del usuario; deuda 003 resuelta; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 
 ## Plan contra real
 | Fase | Estimado | Real | Delta |

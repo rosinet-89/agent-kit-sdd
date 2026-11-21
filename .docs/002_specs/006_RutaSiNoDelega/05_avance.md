@@ -4,11 +4,12 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 ## PUNTO DE RETOMO — leer esto primero
 | Dato | Contenido |
 |---|---|
-| Última sesión | 2026-10-25 17:04 |
-| Fase actual | Cerrada |
+| Última sesión | 2026-11-21 10:04 |
+| Fase actual | `cierre`: `Cerrado` (2026-11-21 10:04) |
 | Último paso cerrado | `cierre` 2026-10-25 15:50; sin `06_flujo` (decisión 8) |
-| Siguiente paso | Ninguno en esta carpeta. Manifiesto y E20 regenerados por la `005` (F6 16:44, F8 16:49; decisión 10). |
+| Siguiente paso | Ninguno |
 | Bloqueos abiertos | Ninguno |
+| Validación del conjunto | Aprobada: validate del 2026-10-25 15:47, APROBADO (Pruebas). Registrada en el punto de retomo el 2026-11-21 con el visto bueno de la persona |
 | Coordinación | Caso de origen el 2026-10-25 en `004_ModeloYPermisosAgentes`. No editar las carpetas `003`, `004` ni `005`. El cuerpo de `coordinator.md` y la skill ya llevan la regla de esta spec. La cabecera del coordinator queda para la `004`: no revertirla cuando la escriba. El manifiesto y E20, al cierre, quien termine último. |
 | Estado BD | No aplica |
 | Código | Skill, contrato, coordinator, nueve comandos y changelog en `template/`; copia local igual. Manifiesto y E20 los regeneró la `005`; ningún archivo de `template/` es más nuevo que `manifiestos/0.5.0.md`. |
@@ -52,7 +53,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | F5.1 | 2026-10-25 15:42 | 2026-10-25 15:43 | 1 | 0 | viñeta nueva en 0.5.0; VERSION sigue 0.5.0 |
 | F6.1 | 2026-10-25 15:42 | 2026-10-25 15:43 | 1 | 0 | 12 archivos copiados; napkin sin tocar |
 | validate | 2026-10-25 15:44 | 2026-10-25 15:47 | 3 | 0 | reviewer, un solo paso; APROBADO |
-| cierre | 2026-10-25 15:49 | 2026-10-25 15:50 | 1 | 0 | sin flujo, por decisión del usuario; sin manifiesto |
+| cierre | 2026-10-25 15:49 | 2026-10-25 15:50 | 1 | 0 | sin flujo, por decisión del usuario; sin manifiesto; re-cierre 2026-11-21 a `Cerrado` (corrida conjunta de 8 carpetas con la leyenda de la 0012): validación registrada en el retomo y columna del índice vaciada |
 
 ## Plan contra real
 | Fase | Estimado | Real | Delta |

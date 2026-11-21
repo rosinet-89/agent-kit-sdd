@@ -1,5 +1,5 @@
 # 01 — Spec: Falso positivo de SDD-INIT-PENDIENTE tras /sdd-init
-Estado: implementada
+Estado: cerrada
 Ticket: issue #3 de rosinet-89/agent-kit-sdd
 
 ## Contexto y objetivo

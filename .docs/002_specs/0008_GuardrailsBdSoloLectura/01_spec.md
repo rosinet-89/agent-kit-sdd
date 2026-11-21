@@ -1,5 +1,5 @@
 # 01 — Spec: Guardrails globales: la base de datos solo se lee
-Estado: implementada
+Estado: cerrada
 Ticket: issue #1 rosinet-89/agent-kit-sdd
 
 ## Contexto y objetivo

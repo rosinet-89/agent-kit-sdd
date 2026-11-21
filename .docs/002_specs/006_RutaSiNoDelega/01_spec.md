@@ -1,5 +1,5 @@
 # 01 — Spec: Ruta si no delega
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo
