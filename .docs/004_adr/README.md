@@ -46,3 +46,5 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0026 | [Antecedentes remite a la leyenda](0026_AntecedentesRemitenALaLeyenda.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
 | 0027 | [La leyenda se copia en el índice del clon](0027_LeyendaCopiadaEnElIndiceDelClon.md) | Aceptado | 2026-11-16 | `0012_EstatusDeSpecYCierre` |
 | 0028 | [Modelo por rol, rol en el chat salvo cambio de modelo y excepción de QA](0028_ModeloPorRolYRolEnElChat.md) | Aceptado | 2026-11-21 | `0013_ModelosPorAgente` |
+| 0029 | [Configuración del flujo por dev, no versionada, con sugerencias en un ejemplo](0029_ConfiguracionPorDevNoVersionada.md) | Aceptado | 2026-11-21 | `0014_ConfiguracionGuiada` |
+| 0030 | [Carpeta de agentes por archivo con adaptadores de rol](0030_CarpetaDeAgentesPorArchivo.md) | Aceptado | 2026-11-21 | `0014_ConfiguracionGuiada` |
