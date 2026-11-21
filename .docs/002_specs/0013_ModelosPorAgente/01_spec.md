@@ -1,5 +1,5 @@
 # 01 — Spec: Modelos por agente
-Estado: implementada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

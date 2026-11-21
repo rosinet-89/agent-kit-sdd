@@ -5,13 +5,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Dato | Contenido |
 |---|---|
 | Modo | `completo`, sin flujo (decisión 35). Condiciones de [topes-y-modos.md](../../../.agents/skills/sdd/topes-y-modos.md): no cumple la 1 (más de 3 archivos), la 3 (cambia contratos entre roles), la 4 (hay alternativa real: ADR), la 6 (comportamiento nuevo) ni la 8 (toca `agents` y `commands`/`skills`); la 5 sí |
-| Última sesión | 2026-11-21 14:22 |
-| Fase actual | `cierre`, primera corrida: `Implementado` (decisión 36) |
-| Último paso cerrado | `cierre`: previa OK; cumplen los criterios 1, 3, 4 y 5; falta el 2 (commits) |
-| Siguiente paso | Commits por módulo con la confirmación de la persona (separando los cambios de OpenCode, decisión 28); después `/sdd-cierre 0013_ModelosPorAgente` de nuevo para `Cerrado` |
+| Última sesión | 2026-11-21 14:32 |
+| Fase actual | `cierre`, segunda corrida: `Cerrado` (decisión 39) |
+| Último paso cerrado | `cierre`: cumplen los cinco criterios; 7 commits locales (`79c7383` a `f59a2f5`) |
+| Siguiente paso | Ninguno: spec cerrada. Las equivalencias de modelos por herramienta siguen en la `0014_ConfiguracionGuiada` (decisión 38) |
 | Bloqueos abiertos | Ninguno |
 | Estado BD | No aplica |
-| Código | `template/` (agentes, comandos, skills `sdd` y `formato-respuesta`, `AGENTS.md`, `entornos.ejemplo.md`), `AGENTS.md` de la raíz, `README.md`, `ACTUALIZAR.md`, ADR 0028 y 013, `VersionAgentKitSdd`, `ChangelogAgentKitSdd.md`, `manifiestos/0.9.0.md` y la réplica local `.agents/`. Sin commit |
+| Código | En commits locales: `template/` (agentes, comandos, skills `sdd` y `formato-respuesta`, `AGENTS.md`, `entornos.ejemplo.md`), `AGENTS.md` de la raíz, `README.md`, `ACTUALIZAR.md`, ADR 0028 y 013, `VersionAgentKitSdd`, `ChangelogAgentKitSdd.md`, `manifiestos/0.9.0.md` y la réplica local `.agents/` (fuera de Git) |
 
 ## Pasos
 | Fase | Pasos | Estado |
@@ -65,6 +65,8 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 35. **[2026-11-21 14:17] Sin flujo: `06_flujo.md` no aplica** (decisión de la persona: «en este caso no aplica flujo»). El feature cambia el kit (agentes, comandos y skills), y no hay una operación de usuario final que documentar. La fila de modo queda en «`completo`, sin flujo», como en la 0012, y `/sdd-flujo` no se corre. Alternativa descartada: generar `06_flujo.md`.
 36. **[2026-11-21 14:22] Cierre, primera corrida: `Implementado`.** La comprobación previa pasa: 42 pasos `[x]`, sin verificaciones manuales pendientes, sin flujo por el modo, sin pausa y con validate aprobado. Criterios: 1 cumple (fila `cierre` y plan contra real); 2 falla, porque todo el requerimiento sigue sin commit; 3 cumple (sin ticket ni aviso); 4 cumple (columna de pendiente vacía); 5 cumple (ninguna deuda tiene Atendida por 0013). Quedan propuestas, sin visto bueno: la deuda por el formato de credenciales de `entornos.ejemplo.md` y la línea base de la réplica en `MEMORY.md`.
 37. **[2026-11-21 14:24] Observación de credenciales resuelta ahora, sin deuda** (la persona: «la 2 la resolvemos de una vez»; también aprueba la línea de `MEMORY.md`). `entornos.ejemplo.md` › Credenciales: el archivo solo lista destinos, sin valores ni nombres de credenciales, y una línea de credencial dentro de `## QA` rompe el formato. El nombre de la variable va en el caso, en «Datos de partida», que ya es lo que leen la plantilla y `tester`. Cabe en RF-19 y RF-27 sin cambiar la spec. Se recalculó la huella en `manifiestos/0.9.0.md` y se replicó a `.agents/`. Alternativa descartada: una sección `## Credenciales` con `- destino: VAR` (un segundo formato que `tester` tendría que leer). `MEMORY.md` suma `skills/reporte-sesiones` a la línea base.
+38. **[2026-11-21 14:31] Equivalencias de modelos por herramienta: van a la 0014, no a la 0013** (decisión de la persona). La persona trae una tabla por herramienta (Claude Code, Cursor, Antigravity, Codex y OpenCode) con los roles sesión principal, implementer y tester. Esa tabla pasa a la `0014_ConfiguracionGuiada` como insumo. En Claude Code, `tester` sigue en `haiku`, como define esta spec, aunque la tabla traía `claude-sonnet-5-5`; el respaldo de RF-30 se mantiene. Alternativas descartadas: un `/sdd-change` de la 0013 (F10); una spec nueva 0016.
+39. **[2026-11-21 14:32] Cierre, segunda corrida: `Cerrado`.** La comprobación previa pasa. Criterios: 1 cumple (fila `cierre` y plan contra real actualizadas); 2 cumple (7 commits locales, de `79c7383` a `f59a2f5`, separando OpenCode en el primero; las filas 0014 y 0015 del índice no son de este requerimiento); 3 cumple (sin ticket); 4 cumple (columna de pendiente vacía, sin deuda que enlazar); 5 cumple (ninguna deuda tiene Atendida por 0013). No deja deuda: la observación de credenciales se resolvió en la decisión 37. Sin push.
 
 ## Pruebas
 - [2026-11-21 14:06] Vuelta 1. 28 de 29 RF con evidencia por `grep`, `diff` y lint. `explore` corrió en claude-haiku-5-5 (transcript y declaración) y cumplió el encargo cerrado. RF-12 falló con un encargo incompleto (decisiones 31 y 32).
@@ -95,15 +97,15 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | clarify | 2026-11-21 10:22 | 2026-11-21 10:23 | 1 | 0 | Pasada 3 de 3, la última: rol reviewer en el chat (Opus 5.5, decisión 17): 8 hallazgos (3 MEDIA, 5 BAJA), CAMBIOS NECESARIOS; tope alcanzado |
 | plan | 2026-11-21 11:17 | 2026-11-21 11:21 | 4 | 0 | Rol planner en el chat (modelo `claude-opus-5-5`, decisión 23): `02_analisis_impacto.md` y `03_plan.md`; lectura de agentes, comandos, `restricciones-de-rol.md`, Guardrails, `ACTUALIZAR.md` y ADR 013 |
 | tasks | 2026-11-21 11:22 | 2026-11-21 11:24 | 2 | 0 | Rol planner en el chat (modelo `claude-opus-5-5`, decisión 24): `04_tasks.md`, 36 pasos en F0 a F8 |
-| cierre | 2026-11-21 14:21 | 2026-11-21 14:22 | 1 | 0 | la sesión (claude-opus-5-5), primera corrida: previa OK; criterio 2 falla (cambios sin commit); resultado `Implementado` |
+| cierre | 2026-11-21 14:21 | 2026-11-21 14:32 | 11 | 0 | la sesión (claude-opus-5-5). Primera corrida (14:21): previa OK, criterio 2 falla, resultado `Implementado`. Después: credenciales resueltas (decisión 37), `MEMORY.md` y 7 commits. Segunda corrida: resultado `Cerrado` |
 
 ## Plan contra real
 
-El real es la suma de la columna Minutos. Las filas de lotes en paralelo cubren varias fases y no se parten. Documentación SDD = `spec`, `clarify`, ajustes de spec, `plan`, `tasks`, `validate`, `change`, plan y tareas de F9, y `cierre` (48 min).
+El real es la suma de la columna Minutos. Las filas de lotes en paralelo cubren varias fases y no se parten. Documentación SDD = `spec`, `clarify`, ajustes de spec, `plan`, `tasks`, `validate`, `change`, plan y tareas de F9, y `cierre` (58 min).
 
 | Fase | Estimado | Real | Delta |
 |---|---|---|---|
-| Documentación SDD | sin estimado | 0.8 h | — |
+| Documentación SDD | sin estimado | 1.0 h | — |
 | F0 | 0.17 h | 0.03 h | −0.14 h |
 | F1 a F8 (lotes 1 a 5 y F8.2-F8.4) | 4.75 h | 0.1 h | −4.65 h |
 | F9 | 0.5 h | 0.03 h | −0.47 h |
