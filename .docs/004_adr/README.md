@@ -48,3 +48,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0028 | [Modelo por rol, rol en el chat salvo cambio de modelo y excepción de QA](0028_ModeloPorRolYRolEnElChat.md) | Aceptado | 2026-11-21 | `0013_ModelosPorAgente` |
 | 0029 | [Configuración del flujo por dev, no versionada, con sugerencias en un ejemplo](0029_ConfiguracionPorDevNoVersionada.md) | Aceptado | 2026-11-21 | `0014_ConfiguracionGuiada` |
 | 0030 | [Carpeta de agentes por archivo con adaptadores de rol](0030_CarpetaDeAgentesPorArchivo.md) | Aceptado | 2026-11-21 | `0014_ConfiguracionGuiada` |
+| 0031 | [El cierre decide el criterio 2 con sus commits en una corrida](0031_CierreConSusCommitsEnUnaCorrida.md) | Aceptado | 2026-11-21 | `0016_CierreEnUnaCorrida` |
