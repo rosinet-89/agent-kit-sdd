@@ -312,6 +312,8 @@ Exactamente `AGENTS.md`, `CLAUDE.md` y `.gitignore`. Nunca se reemplazan ni se c
 muestran los faltantes, para que el usuario los incorpore a mano o los marque «mantener».
 El paso 7 de «Cada sesión» de `AGENTS.md` (chequeo de enlaces y kit) también se incorpora a mano en
 los proyectos existentes.
+Lo mismo vale para la excepción de QA a la regla 1 de los Guardrails y para los roles en `AGENTS.md`:
+son grupo B y se incorporan a mano.
 
 ### Faltante
 
@@ -411,6 +413,14 @@ Reemplazar KIT-VIEJO es la única excepción a «la copia nunca sobrescribe». S
 archivos KIT-VIEJO, con la diferencia ya mostrada y la confirmación explícita.
 
 PERSONALIZADO no se modifica. RETIRADO no se borra; solo se informa.
+
+Modelo de los agentes:
+- Al reemplazar un agente KIT-VIEJO se aplica el modelo por omisión de RF-5 (ver `sdd-init`; aquí
+  no se copia la regla). Si la tabla de `restricciones-de-rol.md` del proyecto está personalizada,
+  se aplica el modelo de esa tabla.
+- Un agente PERSONALIZADO conserva su modelo.
+- Un `tester.md` que solo difiere del kit en entradas `mcp__` de `tools` no cuenta como
+  personalizado, y esas entradas se conservan al reemplazarlo.
 
 Si el proyecto no usa Git, el respaldo previo del archivo reemplazado es opcional y va fuera del
 proyecto.

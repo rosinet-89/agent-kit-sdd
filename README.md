@@ -10,7 +10,7 @@ esquema: **`AGENTS.md`** como fuente de verdad, **`.agents/`** con agentes, coma
 AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
 .agents/
   README.md  napkin.md  sync-agents.md  preferencias.ejemplo.md
-  agents/    coordinator, planner, implementer, reviewer
+  agents/    coordinator, planner, implementer, reviewer, tester, explore
   commands/  sdd, sdd-init, sdd-spec, -clarify, -plan, -tasks, -implement,
              -validate, -flujo, -cierre, -change, -status, -constitucion
   skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta,

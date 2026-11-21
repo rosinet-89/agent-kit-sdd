@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.9.0 — 2026-11-21
+- Modelos por rol: tabla en la sección «Modelo por rol» de `restricciones-de-rol.md`. Planner, coordinator
+  y reviewer en opus; implementer en sonnet. Roles nuevos `tester` y `explore`, en haiku y con encargo
+  cerrado. El ADR 0028 reemplaza al ADR 013.
+- Rol en el chat salvo cambio de modelo: la regla vive en `SKILL.md` › «Dónde corre cada rol». Los
+  comandos de fase dicen «Ejecuta el rol».
+- `07_casos_prueba.md` reemplaza a `07_pruebas_qa.md`. Un `07_pruebas_qa.md` ya existente se conserva.
+- Excepción de QA a `AGENTS.md` › Guardrails, regla 1, con `.agents/local/entornos.md` (ejemplo en
+  `.agents/entornos.ejemplo.md`). Modo seguro por omisión.
+- Chequeo nuevo E23 en `/sdd-estructura`.
+- Nota de grupo B: `AGENTS.md` (Guardrails, roles y Comandos) no se pisa; cada proyecto lo incorpora a
+  mano. Hasta entonces `tester` queda en modo seguro.
+- Proyectos que usan solo otras herramientas: el modelo va como `inherit`.
+- Encargo a un rol Haiku: lo comprueba quien lo lanza, y el rol lo repite como segunda barrera. Si no
+  entrega, un solo relanzamiento con el modelo del implementer y después la sesión principal
+  (`SKILL.md` › «Dónde corre cada rol»). El ADR 0028 descarta aceptarlo solo como instrucción con deuda.
+
 ## 0.8.0 — 2026-11-16
 - Estatus terminal de una spec: `Cerrado` y `Descartado`. La leyenda de estatus es la fuente única y vive
   en `## Leyenda de estatus` de `.docs/002_specs/README.md` (la definición de deuda, bajo `## Estados`
