@@ -27,6 +27,8 @@ que se distingue rápido):
 | planner | 🟩 |
 | implementer | 🟧 |
 | reviewer | 🟥 |
+| tester | 🟨 |
+| explore | 🟫 |
 
 - **Skill:** las que se leyeron y aplicaron en esta respuesta, separadas por coma.
 - **Contexto:** 2 a 4 archivos o comandos que sostienen la respuesta, no la lista completa.

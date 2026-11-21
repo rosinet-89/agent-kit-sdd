@@ -10,7 +10,7 @@ Qué lee: `01_spec.md`, `.docs/001_constitucion/constitution.md` y las skills de
 Qué hace:
 
 1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
-2. Delega en el subagente **reviewer** la revisión de `01_spec.md`. Debe listar, sin proponer soluciones:
+2. Ejecuta el rol **reviewer** (dónde corre: `.agents/skills/sdd/SKILL.md` › «Dónde corre cada rol») para la revisión de `01_spec.md`. Debe listar, sin proponer soluciones:
    1. Ambigüedades restantes (RF que no se pueden verificar).
    2. Contradicciones entre requisitos.
    3. Casos límite no cubiertos.

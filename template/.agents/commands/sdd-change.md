@@ -10,7 +10,7 @@ Qué lee: `01_spec.md` y el cambio pedido. Para señalar el efecto, solo las par
 Qué hace:
 
 1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
-2. Delega en el subagente **planner** la actualización de `01_spec.md`: RF nuevo o modificado en EARS, sus casos límite y lo que queda fuera de alcance.
+2. Ejecuta el rol **planner** (dónde corre: `.agents/skills/sdd/SKILL.md` › «Dónde corre cada rol») para la actualización de `01_spec.md`: RF nuevo o modificado en EARS, sus casos límite y lo que queda fuera de alcance.
 3. Indica qué partes de `02_analisis_impacto.md`, `03_plan.md` y `04_tasks.md` habría que cambiar después, y si cambia el estimado. No las reescribas en este comando. Si promueve de ligero a completo, conserva `01_spec.md` y `04_tasks.md` y completa `02`, `03` y `06` según `.agents/skills/sdd/topes-y-modos.md`.
 4. Muestra el contenido que cambió en la spec y espera la aprobación. Anota la decisión con su hora en `05_avance.md`. La sesión principal registra la fila `change` según `.agents/skills/sdd/avance-y-tiempos.md`.
 

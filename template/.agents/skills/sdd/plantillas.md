@@ -135,3 +135,42 @@ Para el usuario final y soporte.
 ## 9. Fuera de alcance
 ## 10. Referencias (01_spec, 03_plan, pantallas)
 ```
+
+## 07_casos_prueba.md
+
+Solo si el feature tiene pasos verificables por ejecución. Sin ellos no se crea.
+Lo genera el planner en `tasks`, antes de implementar.
+
+```markdown
+# 07 — Casos de prueba: <Nombre>
+
+## Casos
+### CP-01 <qué se comprueba>
+- RF: RF-1
+- Datos de partida: <estado inicial; credenciales solo por nombre de variable, por ejemplo `QA_USUARIO`>
+- Destino: `https://qa.ejemplo.test` (`esquema://host[:puerto]`, `local` o `ninguno`)
+- Pasos:
+  1. Abrir `https://qa.ejemplo.test/login`.
+  2. Llenar el campo con id `usuario` con el valor de `QA_USUARIO`.
+  3. Pulsar el botón con id `entrar`.
+- Resultado esperado: el texto del encabezado es exactamente `Inicio`.
+- Herramienta: <la que declara AGENTS.md › Comandos> | a mano
+- Escribe: sí | no
+
+## Corridas
+| Caso | Fecha | Estado | Obtenido / nota |
+|---|---|---|---|
+| CP-01 | AAAA-MM-DD | obtenido | |
+
+## Evidencia formal (opcional)
+Solo si se pidió evidencia formal. Si no, "No aplica".
+```
+
+Reglas:
+- Estados de una corrida (lista cerrada): `obtenido` (hay resultado, sin comparar), `bloqueado` (no se pudo correr), `manual` (lo confirma la persona), `ok` y `falla` (comparación literal hecha).
+- Un caso que usa una aplicación con base de datos, incluso solo para iniciar sesión o navegar, escribe (`sí`). La duda también cuenta como `sí`. Qué se ejecuta y qué se entrega: `AGENTS.md` › Guardrails, regla 1.
+- De las credenciales solo se escribe el nombre de la variable de entorno; nunca su valor, ni aquí, ni en el encargo, ni en la configuración de entornos.
+- Una comparación es literal cuando el resultado esperado es un texto o valor exacto y basta compararlo carácter por carácter con lo obtenido. Si requiere juicio, la deja al reviewer.
+- Con herramienta de apoyo declarada, los pasos usan sus acciones (abrir URL, llenar el campo con id, pulsar, comparar texto). Sin ella, el caso es a mano.
+- Resultados y confirmaciones manuales de la persona se anotan solo aquí; el avance lleva un enlace.
+- Compatibilidad: un `07_pruebas_qa.md` de un feature anterior se conserva sin renombrar, y validate lo lee como evidencia.

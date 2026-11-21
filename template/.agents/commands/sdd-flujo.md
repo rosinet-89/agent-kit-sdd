@@ -12,8 +12,8 @@ Alcance, el de RF-19 y el mismo criterio que `.agents/commands/sdd-validate.md`:
 Qué hace:
 
 1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
-2. Delega en el subagente **planner** `06_flujo.md` con esa sección de `plantillas.md`. Describe lo que existe (acceso, pantallas o endpoints, roles y permisos, estados, notificaciones, errores frecuentes), no lo planeado.
-3. Delega en el subagente **reviewer** el contraste de `06_flujo.md` con el código de ese alcance. Cada diferencia, con `archivo:línea`. Si las hay, el planner corrige.
+2. Ejecuta el rol **planner** (dónde corre: `.agents/skills/sdd/SKILL.md` › «Dónde corre cada rol») para generar `06_flujo.md` con esa sección de `plantillas.md`. Describe lo que existe (acceso, pantallas o endpoints, roles y permisos, estados, notificaciones, errores frecuentes), no lo planeado.
+3. Ejecuta el rol **reviewer** (dónde corre: `.agents/skills/sdd/SKILL.md` › «Dónde corre cada rol») para contrastar `06_flujo.md` con el código de ese alcance. Cada diferencia, con `archivo:línea`. Si las hay, el planner corrige.
 4. Muestra el flujo. PARA hasta que se apruebe. Anota la aprobación con su hora.
 5. La sesión principal registra la fila `flujo` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-cierre $1`.
 

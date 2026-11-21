@@ -55,7 +55,9 @@ No se fechan todas al cierre del día.
 
 Por cada paso o RF: qué se verificó (checklist "Hecho cuando"), resultado y
 evidencia breve (consulta, salida de comandos de verificación, confirmación manual del usuario
-con su hora). Si hay `07_pruebas_qa.md`, aquí solo va el puntero, sin duplicar la tabla.
+con su hora). Si existe `07_casos_prueba.md` (plantilla en [plantillas.md](plantillas.md)), los
+resultados y las confirmaciones manuales van ahí y el avance solo enlaza, sin duplicar la tabla. Sin
+ese documento, todo sigue como hoy: el resultado y la evidencia se anotan aquí.
 
 ## Tiempos reales
 
@@ -75,6 +77,7 @@ agrega un renglón.
 - **Minutos:** `fin - inicio - pausa`. Solo entra lo que fue trabajo de este feature: codear, revisar SQL juntos, decidir, probar.
 - **Pausa:** minutos que el usuario dijo que no fueron de este desarrollo (comida, otra tarea, junta, fin de día).
 - **Clarify:** la Nota de la fila `clarify` lleva «pasada n de 3»; qué cuenta como pasada está en [topes-y-modos.md](topes-y-modos.md).
+- **Modelo:** la Nota de cada tramo lleva el modelo que declaró el rol en su respuesta (el id que le da la herramienta) o «modelo no confirmado» si no lo conoce. Lo anota la sesión principal, no el rol.
 - **Mínimo y lote.** En un feature abierto desde esta versión, cada paso real mide al menos 1 minuto. No se cierran varios pasos con filas en lote de 0 minutos. La única excepción es un paso trivial cuya Nota dice exactamente "sin trabajo real". Un feature ya cerrado conserva sus filas; ninguna comprobación le exige reescribirlas. `001_ActualizarKit` sigue válido con las suyas.
 
 Las reglas de pausa, de formato de la fila, de quién escribe este avance y de la leyenda de estados viven solo en este contrato. Los comandos las nombran; no las vuelven a definir. El arranque de sesión no vive aquí: su dueño es `AGENTS.md`. Cuándo se toma la otra ruta vive en la skill `sdd`, sección «Si no hay un solo paso». Aquí no se copia.

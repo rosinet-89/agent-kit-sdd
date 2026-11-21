@@ -6,7 +6,7 @@ réplicas por herramienta como enlaces, y skills, agentes, comandos e índices c
 
 ## Alcance
 
-La sesión principal corre E1 a E22. No se delegan a un subagente.
+La sesión principal corre E1 a E23. No se delegan a un subagente.
 
 `/sdd-estructura` sin argumento corre todos los bloques. Con argumento corre uno:
 `enlaces`, `skills`, `agentes`, `comandos`, `docs`, `codificacion` o `kit` (solo en el repo del kit).
@@ -37,6 +37,7 @@ La sesión principal corre E1 a E22. No se delegan a un subagente.
 | E20 | kit | Solo en el repo del kit: recalcula la huella de cada archivo de `template/` con el algoritmo de `ACTUALIZAR.md` y la compara con manifiestos/<VERSION>.md. Falla por diferencia, por archivo sin fila o por fila sin archivo. En un proyecto instalado no aplica: ahí no hay manifiestos | Algoritmo de `ACTUALIZAR.md` |
 | E21 | sesión | **Marcador de instalación:** solo con .agents/.kit-version. Existe `AGENTS.md` y el literal `SDD-INIT-PENDIENTE` solo aparece dentro del marcador válido (cero veces en un proyecto personalizado, una en uno pendiente) | «Detalle de E21» |
 | E22 | docs | **Estatus de la fila del índice de specs y estado en el índice de deuda.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. Cita `.docs/002_specs/README.md` › «Leyenda de estatus» y `.docs/003_deuda/README.md` › «Estados», y no las pega. Avisa si, según esa leyenda, la palabra está fuera de la lista, la celda está mal formada, faltan fecha o detalle, hay un `Cerrado`, `Descartado` o `Diferido` sin su forma, el siguiente paso no coincide, o la fila del índice está ausente, duplicada o desfasada de la etapa. Avisa también si, según esa leyenda, la columna de pendiente de la fila del índice de un `Cerrado` o un `Implementado` trae texto libre: en esas filas solo valen enlaces a deudas numeradas, o vacía. Avisa si, según «Estados», en el índice de deuda el estado no es `Abierta`, `En atención`, `Resuelta` ni `Descartada`, o una `Resuelta` no tiene «Cómo se atendió». La fila del índice no es la fila `cierre` ni la fila de modo. Si esa leyenda no trae `Cerrado` y `Descartado`, el aviso lo dice y no reescribe el índice. El cruce de la fila del índice con la carpeta o el archivo sigue en E13 | Leer las filas del índice de specs y aplicar la leyenda citada; leer el estado del índice de deuda y aplicar «Estados»; anotar `AVISO`; no escribir |
+| E23 | agentes | **Modelo por rol.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. Compara el `model:` del frontmatter de cada agente de `.agents/agents/` con la tabla «Modelo por rol» del proyecto (`.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol»), que se cita y no se pega. Avisa si un agente no declara `model:` o si su valor difiere de la fila de su rol. Un agente personalizado con un modelo distinto avisa y no falla: la persona decide si lo deja. Un rol sin fila en la tabla no se compara | Leer el `model:` de cada agente y la tabla citada; anotar `AVISO` por cada diferencia; no escribir |
 
 ## Detalle de E21
 
@@ -86,7 +87,7 @@ MEDIA  | E7  | .agents/skills/adr       | Falta fila en AGENTS.md | Agregar la r
 BAJA   | E15 | ChangelogAgentKitSdd.md  | BOM al inicio           | Quitar el BOM
 ```
 
-3. Sin fallos: `estructura OK (E1–E22, N archivos revisados)`; si hubo avisos, se añade
+3. Sin fallos: `estructura OK (E1–E23, N archivos revisados)`; si hubo avisos, se añade
    `, M avisos` y se listan en **Avisos**. No listes los OK uno a uno.
 4. Cierra con **Correcciones propuestas**: lista numerada, sin aplicarlas. Las correcciones de
    enlaces y réplicas se aplican con `/sdd-enlaces`; las demás, solo si el usuario las pide como

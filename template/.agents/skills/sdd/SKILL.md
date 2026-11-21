@@ -3,7 +3,7 @@ name: sdd
 description: >
   Flujo Spec-Driven Development (SDD) para todo análisis o desarrollo nuevo: spec,
   análisis de impacto, plan, tareas, implementación, validación, flujo operativo y cierre,
-  con los agentes coordinator, planner, implementer y reviewer, en
+  con los agentes coordinator, planner, implementer, reviewer, tester y explore, en
   `.docs/002_specs/<prefijo>_<Feature>/` (01_spec … 06_flujo + sql/) y registro de tiempos
   reales en `05_avance.md`. Activar cuando el usuario pida: desarrollo nuevo, feature,
   requerimiento, análisis de impacto, spec, plan, tareas, avance, tiempos, flujo operativo,
@@ -39,7 +39,7 @@ Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, el
   04_tasks.md              # fases F0..Fn, pasos Fn.m, checklist "Hecho cuando"
   05_avance.md             # PUNTO DE RETOMO, decisiones con hora, pruebas, TIEMPOS
   06_flujo.md              # flujo operativo de lo implementado (usuario final)
-  07_pruebas_qa.md         # opcional: evidencia formal de pruebas
+  07_casos_prueba.md       # opcional: casos, corridas y evidencia, si hay pasos verificables por ejecución
   sql/NN_<tipo>_<desc>.sql # DDL, seeds; 99_rollback_*.sql. EJECUCIÓN MANUAL
   tests/                   # opcional: harness de solo lectura
 ```
@@ -61,7 +61,7 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `plan` | `/sdd-plan` | planner | `02_analisis_impacto.md`, `03_plan.md` |
 | `tasks` | `/sdd-tasks` | planner | `04_tasks.md` |
 | Implementación | `/sdd-implement` | implementer | el paso `Fn.m` |
-| `validate` | `/sdd-validate` | reviewer | `05_avance.md` |
+| `validate` | `/sdd-validate` | tester, reviewer | `05_avance.md` |
 | `flujo` | `/sdd-flujo` | planner, reviewer | `06_flujo.md` |
 | `cierre` | `/sdd-cierre` | sesión principal | `05_avance.md` |
 | `change` | `/sdd-change` | planner | `01_spec.md` |
@@ -74,7 +74,25 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 "Cómo decides qué hacer" de `.agents/agents/coordinator.md`, elige un comando de la tabla
 de arriba y lo ejecuta. Esos comandos también se pueden lanzar a mano.
 
+## Dónde corre cada rol
+
+Esta sección es la fuente única de dónde corre un rol y de quién lanza a los Haiku. Los comandos de fase y `coordinator.md` remiten aquí.
+
+- El modelo de cada rol es el de `restricciones-de-rol.md` › «Modelo por rol». Aquí no se copia.
+- **Mismo modelo:** misma familia (`opus`, `sonnet` o `haiku`) entre el alias de esa tabla y el modelo de la sesión, según el id que la herramienta le da a la sesión (`claude-opus-…` es `opus`). Si la sesión no conoce su id, no es el mismo modelo.
+- Un rol con el mismo modelo que la sesión corre en el chat, con la definición de ese rol. Un subagente se lanza solo cuando el rol necesita otro modelo o la persona lo pide.
+- El `reviewer` también corre en el chat. La separación entre producir y validar es por rol: el chat muestra el rol en la línea «quién responde» (`formato-respuesta`) y nunca valida con el rol con que produjo.
+- `tester` y `explore` los lanza quien atiende la fase como sesión (la sesión principal, o el coordinator cuando corre como sesión). Un coordinator subagente no los lanza: los lanza la sesión principal.
+- En el chat, las restricciones de los roles Haiku (`restricciones-de-rol.md` › «Roles Haiku») son solo instrucción; como subagentes, las garantizan sus herramientas.
+- **No entregar:** un rol Haiku no entrega cuando no responde, devuelve fuera del formato de salida, se sale del alcance, rellena con supuestos lo que faltaba, o responde `ENCARGO INCOMPLETO` o `ENCARGO FUERA DE ROL` a un encargo que quien lo lanzó ya comprobó. Ese resultado se descarta.
+- **Un solo relanzamiento:** quien lo lanzó relanza una vez el mismo rol, con el mismo encargo y el modelo del implementer según `restricciones-de-rol.md` › «Modelo por rol».
+- **Paso a la sesión:** si el relanzamiento también falla, la sesión principal hace la tarea en el chat con la definición de ese rol, y sus restricciones pasan a ser instrucción. Si la tarea es de `tester`, aplica `tester.md` con modo seguro, lista blanca y la excepción de QA, que la regla 1 de `AGENTS.md` › Guardrails da al rol y no al modelo.
+- **Sin elegir modelo:** si la herramienta no deja elegir el modelo al lanzar, no hay relanzamiento: tras el primer fallo la tarea pasa a la sesión.
+- **Constancia:** cada intento queda en la Nota de la fila del tramo, con su modelo (RF-4, `avance-y-tiempos.md`).
+
 ## Si no hay un solo paso
+
+Esta sección trata de los roles que corren como subagente. Si el rol corre en el chat, rige «Dónde corre cada rol» y no hay lanzamiento que contar.
 
 Un solo paso es un lanzamiento entre quien escribe el avance y el rol que la fase nombra. Un agente intermedio que solo volvería a delegar es un segundo paso.
 

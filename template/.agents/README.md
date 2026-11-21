@@ -21,7 +21,8 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   sync-agents.md                  # enlaces de cada herramienta hacia .agents/
   validar-estructura.md           # checklist de /sdd-estructura (estructura del kit)
   local/kit-visto                 # estado local de /sdd-enlaces (gitignored; no es del kit)
-  agents/<rol>.md                 # roles (coordinator, planner, implementer, reviewer)
+  agents/<rol>.md                 # roles (coordinator, planner, implementer, reviewer, tester, explore)
+  entornos.ejemplo.md             # plantilla de entornos de ejecución (junto a preferencias.ejemplo.md)
   commands/<nombre>.md            # comandos /sdd* (flujo de la skill sdd)
   skills/<nombre>/SKILL.md        # skills (cuerpo canónico)
 .docs/
