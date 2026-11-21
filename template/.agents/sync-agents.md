@@ -108,9 +108,17 @@ escribe «visto». Se hace una vez por sesión, aunque la persona posponga el av
 4. Sin diferencias, no digas nada. Con diferencias, muestra un único aviso de 3 líneas como máximo,
    sin leer changelog: línea 1, versión y piezas (hasta 5, nuevas primero, luego «y X más»); línea 2,
    enlaces pendientes y recomendación de `/sdd-enlaces` (no `/sdd-init`); los enlaces pendientes van
-   siempre en la línea 2, nunca en la 1; línea 3, pasos mínimos
+   siempre en la línea 2, nunca en la 1 (con la configuración guiada del punto 5, si aplica); línea 3, pasos mínimos
    (abre sesión, `/sdd-enlaces`, comprueba con `/sdd-estructura`; detalle: `ACTUALIZAR.md` del kit).
    El aviso no menciona réplicas ni ignorados versionados.
+5. Configuración guiada: si falta `.agents/local/configuracion.md`, o su primera línea `version: X.Y.Z`
+   difiere de `.agents/.kit-version` y al local le falta un paso, lo dice dentro de la línea 2 del aviso
+   (junto a los enlaces pendientes, con la sugerencia de `/sdd-config`), sin pasar de 3 líneas. Falta
+   un paso si su nombre fijo no está como sección `##` en el local; los nombres fijos son la lista de
+   `.agents/configuracion.ejemplo.md` › «Formato del archivo local». Lee solo la primera línea del
+   archivo local, y las secciones `##` del local y esa lista solo si la versión difiere. No escribe
+   nada. Mientras tanto rigen los valores sugeridos. Si es lo único pendiente, el aviso es solo esa
+   línea.
 
 Ejemplo:
 
@@ -130,22 +138,49 @@ El destino es relativo a la carpeta donde vive el enlace. Las carpetas padre (`.
 
 | Herramienta | Enlace | Destino | Obligatorio |
 |---|---|---|---|
-| Claude Code | `.claude/agents` | `../.agents/agents` | Si usa Claude Code |
+| Claude Code | `.claude/agents` | `../.agents/agents` (enlace de carpeta; por archivo solo con modelos propios, ver «Carpeta de agentes por archivo») | Si usa Claude Code |
 | Claude Code | `.claude/commands` | `../.agents/commands` | Si usa Claude Code |
 | Claude Code | `.claude/skills` | `../.agents/skills` | Si usa Claude Code |
-| Cursor | `.cursor/agents` | `../.agents/agents` | Si usa Cursor |
+| Cursor | `.cursor/agents/` | carpeta por archivo (ver «Carpeta de agentes por archivo»; no es enlace de carpeta) | Si usa Cursor |
 | Cursor | `.cursor/commands` | `../.agents/commands` | Si usa Cursor |
 | Cursor | `.cursor/skills` | `../.agents/skills` | Si usa Cursor |
-| Gemini | `.gemini/agents` | `../.agents/agents` | Si usa Gemini |
+| Gemini | `.gemini/agents/` | carpeta por archivo (ver «Carpeta de agentes por archivo»; no es enlace de carpeta) | Si usa Gemini |
 | Gemini | `.gemini/commands` | `../.agents/commands` | Si usa Gemini |
 | Gemini | `.gemini/skills` | `../.agents/skills` | Si usa Gemini |
-| GitHub | `.github/agents` | `../.agents/agents` | Si usa Copilot |
+| GitHub | `.github/agents/` | carpeta por archivo (ver «Carpeta de agentes por archivo»; no es enlace de carpeta) | Si usa Copilot |
 | GitHub | `.github/commands` | `../.agents/commands` | Si usa Copilot |
 | GitHub | `.github/skills` | `../.agents/skills` | Si usa Copilot |
 | GitHub | `.github/copilot-instructions.md` | `../AGENTS.md` | Si usa Copilot |
 | OpenCode | `.opencode/skills` | `../.agents/skills` | Si usa OpenCode |
 | OpenCode | `.opencode/commands` | `../.agents/commands` | Si usa OpenCode |
-| OpenCode | `.opencode/agents/` | adaptador de `.agents/agents/` (no es enlace) | Si usa OpenCode |
+| OpenCode | `.opencode/agents/` | carpeta por archivo (ver «Carpeta de agentes por archivo»; no es enlace de carpeta) | Si usa OpenCode |
+
+### Carpeta de agentes por archivo
+
+Fuente única de la definición (ADR 0030). Es la carpeta real de agentes de una herramienta, no
+versionada, donde cada rol es una de estas dos cosas:
+
+- un enlace relativo `../../.agents/agents/<rol>.md`; o
+- un **adaptador de rol**: `<rol>.md` con el mismo frontmatter que `.agents/agents/<rol>.md` salvo
+  `model:`, los campos que la herramienta no admite y los que exige (como `mode` en OpenCode), y un
+  cuerpo que solo remite a `.agents/agents/<rol>.md` (el rol lo lee al arrancar).
+
+Cuándo se usa:
+
+- En toda herramienta distinta de Claude Code, siempre por archivo. El `model:` del adaptador es el que
+  el dev configuró en `.agents/local/configuracion.md` › `## Modelos` o, sin él, el sugerido de su fila
+  en `.agents/configuracion.ejemplo.md`; sin fila, `inherit`.
+- En Claude Code, solo cuando un dev elige un modelo distinto del de `.agents/agents/`: ese rol lleva
+  adaptador y los demás, enlace. Si ya no hay ningún modelo propio, la carpeta vuelve a ser el enlace
+  de carpeta de la tabla.
+- Nunca se escribe en `.agents/agents/`.
+
+Adaptador viejo: su frontmatter difiere del canónico fuera de lo permitido (`model:`, campos no
+admitidos o exigidos por la herramienta). Se regenera conservando su `model:`.
+
+Para la fila de carpetas por archivo, `OK` = cada rol de `.agents/agents/` tiene en la carpeta un enlace
+que resuelve a su archivo o un adaptador que cumple esta definición (en OpenCode, además con el `mode`
+indicado); `FALTA` si algún rol no está.
 
 ### OpenCode
 
@@ -153,14 +188,15 @@ OpenCode lee `AGENTS.md` y descubre `.agents/skills` por sí solo: las skills fu
 crean `.opencode/skills` y `.opencode/commands` para que use su carpeta propia y no dependa de la
 compatibilidad con `.agents/` y `.claude/`.
 
-`.opencode/agents` **no** se enlaza a `.agents/agents`: el frontmatter de Claude (`tools: Agent(...)`,
-`omitClaudeMd`) no es válido en OpenCode V2 y el archivo se descarta con
-`agent file skipped … at ["tools"]`. En su lugar se crea un **adaptador** por rol: cuerpo corto y el detalle en
-el archivo canónico de `.agents/agents/`, que el rol lee al arrancar.
+`.opencode/agents` es una carpeta por archivo (ver «Carpeta de agentes por archivo»), no un enlace a
+`.agents/agents`: el frontmatter de Claude (`tools: Agent(...)`, `omitClaudeMd`) no es válido en OpenCode
+V2 y el archivo se descarta con `agent file skipped … at ["tools"]`. Su adaptador es un caso de esa
+definición: remite al archivo canónico y conserva lo propio de OpenCode.
 
 ```md
 ---
 description: <la misma description del archivo canónico de .agents/agents/>
+model: <el de la definición>
 mode: all          # coordinator
 # mode: subagent   # planner, implementer, reviewer
 color: <color del rol en la skill formato-respuesta>
@@ -180,7 +216,7 @@ Cumple `AGENTS.md` › Guardrails sin excepción.
 - El permiso `skill` es lo que deja al subagente cargar las skills; sin él no las ve.
 - `claudio` no se adapta: envuelve el CLI `claude`, y para E3 su ausencia en `.opencode/agents/` no es réplica
   faltante.
-- Para la fila de adaptadores, `OK` = el archivo existe con el `mode` indicado; `FALTA` si no.
+- Para la fila de adaptadores de OpenCode, `OK` = el archivo existe con el `mode` indicado; `FALTA` si no.
 
 ### Kiro
 

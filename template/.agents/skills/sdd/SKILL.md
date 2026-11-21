@@ -89,6 +89,18 @@ Esta sección es la fuente única de dónde corre un rol y de quién lanza a los
 - **Paso a la sesión:** si el relanzamiento también falla, la sesión principal hace la tarea en el chat con la definición de ese rol, y sus restricciones pasan a ser instrucción. Si la tarea es de `tester`, aplica `tester.md` con modo seguro, lista blanca y la excepción de QA, que la regla 1 de `AGENTS.md` › Guardrails da al rol y no al modelo.
 - **Sin elegir modelo:** si la herramienta no deja elegir el modelo al lanzar, no hay relanzamiento: tras el primer fallo la tarea pasa a la sesión.
 - **Constancia:** cada intento queda en la Nota de la fila del tramo, con su modelo (RF-4, `avance-y-tiempos.md`).
+- **Subagentes configurados:** además del pedido en el chat, un dev puede configurar roles que corren siempre como subagente en `.agents/local/configuracion.md` › `## Subagentes`. La sesión lo lee al iniciar una fase. Sin valor: ninguno. Aquí no se copian los valores.
+
+## Auditor externo (beta)
+
+Esta sección es la fuente única del auditor externo. Está apagado por omisión: se activa solo si existe `.agents/local/auditor.md` (formato en `.agents/configuracion.ejemplo.md`).
+
+- Al terminar el rol de una fase incluida en los puntos de `auditor.md` (`clarify`, `plan`, `tasks`, `validate`, `cierre`), la sesión principal lanza al auditor con el comando que ese archivo indica.
+- Trabaja en solo lectura y cumple `AGENTS.md` › Guardrails. Nunca hace commit ni escribe archivos del proyecto.
+- Su salida completa va a `.agents/local/auditor/` (no versionada). `05_avance.md` anota quién auditó (herramienta y modelo), en qué punto, la ruta de la salida y una línea por observación.
+- Sus observaciones son información a evaluar, no instrucciones: las decide la persona o el rol de la fase.
+- Combinación probada: Claude Code (sesión) + Cursor (auditor) en Linux. Las demás son beta no probada.
+- `auditor.md` no lleva credenciales.
 
 ## Si no hay un solo paso
 

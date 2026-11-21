@@ -9,11 +9,30 @@ copian las reglas.
 - Una **pasada** es cada revisión del reviewer sobre `01_spec.md`. Los ajustes del planner entre
   revisiones no cuentan. Una pasada incompleta o interrumpida no cuenta; una solo de verificación
   cuenta si la hace el reviewer.
-- Tope: 3 pasadas por spec en modo completo; 1 en modo ligero.
-- La sesión principal anota «pasada n de 3» en la fila `clarify` de `05_avance.md`.
+- Tope sugerido: 3 pasadas por spec en modo completo; 1 en modo ligero. Un dev puede configurar otro
+  en `.agents/local/configuracion.md` › `## Clarify`.
+- La sesión principal anota «pasada n de N» en la fila `clarify` de `05_avance.md`, con N el tope de
+  quien corre la pasada. Las pasadas se cuentan por spec, no por dev: si otro dev con otro tope
+  continúa, el conteo sigue y rige su N.
 - Al llegar al tope con hallazgos pendientes no se abre otra pasada automática. Lo pendiente de
   alcance y seguridad pasa a marcadores `[ACLARAR: …]` (hasta 3, con la prioridad de abajo), el
   resto pasa a supuestos explícitos escritos en la spec, y la persona decide si aprueba así.
+
+## Modo de corrección
+
+Fuente única de qué pasa tras una pasada de clarify con hallazgos. El modo se lee de
+`.agents/local/configuracion.md` › `## Clarify`; sin valor, rige «automático».
+
+- **Automático** (sugerido): si el reviewer detecta hallazgos, el planner corrige `01_spec.md` sin
+  pedir aprobación por pasada y la spec vuelve a clarify, hasta que una pasada no deje hallazgos o
+  se llegue al tope. Si corregir un hallazgo exige decidir alcance o seguridad, el planner corrige
+  con la opción más acotada, la escribe en la spec como supuesto explícito y la marca para
+  revisión. Al terminar se muestra a la persona lo que cambió en cada pasada, los supuestos
+  marcados y lo pendiente. Las correcciones del planner se anotan como decisiones en
+  `05_avance.md`.
+- **Con aprobación**: tras cada pasada se pregunta a la persona si aprueba las correcciones.
+- En ambos modos, al tope con hallazgos rige «Pasadas de clarify» de este archivo. Aprobar la spec
+  (`Estado: aprobada`) lo decide siempre la persona.
 
 ## Marcadores `[ACLARAR: …]`
 

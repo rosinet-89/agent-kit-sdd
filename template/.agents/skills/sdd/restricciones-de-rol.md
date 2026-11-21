@@ -60,9 +60,10 @@ Los hooks por subagente existen y se descartan (exigirían un script; no se enmi
 | `tester` | `haiku` |
 | `explore` | `haiku` |
 
-Esta es la tabla del kit. El `model:` del frontmatter de cada agente es su aplicación. La tabla del
-proyecto parte de esta y registra lo aplicado (`opus`, `sonnet`, `haiku`, `inherit` o lo que eligió la
-persona). El resto del kit remite a esta tabla y no la copia.
+Esta tabla es la fuente de los valores sugeridos de Claude Code. Lo aplicado por cada dev vive en la
+sección `## Modelos` de `.agents/local/configuracion.md` (no versionada: `opus`, `sonnet`, `haiku`,
+`inherit` o lo que eligió la persona) y se aplica con adaptadores de rol (`.agents/sync-agents.md`),
+nunca escribiendo en `.agents/agents/`. El resto del kit remite a esta tabla y no la copia.
 
 El orden de resolución del modelo en Claude Code es el hecho (c) de «Registro de campos»; no se copia aquí.
 

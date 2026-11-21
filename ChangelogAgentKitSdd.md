@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.10.0 — 2026-11-21
+- Asistente nuevo `/sdd-config` (`.agents/commands/sdd-config.md`): configura paso a paso, por dev y
+  sin versionar, los modelos por rol, los roles que corren siempre como subagente, el tope y el modo de
+  corrección de clarify, los entornos de QA y la presentación de las respuestas. Se puede saltar (aplica
+  los sugeridos) y repetir. Lo invocan `/sdd-init` y la actualización.
+- Configuración por dev no versionada (ADR 0029): el kit solo sugiere en `.agents/configuracion.ejemplo.md`
+  (incluye la tabla de equivalencias de modelos por herramienta); lo elegido vive en
+  `.agents/local/configuracion.md`. `PREFERENCIAS.md` solo remite. Nada de la configuración entra a
+  `AGENTS.md`.
+- Carpeta de agentes por archivo con adaptadores de rol (ADR 0030), definida en `sync-agents.md` ›
+  «Carpeta de agentes por archivo»: en toda herramienta distinta de Claude Code, y en Claude Code solo con
+  modelos propios. La aplica `/sdd-enlaces`; E3 y E23 la reconocen.
+- `/sdd-init` ya no escribe `model:` en `.agents/agents/` (fin del `inherit` de 0.9.0 para proyectos con
+  otras herramientas): el modelo de cada herramienta va en sus adaptadores.
+- Clarify: modo de corrección «automático» (sugerido) o «con aprobación» en `topes-y-modos.md`; la fila
+  de avance anota «pasada n de N».
+- Auditor externo (beta), apagado por omisión: `SKILL.md` › «Auditor externo (beta)».
+- El chequeo de arranque avisa si falta `.agents/local/configuracion.md` o si el kit trae pasos nuevos.
+- Nota para proyectos actualizados: tras actualizar, corre `/sdd-config` y luego `/sdd-enlaces`. Si
+  `.agents/agents/` tiene `model: inherit` de 0.9.0, la actualización propone pasarlo a los adaptadores.
+  `AGENTS.md` es grupo B: el paso 10 de «Cada sesión» y `/sdd-config` en «Roles y comandos» se
+  incorporan a mano.
+
 ## 0.9.0 — 2026-11-21
 - Modelos por rol: tabla en la sección «Modelo por rol» de `restricciones-de-rol.md`. Planner, coordinator
   y reviewer en opus; implementer en sonnet. Roles nuevos `tester` y `explore`, en haiku y con encargo

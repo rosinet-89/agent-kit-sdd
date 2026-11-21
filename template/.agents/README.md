@@ -23,7 +23,8 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   local/kit-visto                 # estado local de /sdd-enlaces (gitignored; no es del kit)
   agents/<rol>.md                 # roles (coordinator, planner, implementer, reviewer, tester, explore)
   entornos.ejemplo.md             # plantilla de entornos de ejecución (junto a preferencias.ejemplo.md)
-  commands/<nombre>.md            # comandos /sdd* (flujo de la skill sdd)
+  configuracion.ejemplo.md        # sugerencias del kit; se copian a .agents/local/configuracion.md (no versionado) con /sdd-config
+  commands/<nombre>.md            # comandos /sdd* (flujo de la skill sdd; incluye sdd-config.md, asistente de configuración de cada dev)
   skills/<nombre>/SKILL.md        # skills (cuerpo canónico)
 .docs/
   001_constitucion/constitution.md

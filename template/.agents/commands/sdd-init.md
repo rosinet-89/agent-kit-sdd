@@ -67,22 +67,20 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
 1. Escribe lo aprobado. Para cada archivo editado, respeta el encoding y las herramientas de edición
    permitidas que acabamos de documentar.
 2. Quita el marcador `SDD-INIT-PENDIENTE` de `AGENTS.md`.
-3. Aplica los modelos por omisión (campo `model:` del frontmatter de cada agente). No hagas
-   preguntas nuevas: las preguntas para elegir otros valores las hará el asistente de la spec
-   `0014_ConfiguracionGuiada`. La tabla de valores está en
-   `.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol»; remite a ella y no la copies.
-   Detecta las herramientas así:
+3. No escribas `model:` en `.agents/agents/`. Ese frontmatter conserva los valores de
+   `.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol» (remite a ella y no la copies).
+   El modelo de cada dev se elige en `/sdd-config` y lo aplica `/sdd-enlaces` con adaptadores de
+   rol (`.agents/sync-agents.md`). Detección de herramientas, que `/sdd-config` reutiliza:
    - Lee la línea `herramientas:` de `.agents/local/kit-visto` (formato en
      `.agents/sync-agents.md` › «Estado «visto»»). Si el archivo no existe, usa las carpetas
      presentes: `.claude/`, `.cursor/`, `.gemini/`, `.github/` (solo cuenta con
      `copilot-instructions.md` o la carpeta `agents/`) y `.kiro/`.
-   - Solo Claude Code: aplica la tabla.
-   - Solo otras herramientas: `inherit` en los agentes y en la tabla del proyecto.
-   - Claude Code junto a otras: aplica la tabla (manda Claude Code).
-4. Sugiere correr `/sdd-enlaces` para crear los enlaces de tus herramientas (sin ejecutar nada sin
+4. Invoca el asistente `/sdd-config` (`.agents/commands/sdd-config.md`), fuera del tope de la
+   entrevista de la sección 2 y tras aplicar lo aprobado.
+5. Sugiere correr `/sdd-enlaces` para crear los enlaces de tus herramientas (sin ejecutar nada sin
    mi confirmación; no escribas el estado «visto»).
-5. Dime el siguiente paso: `/sdd <mi primer requerimiento>`.
-6. Si te lo pido, prepara el commit con `.agents/skills/git-commit/SKILL.md`. Nunca hagas
+6. Dime el siguiente paso: `/sdd <mi primer requerimiento>`.
+7. Si te lo pido, prepara el commit con `.agents/skills/git-commit/SKILL.md`. Nunca hagas
    `git commit` sin mi confirmación explícita.
-7. No escribas el deny ni el allow. No los apliques, no los actives y no los copies a `.claude/`,
+8. No escribas el deny ni el allow. No los apliques, no los actives y no los copies a `.claude/`,
    a un settings versionado ni a ninguna configuración del repo.

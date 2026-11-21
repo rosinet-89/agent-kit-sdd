@@ -6,8 +6,9 @@ argument-hint:
 La sesión principal ejecuta este comando. No lanza un subagente, no pasa por planner, implementer ni reviewer, y no toca `05_avance.md`: no es una fase del flujo. Pregunta al usuario varias veces y ejecuta en su máquina, por eso no se delega.
 
 ## Qué lee
-- `.agents/sync-agents.md`: estados, tabla de enlaces, mecanismo, reglas de los pasos 3 a 8, «Estado «visto»» (formato) y «Chequeo de arranque». Es la única fuente de esas reglas; este comando remite a ellas y no las copia.
+- `.agents/sync-agents.md`: estados, tabla de enlaces, mecanismo, reglas de los pasos 3 a 8, «Carpeta de agentes por archivo» (definición y adaptador de rol), «Estado «visto»» (formato) y «Chequeo de arranque». Es la única fuente de esas reglas; este comando remite a ellas y no las copia.
 - `.agents/local/kit-visto`, si existe.
+- `.agents/local/configuracion.md` › `## Modelos`, si existe, y `.agents/configuracion.ejemplo.md` (modelo sugerido por herramienta). Solo para el `model:` de los adaptadores.
 
 ## Procedimiento
 
@@ -26,10 +27,14 @@ Pregunta qué herramientas usa la persona entre las de la tabla de `sync-agents.
 - Detecta, remitiendo a las reglas de `sync-agents.md` (pasos 7 y 8) sin repetirlas: enlaces colgantes (apuntan a una pieza retirada), réplicas huérfanas o faltantes y archivos versionados que `.gitignore` ya ignora.
 
 ### 5. Mostrar el plan y pedir confirmaciones
-Muestra un plan con un comando exacto por enlace, según el sistema detectado y el criterio de `sync-agents.md` (enlace simbólico, junction en Windows sin administrador, copia solo si fallan los anteriores, avisando que la copia no se sincroniza). Antes de ejecutar, valida cada ruta contra la tabla de `sync-agents.md`: no se usan rutas libres. Los adaptadores de OpenCode no son enlaces: se crean con el contenido de `sync-agents.md` › «OpenCode», sin copiar el cuerpo del agente canónico.
+Muestra un plan con un comando exacto por enlace, según el sistema detectado y el criterio de `sync-agents.md` (enlace simbólico, junction en Windows sin administrador, copia solo si fallan los anteriores, avisando que la copia no se sincroniza). Antes de ejecutar, valida cada ruta contra la tabla de `sync-agents.md`: no se usan rutas libres. La carpeta de agentes de cada herramienta se trata según `sync-agents.md` › «Carpeta de agentes por archivo» (no se repite aquí); en OpenCode, además, con el `mode` de `sync-agents.md` › «OpenCode». En el plan:
+- En toda herramienta distinta de Claude Code, crea la carpeta de agentes por archivo, con un adaptador por rol cuyo `model:` es el de `.agents/local/configuracion.md` › `## Modelos` o, sin él, el sugerido de su fila en `.agents/configuracion.ejemplo.md` (o `inherit`). Esto mantiene el cuerpo del agente canónico sin copiar.
+- En Claude Code, convierte `.claude/agents` a carpeta por archivo solo si hay modelos propios; cuando ya no queda ninguno, propone volver al enlace de carpeta de la tabla.
+- Un adaptador viejo se regenera conservando su `model:`.
+- Nunca escribe en `.agents/agents/`.
 
 Pide una confirmación por tipo de acción, nunca por enlace, con los comandos visibles, en este orden fijo (de menos a más riesgo; el estado propio al final):
-1. Crear enlaces y réplicas faltantes.
+1. Crear enlaces, carpetas de agentes por archivo (con sus adaptadores) y réplicas faltantes; incluye convertir o restaurar `.claude/agents` y regenerar adaptadores viejos.
 2. Reemplazar DIFERENTE (mostrando destino actual y esperado).
 3. Retirar enlaces colgantes (solo el enlace).
 4. Pregunta por cada OCUPADO: «¿es intencional?». No ejecuta nada.

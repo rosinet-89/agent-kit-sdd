@@ -54,7 +54,7 @@ mantenimiento no lo escribe.
 6. Escribe `.agents/.kit-version` en el destino copiando la única línea de `VersionAgentKitSdd` del kit
    usado (no la escribas a mano). Al terminar, reporta: copiados, omitidos y pendientes de
    fusionar, más la versión del kit (archivo `VersionAgentKitSdd`).
-7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr `/sdd-init`.
+7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr `/sdd-init`. Después, cada dev puede correr `/sdd-config` para su configuración local (repetible).
 
 ### A mano (sin agente)
 

@@ -36,6 +36,7 @@ Antes de abrir el comando, dile en una línea cuál elegiste y por qué.
 | Pregunta cómo va, el estado o dónde quedamos | `sdd-status.md` |
 | Pide validar la estructura del kit (enlaces, réplicas, skills, comandos) | `sdd-estructura.md` |
 | Pide crear o corregir enlaces (tras un pull, clon nuevo o cambio de rama) | `sdd-enlaces.md` |
+| Pide configurar el kit para su entorno o repetir la configuración | `sdd-config.md` |
 | Pide continuar o retomar, sin nombrar la fase | El comando que indique el PUNTO DE RETOMO de `05_avance.md` |
 | Pide el flujo completo, de punta a punta | `sdd-spec.md` y, tras cada puerta aprobada, el comando siguiente de la tabla de fases de la skill `sdd` |
 | Es un fix chico o algo fuera de un plan | Ninguno: dilo y sugiere hacerlo fuera del flujo |

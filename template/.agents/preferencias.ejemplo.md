@@ -10,6 +10,8 @@ Reglas:
 - Si una preferencia choca con `AGENTS.md`, la constitución o el napkin, gana lo del repo; avisa.
 - Una entrada = título con fecha + "Hacer":
 - Los agentes proponen entradas; solo se agregan con el visto bueno de la persona.
+- Dónde corre cada rol, la presentación de las respuestas y lo demás configurable del flujo viven en
+  `.agents/local/configuracion.md` (lo escribe `/sdd-config`); aquí solo se remite, sin copiar valores.
 
 ## Directivas
 

@@ -12,7 +12,7 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
   README.md  napkin.md  sync-agents.md  preferencias.ejemplo.md
   agents/    coordinator, planner, implementer, reviewer, tester, explore
   commands/  sdd, sdd-init, sdd-spec, -clarify, -plan, -tasks, -implement,
-             -validate, -flujo, -cierre, -change, -status, -constitucion
+             -validate, -flujo, -cierre, -change, -status, -constitucion, -config
   skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta,
              adr, migracion-bd, seguridad-basica
 .docs/
@@ -49,7 +49,8 @@ conserva sus specs, ADR y memoria).
 4. Verifica los enlaces de `.agents/` hacia la carpeta de tu herramienta (`.claude/`, `.cursor/`…):
    el agente lo revisa cada sesión y propone cómo crearlos según tu entorno
    (ver `.agents/sync-agents.md`).
-5. Empieza a trabajar con **`/sdd <lo que necesitas>`**.
+5. Cuando quieras, corre **`/sdd-config`** (asistente de configuración de cada dev, repetible; `/sdd-init` también lo invoca).
+6. Empieza a trabajar con **`/sdd <lo que necesitas>`**.
 
 Mientras el paso 1 de «Cada sesión» de `AGENTS.md` marque instalación pendiente, los agentes piden correr `/sdd-init` antes de
 cualquier otro comando `/sdd*`.

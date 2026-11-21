@@ -425,6 +425,14 @@ Modelo de los agentes:
 Si el proyecto no usa Git, el respaldo previo del archivo reemplazado es opcional y va fuera del
 proyecto.
 
+Tras reemplazar los KIT-VIEJO:
+- Corre `/sdd-config` para los pasos sin valor de `.agents/local/configuracion.md`. Los valores ya
+  configurados se conservan.
+- Si `.agents/agents/` trae `model: inherit` heredado de la regla anterior de `/sdd-init`, propón
+  volver a los valores de `.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol» y pasar
+  `inherit` a los adaptadores de rol de la herramienta (`/sdd-enlaces`, `.agents/sync-agents.md`).
+  No cambies nada sin confirmación de la persona (ADR 007).
+
 ## Registro «mantener»
 
 `.agents/.kit-mantener` es un archivo de texto sin extensión, en el proyecto. Una línea por
