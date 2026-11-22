@@ -312,6 +312,10 @@ Exactamente `AGENTS.md`, `CLAUDE.md` y `.gitignore`. Nunca se reemplazan ni se c
 muestran los faltantes, para que el usuario los incorpore a mano o los marque «mantener».
 El paso 7 de «Cada sesión» de `AGENTS.md` (chequeo de enlaces y kit) también se incorpora a mano en
 los proyectos existentes.
+Desde 0.12.0, los pasos 4, 7 y 8 de «Cada sesión» también se incorporan a mano, con el texto de
+`template/AGENTS.md`. Las secciones «Qué lee cada rol», «Roles y comandos» y «Formato y numeración»
+pueden quedarse como estaban o pasar a su renglón de remisión; quedarse no rompe nada, solo no
+ahorra contexto.
 Lo mismo vale para la excepción de QA a la regla 1 de los Guardrails y para los roles en `AGENTS.md`:
 son grupo B y se incorporan a mano.
 

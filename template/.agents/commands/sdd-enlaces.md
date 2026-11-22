@@ -6,7 +6,7 @@ argument-hint:
 La sesión principal ejecuta este comando. No lanza un subagente, no pasa por planner, implementer ni reviewer, y no toca `05_avance.md`: no es una fase del flujo. Pregunta al usuario varias veces y ejecuta en su máquina, por eso no se delega.
 
 ## Qué lee
-- `.agents/sync-agents.md`: estados, tabla de enlaces, mecanismo, reglas de los pasos 3 a 8, «Carpeta de agentes por archivo» (definición y adaptador de rol), «Estado «visto»» (formato) y «Chequeo de arranque». Es la única fuente de esas reglas; este comando remite a ellas y no las copia.
+- `.agents/sync-agents.md`: «Estados de enlace», tabla de enlaces, mecanismo, reglas de los pasos 3 a 8, «Carpeta de agentes por archivo» (definición y adaptador de rol), «Estado «visto»» (formato) y «Chequeo de arranque». Es la única fuente de esas reglas; este comando remite a ellas y no las copia.
 - `.agents/local/kit-visto`, si existe.
 - `.agents/local/configuracion.md` › `## Modelos`, si existe, y `.agents/configuracion.ejemplo.md` (modelo sugerido por herramienta). Solo para el `model:` de los adaptadores.
 

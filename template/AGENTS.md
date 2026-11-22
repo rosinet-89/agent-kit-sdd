@@ -51,15 +51,18 @@ reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
    comentario exacto; esta descripción no es el marcador.
 2. Leer `.agents/napkin.md` y aplicarlo en silencio.
 3. Leer `MEMORY.md` (decisiones y trampas vigentes).
-4. Estructura de agentes y skills nuevas: `.agents/README.md`.
+4. Antes de crear o modificar un agente, skill o comando (también a media sesión o en
+   `/sdd-init`): leer `.agents/README.md`. Si la petición no los toca, no se lee.
 5. Leer `.docs/001_constitucion/constitution.md` antes de cambiar código.
 6. Si la petición es análisis o desarrollo nuevo, o toca un módulo, pantalla o tabla: seguir
    "Antecedentes" (abajo) ANTES de buscar o diseñar.
-7. Chequeo de enlaces y kit (solo lectura, un único aviso por sesión): sigue
-   `.agents/sync-agents.md` › «Chequeo de arranque». Si hay diferencias, muestra el aviso combinado
-   y recomienda `/sdd-enlaces` (no `/sdd-init`); si no, no digas nada. No escribas nada.
-8. Revisar que no haya prefijos repetidos en `.docs/002_specs/`, `.docs/003_deuda/` ni
-   `.docs/004_adr/` (ver "Formato y numeración"). Si hay, avisar y proponer el cambio; si no, no decir nada.
+7. Chequeo de enlaces y kit (solo lectura, un único aviso por sesión): lee
+   `.agents/sync-agents.md` › «Chequeo de arranque» y solo lo que esa sección indica, no el archivo
+   entero. Si hay diferencias, muestra el aviso combinado y recomienda `/sdd-enlaces` (no
+   `/sdd-init`); si no, no digas nada. No escribas nada.
+8. Revisar que no haya prefijos repetidos (mismo entero) en `.docs/002_specs/`,
+   `.docs/003_deuda/` ni `.docs/004_adr/`. Si hay, lee `.docs/002_specs/README.md` › «Numeración
+   única», avisa y propone el cambio; si no, no digas nada.
 9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
    (al final o justo antes de pedir una decisión). Solo se quita si el usuario lo pide.
 10. Leer `PREFERENCIAS.md` (raíz, no versionado: directivas personales de cada usuario según su
@@ -88,10 +91,8 @@ reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
 4. Una deuda nunca se borra: pasa a `Resuelta` o `Descartada` (con motivo).
 
 ## Formato y numeración
-Reglas completas en `.docs/002_specs/README.md`.
-- Toda carpeta de plan nace en formato SDD (skill `sdd`): lleva `01_spec.md`.
-- Las carpetas de sección de `.docs/` (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 dígitos.
-- Cada spec, deuda y ADR lleva un prefijo numérico. Un ítem nuevo conserva el ancho de su carpeta (detalle: `.docs/002_specs/README.md` › « Numeración única »). No se repite dentro de su carpeta. Si aparece repetido (por ejemplo tras un `pull`), conserva el número el que ya está en la rama remota; propón para el otro el siguiente libre y no renombres sin confirmación.
+Numeración, ancho y prefijos repetidos: `.docs/002_specs/README.md` › «Numeración única». Se lee al
+crear un ítem o si el paso 8 halla repetidos.
 
 ## Skills de proyecto
 Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee todas.
@@ -112,28 +113,13 @@ Notas:
 - `sdd` exige `.docs/002_specs/<prefijo>_<Feature>/` (prefijo = consecutivo numérico) con `01_spec.md`, `04_tasks.md` y `05_avance.md` siempre; `02_analisis_impacto.md`, `03_plan.md` y `06_flujo.md` en modo completo; `sql/` si hay cambios de datos (`.agents/skills/sdd/topes-y-modos.md`). Contrato de avance y tiempos: `.agents/skills/sdd/avance-y-tiempos.md`.
 
 ## Roles y comandos
-Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku) y explore (localiza; Haiku).
-Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura), `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación) y `/sdd-config` (asistente de configuración de cada dev; se puede repetir).
-Claude Code: sesión dedicada con `claude --agent coordinator`.
-OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
+Roles de `.agents/agents/` y comandos de `.agents/commands/`: `.agents/README.md` › «Roles y comandos».
+Se lee al elegir o crear un rol o comando.
 
 ## Qué lee cada rol
-La sección "Cada sesión" es el arranque. Lo ejecuta la sesión principal. Un subagente no lo repite
-(enlaces, prefijos, preferencias). El implementer, `tester` y `explore` pueden recibir el archivo
-inyectado (no declaran `omitClaudeMd`); planner, reviewer y coordinator no, porque lo declaran. Cada
-rol lee solo las secciones que su instrucción nombra:
-
-| Rol | Secciones |
-|---|---|
-| coordinator | Comprueba el estado de instalación con el paso 1 de «Cada sesión». También «Git» y «Reglas duras». |
-| planner | "Comandos" y, al planear, "Stack y convenciones de código", más «Git» y «Reglas duras». |
-| implementer | "Comandos" y "Stack y convenciones de código". |
-| reviewer | "Comandos" y "Stack y convenciones de código", más «Git» y «Reglas duras». |
-| tester | "Comandos". |
-| explore | "Comandos". |
-
-Además de lo de su fila, todos los roles leen siempre «Guardrails». No cuenta contra el tope de
-lecturas de `sdd-implement` ni contra la lista cerrada de secciones de `reviewer`.
+Cada rol lee de este archivo solo las secciones que nombra su `.agents/agents/<rol>.md`, y siempre
+«Guardrails», que no cuenta contra el tope de lecturas de `sdd-implement` ni contra la lista cerrada
+de `reviewer`. «Cada sesión» lo ejecuta la sesión principal; un subagente no lo repite.
 
 ## Git (regla obligatoria)
 Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.

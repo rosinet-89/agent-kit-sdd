@@ -6,90 +6,11 @@ describe QUÉ debe existir; **CÓMO** crearlo lo decide el entorno (sistema oper
 permisos, herramienta). No hay script: no se sabe qué shell ni qué dependencias tiene cada
 entorno de desarrollo.
 
-## Qué hace el agente
-
-Los pasos 1 y 2 son la lectura del arranque (paso 7 de "Cada sesión" en `AGENTS.md`; ver «Chequeo de
-arranque»). Los pasos 3 a 8 los ejecuta `/sdd-enlaces` con confirmación; el arranque nunca los aplica.
-
-1. Revisa cada fila de la tabla y clasifica su estado:
-
-| Estado | Significa |
-|---|---|
-| `OK` | El enlace existe y apunta al destino esperado |
-| `OK (copia)` | Es una copia real registrada con `copia:` en «visto» (no se sincroniza) |
-| `FALTA` | La ruta no existe |
-| `DIFERENTE` | Es un enlace, pero apunta a otro destino |
-| `OCUPADO` | Existe como carpeta o archivo real (no es un enlace) y no figura en `copia:` ni en `excepcion:` |
-
-2. Si todo está `OK`, no dice nada.
-3. Si hay `FALTA`, `DIFERENTE` u `OCUPADO`, `/sdd-enlaces` muestra la tabla de lo pendiente (ruta del
-   enlace y destino) y propone crear o corregir los enlaces.
-4. Para crearlos, detecta el entorno (sistema operativo, shell, permisos) y **propone** el
-   mecanismo adecuado, por ejemplo enlace simbólico, junction en Windows, o como último recurso una
-   copia (avisando que se desactualiza). Muestra el comando exacto y no ejecuta nada sin que el
-   usuario lo confirme.
-5. `OCUPADO` nunca se borra ni se mueve: se informa y decide el usuario. Si dice que es intencional,
-   se registra como `excepcion:` en «visto».
-6. Pregunta solo por las herramientas que el usuario use. Las filas que no apliquen se omiten
-   (por ejemplo, si esa versión de la herramienta ya lee `.claude/`).
-7. Regla que `/sdd-enlaces` ejecuta tras confirmar: archivos **versionados que el `.gitignore` ya
-   ignora** (`git ls-files -ci --exclude-standard`). Si hay, los lista y **propone** sacarlos del
-   índice con `git rm --cached <rutas>` (los archivos se conservan en disco) y un commit aparte con
-   la skill `git-commit`. No lo ejecuta sin confirmación.
-   Avisa que, al hacer `pull`, el resto del equipo verá esos archivos borrados en su copia. Una regla
-   de `.gitignore` no afecta a los archivos que Git ya rastrea.
-8. Regla que `/sdd-enlaces` ejecuta tras confirmar: **réplicas de skills, agentes y comandos**
-   (cuando un dev prueba o agrega una nueva):
-   - **Huérfana:** existe en una carpeta de herramienta (`.claude/skills/<n>/`, `.cursor/agents/<n>.md`…)
-     y no en `.agents/`. Propón **moverla** a `.agents/<tipo>/<n>` (la copia canónica es una sola) y dejar
-     en la carpeta de la herramienta un enlace a ella.
-   - **Faltante:** existe en `.agents/` y una carpeta de herramienta que es real (no un enlace a toda la
-     carpeta) no la tiene. Propón un enlace por entrada (`../../.agents/skills/<n>`); si el SO no permite
-     enlaces, una copia avisando que se desactualiza.
-   - Si la carpeta de la herramienta ya es un enlace a `.agents/<tipo>`, no hay nada que replicar: lo
-     nuevo aparece solo.
-   - **En prueba:** si el dev solo la está probando, puede quedarse local. Propón excluirla en
-     `.git/info/exclude` (ruta anclada con `/`) y avisa que no llegará al resto del equipo.
-   - Al adoptarla de forma definitiva: fila en la tabla de skills de `AGENTS.md` si es de dominio, y
-     `.agents/README.md` › "Agregar una skill".
-   - Nunca borra ni mueve nada sin confirmación; muestra el comando exacto.
-   El arranque ya no detecta réplicas ni ignorados versionados: los pasos 7 y 8 corren desde
-   `/sdd-enlaces` (y E2/E3 de `/sdd-estructura` los reportan). **Cada vez que el agente crea o agrega**
-   una skill, agente o comando, al terminar sugiere `/sdd-enlaces`.
-
-## Estado «visto»
-
-Archivo local `.agents/local/kit-visto` (ignorado por Git; ver `.gitignore`). Registra qué kit y qué
-enlaces vio la persona la última vez que `/sdd-enlaces` terminó bien. **Solo `/sdd-enlaces` lo
-escribe**; el arranque y `/sdd-estructura` solo lo leen.
-
-Texto plano UTF-8 sin BOM, una línea por dato (ejemplo):
-
-```
-version: 0.6.0
-herramientas: claude, cursor
-excepcion: .cursor/skills
-copia: .gemini/commands
-pieza: agents/coordinator.md
-pieza: commands/sdd-spec.md
-pieza: skills/sdd
-```
-
-- Prefijos válidos: `version`, `herramientas`, `excepcion`, `copia`, `pieza`. Orden: `version`,
-  `herramientas`, `excepcion*`, `copia*`, `pieza*`.
-- `version`: `X.Y.Z`, la de `.agents/.kit-version`. Nunca `ninguna`: sin versión legible no se escribe.
-- `herramientas`: lista separada por comas de `claude`, `cursor`, `gemini`, `github`, `opencode`. Nunca
-  vacía: sin herramientas no se escribe.
-- `excepcion`: ruta de enlace de la tabla que la persona declaró intencional (OCUPADO aceptado).
-- `copia`: ruta de enlace de la tabla que `/sdd-enlaces` creó como copia. Se descarta si la ruta pasó a
-  ser un enlace.
-- `pieza`: ruta relativa a `.agents/` de cada entrada de primer nivel de `agents/`, `commands/` y
-  `skills/`.
-- Corrupto = inexistente: falta `version` o `herramientas`, `version` inválida, o una línea con un
-  prefijo distinto de los cinco. Solo se compara texto; nada de «visto» se ejecuta.
-- Se arma el contenido completo y se escribe de una vez, al terminar con éxito.
-
 ## Chequeo de arranque
+
+Qué lee: esta sección. Si el punto 1 lo omite, nada más. Si no, también «Estados de enlace», «Estado «visto»» y, de
+«Tabla de enlaces», solo el encabezado y las filas de las herramientas declaradas en «visto». No lee «Qué hace el agente» ni
+«Notas para el usuario».
 
 Lo ejecuta el paso 7 de «Cada sesión» de `AGENTS.md`. Es de **solo lectura**: no crea, no corrige y no
 escribe «visto». Se hace una vez por sesión, aunque la persona posponga el aviso.
@@ -130,6 +51,96 @@ Mínimo: abre sesión, `/sdd-enlaces`, comprueba con `/sdd-estructura`; detalle:
 
 Variantes: clon nuevo («Clon nuevo: elige tus herramientas con `/sdd-enlaces`»); solo enlaces (sin
 línea de versión: el aviso queda en 2 líneas, enlaces pendientes y pasos mínimos).
+
+## Estados de enlace
+
+| Estado | Significa |
+|---|---|
+| `OK` | El enlace existe y apunta al destino esperado |
+| `OK (copia)` | Es una copia real registrada con `copia:` en «visto» (no se sincroniza) |
+| `FALTA` | La ruta no existe |
+| `DIFERENTE` | Es un enlace, pero apunta a otro destino |
+| `OCUPADO` | Existe como carpeta o archivo real (no es un enlace) y no figura en `copia:` ni en `excepcion:` |
+
+Para la fila de carpetas por archivo, `OK` = cada rol de `.agents/agents/` tiene en la carpeta un enlace
+que resuelve a su archivo o un adaptador que cumple la definición de «Carpeta de agentes por archivo» (en OpenCode, además con el `mode`
+indicado); `FALTA` si algún rol no está.
+
+Para la fila de adaptadores de OpenCode, `OK` = el archivo existe con el `mode` indicado; `FALTA` si no.
+
+## Estado «visto»
+
+Archivo local `.agents/local/kit-visto` (ignorado por Git; ver `.gitignore`). Registra qué kit y qué
+enlaces vio la persona la última vez que `/sdd-enlaces` terminó bien. **Solo `/sdd-enlaces` lo
+escribe**; el arranque y `/sdd-estructura` solo lo leen.
+
+Texto plano UTF-8 sin BOM, una línea por dato (ejemplo):
+
+```
+version: 0.6.0
+herramientas: claude, cursor
+excepcion: .cursor/skills
+copia: .gemini/commands
+pieza: agents/coordinator.md
+pieza: commands/sdd-spec.md
+pieza: skills/sdd
+```
+
+- Prefijos válidos: `version`, `herramientas`, `excepcion`, `copia`, `pieza`. Orden: `version`,
+  `herramientas`, `excepcion*`, `copia*`, `pieza*`.
+- `version`: `X.Y.Z`, la de `.agents/.kit-version`. Nunca `ninguna`: sin versión legible no se escribe.
+- `herramientas`: lista separada por comas de `claude`, `cursor`, `gemini`, `github`, `opencode`. Nunca
+  vacía: sin herramientas no se escribe.
+- `excepcion`: ruta de enlace de la tabla que la persona declaró intencional (OCUPADO aceptado).
+- `copia`: ruta de enlace de la tabla que `/sdd-enlaces` creó como copia. Se descarta si la ruta pasó a
+  ser un enlace.
+- `pieza`: ruta relativa a `.agents/` de cada entrada de primer nivel de `agents/`, `commands/` y
+  `skills/`.
+- Corrupto = inexistente: falta `version` o `herramientas`, `version` inválida, o una línea con un
+  prefijo distinto de los cinco. Solo se compara texto; nada de «visto» se ejecuta.
+- Se arma el contenido completo y se escribe de una vez, al terminar con éxito.
+
+## Qué hace el agente
+
+El arranque (paso 7 de "Cada sesión" en `AGENTS.md`) sigue «Chequeo de arranque». Los pasos 3 a 8 los ejecuta
+`/sdd-enlaces` con confirmación; el arranque nunca los aplica.
+
+1. Revisa cada fila de la tabla y clasifica su estado (ver «Estados de enlace»).
+2. Si todo está `OK`, no dice nada.
+3. Si hay `FALTA`, `DIFERENTE` u `OCUPADO`, `/sdd-enlaces` muestra la tabla de lo pendiente (ruta del
+   enlace y destino) y propone crear o corregir los enlaces.
+4. Para crearlos, detecta el entorno (sistema operativo, shell, permisos) y **propone** el
+   mecanismo adecuado, por ejemplo enlace simbólico, junction en Windows, o como último recurso una
+   copia (avisando que se desactualiza). Muestra el comando exacto y no ejecuta nada sin que el
+   usuario lo confirme.
+5. `OCUPADO` nunca se borra ni se mueve: se informa y decide el usuario. Si dice que es intencional,
+   se registra como `excepcion:` en «visto».
+6. Pregunta solo por las herramientas que el usuario use. Las filas que no apliquen se omiten
+   (por ejemplo, si esa versión de la herramienta ya lee `.claude/`).
+7. Regla que `/sdd-enlaces` ejecuta tras confirmar: archivos **versionados que el `.gitignore` ya
+   ignora** (`git ls-files -ci --exclude-standard`). Si hay, los lista y **propone** sacarlos del
+   índice con `git rm --cached <rutas>` (los archivos se conservan en disco) y un commit aparte con
+   la skill `git-commit`. No lo ejecuta sin confirmación.
+   Avisa que, al hacer `pull`, el resto del equipo verá esos archivos borrados en su copia. Una regla
+   de `.gitignore` no afecta a los archivos que Git ya rastrea.
+8. Regla que `/sdd-enlaces` ejecuta tras confirmar: **réplicas de skills, agentes y comandos**
+   (cuando un dev prueba o agrega una nueva):
+   - **Huérfana:** existe en una carpeta de herramienta (`.claude/skills/<n>/`, `.cursor/agents/<n>.md`…)
+     y no en `.agents/`. Propón **moverla** a `.agents/<tipo>/<n>` (la copia canónica es una sola) y dejar
+     en la carpeta de la herramienta un enlace a ella.
+   - **Faltante:** existe en `.agents/` y una carpeta de herramienta que es real (no un enlace a toda la
+     carpeta) no la tiene. Propón un enlace por entrada (`../../.agents/skills/<n>`); si el SO no permite
+     enlaces, una copia avisando que se desactualiza.
+   - Si la carpeta de la herramienta ya es un enlace a `.agents/<tipo>`, no hay nada que replicar: lo
+     nuevo aparece solo.
+   - **En prueba:** si el dev solo la está probando, puede quedarse local. Propón excluirla en
+     `.git/info/exclude` (ruta anclada con `/`) y avisa que no llegará al resto del equipo.
+   - Al adoptarla de forma definitiva: fila en la tabla de skills de `AGENTS.md` si es de dominio, y
+     `.agents/README.md` › "Agregar una skill".
+   - Nunca borra ni mueve nada sin confirmación; muestra el comando exacto.
+   El arranque ya no detecta réplicas ni ignorados versionados: los pasos 7 y 8 corren desde
+   `/sdd-enlaces` (y E2/E3 de `/sdd-estructura` los reportan). **Cada vez que el agente crea o agrega**
+   una skill, agente o comando, al terminar sugiere `/sdd-enlaces`.
 
 ## Tabla de enlaces
 
@@ -178,9 +189,7 @@ Cuándo se usa:
 Adaptador viejo: su frontmatter difiere del canónico fuera de lo permitido (`model:`, campos no
 admitidos o exigidos por la herramienta). Se regenera conservando su `model:`.
 
-Para la fila de carpetas por archivo, `OK` = cada rol de `.agents/agents/` tiene en la carpeta un enlace
-que resuelve a su archivo o un adaptador que cumple esta definición (en OpenCode, además con el `mode`
-indicado); `FALTA` si algún rol no está.
+Para la fila de carpetas por archivo: (ver «Estados de enlace»).
 
 ### OpenCode
 
@@ -216,7 +225,7 @@ Cumple `AGENTS.md` › Guardrails sin excepción.
 - El permiso `skill` es lo que deja al subagente cargar las skills; sin él no las ve.
 - `claudio` no se adapta: envuelve el CLI `claude`, y para E3 su ausencia en `.opencode/agents/` no es réplica
   faltante.
-- Para la fila de adaptadores de OpenCode, `OK` = el archivo existe con el `mode` indicado; `FALTA` si no.
+- Para la fila de adaptadores de OpenCode: (ver «Estados de enlace»).
 
 ### Kiro
 

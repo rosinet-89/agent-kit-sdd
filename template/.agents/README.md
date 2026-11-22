@@ -51,6 +51,12 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
 
 ---
 
+## Roles y comandos
+Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku) y explore (localiza; Haiku).
+Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura), `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación) y `/sdd-config` (asistente de configuración de cada dev; se puede repetir).
+Claude Code: sesión dedicada con `claude --agent coordinator`.
+OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
+
 ## Agregar una skill
 
 1. Crear **solo** `.agents/skills/<nombre>/SKILL.md`, con frontmatter:
@@ -75,7 +81,7 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
    cuerpo, `$ARGUMENTS` es todo el texto y `$1`, `$2`… los argumentos por posición.
 2. El comando dice qué skill sigue y en qué agente delega; no copia el cuerpo de la skill.
 3. Si es parte del flujo `sdd`, agregarlo a la tabla de fases de `.agents/skills/sdd/SKILL.md` y a
-   "Roles y comandos" de `AGENTS.md`.
+   «Roles y comandos» de este archivo.
 4. Verificar los enlaces según `.agents/sync-agents.md` y sugerir `/sdd-enlaces`.
 
 ## Validar la estructura
@@ -84,6 +90,16 @@ Pídele al agente `/sdd-estructura` (o "valida la estructura del kit"): sigue
 `.agents/validar-estructura.md`, revisa enlaces, réplicas, skills, agentes, comandos, índices y
 codificación, y propone las correcciones sin aplicarlas. Los enlaces y las réplicas se corrigen
 con `/sdd-enlaces`, con tu confirmación.
+
+## Qué va en `AGENTS.md`
+
+- Siempre cargado: lo que se usa en cualquier turno o lo que los roles y `/sdd-init` buscan ahí por
+  nombre: «Guardrails», «Cada sesión», «Antecedentes», «Deuda técnica», «Skills de proyecto», «Git»,
+  «Stack y convenciones de código», «Comandos», «Reglas de negocio y del sistema» y «Reglas duras».
+- Bajo demanda: lo que usa un solo rol, comando o momento vive en su archivo, y `AGENTS.md` deja un
+  renglón que dice qué es, dónde está y cuándo leerlo.
+- Los pasos de «Cada sesión» piden secciones, no archivos enteros, y los condicionales dicen en una
+  línea cuándo aplican.
 
 ## Anti-patrones
 

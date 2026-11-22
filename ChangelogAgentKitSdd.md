@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.12.0 — 2026-11-21
+- Arranque ligero (ADR 0032): el criterio de qué va en `AGENTS.md` (siempre cargado) y qué se lee
+  bajo demanda vive en `.agents/README.md` › «Qué va en `AGENTS.md`».
+- Salen de `AGENTS.md` a un renglón de remisión: «Qué lee cada rol» (cada rol ya declara lo suyo en
+  `.agents/agents/<rol>.md`), «Roles y comandos» (pasa a `.agents/README.md` › «Roles y comandos») y
+  «Formato y numeración» (fuente: `.docs/002_specs/README.md` › «Numeración única»).
+- «Cada sesión»: el paso 4 lee `.agents/README.md` solo al crear o modificar agentes, skills o
+  comandos; el paso 7 lee solo «Chequeo de arranque» y lo que indica; el paso 8 remite a
+  «Numeración única» solo si hay repetidos.
+- `sync-agents.md` reordenado: «Chequeo de arranque» al inicio con su «Qué lee» y sección nueva
+  «Estados de enlace» (tabla de estados y definiciones de `OK`).
+- E8 y E9 comparan con `.agents/README.md` › «Roles y comandos»; E17 cita también el criterio.
+- Nota para proyectos actualizados: `AGENTS.md` es grupo B; los pasos 4, 7 y 8 se incorporan a mano
+  (`ACTUALIZAR.md`); conservar las secciones viejas no rompe nada.
+
 ## 0.11.0 — 2026-11-21
 - Cierre en una corrida con sus commits (ADR 0031): si pasan la previa y los criterios 1, 3, 4 y 5,
   `/sdd-cierre` escribe `Cerrado` y propone en la misma corrida los commits del requerimiento y, al
