@@ -11,6 +11,7 @@ comando de actualización ni scripts: el agente sigue estos pasos con el kit que
 - [Huella](#huella)
 - [Prueba de humo](#prueba-de-humo)
 - [Ejemplos por sistema](#ejemplos-por-sistema)
+- [Origen del kit](#origen-del-kit)
 - [Versión destino](#versión-destino)
 - [Marcador de versión](#marcador-de-versión)
 - [Al día](#al-día)
@@ -31,6 +32,7 @@ comando de actualización ni scripts: el agente sigue estos pasos con el kit que
 - [Qué hacer después de un pull que actualiza el kit](#qué-hacer-después-de-un-pull-que-actualiza-el-kit)
 - [Enlaces](#enlaces)
 - [Commit propuesto](#commit-propuesto)
+- [Skills recomendadas](#skills-recomendadas)
 - [Idempotencia y retoma](#idempotencia-y-retoma)
 - [Casos límite y errores frecuentes](#casos-límite-y-errores-frecuentes)
 
@@ -42,7 +44,7 @@ Queda fuera de este procedimiento:
 
 - un comando nuevo;
 - Git, el historial y las etiquetas del repositorio;
-- la red.
+- la red. Para saber si hay versión nueva, usa `/sdd-version` (consulta de solo lectura que no actualiza).
 
 Con el kit disponible en local basta.
 
@@ -181,6 +183,16 @@ def normalize(data: bytes) -> bytes:
 Un archivo que termina en CR sin LF no está en la prueba. `sed` quita ese CR final; Python lo
 conserva, porque solo sustituye la pareja CR LF. El comando de Linux queda como está.
 
+## Origen del kit
+
+El origen es `.agents/.kit-origen`: dos líneas, `url: <url>` y `rama: <rama>`. Compara su `url` y `rama`
+con las del origen desde el que se actualiza (el remoto `origin` del clon del kit y su rama actual).
+Si falta (proyecto instalado antes de 0.13.0), créalo. Si difieren, propón el cambio y escríbelo
+solo con visto bueno. Si el clon no tiene remoto, pide la URL a la persona. La ruta de un clon local
+opcional va en `.agents/local/kit-origen` (no versionado; no la pidas si no hay clon). El archivo
+cuenta en el grupo Kit del commit propuesto. Para consultar si hay versión nueva, remite a
+`/sdd-version`.
+
 ## Versión destino
 
 La versión destino es el contenido de una sola línea del archivo `VersionAgentKitSdd` del kit que se está
@@ -318,6 +330,12 @@ pueden quedarse como estaban o pasar a su renglón de remisión; quedarse no rom
 ahorra contexto.
 Lo mismo vale para la excepción de QA a la regla 1 de los Guardrails y para los roles en `AGENTS.md`:
 son grupo B y se incorporan a mano.
+Desde 0.13.0, en `AGENTS.md` se incorporan a mano, con el texto de `template/AGENTS.md`: las
+remisiones de «Antecedentes» y «Deuda técnica» a `.agents/skills/sdd/antecedentes-y-deuda.md`, la
+regla 1 de los Guardrails condensada, el paso 8 de «Cada sesión» solo sobre los índices, la línea de
+excepción de red en «Git» y la línea de contexto del proyecto. `.gitignore` no cambia: si ya ignora
+`.agents/local/` (como `template/.gitignore`), no hay nada que incorporar. Un `AGENTS.md` viejo sigue
+funcionando: no incorporar estos cambios solo no ahorra contexto.
 
 ### Faltante
 
@@ -343,6 +361,12 @@ No cuentan como faltante:
 `MEMORY.md`, `.agents/napkin.md` y todo `.docs/`. Si no existen, se ofrecen como NUEVO. Si existen,
 no se comparan, no se reemplazan ni se muestran faltantes. `.docs/` mezcla plantillas del kit con
 documentos del proyecto, por eso toda su existencia se respeta.
+
+Desde 0.13.0, `.docs/005_contexto/README.md` llega como NUEVO si falta. En
+`.docs/002_specs/README.md` (del proyecto) se incorporan a mano la línea «Quién escribe» de la
+leyenda de estatus, la desambiguación del diferimiento y la sección «Numeración única» con
+`005_contexto`, con el texto de `template/.docs/002_specs/README.md`. También, en «Cómo usarlo», el
+punto 5 (etapas intermedias) y, en la reapertura, la frase «Un diferimiento no baja un `Cerrado`».
 
 Una ruta que no cae en A, B ni D recibe este mismo trato.
 
@@ -551,14 +575,26 @@ que los corrige con confirmación. No ejecutes nada desde aquí.
 
 No crees el commit.
 
-Si el proyecto usa Git, propón un commit aparte con solo los archivos que esta actualización
-tocó y espera confirmación explícita. Sigue `template/.agents/skills/git-commit/SKILL.md`.
-Antes de proponerlo, sigue `template/.agents/skills/seguridad-basica/SKILL.md`.
+Si el proyecto usa Git, propón commits separados, cada uno con su confirmación explícita y con
+`template/.agents/skills/git-commit/SKILL.md`. Un grupo vacío no se propone. Nunca uses `git add .`
+ni `-A`: `git add` con los archivos de cada grupo. Antes de proponerlos, sigue
+`template/.agents/skills/seguridad-basica/SKILL.md`. Los grupos son:
 
-Si el árbol ya tenía cambios sin guardar antes de empezar, avisa antes de proponer el commit,
-para no mezclar ajenos.
+1. Kit: archivos del kit añadidos o reemplazados, `.agents/.kit-version` y `.agents/.kit-origen`.
+2. Configuración del proyecto que la actualización tocó: los del Grupo B (`AGENTS.md`, `.gitignore`)
+   y los permisos versionados, si los hay.
+3. Lo propio del proyecto que ya estaba sin guardar (por ejemplo, el avance de una spec), solo si la
+   persona pide incluirlo.
+
+Si el árbol ya tenía cambios sin guardar antes de empezar, avisa antes de proponer los commits,
+para no mezclar ajenos (grupo 3).
 
 Si el proyecto no usa Git, el commit no aplica. El resto, incluido el marcador, sigue igual.
+
+## Skills recomendadas
+
+Tras el reporte y el commit propuesto, ofrece a la persona detectar el stack del proyecto y recomendar
+skills con `.agents/catalogo-skills.md`. Solo remite al catálogo: no instales nada desde aquí.
 
 ## Idempotencia y retoma
 

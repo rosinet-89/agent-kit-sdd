@@ -111,7 +111,7 @@ externo, las consultas de los agentes conviene que usen un usuario de BD con per
 
 ## Fragmento opcional `permissions.deny`
 
-Texto de esta pieza. No se copia a `.claude/` ni a settings versionados. Recomendación, no garantía del kit. Solo estos cinco patrones:
+Texto de esta pieza. No se copia a `.claude/` ni a settings versionados. Recomendación, no garantía del kit. Estos patrones, los cinco de Git y los clientes de BD (sugerencia, texto que se muestra):
 
 ```text
 permissions:
@@ -121,15 +121,22 @@ permissions:
     - Bash(git fetch *)
     - Bash(git pull *)
     - Bash(git sync *)
+    - Bash(mysql *)
+    - Bash(psql *)
+    - Bash(sqlcmd *)
+    - Bash(sqlplus *)
+    - Bash(sqlite3 *)
+    - Bash(mongosh *)
+    - Bash(redis-cli *)
 ```
 
-Advertencia: vale para toda la sesión, no por subagente, cubre comandos compuestos, y quien lo copie puede bloquear su propio Git. No hay deny de ruta ni de `Write`/`Edit`.
+Advertencia: vale para toda la sesión, no por subagente, cubre comandos compuestos, y quien lo copie puede bloquear su propio Git. Los clientes de BD también bloquean las consultas de lectura por línea de comandos: si hace falta consultar, usa el mecanismo de `AGENTS.md` › Comandos. No hay deny de ruta ni de `Write`/`Edit`.
 
 ## Fragmento opcional `permissions.allow` (RF-10)
 
 No es una fila de la tabla. No tiene columna «garantizada». Ningún agente lo aplica ni cambia su modo de permisos.
 
-El responsable pone los comandos de su `AGENTS.md` › Comandos para que no pidan confirmación uno por uno. Ejemplo genérico, como texto:
+El responsable pone los comandos de su `AGENTS.md` › Comandos para que no pidan confirmación uno por uno. Qué comandos pone, y cuáles no, lo define `.agents/commands/sdd-init.md` (sección 3, punto 7); no se copia aquí. Ejemplo genérico, como texto:
 
 ```text
 permissions:

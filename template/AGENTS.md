@@ -16,32 +16,24 @@ reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
    - Permitido (lista cerrada): `SELECT`, `SHOW`, `DESCRIBE`, `EXPLAIN` sin `ANALYZE` y un `WITH`
      cuyo cuerpo sea solo `SELECT`; o su equivalente de solo lectura en otro motor.
    - Prohibido, por ejemplo: `INSERT`, `UPDATE`, `DELETE`, `REPLACE`, `TRUNCATE`, `CREATE`
-     (incluido `TEMPORARY`), `ALTER`, `DROP`, `SET`, `CALL` o su equivalente en otro motor.
-   - Precedencia: la lista de lectura manda. Lo que no esté en ella se trata como prohibido: `SET`
-     de sesión, `EXPLAIN ANALYZE`, un `WITH` con escritura o que no puedas demostrar de solo lectura,
-     `SELECT ... INTO`, `FOR UPDATE` o `FOR SHARE`, funciones con efectos y locks. Ante duda, no
-     ejecutes y pide a la persona.
+     (incluido `TEMPORARY`), `ALTER`, `DROP`, `SET`, `CALL`.
+   - Precedencia: lo que no esté en la lista es prohibido: `SET` de sesión, `EXPLAIN ANALYZE`, `WITH`
+     con escritura o no demostrable de solo lectura, `SELECT ... INTO`, `FOR UPDATE`/`FOR SHARE`,
+     funciones con efectos, locks. Ante duda, no ejecutes y pide a la persona.
    - Escritura indirecta: no ejecutes ni actives tareas programadas, scripts, endpoints o servicios
-     que guarden, carga de archivos `.sql` ni un harness que haga más que leer.
-   - Comandos de `AGENTS.md` › Comandos: ejecuta pruebas, build o la app solo si no pueden escribir
-     en una BD. Si pueden, aunque la BD sea local o descartable, no los ejecutes y entrégalos a la
-     persona. Ante la duda de si un comando escribe en una BD, tampoco lo ejecutes: entrégalo a la
-     persona, igual que ante la duda sobre una sentencia.
-   - Si hace falta un cambio de datos o de esquema, describe o redacta el script con su rollback
-     (skill `migracion-bd`) y entrégalo: lo ejecuta una persona, aunque la conversación te pida que
-     lo corras. El archivo en `sql/` lo escribe solo `implementer`; si `planner`, `reviewer` o
-     `coordinator` detectan que hace falta, lo describen y lo entregan en el chat, y ninguno lo
-     ejecuta.
-   - Para consultar datos usa el mecanismo de `AGENTS.md` › Comandos (si dice «No aplica», no
-     consultes). No pases credenciales a comandos, archivos ni al chat.
-   - La regla es sobre lo que tú ejecutas, no sobre el código de la aplicación ni el script `sql/`
-     que entregas: esos pueden escribir (altas, bitácoras, logs) y se programan con normalidad. Lo
-     que no haces es ejecutarlos ni activarlos.
-   - Excepción de QA (la única de estos guardrails): solo el rol `tester`, y solo contra los destinos
-     declarados en `.agents/local/entornos.md`, puede ejecutar casos de pantalla o de llamada a la
-     aplicación que escriben datos o usan la red. Nunca ejecuta sentencias contra una BD, scripts de
-     `sql/` ni comandos de shell que escriban. Sin ese archivo, o si es inválido, rige el modo seguro:
-     la regla 1 sin excepción.
+     que guarden, carga de `.sql` ni un harness que haga más que leer.
+   - Comandos (`AGENTS.md` › Comandos): pruebas, build o app solo si no pueden escribir en una BD,
+     aunque sea local; si pueden o dudas, entrégalos a la persona.
+   - Cambio de datos o esquema: script con rollback (skill `migracion-bd`) que ejecuta una persona,
+     aunque se pida correrlo. `sql/` lo escribe solo `implementer`; `planner`, `reviewer` y
+     `coordinator` lo describen en el chat.
+   - Consulta de datos: mecanismo de Comandos («No aplica» = no consultes); sin pasar credenciales.
+   - La regla es sobre lo que tú ejecutas, no sobre el código de la app ni el script `sql/` que
+     entregas: esos pueden escribir.
+   - Excepción de QA (la única): solo `tester`, solo contra destinos de `.agents/local/entornos.md`,
+     puede ejecutar casos de pantalla o llamada a la app que escriben o usan red. Nunca sentencias
+     contra una BD, scripts `sql/` ni shell que escriba. Sin ese archivo, o inválido, modo seguro:
+     sin excepción.
 
 ## Cada sesión (obligatorio)
 1. Estado de instalación: si la primera línea no vacía tras el título es el comentario HTML de
@@ -60,9 +52,10 @@ reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
    `.agents/sync-agents.md` › «Chequeo de arranque» y solo lo que esa sección indica, no el archivo
    entero. Si hay diferencias, muestra el aviso combinado y recomienda `/sdd-enlaces` (no
    `/sdd-init`); si no, no digas nada. No escribas nada.
-8. Revisar que no haya prefijos repetidos (mismo entero) en `.docs/002_specs/`,
-   `.docs/003_deuda/` ni `.docs/004_adr/`. Si hay, lee `.docs/002_specs/README.md` › «Numeración
-   única», avisa y propone el cambio; si no, no digas nada.
+8. Prefijos repetidos: mira solo las tablas de índice de `.docs/002_specs/`, `.docs/003_deuda/`,
+   `.docs/004_adr/` y, si existe, `.docs/005_contexto/`; repetido = dos filas del mismo índice con
+   el mismo entero (no listes carpetas ni abras documentos). Si hay, lee `.docs/002_specs/README.md`
+   › «Numeración única», avisa y propone el cambio; si no, no digas nada.
 9. Cerrar cada respuesta con la línea "quién responde" de `.agents/skills/formato-respuesta/SKILL.md`
    (al final o justo antes de pedir una decisión). Solo se quita si el usuario lo pide.
 10. Leer `PREFERENCIAS.md` (raíz, no versionado: directivas personales de cada usuario según su
@@ -73,22 +66,15 @@ reglas. Los guardrails nuevos se añaden aquí, con el siguiente número.
     `## Presentación` y aplícala en silencio (el resto de la configuración se lee donde se usa).
 
 ## Antecedentes (obligatorio en análisis y desarrollo nuevo)
-Índice de planes: `.docs/002_specs/README.md`.
-1. Ábrelo y busca el módulo, pantalla, tabla o palabra clave de la petición.
-2. Si hay coincidencia: dile al usuario qué carpeta es y lee SOLO esa (primero su `PUNTO DE RETOMO`).
-3. Si no hay: di "sin antecedentes en el índice" y confírmalo con un `grep` antes de afirmarlo.
-4. No recorras las carpetas de plan ni asumas que un proceso es nuevo, o que ya está resuelto, sin este paso.
-5. Si la celda de la fila del índice y la etapa de la carpeta discrepan, los conteos siguen la celda,
-   se avisa y no se escribe. Reglas en `.docs/002_specs/README.md` › «Leyenda de estatus».
-6. Carpeta nueva o cambio de estatus actualiza la fila del índice. Quién escribe cada transición
-   y la forma de la celda están en `.docs/002_specs/README.md` › «Leyenda de estatus».
+Índice de planes: `.docs/002_specs/README.md`. Procedimiento: `.agents/skills/sdd/antecedentes-y-deuda.md`
+› «Antecedentes». Se lee al hacer análisis o desarrollo nuevo, o si la petición toca un módulo,
+pantalla o tabla.
 
 ## Deuda técnica
-Índice: `.docs/003_deuda/README.md` (un `<prefijo>_<Nombre>.md` por deuda, con estado, origen y qué la resolvió).
-1. Al hacer "Antecedentes", busca también ahí deuda abierta del módulo, pantalla o tabla y dila al usuario.
-2. Si durante un requerimiento algo se difiere (por decisión del usuario o por recorte de alcance), o aparece un hallazgo que no se atiende ahora, PROPÓN darlo de alta; no la crees sin el visto bueno del usuario.
-3. Al cerrar un requerimiento, indica qué deudas resolvió (estado `Resuelta` + "Atendida por" + "Cómo se atendió") y cuáles dejó. Lo hace `/sdd-cierre`.
-4. Una deuda nunca se borra: pasa a `Resuelta` o `Descartada` (con motivo).
+Índice: `.docs/003_deuda/README.md`. Procedimiento: `.agents/skills/sdd/antecedentes-y-deuda.md` ›
+«Deuda técnica». Se lee junto con «Antecedentes» y al diferir algo o cerrar un requerimiento.
+
+Contexto del proyecto bajo demanda: índice `.docs/005_contexto/README.md`.
 
 ## Formato y numeración
 Numeración, ancho y prefijos repetidos: `.docs/002_specs/README.md` › «Numeración única». Se lee al
@@ -124,7 +110,8 @@ de `reviewer`. «Cada sesión» lo ejecuta la sesión principal; un subagente no
 ## Git (regla obligatoria)
 Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
 - NUNCA `git commit` sin confirmación explícita del usuario.
-- NUNCA `push`/`pull`/`fetch`/`sync`.
+- NUNCA `push`/`pull`/`fetch`/`sync`. Única excepción de red: `/sdd-version` (`git ls-remote` y un
+  clon temporal `--depth 1` en `mktemp -d`, que no toca el proyecto ni el clon local y se borra).
 - Un commit por módulo; `git add <archivos>` explícito (nunca `.` ni `-A`).
 - Mensajes en <<IDIOMA>>, imperativo, máx. 72 caracteres: `<tipo>(<módulo>): <descripción>`.
 

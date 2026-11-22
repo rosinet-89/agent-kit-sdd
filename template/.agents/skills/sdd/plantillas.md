@@ -107,6 +107,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Bloqueos abiertos | Ninguno |
 | Estado BD | |
 | Código | |
+| Pausa | (opcional; solo `/sdd-pausa`. Ver [avance-y-tiempos.md](avance-y-tiempos.md) › «Marca de pausa») |
 
 ## Pasos
 ## Decisiones

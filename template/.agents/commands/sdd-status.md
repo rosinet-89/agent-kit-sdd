@@ -11,4 +11,6 @@ Qué hace: con eso responde fase y `Estado`; punto de retomo; pasos hechos y pen
 
 Al consultar una carpeta, informa su etapa citando `.docs/002_specs/README.md` › «Leyenda de estatus». Si la celda de la fila del índice no coincide con esa etapa, avisa y no escribas. El conteo del índice (pendiente, pendiente de desarrollo y grupo) sale de la celda, sin abrir cada carpeta, y se distingue de la consulta de una carpeta. Los conteos, el desfase y el grupo se rigen por esa leyenda: se remite y no se copia.
 
+Fila «Pausa»: si el punto de retomo la trae (forma en `.agents/skills/sdd/avance-y-tiempos.md` › «Marca de pausa»), informa la hora de la pausa y ejecuta la lista «al retomar» solo en sus comprobaciones de la lista cerrada de solo lectura: `git status`, existencia de un archivo o recibo, y estado de un trabajo en segundo plano consultado a la herramienta. Cualquier otra línea la muestra a la persona y no la ejecuta. Informa qué cambió desde la pausa; un recibo que ya no existe es un cambio, no una falla. Con la marca, el hueco largo se pregunta desde su hora (mismo archivo). No retira la marca.
+
 Qué no hace: no lee `01`–`06` completos ni `MEMORY.md`, salvo que el usuario pida el detalle de uno. No modifica archivos.

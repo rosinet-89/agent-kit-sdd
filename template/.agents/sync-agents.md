@@ -8,16 +8,15 @@ entorno de desarrollo.
 
 ## Chequeo de arranque
 
-Qué lee: esta sección. Si el punto 1 lo omite, nada más. Si no, también «Estados de enlace», «Estado «visto»» y, de
-«Tabla de enlaces», solo el encabezado y las filas de las herramientas declaradas en «visto». No lee «Qué hace el agente» ni
-«Notas para el usuario».
+Qué lee: esta sección. Si el punto 1 lo omite, nada más. Si no, también la tabla de «Estados de enlace»,
+«Estado «visto»» y, de «Tabla de enlaces», el encabezado y las filas de las herramientas declaradas en
+«visto». Nada más del archivo.
 
-Lo ejecuta el paso 7 de «Cada sesión» de `AGENTS.md`. Es de **solo lectura**: no crea, no corrige y no
+Lo ejecuta el paso 7 de «Cada sesión» de `AGENTS.md`. Es de solo lectura: no crea, no corrige y no
 escribe «visto». Se hace una vez por sesión, aunque la persona posponga el aviso.
 
 1. Si falta `.agents/.kit-version` y existe `template/` (clon del kit): se omite, sin aviso. Sin
-   `template/`, la falta de `.kit-version` no se trata aparte: el chequeo sigue y avisa como «todo
-   nuevo».
+   `template/`, sigue y avisa como «todo nuevo».
 2. Lee «visto». Ausente o corrupto = todo nuevo.
 3. Calcula las diferencias:
    - Versión distinta de `.agents/.kit-version` (incluye retroceso).
@@ -25,21 +24,22 @@ escribe «visto». Se hace una vez por sesión, aunque la persona posponga el av
      `skills/` con las líneas `pieza:`.
    - Solo para las herramientas declaradas: filas con estado `FALTA`, `DIFERENTE` u `OCUPADO` sin
      `excepcion:`. Las demás filas se ignoran; una ruta en `copia:` cuenta como `OK (copia)`.
+   - Carpeta de agentes por archivo: basta que cada rol tenga su entrada (si no, `FALTA`); la validez
+     del adaptador la juzgan `/sdd-enlaces` y E3/E23.
    - Sin «visto» (clon nuevo): todo cuenta como nuevo y no hay herramientas declaradas.
-4. Sin diferencias, no digas nada. Con diferencias, muestra un único aviso de 3 líneas como máximo,
+4. Sin diferencias, no digas nada. Con diferencias, muestra un aviso de 3 líneas como máximo,
    sin leer changelog: línea 1, versión y piezas (hasta 5, nuevas primero, luego «y X más»); línea 2,
-   enlaces pendientes y recomendación de `/sdd-enlaces` (no `/sdd-init`); los enlaces pendientes van
-   siempre en la línea 2, nunca en la 1 (con la configuración guiada del punto 5, si aplica); línea 3, pasos mínimos
-   (abre sesión, `/sdd-enlaces`, comprueba con `/sdd-estructura`; detalle: `ACTUALIZAR.md` del kit).
+   enlaces pendientes (siempre aquí, nunca en la 1; con la configuración guiada del punto 5, si aplica)
+   y recomendación de `/sdd-enlaces` (no `/sdd-init`); línea 3, pasos mínimos (abre sesión,
+   `/sdd-enlaces`, comprueba con `/sdd-estructura`; detalle: `ACTUALIZAR.md` del kit).
    El aviso no menciona réplicas ni ignorados versionados.
 5. Configuración guiada: si falta `.agents/local/configuracion.md`, o su primera línea `version: X.Y.Z`
    difiere de `.agents/.kit-version` y al local le falta un paso, lo dice dentro de la línea 2 del aviso
    (junto a los enlaces pendientes, con la sugerencia de `/sdd-config`), sin pasar de 3 líneas. Falta
    un paso si su nombre fijo no está como sección `##` en el local; los nombres fijos son la lista de
    `.agents/configuracion.ejemplo.md` › «Formato del archivo local». Lee solo la primera línea del
-   archivo local, y las secciones `##` del local y esa lista solo si la versión difiere. No escribe
-   nada. Mientras tanto rigen los valores sugeridos. Si es lo único pendiente, el aviso es solo esa
-   línea.
+   archivo local, y las secciones `##` del local y esa lista solo si la versión difiere. Mientras tanto
+   rigen los valores sugeridos. Si es lo único pendiente, el aviso es solo esa línea.
 
 Ejemplo:
 

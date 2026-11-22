@@ -70,6 +70,10 @@ no se puede comprobar, el modo es completo sin más confirmación que la habitua
 8. Un solo módulo: archivos de una sola carpeta de primer nivel de `.agents` (`agents`, `commands`
    o `skills`), más sus réplicas.
 
+**Cambio pequeño** (fuente única): bug acotado, error tipográfico o de tipos, que toca a lo sumo 3
+archivos y no añade una regla. Siempre va por el modo ligero, con carpeta y con «Antecedentes»; no hay
+camino fuera del flujo. Con duda, no es pequeño y se evalúa con las 8 condiciones.
+
 Los umbrales de 3 archivos y 1 hora son fijos y provisionales: se revisan tras 3 usos reales. Cada
 uso ligero se registra en `05_avance.md`, con la lista de condiciones evaluada en la fila `Modo` de
 PUNTO DE RETOMO.

@@ -18,6 +18,8 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   napkin.md                       # runbook vivo; todos lo leen cada sesión
   .kit-version                    # marcador de versión del procedimiento; versionable; no es del kit
   .kit-mantener                   # registro de «mantener» del procedimiento; versionable; no es del kit
+  .kit-origen                     # url y rama del origen del kit (la usa /sdd-version); versionable; no es del kit
+  catalogo-skills.md              # señales del proyecto y skills sugeridas; revisión de skills externas
   sync-agents.md                  # enlaces de cada herramienta hacia .agents/
   validar-estructura.md           # checklist de /sdd-estructura (estructura del kit)
   local/kit-visto                 # estado local de /sdd-enlaces (gitignored; no es del kit)
@@ -26,6 +28,7 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   configuracion.ejemplo.md        # sugerencias del kit; se copian a .agents/local/configuracion.md (no versionado) con /sdd-config
   commands/<nombre>.md            # comandos /sdd* (flujo de la skill sdd; incluye sdd-config.md, asistente de configuración de cada dev)
   skills/<nombre>/SKILL.md        # skills (cuerpo canónico)
+  skills/sdd/antecedentes-y-deuda.md  # antecedentes y deuda (apoyo de la skill sdd)
 .docs/
   001_constitucion/constitution.md
   002_specs/README.md             # índice de planes
@@ -34,6 +37,7 @@ PREFERENCIAS.md                   # directivas personales de cada usuario (gitig
   003_deuda/<prefijo>_<Nombre>.md  # una deuda
   004_adr/README.md               # índice de ADR (skill adr)
   004_adr/<prefijo>_<Titulo>.md    # un ADR
+  005_contexto/README.md          # contexto de apoyo del proyecto
 ```
 
 ## Qué carpeta lee cada herramienta
@@ -53,7 +57,7 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
 
 ## Roles y comandos
 Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku) y explore (localiza; Haiku).
-Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-constitucion`, `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; solo lectura), `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación) y `/sdd-config` (asistente de configuración de cada dev; se puede repetir).
+Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-pausa` (deja el punto de retomo y la lista «al retomar» de una carpeta), `/sdd-version` (¿tengo la última versión del kit?; solo lectura, con la red como única excepción), `/sdd-constitucion` (auxiliar: propone o revisa la constitución), `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; lee, reporta y deja la bandera local `.agents/local/estructura-ok`), `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación) y `/sdd-config` (asistente de configuración de cada dev; se puede repetir).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
 
@@ -96,6 +100,8 @@ con `/sdd-enlaces`, con tu confirmación.
 - Siempre cargado: lo que se usa en cualquier turno o lo que los roles y `/sdd-init` buscan ahí por
   nombre: «Guardrails», «Cada sesión», «Antecedentes», «Deuda técnica», «Skills de proyecto», «Git»,
   «Stack y convenciones de código», «Comandos», «Reglas de negocio y del sistema» y «Reglas duras».
+  De «Antecedentes» y «Deuda técnica», `AGENTS.md` lleva el encabezado con su remisión y el cuerpo
+  vive en `.agents/skills/sdd/antecedentes-y-deuda.md` (ADR 0033 en el clon del kit).
 - Bajo demanda: lo que usa un solo rol, comando o momento vive en su archivo, y `AGENTS.md` deja un
   renglón que dice qué es, dónde está y cuándo leerlo.
 - Los pasos de «Cada sesión» piden secciones, no archivos enteros, y los condicionales dicen en una

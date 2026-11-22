@@ -52,9 +52,15 @@ mantenimiento no lo escribe.
    - No crear enlaces hacia `.claude/`, `.cursor/`, etc.: eso lo propone el agente dentro del
      proyecto con `.agents/sync-agents.md`.
 6. Escribe `.agents/.kit-version` en el destino copiando la única línea de `VersionAgentKitSdd` del kit
-   usado (no la escribas a mano). Al terminar, reporta: copiados, omitidos y pendientes de
-   fusionar, más la versión del kit (archivo `VersionAgentKitSdd`).
-7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr `/sdd-init`. Después, cada dev puede correr `/sdd-config` para su configuración local (repetible).
+   usado (no la escribas a mano). Escribe también `.agents/.kit-origen`, dos líneas: `url: <url>`
+   (la del remoto `origin` del clon desde el que copias) y `rama: <rama>` (su rama actual). Si ese
+   clon no tiene remoto, pide la URL a la persona. Si la persona tiene un clon local del kit, su
+   ruta va en `.agents/local/kit-origen` (no versionado); no la pidas si no hay clon. Al terminar,
+   reporta: copiados, omitidos y pendientes de fusionar, más la versión del kit (archivo
+   `VersionAgentKitSdd`).
+7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr
+   `/sdd-init`. Después, cada dev puede correr `/sdd-config` para su configuración local
+   (repetible).
 
 ### A mano (sin agente)
 
@@ -74,10 +80,15 @@ Después de copiar, deja el marcador de versión: una línea, la del archivo `Ve
 
 ```sh
 printf '%s\n' <versión> > .agents/.kit-version
+printf 'url: %s\nrama: %s\n' <url> <rama> > .agents/.kit-origen
 ```
 ```powershell
 Set-Content -Path .agents\.kit-version -Value '<versión>'
+Set-Content -Path .agents\.kit-origen -Value 'url: <url>','rama: <rama>'
 ```
+
+`<url>` y `<rama>` son el remoto `origin` y la rama actual del clon del kit (`git remote get-url origin`,
+`git branch --show-current`). Opcional: `.agents/local/kit-origen` con la ruta de tu clon local.
 
 Revisa después el `.gitignore` del proyecto y fusiona a mano las reglas de `template/.gitignore`.
 

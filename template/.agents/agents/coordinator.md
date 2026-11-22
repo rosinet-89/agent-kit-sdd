@@ -13,7 +13,7 @@ Qué hace: eliges un comando de `.agents/commands/`, lo dices en una línea y lo
 
 Qué no hace: no reescribes la secuencia de una fase. No escribes código ni `01`–`04`, `06` ni `sql/`. No lees la constitución ni `MEMORY.md` para enrutar. No haces `git commit`.
 
-Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, para y sugiere `/sdd-init`. Si la petición es un fix chico que no merece carpeta, dilo y sugiere hacerlo fuera de este flujo.
+Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, para y sugiere `/sdd-init`. Si la petición es un arreglo chico, no hay camino fuera del flujo: va por el cambio pequeño de `.agents/skills/sdd/topes-y-modos.md` › «Modo ligero» (siempre modo ligero, con carpeta).
 
 ## Cómo decides qué hacer
 
@@ -36,10 +36,14 @@ Antes de abrir el comando, dile en una línea cuál elegiste y por qué.
 | Pregunta cómo va, el estado o dónde quedamos | `sdd-status.md` |
 | Pide validar la estructura del kit (enlaces, réplicas, skills, comandos) | `sdd-estructura.md` |
 | Pide crear o corregir enlaces (tras un pull, clon nuevo o cambio de rama) | `sdd-enlaces.md` |
+| Pide personalizar el kit en un proyecto recién instalado (instrucción inicial) | `sdd-init.md` (auxiliar, sin fila en la tabla de fases) |
 | Pide configurar el kit para su entorno o repetir la configuración | `sdd-config.md` |
+| Pide pausar o parar el trabajo | `sdd-pausa.md` |
+| Pregunta si tiene la última versión del kit | `sdd-version.md` |
+| Pide proponer o revisar la constitución | `sdd-constitucion.md` (auxiliar: sin fila en la tabla de fases) |
 | Pide continuar o retomar, sin nombrar la fase | El comando que indique el PUNTO DE RETOMO de `05_avance.md` |
 | Pide el flujo completo, de punta a punta | `sdd-spec.md` y, tras cada puerta aprobada, el comando siguiente de la tabla de fases de la skill `sdd` |
-| Es un fix chico o algo fuera de un plan | Ninguno: dilo y sugiere hacerlo fuera del flujo |
+| Es un arreglo chico o algo fuera de un plan | `sdd-spec.md` en modo ligero: cambio pequeño de `.agents/skills/sdd/topes-y-modos.md` › «Modo ligero» |
 
 - Pásale al comando la petición del usuario, con sus palabras, como argumentos.
 - Para ubicar una carpeta existente, usa el índice. Si hay más de una candidata, pregunta.

@@ -34,6 +34,22 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Bloqueos abiertos | O "Ninguno" |
 | Estado BD | Qué scripts `sql/NN` ya ejecutó el usuario |
 | Código | Archivos tocados / pendientes |
+| Pausa | Opcional. Solo la deja `/sdd-pausa`. Ver «Marca de pausa» |
+
+#### Marca de pausa
+
+Fila opcional «Pausa» del PUNTO DE RETOMO. Es la fuente única: `plantillas.md`, `/sdd-pausa` y
+`/sdd-status` remiten aquí.
+
+- Contenido: hora de inicio (`AAAA-MM-DD HH:MM`), motivo si la persona lo dio y la lista «al retomar»
+  (qué comprobar primero, qué hacer según el resultado y el comando `/sdd-*` que sigue).
+- Una sola fila. Una segunda pausa seguida actualiza esa misma fila (hora, motivo y lista), sin
+  duplicarla.
+- Al retomar se borra: la retira la sesión al registrar el siguiente tramo.
+- La pausa no suma tiempo ni crea fila en la tabla de tiempos.
+- No es la anotación de diferimiento (etapa `Diferido`; la decide la persona, con motivo y estatus de
+  regreso; ver `.docs/002_specs/README.md` › «Leyenda de estatus»). Esta marca solo dice que una
+  sesión paró y no cambia la etapa ni la celda del índice.
 
 ## Decisiones
 
@@ -90,9 +106,9 @@ La fase lleva una sola fila. Los minutos del intento que no pudo delegar entran 
 
 ### Hueco largo: preguntar antes de contar
 
-Si entre el fin registrado y la siguiente instrucción, o entre dos
-instrucciones, pasan **más de 30 minutos** y ese hueco no es trabajo visible del
-agente en el mismo turno, no se suman esos minutos. Se pregunta una sola vez:
+Si hay marca de pausa (ver «Marca de pausa»), el hueco se mide desde su hora de inicio. Si entre el
+fin registrado y la siguiente instrucción, o entre dos instrucciones, pasan **más de 30 minutos** y
+ese hueco no es trabajo visible del agente en el mismo turno, no se suman esos minutos. Se pregunta una sola vez:
 
 "De HH:MM a HH:MM hay N min. ¿Cuántos fueron pausa y cuántos seguiste en este desarrollo?"
 

@@ -12,7 +12,8 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
   README.md  napkin.md  sync-agents.md  preferencias.ejemplo.md
   agents/    coordinator, planner, implementer, reviewer, tester, explore
   commands/  sdd, sdd-init, sdd-spec, -clarify, -plan, -tasks, -implement,
-             -validate, -flujo, -cierre, -change, -status, -constitucion, -config
+             -validate, -flujo, -cierre, -change, -status, -pausa, -version,
+             -constitucion, -config
   skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta,
              adr, migracion-bd, seguridad-basica
 .docs/

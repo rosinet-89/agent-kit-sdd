@@ -1,12 +1,13 @@
 # Validación de la estructura del kit (checklist que corre el agente)
 
-Lo usa el comando `/sdd-estructura`. Solo **lee y reporta**: no corrige nada sin confirmación.
+Lo usa el comando `/sdd-estructura`. **Lee, reporta y deja la bandera local** (ver «Bandera de
+estructura»): no corrige nada sin confirmación.
 Sirve para comprobar que el kit mantiene su estructura: una sola copia canónica en `.agents/`,
 réplicas por herramienta como enlaces, y skills, agentes, comandos e índices coherentes.
 
 ## Alcance
 
-La sesión principal corre E1 a E23. No se delegan a un subagente.
+La sesión principal corre E1 a E26. No se delegan a un subagente.
 
 `/sdd-estructura` sin argumento corre todos los bloques. Con argumento corre uno:
 `enlaces`, `skills`, `agentes`, `comandos`, `docs`, `codificacion` o `kit` (solo en el repo del kit).
@@ -24,10 +25,10 @@ La sesión principal corre E1 a E23. No se delegan a un subagente.
 | E7 | skills | Cada skill está en la tabla de "Skills de proyecto" de `AGENTS.md` (las de dominio y las del kit); ninguna fila apunta a una skill inexistente. Exención solo si existe `template/` (repo del kit): una skill presente en `.agents/skills/` y ausente de `template/.agents/skills/` no exige fila ni es FALLA; una skill local con el nombre de una del kit cuenta como del kit. En un proyecto instalado (sin `template/`) no aplica y toda skill exige fila. Una fila a una skill inexistente sigue siendo FALLA | Cruzar tabla y carpetas |
 | E8 | agentes | Cada `agents/<rol>.md` tiene `name` (= archivo), `description` y `tools`; los roles coinciden con «Roles y comandos» de `.agents/README.md` | Leer frontmatter |
 | E9 | comandos | Cada `commands/<n>.md` tiene `description` y `argument-hint` (si recibe argumentos); los comandos citados en `.agents/README.md` › «Roles y comandos» existen y los que existen están citados ahí (que `AGENTS.md` los cite ya no cuenta: uno viejo con su sección no es `FALLA`) | Cruzar lista y carpeta |
-| E10 | comandos | Los comandos del flujo `sdd` están en la tabla de fases de `skills/sdd/SKILL.md` y en el ruteo de `coordinator.md` | Cruzar tablas |
+| E10 | comandos | Los comandos del flujo `sdd` están en la tabla de fases de `skills/sdd/SKILL.md` y en el ruteo de `coordinator.md`. Exentos de la tabla de fases (comandos auxiliares, solo con fila de ruteo en `coordinator.md`): `/sdd-constitucion`, `/sdd-init` y `/sdd-config`; no avisan por esa causa. `/sdd-pausa` y `/sdd-version` sí entran a la tabla | Cruzar tablas |
 | E11 | rutas | Toda ruta citada con comillas inversas en `AGENTS.md`, `.agents/**/*.md` y `.docs/**/README.md` existe. No aplica a los manifiestos de versión: pueden listar rutas retiradas | `grep` de rutas + `ls` |
 | E12 | docs | Sin prefijos repetidos **por valor numérico** en los ítems de `.docs/002_specs/`, `.docs/003_deuda/` y `.docs/004_adr/`. Remite a `.docs/002_specs/README.md` › « Numeración única ». El prefijo numérico vale su entero: los ceros de relleno y el ancho escrito no son `FALLA` y el nombre no se reescribe. Dos ítems con el mismo entero son `FALLA` y esa igualdad no es `AVISO`. Un nombre que no empieza por dígitos y `_` no entra en el consecutivo ni en el ancho. En el clon, los 4 dígitos valen para el ítem nuevo: el ancho ya escrito no pasa a `FALLA` y una mezcla válida no es `AVISO`. El `AVISO` de mezcla válida sigue siendo solo de proyecto. El desbordamiento sin relleno (`1000` en ancho 3) sigue en el ADR 014. Las carpetas de sección (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`) se quedan en 3 | Listar y contar prefijos |
-| E13 | docs | Cada índice (`002_specs`, `003_deuda`, `004_adr`) coincide con sus carpetas o archivos; si discrepan, manda la carpeta | Cruzar fila y archivo |
+| E13 | docs | Cada índice (`002_specs`, `003_deuda`, `004_adr`) coincide con sus carpetas o archivos; si discrepan, manda la carpeta. El desfase entre la celda de estatus y la etapa de la carpeta sigue `.docs/002_specs/README.md` › «Leyenda de estatus» (no se copia aquí; lo avisa E22) | Cruzar fila y archivo |
 | E14 | docs | Toda carpeta de `.docs/002_specs/` tiene `01_spec.md` | `ls` |
 | E15 | codificación | Archivos `.md` en UTF-8 sin BOM | `file -i`; `grep -l $'^\xEF\xBB\xBF'` vacío |
 | E16 | sesión | Existen `AGENTS.md`, `CLAUDE.md` (solo `@AGENTS.md`), `MEMORY.md`, `.agents/napkin.md` y `.docs/001_constitucion/constitution.md` | `ls` y leer `CLAUDE.md` |
@@ -36,8 +37,11 @@ La sesión principal corre E1 a E23. No se delegan a un subagente.
 | E19 | kit | Solo en el repo del kit: `diff -rq template/.agents .agents` solo debe mostrar `napkin.md` (se ignora `.agents/local/`). Otra diferencia es una réplica desfasada: proponer el refresco de `INSTALAR.md` › Modo mantenimiento › "Refrescar la copia local" (sobrescribe desde `template/.agents/` y restaura `napkin.md`; no borra lo que solo está en `.agents/`). No ejecutarlo sin confirmación | `diff -rq` |
 | E20 | kit | Solo en el repo del kit: recalcula la huella de cada archivo de `template/` con el algoritmo de `ACTUALIZAR.md` y la compara con manifiestos/<VERSION>.md. Falla por diferencia, por archivo sin fila o por fila sin archivo. En un proyecto instalado no aplica: ahí no hay manifiestos | Algoritmo de `ACTUALIZAR.md` |
 | E21 | sesión | **Marcador de instalación:** solo con .agents/.kit-version. Existe `AGENTS.md` y el literal `SDD-INIT-PENDIENTE` solo aparece dentro del marcador válido (cero veces en un proyecto personalizado, una en uno pendiente) | «Detalle de E21» |
-| E22 | docs | **Estatus de la fila del índice de specs y estado en el índice de deuda.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. Cita `.docs/002_specs/README.md` › «Leyenda de estatus» y `.docs/003_deuda/README.md` › «Estados», y no las pega. Avisa si, según esa leyenda, la palabra está fuera de la lista, la celda está mal formada, faltan fecha o detalle, hay un `Cerrado`, `Descartado` o `Diferido` sin su forma, el siguiente paso no coincide, o la fila del índice está ausente, duplicada o desfasada de la etapa. Avisa también si, según esa leyenda, la columna de pendiente de la fila del índice de un `Cerrado` o un `Implementado` trae texto libre: en esas filas solo valen enlaces a deudas numeradas, o vacía. Avisa si, según «Estados», en el índice de deuda el estado no es `Abierta`, `En atención`, `Resuelta` ni `Descartada`, o una `Resuelta` no tiene «Cómo se atendió». La fila del índice no es la fila `cierre` ni la fila de modo. Si esa leyenda no trae `Cerrado` y `Descartado`, el aviso lo dice y no reescribe el índice. El cruce de la fila del índice con la carpeta o el archivo sigue en E13 | Leer las filas del índice de specs y aplicar la leyenda citada; leer el estado del índice de deuda y aplicar «Estados»; anotar `AVISO`; no escribir |
+| E22 | docs | **Estatus de la fila del índice de specs y estado en el índice de deuda.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. Cita `.docs/002_specs/README.md` › «Leyenda de estatus» y `.docs/003_deuda/README.md` › «Estados», y no las pega. Avisa si, según esa leyenda, la palabra está fuera de la lista, la celda está mal formada, faltan fecha o detalle, hay un `Cerrado`, `Descartado` o `Diferido` sin su forma, el siguiente paso no coincide, o la fila del índice está ausente, duplicada o desfasada de la etapa. Avisa también si, según esa leyenda, la columna de pendiente de la fila del índice de un `Cerrado` o un `Implementado` trae texto libre: en esas filas solo valen enlaces a deudas numeradas, o vacía. Avisa si, según «Estados», en el índice de deuda el estado no es `Abierta`, `En atención`, `Resuelta` ni `Descartada`, o una `Resuelta` no tiene «Cómo se atendió». La fila del índice no es la fila `cierre` ni la fila de modo. Si esa leyenda no trae `Cerrado` y `Descartado`, el aviso lo dice y no reescribe el índice. La fila opcional «Pausa» del punto de retomo, que deja `/sdd-pausa` (`skills/sdd/avance-y-tiempos.md` › «Marca de pausa»), no es la anotación de pausa de `Diferido` de esa leyenda: no cuenta para detectarlo ni para juzgar su forma. El cruce de la fila del índice con la carpeta o el archivo sigue en E13 | Leer las filas del índice de specs y aplicar la leyenda citada; leer el estado del índice de deuda y aplicar «Estados»; anotar `AVISO`; no escribir |
 | E23 | agentes | **Modelo por rol.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. Compara el `model:` del frontmatter de cada agente de `.agents/agents/` con la tabla «Modelo por rol» del proyecto (`.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol»), que se cita y no se pega. Avisa si un agente no declara `model:` o si su valor difiere de la fila de su rol. Un agente personalizado con un modelo distinto avisa y no falla: la persona decide si lo deja. Un rol sin fila en la tabla no se compara. Además compara el `model:` de cada adaptador de una carpeta de agentes por archivo con `.agents/local/configuracion.md` › `## Modelos` (si no existe, con los sugeridos de `.agents/configuracion.ejemplo.md`); también solo `AVISO`. Un adaptador cuyo frontmatter difiere del canónico fuera de lo que permite la definición (`sync-agents.md` › «Carpeta de agentes por archivo») da `AVISO` de adaptador viejo y sugiere `/sdd-enlaces` | Leer el `model:` de cada agente y la tabla citada; anotar `AVISO` por cada diferencia; no escribir |
+| E24 | kit | **Marcador en la raíz del kit.** Solo en el repo del kit (tiene `template/` y no tiene `.agents/.kit-version`); separado de E21, que es solo de proyectos. La raíz no gana `.kit-version`. Cuenta el marcador de instalación pendiente en el `AGENTS.md` de la raíz, compara su cadena con la de `template/AGENTS.md` e informa. `AVISO` (nunca `FALLA`) si la cuenta no es 0 con la forma válida (mismo criterio que los pasos 4 y 5 de «Detalle de E21») o si la cadena difiere de la de `template/AGENTS.md` | Los comandos de «Detalle de E21» sobre `AGENTS.md` y `template/AGENTS.md` |
+| E25 | kit | **Origen del kit.** Solo en un proyecto instalado. Solo `AVISO`: no es `FALLA`, no frena y no escribe. Avisa si falta `.agents/.kit-origen` o está mal formado (deben ser dos líneas, `url: …` y `rama: …`). No usa la red. Sugiere `ACTUALIZAR.md`, que lo crea | Leer `.agents/.kit-origen`; anotar `AVISO` |
+| E26 | docs | **Contexto del proyecto.** Solo `AVISO`: no es `FALLA`, no frena y no escribe. En `.docs/005_contexto/` avisa por un documento sin fila en su `README.md`, una fila sin documento, un documento sin «Última verificación» o con una fecha de más de 180 días. Sin la carpeta (proyecto instalado antes) no falla ni avisa | Cruzar los documentos con las filas del índice; leer «Última verificación» de cada uno |
 
 ## Detalle de E21
 
@@ -87,7 +91,7 @@ MEDIA  | E7  | .agents/skills/adr       | Falta fila en AGENTS.md | Agregar la r
 BAJA   | E15 | ChangelogAgentKitSdd.md  | BOM al inicio           | Quitar el BOM
 ```
 
-3. Sin fallos: `estructura OK (E1–E23, N archivos revisados)`; si hubo avisos, se añade
+3. Sin fallos: `estructura OK (E1–E26, N archivos revisados)`; si hubo avisos, se añade
    `, M avisos` y se listan en **Avisos**. No listes los OK uno a uno.
 4. Cierra con **Correcciones propuestas**: lista numerada, sin aplicarlas. Las correcciones de
    enlaces y réplicas se aplican con `/sdd-enlaces`; las demás, solo si el usuario las pide como
@@ -95,3 +99,29 @@ BAJA   | E15 | ChangelogAgentKitSdd.md  | BOM al inicio           | Quitar el BO
    huérfano) sin esa confirmación.
 5. Una skill, agente o comando **en prueba** que el dev quiere dejar local no es un fallo: se
    anota como `EN PRUEBA` y se propone excluirlo en `.git/info/exclude` si no debe versionarse.
+
+## Bandera de estructura
+
+Fuente única de la bandera `.agents/local/estructura-ok`. `/sdd-estructura` remite aquí.
+
+**Escritura.** Al terminar `/sdd-estructura`, tras reportar, escribe el archivo (UTF-8 sin BOM) con
+tres líneas:
+
+```
+alineada: si|no
+version: <versión>
+fecha: <AAAA-MM-DD HH:MM>
+```
+
+- `alineada` es `no` si hubo alguna `FALLA`; un `AVISO` no la baja.
+- `version` es la de `.agents/.kit-version`; en el repo del kit, que no lo tiene, la de
+  `VersionAgentKitSdd`.
+- Antes de escribir comprueba con `git check-ignore .agents/local/estructura-ok` que está ignorado.
+  Si no lo está, no escribe y avisa. Nunca `git add`, ni con `-f`.
+- Es la única escritura de `/sdd-estructura`.
+
+**Lectura.** Cuando la persona pregunta si la estructura está alineada, se lee la bandera. Vigente
+es `alineada: si` con `version` igual a la instalada (en el repo del kit,
+`VersionAgentKitSdd`). Si falta, está corrupta o es de otra versión,
+se responde «sin bandera vigente» y no se corre el checklist por cuenta propia. El arranque de
+sesión no la lee ni la menciona.

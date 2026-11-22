@@ -1,5 +1,27 @@
 # Changelog
 
+## 0.13.0 — 2026-11-22
+- Spec `0017_PausaOrigenYContexto`. Issues #4, #6, #7, #8, #10 y #11; deudas 0009 a 0014; ADR 0033 a 0035.
+- Nuevos: `commands/sdd-pausa.md`, `commands/sdd-version.md`, `catalogo-skills.md`,
+  `skills/sdd/antecedentes-y-deuda.md` y `.docs/005_contexto/README.md`; archivo de proyecto
+  `.agents/.kit-origen`; bandera local `.agents/local/estructura-ok`.
+- `AGENTS.md`: Antecedentes y Deuda técnica bajo demanda; regla 1 condensada a 1 885 bytes sin perder
+  piezas; paso 8 solo sobre índices; excepción de red en Git; línea de contexto. La plantilla pasa de
+  11 061 a 9 603 bytes.
+- `topes-y-modos.md`: cambio pequeño. `sync-agents.md`: chequeo de arranque reducido.
+- Pausa en `avance-y-tiempos.md`, `plantillas.md` y `sdd-status.md`.
+- `sdd-init.md`: contexto, stack, BD de solo lectura, allow y formato. `restricciones-de-rol.md`: deny
+  con 7 clientes de BD.
+- `sdd-cierre.md`: contexto y deuda 0013. `sdd-plan.md` y `sdd-implement.md`: remisión a «Quién escribe».
+- `validar-estructura.md` (E10, E13, E22, E24–E26, bandera) y `sdd-estructura.md`; `coordinator.md`,
+  `SKILL.md`, `.agents/README.md` y `reviewer.md` (E1–E26).
+- `INSTALAR.md` (`.kit-origen`) y `ACTUALIZAR.md` (origen, tres commits, skills al final).
+- Leyenda de estatus: «Quién escribe» con etapas intermedias y diferimiento distinto de la fila
+  «Pausa»; «Numeración única» con `005_contexto`.
+- Nota para proyectos actualizados: `AGENTS.md` es grupo B y `.docs/002_specs/README.md` es grupo C; se
+  incorporan a mano (`ACTUALIZAR.md`). `.gitignore` no cambia si ya ignora `.agents/local/`. Un
+  `AGENTS.md` viejo sigue funcionando.
+
 ## 0.12.0 — 2026-11-21
 - Arranque ligero (ADR 0032): el criterio de qué va en `AGENTS.md` (siempre cargado) y qué se lee
   bajo demanda vive en `.agents/README.md` › «Qué va en `AGENTS.md`».

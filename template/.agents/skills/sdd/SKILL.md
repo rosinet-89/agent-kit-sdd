@@ -14,7 +14,7 @@ description: >
 # SDD — Spec-Driven Development
 
 Flujo canónico para **análisis y desarrollos nuevos**: toda carpeta nueva nace con este formato.
-No aplica a un fix chico sin carpeta. Si el alcance crece a feature, se abre carpeta con este flujo.
+No hay camino fuera del flujo: un arreglo chico va por el cambio pequeño de [topes-y-modos.md](topes-y-modos.md) › «Modo ligero», siempre con carpeta. Si el alcance crece, se promueve a completo.
 
 Si el paso 1 de «Cada sesión» de `AGENTS.md` marca instalación pendiente, el proyecto no está personalizado: corre `/sdd-init` primero.
 
@@ -65,7 +65,9 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `flujo` | `/sdd-flujo` | planner, reviewer | `06_flujo.md` |
 | `cierre` | `/sdd-cierre` | sesión principal | `05_avance.md` |
 | `change` | `/sdd-change` | planner | `01_spec.md` |
+| Pausa | `/sdd-pausa` | sesión principal | `05_avance.md` |
 | Estado | `/sdd-status` | sesión principal | — |
+| Versión del kit | `/sdd-version` | sesión principal | — |
 | Estructura del kit | `/sdd-estructura` | sesión principal | — |
 | Enlaces | `/sdd-enlaces` | sesión principal | — |
 | Entrada única | `/sdd` | coordinator | según la fase |

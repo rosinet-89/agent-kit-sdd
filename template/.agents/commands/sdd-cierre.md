@@ -9,11 +9,11 @@ Qué lee: en `05_avance.md`, la tabla de Pasos, Pruebas y PUNTO DE RETOMO, inclu
 
 Qué hace:
 
-Hay tres caminos. La persona elige descarte o reapertura; si no, el camino es el cierre hacia `Cerrado`. Este cierre no escribe `Diferido`, `Planificado`, `En curso` ni `En pruebas`. La persona escribe `Diferido`.
+Hay tres caminos. La persona elige descarte o reapertura; si no, el camino es el cierre hacia `Cerrado`. Qué palabras escribe este cierre y quién escribe las demás (incluida la reapertura de un `Descartado`): línea «Quién escribe» de `.docs/002_specs/README.md` › «Leyenda de estatus», que no se repite.
 
 1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
 2. Si la fila del índice está duplicada, se detiene sin escribir. La fila `cierre` y la fila de modo no son esa fila.
-3. Cada celda que este cierre escribe usa la forma de `.docs/002_specs/README.md` › «Leyenda de estatus» y no la repite. No pega la tabla de las ocho palabras. Si no hay fila del índice, la crea al escribir esa celda, en el punto en que escribe la palabra de estatus, y no antes de la comprobación previa cuando el camino la exige.
+3. Cada celda que este cierre escribe usa la forma de `.docs/002_specs/README.md` › «Leyenda de estatus» y no la repite. No pega la tabla de las ocho palabras. Si no hay fila del índice, la crea al escribir esa celda. Si el camino exige la comprobación previa (punto 4), la crea después de ella.
 
 **Cierre hacia `Cerrado`.** No es descarte ni reapertura. El orden es este: comprobación previa; después la fila `cierre` y la tabla de plan contra real; después los criterios 3 a 5; después la celda de la fila del índice y la línea `Estado:`; al final, el criterio 2 con los commits del punto 16.
 
@@ -27,17 +27,18 @@ Hay tres caminos. La persona elige descarte o reapertura; si no, el camino es el
 **Descarte.** Lo pide la persona.
 
 10. El descarte escribe `Descartado` y la línea `Estado:` en `descartada` sin la comprobación previa. Motivo y quién quedan en el punto de retomo. Para que el `Descartado` quede bien formado, también quedan en la columna de pendiente de la fila del índice: se escriben ahí y no se inventa otro texto.
-11. Por cada `En atención` con Atendida por de este requerimiento, el cierre elige `Abierta` o `Descartada` con la decisión de la persona, según las transiciones de `.docs/003_deuda/README.md` › `## Estados`. Una `Abierta` cuyo origen es este sigue `Abierta`, salvo que esa decisión la descarte. La que atiende otro no se toca. No se pega esa sección.
+11. Por cada `En atención` con Atendida por de este requerimiento, el cierre elige `Abierta` o `Descartada` con la decisión de la persona, según las transiciones de `.docs/003_deuda/README.md` › `## Estados` (la `Abierta` de origen propio y la que atiende otro también se rigen por ahí). No se pega esa sección.
 
-**Reapertura.** La decide la persona. `Cerrado` y `Descartado` son terminales.
+**Reapertura.** La decide la persona. `Cerrado` y `Descartado` son terminales. Quién la escribe y sus destinos: línea «Quién escribe» de la leyenda.
 
-12. Reabrir `Cerrado` lo devuelve a `Implementado` y la línea `Estado:` a `implementada`. Reabrir `Descartado` lo devuelve a `Análisis` y `borrador` si el punto de retomo no conserva otra etapa. Si la conserva, se pregunta a la persona. Motivo, quién y fecha quedan en el punto de retomo. Lo escribe el cierre. Reabrir un `Cerrado` pasa por la comprobación previa del punto 4 y no vuelve a juzgar los cinco criterios: el destino es el de este punto. Si la previa falla, se detiene, lista el fallo y no escribe `Implementado` ni `implementada`. Reabrir un `Descartado` no las escribe y no usa la previa.
+12. Reabrir `Cerrado` deja la línea `Estado:` en `implementada`. Reabrir `Descartado` la deja en `borrador` si el punto de retomo no conserva otra etapa. Si la conserva, se pregunta a la persona. Motivo, quién y fecha quedan en el punto de retomo. Lo escribe el cierre. Reabrir un `Cerrado` pasa por la comprobación previa del punto 4 y no vuelve a juzgar los cinco criterios: el destino es el de este punto. Si la previa falla, se detiene, lista el fallo y no escribe `Implementado` ni `implementada`. Reabrir un `Descartado` no las escribe y no usa la previa.
 13. Una pausa no baja un `Cerrado` bien formado: primero se reabre y después se anota la pausa. La pausa y `Diferido` los escribe la persona, no este cierre. Al diferir no corre el cierre: la persona deja esa elección en el detalle al anotar la pausa.
 
 **Deuda, memoria y commit.** En los tres caminos, y no si el punto 4 detuvo la corrida.
 
-14. El agente propone y no escribe la deuda: la escribe este cierre, con la decisión de la persona. No se crea deuda sin visto bueno. En el camino de cierre hacia `Cerrado`, las deudas `En atención` con Atendida por de este requerimiento pasan, en la misma corrida, a `Resuelta` (con «Atendida por» y «Cómo se atendió») o vuelven a `Abierta` o `Descartada` por decisión de la persona. Lo diferido se propone dar de alta y no se crea sin ese visto bueno. El descarte sigue el punto 11. En la reapertura, y en lo que este punto no nombra, las transiciones son las de `.docs/003_deuda/README.md` › `## Estados` y no se pegan. El criterio 5 de la leyenda se cita y no se redacta: sin la decisión de la persona, falla.
+14. El agente propone y no escribe la deuda: la escribe este cierre, con la decisión de la persona. No se crea deuda sin visto bueno. En el camino de cierre hacia `Cerrado`, las deudas `En atención` con Atendida por de este requerimiento se resuelven en la misma corrida, con la decisión de la persona y las transiciones de `.docs/003_deuda/README.md` › `## Estados` (`Resuelta` exige «Atendida por» y «Cómo se atendió»). Lo diferido se propone dar de alta y no se crea sin ese visto bueno. El descarte sigue el punto 11. En la reapertura y en lo que este punto no nombra rigen esas mismas transiciones. El criterio 5 de la leyenda se cita y no se redacta: sin la decisión de la persona, falla.
 15. Propón entradas para `MEMORY.md`. No las escribas sin aprobación. Si una decisión tiene alternativas reales y efecto duradero, propón un ADR en vez de una línea de memoria. Tampoco lo crees sin visto bueno.
+    Contexto: si el requerimiento tocó algo descrito por un documento del índice `.docs/005_contexto/README.md`, propón actualizar ese documento y su «Última verificación». No lo escribas sin visto bueno. Sin `.docs/005_contexto/`, no propongas nada.
 16. Commits. Si el punto 8 escribió `Cerrado`, este punto es obligatorio y decide el criterio 2; en los demás caminos, solo si se pide. Sigue `.agents/skills/git-commit/SKILL.md`:
     - Propone los commits: los cambios sin registrar del requerimiento, uno por módulo, y al final el de los archivos que escribió esta corrida (avance, línea `Estado:`, fila del índice y deuda). Si no queda cambio del requerimiento, solo ese último. Los cambios ajenos no entran: se informan.
     - Muestra el mensaje y los archivos de cada uno y pide una sola confirmación para el conjunto. Confirmar solo una parte cuenta como no confirmar.
@@ -47,4 +48,4 @@ Hay tres caminos. La persona elige descarte o reapertura; si no, el camino es el
     - Si una corrida anterior se cortó con `Cerrado` y sin sus commits, esta corrida lo trata como no confirmado: rehace la propuesta y actualiza la fila `cierre` sin duplicarla.
     Nunca hagas `git commit` sin confirmación explícita ni push.
 
-Qué no hace: no lee las tareas completas. No copia la leyenda ni la sección `## Estados` de la deuda. No copia el formato de la fila de tiempos. No crea deuda, memoria ni ADR sin visto bueno. No hace `git commit` sin confirmación explícita. No escribe `Diferido`.
+Qué no hace: no lee las tareas completas. No copia la leyenda ni la sección `## Estados` de la deuda. No copia el formato de la fila de tiempos. No crea deuda, memoria, ADR ni cambios de contexto sin visto bueno. No hace `git commit` sin confirmación explícita. No escribe `Diferido`.

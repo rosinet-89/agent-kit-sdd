@@ -15,9 +15,9 @@ Qué no hace: no escribe nada antes de esa aprobación. No tiene meta de reducci
 Si, según el paso 1 de «Cada sesión» de `AGENTS.md`, la instalación ya no está pendiente, el proyecto ya está personalizado: dímelo y
 pregunta si quiero revisar o actualizar algo en concreto. También entonces, lee y muestra enteras
 las secciones «Fragmento opcional permissions.deny» y «Fragmento opcional permissions.allow» de
-`.agents/skills/sdd/restricciones-de-rol.md`, tal cual. El allow queda genérico, para que quien
-instala lo llene: no traigas comandos de este kit ni de ningún proyecto. No los apliques, no los
-actives y no los copies a `.claude/`, a un settings versionado ni a ninguna configuración del repo.
+`.agents/skills/sdd/restricciones-de-rol.md`, tal cual. El allow se llena según la sección 3,
+punto 7. No los apliques, no los actives y no los copies a `.claude/`, a un settings versionado
+ni a ninguna configuración del repo.
 
 Contexto adicional: $ARGUMENTS
 
@@ -35,7 +35,8 @@ código (capas, nombres, manejo de sesión/errores, acceso a datos).
 
 Con lo que no puedas deducir, pregúntame de UNA en UNA (máximo 6), con tu mejor suposición como
 opción por defecto. Temas posibles: nombre del proyecto, idioma de código/UI/docs/commits, cómo se
-ejecuta lint/pruebas/build, cómo se consulta la base de datos (ver Guardrails; o si no aplica),
+ejecuta lint/pruebas/build, cómo se consulta la base de datos (ver Guardrails; o si no aplica) y si
+existe un usuario de BD de solo lectura (solo si sí o no; nunca pidas ni anotes credenciales),
 reglas de negocio que no se pueden romper, qué herramientas de IA usa el equipo.
 
 ## 3. Propuesta (NO escribir todavía)
@@ -44,23 +45,32 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
 `(por confirmar)`):
 
 1. **`AGENTS.md`**: valores para `<<NOMBRE_PROYECTO>>`, `<<IDIOMA>>` y las secciones "Stack y
-   convenciones de código", "Comandos" y "Reglas de negocio y del sistema".
+   convenciones de código", "Comandos" y "Reglas de negocio y del sistema". En "Comandos" y "Stack":
+   formato y análisis se acotan a los archivos tocados o quedan en solo verificar, sin reformatear
+   legados enteros. En "Comandos" › consulta de datos, anota si existe usuario de BD de solo lectura.
+   `(por confirmar)` es solo de la propuesta: lo que se escriba dice quién lo confirma y cuándo.
 2. **Constitución** (`.docs/001_constitucion/constitution.md`): 6 principios innegociables, cortos
    y verificables (sí/no), máximo 15 líneas, que cubran stack, el plan manda (flujo `sdd`), capas,
    verificación, datos y seguridad, y codificación e idioma. Indica qué partes del código ya los
    incumplen.
 3. **`.agents/napkin.md`**: las 3 a 8 trampas o comandos de entorno que ya detectaste.
 4. **`MEMORY.md`**: decisiones duraderas que ya se ven en el repo, si las hay.
-5. **Skills de dominio candidatas** (nombre, qué cubriría y disparadores). Solo la lista; se crean
-   después una por una con las reglas de `.agents/README.md`.
+5. **Skills de dominio candidatas** (nombre, qué cubriría y disparadores). Detecta el stack con
+   `.agents/catalogo-skills.md` (señales, cruce con `.agents/skills/`), sin copiar su procedimiento.
+   Solo la lista; se crean después una por una con las reglas de `.agents/README.md`.
 6. **Ajustes a agentes o comandos** si el proyecto necesita algo distinto (por ejemplo, comandos de
    verificación específicos). Solo si es necesario.
 7. **Deny y allow, solo mostrar.** Lee y muestra enteras las secciones «Fragmento opcional
    permissions.deny» y «Fragmento opcional permissions.allow» de
    `.agents/skills/sdd/restricciones-de-rol.md`. Tal cual: no las reescribas ni pegues otra copia.
-   El allow queda genérico, para que quien instala lo llene con los comandos de su proyecto; no
-   traigas comandos de este kit ni de ningún proyecto. No los apliques, no los actives y no los
-   copies a `.claude/`, a un settings versionado ni a ninguna configuración del repo.
+   El fragmento `permissions.allow` se puede llenar con los comandos de verificación de solo
+   lectura de «Comandos» del proyecto (formato, análisis, pruebas que no escriben en una BD), sin
+   inventar. No traigas comandos de este kit ni de otro proyecto. Sin verificación de solo lectura,
+   queda genérico. Es texto que solo se muestra: no lo apliques, no lo actives y no lo copies a
+   `.claude/`, a un settings versionado ni a ninguna configuración del repo.
+8. **Documentos de contexto** (nombre, qué responde, cuándo leerlo) para `.docs/005_contexto/`
+   (índice y guía en `.docs/005_contexto/README.md`). Solo la lista; se crean después, uno por uno
+   y con visto bueno. No los generes.
 
 ## 4. Aplicar (tras mi aprobación)
 
