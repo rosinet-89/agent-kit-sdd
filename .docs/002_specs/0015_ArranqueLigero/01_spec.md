@@ -1,5 +1,5 @@
 # 01 — Spec: Arranque ligero de sesión
-Estado: aprobada
+Estado: cerrada
 Ticket: sin ticket
 
 ## Contexto y objetivo

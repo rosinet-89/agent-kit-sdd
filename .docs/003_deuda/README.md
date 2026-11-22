@@ -61,6 +61,7 @@ revisar) · `Alta manual` (la registró una persona).
 | 0011 | [`/sdd-constitucion` fuera de la tabla de fases y del ruteo](0011_SddConstitucionFueraDeTablaYRuteo.md) | Skill `sdd`, agente `coordinator` | Hallazgo al validar `0009_EnlacesTrasPull` | Abierta | Baja | — | 2026-11-03 |
 | 0012 | [Ningún comando de fase actualiza la celda del índice en `Planificado`, `En curso` y `En pruebas`](0012_CadaComandoDeFaseActualizaLaCelda.md) | Comandos de fase, índice de planes, E22 | Recorte de alcance en `0012_EstatusDeSpecYCierre` | Abierta | Media | — | 2026-11-16 |
 | 0013 | [Pulido de lo entregado en la spec 0012: duplicación, una tensión de la spec, una frase y E13](0013_PulidoDeLaSpec0012.md) | `sdd-cierre.md`, leyenda de estatus, E13 | Hallazgo al validar `0012_EstatusDeSpecYCierre` | Abierta | Baja | — | 2026-11-16 |
+| 0014 | [El «Qué lee» del chequeo de arranque no nombra la definición de adaptador por archivo](0014_ChequeoDeArranqueYAdaptadoresPorArchivo.md) | `sync-agents.md` › «Chequeo de arranque» | Hallazgo al validar `0015_ArranqueLigero` | Abierta | Baja | — | 2026-11-21 |
 
 ## Plantilla de un detalle
 
