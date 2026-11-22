@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-11-03 |
 | Origen | Hallazgo al cerrar `0008_GuardrailsBdSoloLectura` (alta pedida por el usuario en el cierre) |
 | Módulo | Guardrails (`AGENTS.md`), `restricciones-de-rol.md` |
 | Prioridad | Media |
-| Atendida por | — |
+| Atendida por | `0017_PausaOrigenYContexto` (cierre 2026-11-22) |
 
 ## Descripción
 La regla 1 de «Guardrails» («la base de datos solo se lee») es una instrucción a los agentes, no una barrera técnica. En `restricciones-de-rol.md` figura como NO garantizada. La recomendación de un usuario de BD de solo lectura está escrita, pero el kit no puede imponerla.
@@ -27,7 +27,8 @@ Un agente que ignore o malinterprete la regla puede ejecutar una escritura contr
 3. Decidirlo con un ADR si hay alternativas reales.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+RF-15 de `0017_PausaOrigenYContexto`: `template/.agents/commands/sdd-init.md` pregunta si existe un usuario de BD de solo lectura y deja constancia en `AGENTS.md` › Comandos (punto 1). El fragmento opcional `permissions.deny` de `template/.agents/skills/sdd/restricciones-de-rol.md` suma `mysql`, `psql`, `sqlcmd`, `sqlplus`, `sqlite3`, `mongosh` y `redis-cli`, y sigue siendo solo sugerencia (punto 2). Sin alternativas reales para el punto 3: no hizo falta ADR.
 
 ## Historial
 - 2026-11-03 — Alta, en el cierre de `0008_GuardrailsBdSoloLectura`, con el visto bueno del usuario.
+- 2026-11-22 — Pasa a En atención y a Resuelta en el cierre de `0017_PausaOrigenYContexto`, con el visto bueno de la persona.

@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-11-16 |
 | Origen | Recorte de alcance en `0012_EstatusDeSpecYCierre` (queda fuera de la spec; alta propuesta por la sesión y aprobada por la persona en el cierre) |
 | Módulo | Comandos de fase (`/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-change`), índice de planes, E22 |
 | Prioridad | Media |
-| Atendida por | — |
+| Atendida por | `0017_PausaOrigenYContexto` (cierre 2026-11-22) |
 
 ## Descripción
 La leyenda de estatus del índice de planes define ocho estatus, pero hoy solo la apertura (`/sdd-spec`, que escribe `Análisis`) y el cierre (`/sdd-cierre`, que escribe `Implementado`, `Cerrado` o `Descartado`) escriben la celda de la fila. La persona escribe `Diferido`. Nadie escribe `Planificado`, `En curso` ni `En pruebas`: la celda de una carpeta en esas etapas se queda en la palabra anterior hasta el cierre.
@@ -27,7 +27,8 @@ La celda de una carpeta en curso puede estar desfasada respecto de su etapa real
 3. Si se elige escribirlo, mantener la regla de una sola fuente: la leyenda dice quién escribe y los comandos remiten.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+RF-28 de `0017_PausaOrigenYContexto` (ACLARAR-2): la sesión principal escribe `Planificado`, `En curso` y `En pruebas` al registrar en `05_avance.md` el cierre de `plan`, del primer paso y del último paso. La regla vive solo en la línea «Quién escribe» de la leyenda de los dos `002_specs/README.md`; `sdd-plan.md` y `sdd-implement.md` remiten. E22 sigue avisando de un desfase.
 
 ## Historial
 - 2026-11-16 — Alta, en el cierre de `0012_EstatusDeSpecYCierre`, con el visto bueno de la persona.
+- 2026-11-22 — Pasa a En atención y a Resuelta en el cierre de `0017_PausaOrigenYContexto`, con el visto bueno de la persona.

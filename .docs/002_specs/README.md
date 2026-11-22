@@ -9,8 +9,8 @@ nuevo**, si ya se tocó ese proceso y qué carpeta leer, sin recorrerlas todas.
 2. Si hay coincidencia, lee **solo esa carpeta**: primero el `PUNTO DE RETOMO` de su `05_avance.md`.
 3. Si la coincidencia es parcial, anótala como dependencia en `02_analisis_impacto.md`.
 4. Revisa también la deuda técnica abierta del módulo: `.docs/003_deuda/README.md`.
-5. Este archivo se actualiza en cada `cierre` de feature (`/sdd-cierre`) y al abrir una carpeta
-   nueva (`/sdd-spec`). Si la fila del índice no coincide con la carpeta, al consultar esa carpeta manda la carpeta; para responder el pendiente desde el índice manda la celda y no se abren las carpetas.
+5. Este archivo se actualiza en cada `cierre` de feature (`/sdd-cierre`), al abrir una carpeta
+   nueva (`/sdd-spec`) y cuando la sesión registra una etapa intermedia (ver «Quién escribe»). Si la fila del índice no coincide con la carpeta, al consultar esa carpeta manda la carpeta; para responder el pendiente desde el índice manda la celda y no se abren las carpetas.
 
 ## Formato de cada carpeta
 
@@ -31,13 +31,13 @@ El grupo es el de la celda: `Análisis` y `Planificado`, diseño; `En curso` y `
 
 Pendiente = la celda no es un `Cerrado` bien formado ni un `Descartado` bien formado. Pendiente de desarrollo = pendiente salvo `Implementado` y `Diferido`. Incluye diseño, el grupo desarrollo y `sin clasificar`. No es el grupo desarrollo.
 
-La línea del documento es la línea `Estado:` de `01_spec.md`. Bien formado: `Cerrado` exige la forma de la celda, la línea del documento en `cerrada` y una sola fila `cierre` (leer no juzga los criterios); `Descartado` exige la forma de la celda, la línea del documento en `descartada`, y el motivo y quién en la columna de pendiente de la fila del índice; `Diferido` exige la forma de la celda, el motivo y las deudas en esa columna, y el motivo y el estatus de regreso en la anotación de la pausa del punto de retomo. En `Análisis`, `Planificado`, `En curso`, `En pruebas` e `Implementado` la palabra clasifica aunque falten fecha o detalle, y el chequeo avisa. Una palabra fuera de la lista, una fila del índice ausente, o un `Cerrado`, `Descartado` o `Diferido` sin su forma se leen como `sin clasificar`. `sin clasificar` no se escribe.
+La línea del documento es la línea `Estado:` de `01_spec.md`. Bien formado: `Cerrado` exige la forma de la celda, la línea del documento en `cerrada` y una sola fila `cierre` (leer no juzga los criterios); `Descartado` exige la forma de la celda, la línea del documento en `descartada`, y el motivo y quién en la columna de pendiente de la fila del índice; `Diferido` exige la forma de la celda, el motivo y las deudas en esa columna, y el motivo y el estatus de regreso en la anotación de diferimiento del punto de retomo. En `Análisis`, `Planificado`, `En curso`, `En pruebas` e `Implementado` la palabra clasifica aunque falten fecha o detalle, y el chequeo avisa. Una palabra fuera de la lista, una fila del índice ausente, o un `Cerrado`, `Descartado` o `Diferido` sin su forma se leen como `sin clasificar`. `sin clasificar` no se escribe.
 
 Si la celda y la etapa discrepan, los conteos siguen la celda. Un desfase en `Planificado`, `En curso` o `En pruebas` no cambia los conteos. El estado y el chequeo avisan y no escriben.
 
 Estados de la línea del documento, en minúsculas: `borrador`, `aprobada`, `analisis`, `implementada`, `cerrada`, `descartada`. `analisis` va sin tilde. `implementada` no es cerrado. `cerrada` y `descartada` solo acompañan a un `Cerrado` o un `Descartado` bien formados.
 
-Quién escribe: la apertura, `Análisis`; el cierre, `Implementado`, `Cerrado` o `Descartado`; la persona, `Diferido` con motivo y estatus de regreso, y al reactivar devuelve la celda. La línea del documento no cambia en `Diferido`. El cierre no escribe `Planificado`, `En curso`, `En pruebas` ni `Diferido`. La persona anota la pausa en el punto de retomo y al reactivar la retira. Sin fila del índice, el cierre crea esa única fila del índice. Con la fila del índice duplicada, el cierre se detiene sin escribir.
+Quién escribe: la apertura, `Análisis`; el cierre, `Implementado`, `Cerrado` o `Descartado`, e incluye la reapertura de un `Descartado` (a `Análisis`) o de un `Cerrado` (a `Implementado`); la sesión principal, `Planificado`, `En curso` y `En pruebas`, al registrar en `05_avance.md` el cierre de `plan`, del primer paso `Fn.m` y del último paso de implementación, con la forma de esta leyenda; la persona, `Diferido` con motivo y estatus de regreso, y al reactivar devuelve la celda. La línea del documento no cambia en `Diferido`. El cierre no escribe `Planificado`, `En curso`, `En pruebas` ni `Diferido`: las tres primeras las escribe la sesión al registrar, y `Diferido` la persona. La persona anota el diferimiento en el punto de retomo y al reactivar lo retira. Sin fila del índice, el cierre crea esa única fila del índice. Con la fila del índice duplicada, el cierre se detiene sin escribir.
 
 Un paso que cuenta es una fila de implementación en la tabla Pasos de `05_avance.md`. Hecho: `[x]`. Empezado: `[x]`, `[~]` o `[!]`. Paso vacío: ni empezado ni hecho. Prueba, flujo y cierre no cuentan. Un paso diferido, con decisión y deuda propuesta, deja de contar. Hay plan si, en completo, está el documento de plan y, en ligero, el plan va en las tareas.
 
@@ -55,7 +55,7 @@ Productivo y los cambios de datos no son criterio de `Cerrado`. No existe `Liber
 
 Etapa de la carpeta (la primera que cuadra). El estado la cita y no la copia. «Todo paso que cuenta está hecho» exige al menos un paso de implementación, de modo que una carpeta con plan y ningún paso empezado es `Planificado`.
 
-1. Pausa anotada en el punto de retomo → `Diferido`, salvo un `Cerrado` bien formado.
+1. Anotación de diferimiento en el punto de retomo → `Diferido`, salvo un `Cerrado` bien formado. La fila «Pausa» de `/sdd-pausa` no cuenta: no cambia la etapa ni la celda.
 2. Validación del conjunto aprobada y, si el modo incluye flujo, flujo aprobado → `Implementado`.
 3. Todo paso que cuenta está hecho y falta esa validación o ese flujo → `En pruebas`.
 4. Hay un paso empezado y no todos → `En curso`.
@@ -64,7 +64,7 @@ Etapa de la carpeta (la primera que cuadra). El estado la cita y no la copia. «
 
 El modo sale de la fila de modo del punto de retomo. Sin fila de modo no se exige el flujo. Carpeta anterior sin fila de modo: con plan, `Planificado`; sin plan, `Análisis`. La validación y el flujo están aprobados solo si el punto de retomo los registra. Sin punto de retomo, manda la línea del documento: `implementada` → `Implementado`, `descartada` → `Descartado`, `analisis` → `Análisis`, `cerrada` solo si `Cerrado` está bien formado, y el resto → `Análisis`.
 
-Reapertura: `Cerrado` y `Descartado` son terminales; reabrirlos lo decide la persona. `Cerrado` vuelve a `Implementado` e `implementada`. `Descartado` vuelve a `Análisis` y `borrador` si el punto de retomo no conserva otra etapa. Motivo, quién y fecha quedan en el punto de retomo. Lo escribe el cierre. Una pausa no baja un `Cerrado` bien formado.
+Reapertura: `Cerrado` y `Descartado` son terminales; reabrirlos lo decide la persona. `Cerrado` vuelve a `Implementado` e `implementada`. `Descartado` vuelve a `Análisis` y `borrador` si el punto de retomo no conserva otra etapa. Motivo, quién y fecha quedan en el punto de retomo. Lo escribe el cierre. Un diferimiento no baja un `Cerrado` bien formado.
 
 ## Índice
 
@@ -86,6 +86,7 @@ Reapertura: `Cerrado` y `Descartado` son terminales; reabrirlos lo decide la per
 | 0014 | `0014_ConfiguracionGuiada` | Asistente de configuración paso a paso al instalar o actualizar, saltable con valores por omisión; auditor externo opcional y beta | Cerrado (2026-11-21): cumple los cinco criterios; kit 0.10.0 en 3 commits locales; sin flujo | sdd-init, asistente, configuración, valores por omisión, auditor externo, beta, actualizar, entornos |  |
 | 0015 | `0015_ArranqueLigero` | Reducir el contexto que se carga al inicio de cada sesión: `AGENTS.md` siempre cargado y lecturas del protocolo «Cada sesión», sin bajar el cumplimiento de Guardrails ni del arranque | Cerrado (2026-11-21): cumple los cinco criterios; kit 0.12.0 en 3 commits locales; sin flujo | arranque, contexto, tokens, AGENTS.md, Cada sesión, sync-agents, chequeo de arranque, lectura bajo demanda  | [deuda 0014](../003_deuda/0014_ChequeoDeArranqueYAdaptadoresPorArchivo.md) |
 | 0016 | `0016_CierreEnUnaCorrida` | El cierre llega a `Cerrado` en una corrida: escribe el estatus y propone los commits del requerimiento y del cierre con una sola confirmación; sin ella, baja a `Implementado` (ADR 0031) | Cerrado (2026-11-21): cumple los cinco criterios; cierre en una corrida con la regla nueva; kit 0.11.0 en 3 commits locales; sin flujo | cierre, sdd-cierre, criterio 2, commit, Cerrado, Implementado, leyenda de estatus |  |
+| 0017 | `0017_PausaOrigenYContexto` | Pausa y retomo (`/sdd-pausa`), origen del kit y consulta de versión, contexto del proyecto bajo demanda (`.docs/005_contexto`), skills según el stack y lo pendiente del arranque ligero (issues #4, #6, #7, #8, #10 y #11; deudas 0009 a 0014) | Cerrado (2026-11-22): cumple los cinco criterios; kit 0.13.0 en commits locales; deudas 0009 a 0014 resueltas; sin flujo (decisión 29) | pausa, retomo, sdd-pausa, sdd-status, origen del kit, kit-origen, versión, 005_contexto, contexto, skills, stack, estructura-ok, Antecedentes, Deuda técnica, Guardrail 1, cambio pequeño |  |
 
 ## Mapa por tema
 
@@ -107,14 +108,14 @@ Reapertura: `Cerrado` y `Descartado` son terminales; reabrirlos lo decide la per
 
 Cada carpeta lleva un prefijo `NNN_` que no se repite. En este clon, la numeración remite a la declaración de `template/.docs/002_specs/README.md` › « Numeración única ».
 El ancho en un proyecto y la convivencia de anchos están en
-`template/.docs/002_specs/README.md` › « Numeración única ». Las carpetas de sección de `.docs/` siguen en 3.
-Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/` y a `.docs/004_adr/`.
+`template/.docs/002_specs/README.md` › « Numeración única ». Las carpetas de sección de `.docs/` (`001_constitucion`, `002_specs`, `003_deuda`, `004_adr`, `005_contexto`) siguen en 3.
+Varias personas abren carpetas en paralelo, así que dos ramas pueden tomar el mismo número; el agente lo detecta y propone corregirlo. La misma regla aplica a `.docs/003_deuda/`, `.docs/004_adr/` y `.docs/005_contexto/`.
 
 **Al asignar un número** (carpeta nueva):
 1. Siguiente = prefijo mayor + 1, mirando la copia local **y** la rama remota ya descargada: `git ls-tree --name-only @{u} .docs/002_specs/` (u `origin/<rama principal>` si la rama no tiene upstream). Es solo lectura; el agente no hace `fetch` ni `pull`.
 2. Recomendar al usuario subir pronto la carpeta con su fila del índice, para reservar el número.
 
-**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta o `.docs/003_deuda/` (skill `git-commit`):
+**Revisión de duplicados.** El agente la hace al iniciar sesión, al asignar un número y antes de preparar un commit que toque esta carpeta, `.docs/003_deuda/` o `.docs/005_contexto/` (skill `git-commit`):
 1. Hay duplicado si dos carpetas comparten prefijo en la copia local, o si una carpeta local sin publicar usa un prefijo que la rama remota ya tiene con otro nombre.
 2. Conserva el número la que ya está en la rama remota (se publicó primero). La otra pasa al siguiente libre: prefijo mayor + 1, contando local y remota. Si ninguna está publicada, o no hay rama remota, se pregunta cuál conservar.
 3. El agente avisa con los dos nombres y el número propuesto, y no renombra sin confirmación. Al confirmar: `git mv` de la carpeta, su fila en el índice y cada referencia al nombre viejo (búsqueda con `grep`), incluidas las de su propio avance, `sql/` y las deudas que la citen.

@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-11-21 |
 | Origen | Hallazgo al validar `0015_ArranqueLigero` (opcional (a) del reviewer, decisión 8 del avance; alta aprobada por la persona en el cierre) |
 | Módulo | `sync-agents.md` › «Chequeo de arranque» y «Estados de enlace» |
 | Prioridad | Baja |
-| Atendida por | — |
+| Atendida por | `0017_PausaOrigenYContexto` (cierre 2026-11-22) |
 
 ## Descripción
 Desde 0.12.0, el chequeo de arranque lee solo lo que indica su renglón «Qué lee»: «Estados de
@@ -35,7 +35,8 @@ la validez del adaptador a `/sdd-estructura`), o nombrar en el «Qué lee» la d
 haya una herramienta por archivo declarada.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+RF-16 de `0017_PausaOrigenYContexto` (opción a): `template/.agents/sync-agents.md` › «Chequeo de arranque» en una carpeta por archivo solo comprueba que cada rol tenga su entrada; la validez del adaptador queda en `/sdd-enlaces` y `/sdd-estructura` (E3, E23). Su «Qué lee» declara esa lectura reducida.
 
 ## Historial
 - 2026-11-21 — Alta, en el cierre de `0015_ArranqueLigero`, con el visto bueno de la persona.
+- 2026-11-22 — Pasa a En atención y a Resuelta en el cierre de `0017_PausaOrigenYContexto`, con el visto bueno de la persona.

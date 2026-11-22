@@ -2,12 +2,12 @@
 
 | Dato | Valor |
 |---|---|
-| Estado | Abierta |
+| Estado | Resuelta |
 | Alta | 2026-11-16 |
 | Origen | Hallazgo al validar `0012_EstatusDeSpecYCierre` (observaciones «puede esperar» aceptadas por la persona el 2026-11-16 17:57; alta aprobada en el cierre) |
 | Módulo | `sdd-cierre.md`, leyenda de estatus, `validar-estructura.md` (E13) |
 | Prioridad | Baja |
-| Atendida por | — |
+| Atendida por | `0017_PausaOrigenYContexto` (cierre 2026-11-22) |
 
 ## Descripción
 Cuatro puntos menores que la validación independiente dejó como «puede esperar»:
@@ -32,7 +32,8 @@ Riesgo bajo: una lectura menos clara de `sdd-cierre.md` y la posibilidad de que 
 4. Añadir a E13 una remisión a la leyenda para el desfase.
 
 ## Cómo se atendió (al resolver: qué se hizo y dónde)
-—
+RF-29 de `0017_PausaOrigenYContexto`: `template/.agents/commands/sdd-cierre.md` remite a la leyenda y a `## Estados` de la deuda en los tramos duplicados; «Quién escribe» de la leyenda incluye la reapertura de un `Descartado` por el cierre (la spec 0012, `cerrada`, no se editó); se reescribió la frase del punto 3; E13 remite a la leyenda para el desfase.
 
 ## Historial
 - 2026-11-16 — Alta, en el cierre de `0012_EstatusDeSpecYCierre`, con el visto bueno de la persona.
+- 2026-11-22 — Pasa a En atención y a Resuelta en el cierre de `0017_PausaOrigenYContexto`, con el visto bueno de la persona.
