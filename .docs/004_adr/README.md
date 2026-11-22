@@ -53,3 +53,4 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0033 | [«Antecedentes» y «Deuda técnica» se leen bajo demanda desde la skill `sdd`](0033_AntecedentesYDeudaBajoDemanda.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
 | 0034 | [Única excepción de red de la regla Git: consultar la versión publicada del kit](0034_ExcepcionDeRedParaConsultarVersion.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
 | 0035 | [Sección `.docs/005_contexto/` para el contexto del proyecto bajo demanda](0035_SeccionDeContextoDelProyecto.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
+| 0036 | [`/sdd-implement` sin paso implementa en cascada, con lotes de hasta 4 pasos](0036_CascadaConLotesEnImplement.md) | Aceptado | 2026-11-22 | `0019_FlujoEficiente` |
