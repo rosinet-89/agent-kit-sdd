@@ -50,3 +50,6 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0030 | [Carpeta de agentes por archivo con adaptadores de rol](0030_CarpetaDeAgentesPorArchivo.md) | Aceptado | 2026-11-21 | `0014_ConfiguracionGuiada` |
 | 0031 | [El cierre decide el criterio 2 con sus commits en una corrida](0031_CierreConSusCommitsEnUnaCorrida.md) | Aceptado | 2026-11-21 | `0016_CierreEnUnaCorrida` |
 | 0032 | [Qué va en el archivo siempre cargado y qué se lee bajo demanda](0032_CriterioDeArchivoSiempreCargado.md) | Aceptado | 2026-11-21 | `0015_ArranqueLigero` |
+| 0033 | [«Antecedentes» y «Deuda técnica» se leen bajo demanda desde la skill `sdd`](0033_AntecedentesYDeudaBajoDemanda.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
+| 0034 | [Única excepción de red de la regla Git: consultar la versión publicada del kit](0034_ExcepcionDeRedParaConsultarVersion.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
+| 0035 | [Sección `.docs/005_contexto/` para el contexto del proyecto bajo demanda](0035_SeccionDeContextoDelProyecto.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
