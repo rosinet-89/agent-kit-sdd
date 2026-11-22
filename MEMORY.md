@@ -11,6 +11,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
   local en `.git/info/exclude`. Detalle y alternativas: `.docs/004_adr/001_ModoMantenimientoDelKit.md`.
 - [2026-10-25] En un feature que solo edita Markdown y lo ejecutan agentes, estima las fases en minutos; el real ronda un tercio del estimado. Un ítem nuevo conserva el ancho de su carpeta: `.docs/004_adr/014_ConvivenciaDeAnchosDeNumeracion.md`.
 - [2026-10-25] Un implementer por paso no baja el tiempo a un tercio: en `007_DeudasAbiertas` el real de F0 a F6 fue 84 min contra 85 estimados. El tercio de la línea anterior vale cuando una persona edita el Markdown en una sentada.
+- [2026-11-22] En una spec de solo Markdown con implementers en olas paralelas, el real fue un 4 % del estimado en horas (`0017_PausaOrigenYContexto`: 9.25 h contra 23 min). Estima en minutos y por ola. El tercio vale para una persona que edita en una sentada.
 - [2026-11-16] La leyenda de estatus de una spec se enuncia una sola vez en `.docs/002_specs/README.md` y la definición de deuda en `.docs/003_deuda/README.md`; comandos, skill, plantilla y `AGENTS.md` remiten y no copian. Detalle y alternativas: `.docs/004_adr/0024_LeyendaDeEstatusEnElIndice.md`.
 
 ## Trampas conocidas
@@ -18,6 +19,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-10-25] Un archivo que termina en CR sin LF no entra en la prueba de humo: `sed` lo quita y el normalizador de Python lo conserva.
 - [2026-10-25] Una fase del plan llamada Cierre no ejecuta `/sdd-cierre`.
 - [2026-10-25] El conteo de un análisis queda viejo si `template/` cambia antes de congelar el manifiesto; manda la medición.
+- [2026-11-21] Todo cambio en `template/` después de generar el manifiesto de la versión (corrección de validate, ajuste del cierre) deja su huella vieja: regenera la fila del archivo tocado y comprueba que cada fila coincide con `template/`. Pasó dos veces en la 0014.
 - [2026-10-25] Si no hay un solo paso, la sesión sigue «Si no hay un solo paso» en la skill `sdd` y no espera a que un subagente abra a otro. Detalle: `.docs/004_adr/010_RutaSiNoHayUnSoloPaso.md`.
 - [2026-10-25] No hay revisión en la que F1.4 de `001_ActualizarKit` ya esté y F1.5 todavía no. Rehacer ese paso no prueba un modelo.
 - [2026-10-25] El protocolo P de las tareas compara con copias hechas justo antes de editar y no delata ediciones ajenas previas: contrasta también con `git diff` contra `HEAD`.
