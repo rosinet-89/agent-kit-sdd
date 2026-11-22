@@ -39,7 +39,7 @@ flowchart TD
     G1 --> P["/sdd-plan"]
     P --> T["/sdd-tasks"]
     T --> G2{{"Persona aprueba plan y tareas"}}
-    G2 --> I["/sdd-implement, un paso a la vez"]
+    G2 --> I["/sdd-implement, en cascada o un paso"]
     I --> SQL{{"Persona ejecuta sql/ si hay"}}
     SQL --> V["/sdd-validate"]
     V --> F["/sdd-flujo"]
@@ -191,8 +191,8 @@ Un requerimiento de punta a punta (el número y el nombre son ilustrativos):
 /sdd-clarify 0001_ExportarFacturas      # QA de la spec; resuelves las dudas y apruebas
 /sdd-plan 0001_ExportarFacturas         # análisis de impacto y plan
 /sdd-tasks 0001_ExportarFacturas        # fases y pasos; apruebas las tareas
-/sdd-implement 0001_ExportarFacturas F1.1
-/sdd-implement 0001_ExportarFacturas F1.2   # un paso por vez, hasta terminar
+/sdd-implement 0001_ExportarFacturas      # cascada: todos los pasos, en lotes
+/sdd-implement 0001_ExportarFacturas F1.1 # o un solo paso
 /sdd-validate 0001_ExportarFacturas     # RF por RF
 /sdd-cierre 0001_ExportarFacturas       # confirmas los commits
 ```
@@ -221,7 +221,7 @@ reglas de cada uno viven en su archivo.
 | `/sdd-clarify` | Revisa la spec como QA (solo detecta) |
 | `/sdd-plan` | Genera análisis de impacto y plan de una spec aprobada |
 | `/sdd-tasks` | Divide el plan en fases y pasos verificables |
-| `/sdd-implement` | Implementa un paso de `04_tasks.md` |
+| `/sdd-implement` | Implementa `04_tasks.md` en cascada (todo o una fase) o un solo paso |
 | `/sdd-validate` | Valida la spec RF por RF |
 | `/sdd-flujo` | Genera `06_flujo.md` de lo implementado |
 | `/sdd-cierre` | Cierra el feature (previa, resultados, descarte, reapertura) |
@@ -237,7 +237,7 @@ reglas de cada uno viven en su archivo.
 |---|---|
 | `coordinator` | Dirige el flujo y lleva `05_avance.md` |
 | `planner` | Redacta spec, análisis, plan, tareas y flujo (sin tocar código) |
-| `implementer` | Implementa un paso de `04_tasks.md` |
+| `implementer` | Implementa un paso o un lote de pasos de `04_tasks.md` |
 | `reviewer` | Revisa la spec como QA y valida la implementación |
 | `tester` | Ejecuta casos cerrados y devuelve lo obtenido |
 | `explore` | Localiza archivos y ocurrencias con un encargo cerrado (solo lectura) |

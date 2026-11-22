@@ -17,6 +17,16 @@ copian las reglas.
 - Al llegar al tope con hallazgos pendientes no se abre otra pasada automática. Lo pendiente de
   alcance y seguridad pasa a marcadores `[ACLARAR: …]` (hasta 3, con la prioridad de abajo), el
   resto pasa a supuestos explícitos escritos en la spec, y la persona decide si aprueba así.
+- **Autochequeo:** antes de la pasada 1, el planner revisa su `01_spec.md` con las cuatro
+  listas del reviewer (`sdd-clarify.md`, paso 2), más RF en EARS y rutas citadas existentes, y
+  corrige lo que encuentra. No cuenta como pasada. Es una revisión del autor sobre su texto y no
+  sustituye ninguna pasada: la separación entre producir y validar sigue en las pasadas del
+  reviewer. Queda como decisión en `05_avance.md` con el número de correcciones.
+- **Pasada por delta:** desde la pasada 2, al corregir, el planner entrega la lista
+  de RF, secciones y casos límite que tocó. La sesión se la pasa al reviewer, que revisa esos
+  elementos y los que los citan. Si encuentra una contradicción entre lo cambiado y una parte no
+  cambiada, la reporta como hallazgo de esa pasada. Si la corrección reescribe la spec casi entera,
+  el delta es toda la spec. En modo ligero (1 pasada) no hay delta; el autochequeo sí aplica.
 
 ## Modo de corrección
 

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.14.0 — 2026-11-22
+- Spec `0019_FlujoEficiente`: menos tokens y espera por spec, sin bajar la verificación. ADR 0036.
+- `skills/sdd/SKILL.md` › «Dónde corre cada rol»: comprobación antes de cada lanzamiento (rol del kit
+  y motivo) y solo roles del kit en una fase SDD (sin `general-purpose`); tabla de fases con cascada.
+- `commands/sdd-implement.md`: tres formas (todo, fase `Fn`, paso `Fn.m`); cascada con tabla previa,
+  lotes de hasta 4 pasos, olas paralelas, revisión por lote y paro solo en lo ajeno.
+  `agents/implementer.md`: paso o lote.
+- `skills/sdd/avance-y-tiempos.md`: motivo del lanzamiento en la Nota; fila de lote.
+- `skills/sdd/topes-y-modos.md` y `commands/sdd-clarify.md`: autochequeo del planner antes de la
+  pasada 1 y pasadas por delta desde la 2.
+- `commands/sdd-tasks.md`: la validación de estructura no se delega; siguiente paso en cascada.
+- `commands/sdd-cierre.md`, `AGENTS.md` (`Chequeos de cierre: No aplica`) y `commands/sdd-init.md`:
+  la comprobación previa del cierre corre los chequeos de cierre que declare el proyecto.
+- `README.md`: `/sdd-implement` en cascada o por paso.
+
 ## 0.13.0 — 2026-11-22
 - Spec `0017_PausaOrigenYContexto`. Issues #4, #6, #7, #8, #10 y #11; deudas 0009 a 0014; ADR 0033 a 0035.
 - Nuevos: `commands/sdd-pausa.md`, `commands/sdd-version.md`, `catalogo-skills.md`,

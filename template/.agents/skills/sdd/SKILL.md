@@ -60,7 +60,7 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `clarify` | `/sdd-clarify` | reviewer | `01_spec.md` |
 | `plan` | `/sdd-plan` | planner | `02_analisis_impacto.md`, `03_plan.md` |
 | `tasks` | `/sdd-tasks` | planner | `04_tasks.md` |
-| Implementación | `/sdd-implement` | implementer | el paso `Fn.m` |
+| Implementación | `/sdd-implement` | implementer | el paso `Fn.m`, la fase `Fn` o todo en cascada (`sdd-implement.md`) |
 | `validate` | `/sdd-validate` | tester, reviewer | `05_avance.md` |
 | `flujo` | `/sdd-flujo` | planner, reviewer | `06_flujo.md` |
 | `cierre` | `/sdd-cierre` | sesión principal | `05_avance.md` |
@@ -83,6 +83,8 @@ Esta sección es la fuente única de dónde corre un rol y de quién lanza a los
 - El modelo de cada rol es el de `restricciones-de-rol.md` › «Modelo por rol». Aquí no se copia.
 - **Mismo modelo:** misma familia (`opus`, `sonnet` o `haiku`) entre el alias de esa tabla y el modelo de la sesión, según el id que la herramienta le da a la sesión (`claude-opus-…` es `opus`). Si la sesión no conoce su id, no es el mismo modelo.
 - Un rol con el mismo modelo que la sesión corre en el chat, con la definición de ese rol. Un subagente se lanza solo cuando el rol necesita otro modelo o la persona lo pide.
+- **Antes de cada lanzamiento:** quien lanza comprueba (a) que es un rol del kit (`planner`, `coordinator`, `reviewer`, `implementer`, `tester`, `explore`) y (b) que se da uno de estos motivos: el modelo del rol no es el de la sesión; la persona lo pidió; el rol está en `.agents/local/configuracion.md` › `## Subagentes`; o es el relanzamiento de un rol Haiku que no entregó. Si falta (a) o (b), el rol corre en el chat. El motivo va en la Nota de la fila de tiempos (`avance-y-tiempos.md`).
+- **Solo roles del kit:** en una fase SDD no se lanza un agente que no sea rol del kit (`general-purpose`, agentes integrados de la herramienta u otros). Una búsqueda acotada va a `explore`; lo demás lo hace el chat con el rol de la fase. Excepciones: la persona lo pide de forma explícita, o es el auditor externo de «Auditor externo (beta)». La constancia dice cuál aplica.
 - El `reviewer` también corre en el chat. La separación entre producir y validar es por rol: el chat muestra el rol en la línea «quién responde» (`formato-respuesta`) y nunca valida con el rol con que produjo.
 - `tester` y `explore` los lanza quien atiende la fase como sesión (la sesión principal, o el coordinator cuando corre como sesión). Un coordinator subagente no los lanza: los lanza la sesión principal.
 - En el chat, las restricciones de los roles Haiku (`restricciones-de-rol.md` › «Roles Haiku») son solo instrucción; como subagentes, las garantizan sus herramientas.
@@ -156,7 +158,7 @@ hay `VEREDICTO: APROBADO`.
 
 ## Implementación (reglas duras)
 
-- Un paso a la vez; al terminarlo se marca en `04_tasks.md` y se para.
+- Un paso, o un lote en cascada, según la forma de `sdd-implement.md`; cada paso se marca en `04_tasks.md` al cumplir su «Hecho cuando».
 - Las reglas de edición de archivos (encoding, herramientas permitidas) son las de `AGENTS.md` › Stack y convenciones.
 - Datos: `AGENTS.md` › Guardrails, regla 1. Cómo se escribe: `.agents/skills/migracion-bd/SKILL.md`.
 - Dominio: leer la skill del tema (tabla de `AGENTS.md`) antes de tocar esa parte.

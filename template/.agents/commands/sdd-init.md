@@ -47,7 +47,7 @@ Preséntame, por separado y con su evidencia (archivo donde lo verificaste; lo q
 1. **`AGENTS.md`**: valores para `<<NOMBRE_PROYECTO>>`, `<<IDIOMA>>` y las secciones "Stack y
    convenciones de código", "Comandos" y "Reglas de negocio y del sistema". En "Comandos" y "Stack":
    formato y análisis se acotan a los archivos tocados o quedan en solo verificar, sin reformatear
-   legados enteros. En "Comandos" › consulta de datos, anota si existe usuario de BD de solo lectura.
+   legados enteros. En "Comandos" › consulta de datos, anota si existe usuario de BD de solo lectura. En «Comandos» › chequeos de cierre, propone los que el proyecto deba correr antes de cerrar una spec, o deja «No aplica».
    `(por confirmar)` es solo de la propuesta: lo que se escriba dice quién lo confirma y cuándo.
 2. **Constitución** (`.docs/001_constitucion/constitution.md`): 6 principios innegociables, cortos
    y verificables (sí/no), máximo 15 líneas, que cubran stack, el plan manda (flujo `sdd`), capas,

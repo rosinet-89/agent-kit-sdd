@@ -126,6 +126,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
 - Lint / sintaxis (por archivo tocado): <completar>
 - Consulta de datos (cómo y desde dónde; ver «Guardrails», regla 1): <completar o "No aplica">
 - Herramienta de apoyo para casos: <completar o "No aplica">
+- Chequeos de cierre: No aplica
 
 ## Reglas de negocio y del sistema
 <!-- COMPLETAR (/sdd-init): reglas que un agente no puede deducir del código y que no se cambian sin plan

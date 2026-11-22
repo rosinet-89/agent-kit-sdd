@@ -130,6 +130,7 @@ Al registrar cambios, lee y aplica `.agents/skills/git-commit/SKILL.md`.
   marcadores `<<…>>` salvo `<<NOMBRE_PROYECTO>>` e `<<IDIOMA>>`.
 - Consulta de datos (ver «Guardrails», regla 1): No aplica.
 - Herramienta de apoyo para casos: No aplica.
+- Chequeos de cierre: E20 de `template/.agents/validar-estructura.md` (huella de `manifiestos/<VERSION>.md`), cuando el requerimiento cambió `VersionAgentKitSdd`; se corre después del último cambio a `template/`. Si falla, regenera las filas de los archivos tocados, anótalo como decisión y vuelve a correrlo.
 
 ## Reglas de negocio y del sistema
 - Lo distribuible se edita en `template/` y en los docs de la raíz (`README.md`, `INSTALAR.md`,
