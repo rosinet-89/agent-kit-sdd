@@ -10,7 +10,7 @@ Qué lee: `.agents/configuracion.ejemplo.md` (pasos, sugeridos, formato del arch
 Qué hace:
 
 1. Elige qué pasos ofrecer. Sin archivo local: todos. Con archivo: muestra el valor actual de cada paso y permite cambiar uno o más. Si lo invoca la actualización (`ACTUALIZAR.md`): solo los pasos sin valor (nombre fijo de la lista de `.agents/configuracion.ejemplo.md` › «Formato del archivo local» que no está como sección `##` en el local) y conserva los demás. Si lo invoca `/sdd-init`: todos, fuera del tope de su entrevista.
-2. Presenta un paso a la vez: contexto en 2 líneas como máximo y opciones, con el sugerido como primera. En el paso de modelos muestra la fila de la herramienta detectada, con la alternativa de las celdas con «o» y el esfuerzo como sugerencia (el esfuerzo no se escribe).
+2. Presenta un paso a la vez: contexto en 2 líneas como máximo y opciones, con el sugerido como primera. En el paso de modelos muestra la fila de la herramienta detectada, con la alternativa de las celdas con «o» y el esfuerzo como sugerencia (el esfuerzo no se escribe). Cubre también los roles del ruteo (p. ej. `auxiliar`), con su nivel según `.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol»; no copies valores aquí.
 3. Si la persona salta un paso o todo el asistente, aplica el sugerido. Lo dice en el resumen del paso 10.
 4. Un valor inválido o ilegible toma el sugerido y avisa en una línea.
 5. Entornos: antes de declarar destinos muestra la advertencia de `.agents/entornos.ejemplo.md` › «Advertencia (S-8)» (por remisión) y pide confirmación por cada destino. Los escribe en `.agents/local/entornos.md` con el formato de ese ejemplo.

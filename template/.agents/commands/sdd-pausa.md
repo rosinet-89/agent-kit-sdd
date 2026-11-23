@@ -3,7 +3,7 @@ description: SDD · Pausa - deja el punto de retomo con hora, trabajo en segundo
 argument-hint: [motivo]
 ---
 
-Para el trabajo de una carpeta SDD y deja el punto de retomo completo. La ejecuta la sesión principal. `$1` es el motivo, opcional.
+Para el trabajo de una carpeta SDD y deja el punto de retomo completo. La ejecuta la sesión principal. No recibe carpeta: el motivo es todo `$ARGUMENTS` (vacío = sin motivo), opcional. Regla: `.agents/README.md` › «Argumentos de un comando».
 
 Qué lee: `.agents/skills/sdd/avance-y-tiempos.md` › «Marca de pausa» (forma de la marca); de la carpeta activa, el PUNTO DE RETOMO de `05_avance.md`. No lee `01`–`06` completos.
 

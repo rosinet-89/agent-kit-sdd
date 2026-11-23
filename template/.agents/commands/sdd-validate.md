@@ -3,7 +3,8 @@ description: SDD · Valida la spec RF por RF (consultas de solo lectura + comand
 argument-hint: <prefijo_NombreFeature>
 ---
 
-Fase `validate`. Carpeta: `.docs/002_specs/$1/`.
+Fase `validate`. Carpeta: `.docs/002_specs/<carpeta>/`.
+Argumentos: $ARGUMENTS. La carpeta es su primera palabra. Regla: `.agents/README.md` › «Argumentos de un comando».
 
 Qué lee el reviewer: el checklist "Hecho cuando" del paso o fase que se valida, y los criterios de aceptación de los RF que ese paso cita. No las tareas ni la spec completas. Los comandos de verificación, en `AGENTS.md` › Comandos.
 
@@ -28,6 +29,6 @@ Qué hace:
 4. No arregles nada. Muestra el veredicto y la lista de verificaciones manuales. Si el veredicto es CAMBIOS NECESARIOS, se vuelve al implementer con la lista exacta y después otra vez al reviewer. Máximo 2 vueltas; si sigue fallando, se para y se explica qué ocurre.
 5. Cuando se confirme cada verificación manual, anótala con su hora en Pruebas de `05_avance.md`. Sin eso, el RF queda pendiente.
 6. Si se pide evidencia formal, o el feature ya tiene `07_casos_prueba.md`, la evidencia va en `07_casos_prueba.md` y el harness de solo lectura en `tests/`, que se conservan. El reviewer devuelve su contenido y no escribe esos archivos; la sesión los escribe. Si hace falta ejecutar el harness, el reviewer lo hace en una segunda invocación en modo lectura y devuelve el resultado, que la sesión anota en `07_casos_prueba.md`. Esa invocación cuenta como una de las 2 vueltas; si una vuelta ya se gastó en CAMBIOS NECESARIOS, queda una para ella. Sin `Write` en el reviewer, la sesión escribe igual. Compatibilidad: un `07_pruebas_qa.md` de un feature anterior se conserva sin renombrar y el reviewer lo lee como evidencia.
-7. La sesión principal registra la fila `validate` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-flujo $1` (o la corrección que toque).
+7. La sesión principal registra la fila `validate` según `.agents/skills/sdd/avance-y-tiempos.md`. Siguiente paso: `/sdd-flujo <carpeta>` (o la corrección que toque).
 
 Qué no hace: no corrige código. No lee las tareas ni la spec enteras. No revisa como propio lo "ajeno o no atribuible". No copia la regla de los dos alcances ni el formato de la fila de tiempos. Si no hay un solo paso, aplica `.agents/skills/sdd/SKILL.md` › «Si no hay un solo paso» y no copies esa regla.

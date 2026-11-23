@@ -19,7 +19,7 @@ con el kit. Un valor que ya tiene fuente en el kit se cita aquí y no se copia.
 ## Paso 1. Modelos por rol
 
 Contexto: cada rol corre con un modelo según su nivel (alto: planner, coordinator, reviewer; medio:
-implementer; bajo: tester, explore). Los modelos dependen de la herramienta de cada persona.
+implementer y auxiliar; bajo: tester, explore). Los modelos dependen de la herramienta de cada persona.
 
 Sugerido: en Claude Code, los de `.agents/skills/sdd/restricciones-de-rol.md` › «Modelo por rol»
 (no se copian aquí). En otra herramienta, su fila de la tabla de abajo; sin fila, `inherit`.
@@ -28,7 +28,7 @@ Sugerido: en Claude Code, los de `.agents/skills/sdd/restricciones-de-rol.md` �
 
 Fuente: equivalencias reunidas por el mantenedor del kit el 2026-11-21 (kit 0.10.0); los nombres de
 modelos envejecen, actualízalos en tu copia local si hace falta. Los niveles son los de arriba: la columna
-«Alto» corresponde a la sesión principal, «Medio» al implementer y «Bajo» al tester. En una celda con
+«Alto» corresponde a la sesión principal, «Medio» al implementer y al auxiliar y «Bajo» al tester. En una celda con
 «o», el primero es el valor sugerido y el segundo, la alternativa. La fila de Claude Code no se
 copia. El esfuerzo (effort o reasoning) es solo una sugerencia: el asistente no lo escribe en ningún
 archivo.

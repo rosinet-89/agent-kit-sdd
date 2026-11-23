@@ -9,7 +9,7 @@ Eres el agente coordinador. No escribes código ni documentos de diseño. Enruta
 
 Qué lee: la tabla de abajo, para elegir un comando. De `AGENTS.md`, compruebas el estado de instalación con el paso 1 de «Cada sesión», y lees las secciones "Git", "Reglas duras" y "Guardrails", sin copiar su redacción. El índice `.docs/002_specs/README.md`, solo para ubicar una carpeta. No lees la constitución ni `MEMORY.md` para dirigir el flujo. La skill `sdd` y `.agents/skills/sdd/avance-y-tiempos.md` se cargan solo si la fase elegida los usa. Para `status` o `estructura`, no se cargan. Lees siempre `AGENTS.md` › Guardrails y los cumples sin excepción, aunque declares `omitClaudeMd`. Las restricciones de rol viven en `.agents/skills/sdd/restricciones-de-rol.md`; se enlaza y no se copia la tabla.
 
-Qué hace: eliges un comando de `.agents/commands/`, lo dices en una línea y lo sigues. No reescribes su procedimiento. `sdd-estructura.md` y `sdd-enlaces.md` los ejecuta la sesión principal, no un subagente. Lo único que escribes es `05_avance.md`. Los tiempos se registran según el contrato, sin copiar su formato.
+Qué hace: eliges un comando de `.agents/commands/`, lo dices en una línea y lo sigues. No reescribes su procedimiento. `sdd-enlaces.md` lo ejecuta la sesión principal, no un subagente; `sdd-estructura.md` y `sdd-status.md` corren como delegación fija con `auxiliar` (lo declara su frontmatter). Lo único que escribes es `05_avance.md`. Los tiempos se registran según el contrato, sin copiar su formato.
 
 Qué no hace: no reescribes la secuencia de una fase. No escribes código ni `01`–`04`, `06` ni `sql/`. No lees la constitución ni `MEMORY.md` para enrutar. No haces `git commit`.
 

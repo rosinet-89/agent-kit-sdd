@@ -66,9 +66,9 @@ Las fases del flujo tienen nombre (`spec`, `clarify`…); `F0..Fn` y `Fn.m` son 
 | `cierre` | `/sdd-cierre` | sesión principal | `05_avance.md` |
 | `change` | `/sdd-change` | planner | `01_spec.md` |
 | Pausa | `/sdd-pausa` | sesión principal | `05_avance.md` |
-| Estado | `/sdd-status` | sesión principal | — |
+| Estado | `/sdd-status` | auxiliar (delegación fija) | — |
 | Versión del kit | `/sdd-version` | sesión principal | — |
-| Estructura del kit | `/sdd-estructura` | sesión principal | — |
+| Estructura del kit | `/sdd-estructura` | auxiliar (delegación fija) | — |
 | Enlaces | `/sdd-enlaces` | sesión principal | — |
 | Entrada única | `/sdd` | coordinator | según la fase |
 
@@ -83,8 +83,8 @@ Esta sección es la fuente única de dónde corre un rol y de quién lanza a los
 - El modelo de cada rol es el de `restricciones-de-rol.md` › «Modelo por rol». Aquí no se copia.
 - **Mismo modelo:** misma familia (`opus`, `sonnet` o `haiku`) entre el alias de esa tabla y el modelo de la sesión, según el id que la herramienta le da a la sesión (`claude-opus-…` es `opus`). Si la sesión no conoce su id, no es el mismo modelo.
 - Un rol con el mismo modelo que la sesión corre en el chat, con la definición de ese rol. Un subagente se lanza solo cuando el rol necesita otro modelo o la persona lo pide.
-- **Antes de cada lanzamiento:** quien lanza comprueba (a) que es un rol del kit (`planner`, `coordinator`, `reviewer`, `implementer`, `tester`, `explore`) y (b) que se da uno de estos motivos: el modelo del rol no es el de la sesión; la persona lo pidió; el rol está en `.agents/local/configuracion.md` › `## Subagentes`; o es el relanzamiento de un rol Haiku que no entregó. Si falta (a) o (b), el rol corre en el chat. El motivo va en la Nota de la fila de tiempos (`avance-y-tiempos.md`).
-- **Solo roles del kit:** en una fase SDD no se lanza un agente que no sea rol del kit (`general-purpose`, agentes integrados de la herramienta u otros). Una búsqueda acotada va a `explore`; lo demás lo hace el chat con el rol de la fase. Excepciones: la persona lo pide de forma explícita, o es el auditor externo de «Auditor externo (beta)». La constancia dice cuál aplica.
+- **Antes de cada lanzamiento:** quien lanza comprueba (a) que es un rol del kit (`planner`, `coordinator`, `reviewer`, `implementer`, `tester`, `explore`, `auxiliar`) y (b) que se da uno de estos motivos: el modelo del rol no es el de la sesión; la persona lo pidió; el rol está en `.agents/local/configuracion.md` › `## Subagentes`; o es el relanzamiento de un rol Haiku que no entregó; o es una delegación fija declarada en el comando (`agent: auxiliar`), cuyo motivo es «ruteo». Si falta (a) o (b), el rol corre en el chat. El motivo va en la Nota de la fila de tiempos (`avance-y-tiempos.md`).
+- **Solo roles del kit:** en una fase SDD no se lanza un agente que no sea rol del kit (`general-purpose`, agentes integrados de la herramienta u otros). Una búsqueda acotada va a `explore`; lo demás lo hace el chat con el rol de la fase. Excepciones: la persona lo pide de forma explícita, o es el auditor externo de «Auditor externo (beta)». Además, `auxiliar` en una fase solo para delegación fija (`/sdd-status`, `/sdd-estructura`); nunca hace el trabajo del rol que la fase nombra. Fuera de una fase, `auxiliar` puede recibir cualquier delegación de `restricciones-de-rol.md` › «Nivel por tarea sin rol», a la que se remite. La constancia dice cuál aplica.
 - El `reviewer` también corre en el chat. La separación entre producir y validar es por rol: el chat muestra el rol en la línea «quién responde» (`formato-respuesta`) y nunca valida con el rol con que produjo.
 - `tester` y `explore` los lanza quien atiende la fase como sesión (la sesión principal, o el coordinator cuando corre como sesión). Un coordinator subagente no los lanza: los lanza la sesión principal.
 - En el chat, las restricciones de los roles Haiku (`restricciones-de-rol.md` › «Roles Haiku») son solo instrucción; como subagentes, las garantizan sus herramientas.
@@ -119,7 +119,7 @@ Un solo paso es un lanzamiento entre quien escribe el avance y el rol que la fas
 - El trabajo, las puertas de aprobación y los documentos son los de esa fase. El rol que la fase nombra los redacta, salvo el pedido de hacerla en el chat.
 - Si la fase nombra más de un rol, se lanzan en el orden que la fase ya define. Si uno posterior no arranca, se conserva lo que los anteriores devolvieron, se detiene la fase, se avisa en una línea y no se relanza a los que ya arrancaron.
 - Si la otra ruta tampoco puede lanzar al rol y el usuario no pidió hacerla en el chat, se detiene, se avisa en una línea y no se insiste.
-- El cierre, el estado y la validación de estructura siguen en la sesión principal.
+- El cierre sigue en la sesión principal. El estado y la validación de estructura salen de esa lista: corren como delegación fija con `auxiliar`.
 - La entrada siguiente vuelve a la ruta diseñada, salvo que el usuario pida de nuevo hacerla en el chat.
 - La constancia y la fila de tiempos están en [avance-y-tiempos.md](avance-y-tiempos.md). No se copian aquí.
 

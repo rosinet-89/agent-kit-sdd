@@ -35,7 +35,7 @@ que se distingue rápido):
 - **Desvíos:** cualquier cosa hecha fuera de la convención (no pasar `/sdd` por el coordinator,
   no leer napkin o constitución, editar fuera del plan). Si no hubo: `ninguno`.
 - Si el trabajo lo hizo un subagente y el coordinator o el chat lo transmiten, el cuadro es el
-  de quien transmite y el rol del subagente va en Contexto (p. ej. `Contexto: planner → 03_plan.md`).
+  de quien transmite y el rol del subagente va en Contexto (p. ej. `Contexto: planner → 03_plan.md`). En una delegación por ruteo, Contexto nombra también el modelo del subagente (p. ej. `Contexto: auxiliar (sonnet) → índice de specs`).
 
 ## Dónde va
 

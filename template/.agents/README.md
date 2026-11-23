@@ -56,7 +56,7 @@ Las carpetas de cada herramienta no guardan cuerpos de skills ni de agentes: sol
 ---
 
 ## Roles y comandos
-Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku) y explore (localiza; Haiku).
+Agentes en `.agents/agents/`: coordinator (dirige el flujo y lleva `05_avance.md`), planner (documentos), implementer (código), reviewer (QA y validación), tester (ejecuta casos; Haiku), explore (localiza; Haiku) y auxiliar (uso general, nivel Medio, para tareas sin rol del kit; nunca hace commit; ver `.agents/skills/sdd/restricciones-de-rol.md` › «Nivel por tarea sin rol»).
 Comandos en `.agents/commands/`: `/sdd-init` (una sola vez al instalar el kit), `/sdd <petición libre>` (entrada única: el coordinator decide la fase) y, para fases sueltas, `/sdd-spec`, `/sdd-clarify`, `/sdd-plan`, `/sdd-tasks`, `/sdd-implement`, `/sdd-validate`, `/sdd-flujo`, `/sdd-cierre`, `/sdd-change`, `/sdd-status`, `/sdd-pausa` (deja el punto de retomo y la lista «al retomar» de una carpeta), `/sdd-version` (¿tengo la última versión del kit?; solo lectura, con la red como única excepción), `/sdd-constitucion` (auxiliar: propone o revisa la constitución), `/sdd-estructura` (valida la estructura del kit: réplicas, enlaces, índices; lee, reporta y deja la bandera local `.agents/local/estructura-ok`), `/sdd-enlaces` (crea o corrige los enlaces y réplicas tras un pull, con tu confirmación) y `/sdd-config` (asistente de configuración de cada dev; se puede repetir).
 Claude Code: sesión dedicada con `claude --agent coordinator`.
 OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.opencode/agents/` como adaptadores con `mode` y remiten a `.agents/agents/` (ver `.agents/sync-agents.md` › «OpenCode»).
@@ -82,11 +82,24 @@ OpenCode: `/sdd <petición>` en la sesión principal; los roles viven en `.openc
 ## Agregar un comando
 
 1. Crear `.agents/commands/<nombre>.md` con frontmatter `description` y `argument-hint`. En el
-   cuerpo, `$ARGUMENTS` es todo el texto y `$1`, `$2`… los argumentos por posición.
+   cuerpo se lee solo `$ARGUMENTS` (ver «Argumentos de un comando»); no uses `$0`, `$1`, `$2`.
 2. El comando dice qué skill sigue y en qué agente delega; no copia el cuerpo de la skill.
 3. Si es parte del flujo `sdd`, agregarlo a la tabla de fases de `.agents/skills/sdd/SKILL.md` y a
    «Roles y comandos» de este archivo.
 4. Verificar los enlaces según `.agents/sync-agents.md` y sugerir `/sdd-enlaces`.
+
+## Argumentos de un comando
+
+Fuente única: los comandos remiten aquí. `$N` cambia de base entre herramientas (Claude Code `$0`,
+OpenCode `$1`), por eso un comando lee solo `$ARGUMENTS`.
+- La carpeta es la primera palabra de `$ARGUMENTS`; el resto (alcance, idea, cambio, motivo) es lo
+  que sigue, con comillas o signos. Nunca `$0`, `$1`, `$2`.
+- Si `$ARGUMENTS` llega vacío o literal (sin sustituir), los argumentos son las palabras que la
+  persona escribió tras el comando; si no hay, el argumento está ausente.
+- Una palabra que empieza por `$` nunca es carpeta.
+- Argumento ausente: se aplica el comportamiento definido para su ausencia o se pide el dato.
+- Un comando que no recibe carpeta (su `argument-hint` no la nombra) toma todo `$ARGUMENTS` como su
+  argumento.
 
 ## Validar la estructura
 

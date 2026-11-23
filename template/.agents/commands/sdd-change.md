@@ -3,7 +3,8 @@ description: SDD · Cambio de requisito - primero la spec, luego el plan y el c�
 argument-hint: <prefijo_NombreFeature> <cambio solicitado>
 ---
 
-Cambio de requisitos. Carpeta: `.docs/002_specs/$1/`. Cambio: el resto de `$ARGUMENTS` después de `$1`.
+Cambio de requisitos. Carpeta: `.docs/002_specs/<carpeta>/`.
+Argumentos: $ARGUMENTS. La carpeta es su primera palabra y el cambio es el resto. Regla: `.agents/README.md` › «Argumentos de un comando».
 
 Qué lee: `01_spec.md` y el cambio pedido. Para señalar el efecto, solo las partes de `02_analisis_impacto.md`, `03_plan.md` y `04_tasks.md` que el cambio toca.
 

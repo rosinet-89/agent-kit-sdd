@@ -71,7 +71,7 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
 .agents/
   README.md  napkin.md  sync-agents.md  validar-estructura.md  catalogo-skills.md
   configuracion.ejemplo.md  entornos.ejemplo.md  preferencias.ejemplo.md
-  agents/    coordinator, planner, implementer, reviewer, tester, explore
+  agents/    coordinator, planner, implementer, reviewer, tester, explore, auxiliar
   commands/  sdd, sdd-init, sdd-config, sdd-spec, -clarify, -plan, -tasks, -implement,
              -validate, -flujo, -cierre, -change, -status, -pausa, -version,
              -constitucion, -enlaces, -estructura
@@ -93,7 +93,7 @@ mi-proyecto/
 ├── PREFERENCIAS.md                      # preferencias personales (local, no se versiona)
 ├── src/ …                               # tu código
 ├── .agents/
-│   ├── agents/                          # roles: coordinator, planner, implementer, reviewer, tester, explore
+│   ├── agents/                          # roles: coordinator, planner, implementer, reviewer, tester, explore, auxiliar
 │   ├── commands/                        # comandos /sdd*
 │   ├── skills/                          # skills del kit
 │   ├── README.md                        # roles y comandos
@@ -241,6 +241,11 @@ reglas de cada uno viven en su archivo.
 | `reviewer` | Revisa la spec como QA y valida la implementación |
 | `tester` | Ejecuta casos cerrados y devuelve lo obtenido |
 | `explore` | Localiza archivos y ocurrencias con un encargo cerrado (solo lectura) |
+| `auxiliar` | Tareas sin rol de nivel Medio con un encargo cerrado (estado, estructura, salidas largas, reportes); nunca hace commit |
+
+Ruteo: una tarea suelta sin rol que no sea diseño ni decisión baja de modelo solo si se delega en
+`auxiliar` o `explore`, según la tabla de `.agents/skills/sdd/restricciones-de-rol.md` › «Nivel por
+tarea sin rol» (ADR 0037). `/sdd-status` y `/sdd-estructura` se delegan siempre en `auxiliar`.
 
 ## Preferencias por usuario
 

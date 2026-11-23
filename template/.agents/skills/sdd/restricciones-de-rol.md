@@ -1,7 +1,7 @@
 # Restricciones de rol
 
 Fuente única de las restricciones y del modelo de `coordinator`, `planner`, `implementer`, `reviewer`,
-`tester` y `explore`. Los agentes enlazan este archivo. No copian las tablas.
+`tester`, `explore` y `auxiliar`. Los agentes enlazan este archivo. No copian las tablas.
 
 ## Registro de campos
 
@@ -59,6 +59,7 @@ Los hooks por subagente existen y se descartan (exigirían un script; no se enmi
 | `implementer` | `sonnet` |
 | `tester` | `haiku` |
 | `explore` | `haiku` |
+| `auxiliar` | `sonnet` |
 
 Esta tabla es la fuente de los valores sugeridos de Claude Code. Lo aplicado por cada dev vive en la
 sección `## Modelos` de `.agents/local/configuracion.md` (no versionada: `opus`, `sonnet`, `haiku`,
@@ -66,6 +67,38 @@ sección `## Modelos` de `.agents/local/configuracion.md` (no versionada: `opus`
 nunca escribiendo en `.agents/agents/`. El resto del kit remite a esta tabla y no la copia.
 
 El orden de resolución del modelo en Claude Code es el hecho (c) de «Registro de campos»; no se copia aquí.
+
+## Nivel por tarea sin rol
+
+Fuente única de la tabla de nivel por tarea sin rol y de la regla de ruteo. Nadie más la copia: el resto del kit remite aquí. El nivel de cada rol sale de «Modelo por rol».
+
+| Tarea | Nivel | Delegable | Rol |
+|---|---|---|---|
+| `/sdd-status` | Medio | Sí | `auxiliar` (delegación fija) |
+| `/sdd-estructura` | Medio | Sí | `auxiliar` (delegación fija) |
+| `/sdd-version` | Medio | No (usa red) | chat |
+| `/sdd-enlaces`, `/sdd-config`, `/sdd-pausa` | Medio | No (confirmación o `05_avance.md`) | chat |
+| Lectura de conectores | Bajo | No (`auxiliar` no usa conectores; decisión 13) | chat |
+| Revisión de logs en archivo | Bajo | Sí | `explore` |
+| Salida larga de un comando | Medio | Sí (`explore` no tiene `Bash`) | `auxiliar` |
+| Búsqueda en el repositorio | Bajo | Sí | `explore` |
+| Reportes o resúmenes | Medio | Sí | `auxiliar` |
+
+Una tarea que no encaja en una fila corre en el chat hasta que se agregue a la tabla. La preparación de un commit no está: su medición (spec 0020, F6.2) costó más delegada que en el chat.
+
+Una tarea sin rol es delegable solo si cumple las cuatro condiciones: (a) no necesita el historial de la conversación, (b) no pide una decisión ni una confirmación a la persona, (c) no escribe `05_avance.md` ni la celda del índice y (d) no ejecuta `git commit`. Si falta una, corre en el chat.
+
+Regla de decisión del chat, antes de la primera llamada:
+
+- La hace en el chat si es diseño o decisión, si necesita la conversación o si prevé una sola llamada corta sobre algo de tamaño conocido y pequeño (un archivo corto, un `git status`).
+- En otro caso, si es delegable, la delega con encargo cerrado al rol de la tabla. El umbral es más de una llamada corta prevista, no los tokens.
+- Si una llamada hecha en el chat devuelve más de lo previsto, la tarea no se vuelve a delegar a mitad.
+- El chat espera el resultado en primer plano, salvo que la persona pida seguir con otra cosa.
+- Si el subagente falla, el relanzamiento es el de `SKILL.md` › «Dónde corre cada rol»; no se copia aquí.
+
+Respaldo (herramienta que no admite delegar con otro modelo): la tarea corre en el chat. Solo en ese caso, al iniciar un comando cuyo nivel no es el de la sesión, avisa en una línea que el cambio de modelo conviene hacerlo al abrir la sesión o tras `/clear`, nunca a media sesión. No bloquea. Si la sesión no conoce su modelo, no avisa.
+
+Prohibido declarar solo `model:` en un comando o skill sin delegarlo en un subagente: reescribe en la caché todo el contexto de la sesión y cuesta más que hacerlo en el chat. La delegación fija nombra un rol (`context: fork` y `agent:`), no un modelo.
 
 ## Roles Haiku
 
@@ -87,7 +120,7 @@ Si se cumplen las dos condiciones a la vez, responde con las dos etiquetas y no 
 
 ## Tabla de restricciones (RF-7)
 
-Tres columnas. Doce filas. Las filas 2 y 3 quedan NO garantizada, solo instrucción; el deny de ruta no se incluye (decisión 12 del plan). Las filas 10 a 12 distinguen lo que garantiza `tools` de lo que es solo instrucción.
+Tres columnas. Trece filas. Las filas 2 y 3 quedan NO garantizada, solo instrucción; el deny de ruta no se incluye (decisión 12 del plan). Las filas 10 a 13 distinguen lo que garantiza `tools` de lo que es solo instrucción.
 
 | Restricción | Mecanismo | Garantizada |
 |---|---|---|
@@ -95,13 +128,14 @@ Tres columnas. Doce filas. Las filas 2 y 3 quedan NO garantizada, solo instrucci
 | `planner` escribe solo los cinco documentos de su carpeta de feature | instrucción (tiene `Write`/`Edit`). Sin deny de ruta | NO garantizada (tiene `Write`/`Edit`); instrucción. Sin deny de ruta |
 | `coordinator` escribe solo `05_avance.md` y usa el shell solo para la hora | instrucción. Sin deny de ruta | NO garantizada; instrucción. Sin deny de ruta |
 | `implementer` no hace `git commit`, `push`, `fetch`, `pull` ni `sync` | instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) | NO garantizada; instrucción más el `deny` opcional de Git (`disallowedTools` no sirve) |
-| `planner`, `reviewer` y `coordinator`, que conservan `Bash`, tampoco registran en Git | instrucción más el `deny` opcional de Git | NO garantizada; instrucción más el `deny` opcional de Git |
-| Ningún subagente lanza otros subagentes salvo el `coordinator` a los cinco roles (`planner`, `implementer`, `reviewer`, `tester` y `explore`) | `planner`, `implementer`, `reviewer`, `tester` y `explore` no listan `Agent`. La lista `Agent(planner, implementer, reviewer, tester, explore)` del `coordinator` solo restringe cuando corre como hilo principal; como subagente se ignora y podría lanzar subagentes hasta 3 capas | GARANTIZADA en Claude Code para `planner`, `implementer`, `reviewer`, `tester` y `explore` (no listan `Agent`). Quien atiende la fase como sesión lanza a `tester` y `explore`; el `coordinator` como subagente no los lanza. En GitHub Copilot, no listar `agent` (alias `Agent` y `Task`, sin distinción de mayúsculas) deja fuera esa herramienta; el hecho (a) no viaja, porque `Agent(tipo1, tipo2)` no está en los alias. Para el `coordinator`, NO garantizada en ese caso, y esa mitad no se extiende. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro. Gemini CLI dice, en otra frase de su fuente, que un subagente no llama a otros subagentes; eso no es la garantía de esta fila |
-| Ningún agente usa la red (`webfetch` y búsqueda web denegados). Única excepción: `tester`, solo contra los destinos de QA de la configuración de entornos y por su herramienta de apoyo; la excepción y su alcance están en `AGENTS.md` › Guardrails, regla 1, y no se copian aquí | `tools`, que no lista esas herramientas. La excepción de `tester` no añade `webfetch` ni búsqueda web: pasa por su herramienta de apoyo, y el destino lo comprueba `tester` (instrucción) | GARANTIZADA en Claude Code por `tools`, que no lista esas herramientas, salvo la excepción de `tester` (su herramienta de apoyo, regla 1), cuyo límite de destinos es instrucción. En GitHub Copilot, `WebFetch` y `WebSearch` son alias de `web` (sin distinción de mayúsculas) y no listarlos deja fuera esa herramienta donde el alias aplica. La fuente dice que `web` no aplica al cloud agent, y ahí esta fila no afirma la garantía por `tools`. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro |
+| `planner`, `reviewer`, `coordinator` y `auxiliar`, que conservan `Bash`, tampoco registran en Git | instrucción más el `deny` opcional de Git | NO garantizada; instrucción más el `deny` opcional de Git |
+| Ningún subagente lanza otros subagentes salvo el `coordinator` a los cinco roles (`planner`, `implementer`, `reviewer`, `tester` y `explore`) | `planner`, `implementer`, `reviewer`, `tester`, `explore` y `auxiliar` no listan `Agent`. La lista `Agent(planner, implementer, reviewer, tester, explore)` del `coordinator` solo restringe cuando corre como hilo principal; como subagente se ignora y podría lanzar subagentes hasta 3 capas | GARANTIZADA en Claude Code para `planner`, `implementer`, `reviewer`, `tester`, `explore` y `auxiliar` (no listan `Agent`). Quien atiende la fase como sesión lanza a `tester` y `explore`; el `coordinator` como subagente no los lanza. En GitHub Copilot, no listar `agent` (alias `Agent` y `Task`, sin distinción de mayúsculas) deja fuera esa herramienta; el hecho (a) no viaja, porque `Agent(tipo1, tipo2)` no está en los alias. Para el `coordinator`, NO garantizada en ese caso, y esa mitad no se extiende. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro. Gemini CLI dice, en otra frase de su fuente, que un subagente no llama a otros subagentes; eso no es la garantía de esta fila |
+| Ningún agente usa la red ni conectores (`webfetch` y búsqueda web denegados; `auxiliar` no lista herramientas de conector). Única excepción: `tester`, solo contra los destinos de QA de la configuración de entornos y por su herramienta de apoyo; la excepción y su alcance están en `AGENTS.md` › Guardrails, regla 1, y no se copian aquí | `tools`, que no lista esas herramientas. La excepción de `tester` no añade `webfetch` ni búsqueda web: pasa por su herramienta de apoyo, y el destino lo comprueba `tester` (instrucción) | GARANTIZADA en Claude Code por `tools`, que no lista esas herramientas, salvo la excepción de `tester` (su herramienta de apoyo, regla 1), cuyo límite de destinos es instrucción. En GitHub Copilot, `WebFetch` y `WebSearch` son alias de `web` (sin distinción de mayúsculas) y no listarlos deja fuera esa herramienta donde el alias aplica. La fuente dice que `web` no aplica al cloud agent, y ahí esta fila no afirma la garantía por `tools`. No se extiende a Cursor (`tools` sin veredicto) ni a Gemini CLI ni a Kiro |
 | `planner` consulta datos con el comando de `AGENTS.md` › Comandos, según `AGENTS.md` › Guardrails, regla 1 | instrucción (tiene `Bash`) | NO garantizada (tiene `Bash`); instrucción |
 | Ningún agente escribe en la base de datos (`AGENTS.md` › Guardrails, regla 1) | instrucción | NO garantizada; instrucción. Sin permisos de BD que la impongan |
 | `explore` es de solo lectura: sin escribir archivos, sin `Bash` y sin red | `tools`: solo herramientas de lectura y búsqueda (`Read`, `Glob`, `Grep`) | GARANTIZADA en Claude Code por `tools` cuando corre como subagente. En el chat (sesión con su mismo modelo) es solo instrucción: NO garantizada. No se extiende a otras herramientas |
 | `tester` no tiene `Write` ni `Edit`, no escribe archivos por shell (`sed -i`, redirecciones, `tee`) y, como subagente, no tiene red propia | `tools`: no lista `Write`, `Edit`, `webfetch` ni búsqueda web. Lista `Bash` y las herramientas de apoyo del proyecto. Instrucción de texto del agente para no escribir por shell | GARANTIZADA en Claude Code, como subagente, por `tools`: sin `Write` ni `Edit` y sin red propia. NO garantizada: que no escriba por shell (tiene `Bash`); instrucción. En el chat todo es instrucción, NO garantizada. No se extiende a otras herramientas |
+| `auxiliar` no tiene `Write` ni `Edit`; escribe por shell solo la bandera de estructura que el encargo nombre | `tools`: no lista `Write` ni `Edit`. Instrucción de texto del agente para el shell | GARANTIZADA en Claude Code, como subagente, por `tools`: sin `Write` ni `Edit`. NO garantizada: que no escriba por shell más que la bandera de estructura (tiene `Bash`); instrucción. En el chat todo es instrucción, NO garantizada. No se extiende a otras herramientas |
 | `planner` escribe además `07_casos_prueba.md`; quien atiende la fase como sesión (incluido el `coordinator`) escribe las corridas de ese documento | instrucción (el `planner` tiene `Write`/`Edit`). Sin deny de ruta | NO garantizada; instrucción. Sin deny de ruta |
 
 ## Recomendación: usuario de BD de solo lectura

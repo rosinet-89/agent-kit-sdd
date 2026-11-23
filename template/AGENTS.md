@@ -101,6 +101,8 @@ Notas:
 ## Roles y comandos
 Roles de `.agents/agents/` y comandos de `.agents/commands/`: `.agents/README.md` › «Roles y comandos».
 Se lee al elegir o crear un rol o comando.
+Tarea suelta sin rol (no diseño ni decisión): nivel y delegación en
+`.agents/skills/sdd/restricciones-de-rol.md` › «Nivel por tarea sin rol»; se lee antes de empezarla.
 
 ## Qué lee cada rol
 Cada rol lee de este archivo solo las secciones que nombra su `.agents/agents/<rol>.md`, y siempre

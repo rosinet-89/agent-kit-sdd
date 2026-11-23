@@ -3,7 +3,8 @@ description: SDD · Cierra el feature - previa, tres resultados, descarte y reap
 argument-hint: <prefijo_NombreFeature>
 ---
 
-Fase `cierre`. Carpeta: `.docs/002_specs/$1/`. La ejecuta la sesión principal.
+Fase `cierre`. Carpeta: `.docs/002_specs/<carpeta>/`. La ejecuta la sesión principal.
+Argumentos: $ARGUMENTS. La carpeta es su primera palabra. Regla: `.agents/README.md` › «Argumentos de un comando».
 
 Qué lee: en `05_avance.md`, la tabla de Pasos, Pruebas y PUNTO DE RETOMO, incluida la fila de modo. La línea `Estado:` de `01_spec.md`. Solo si la fila de modo incluye flujo, si `06_flujo.md` está aprobado; sin fila de modo no se exige el flujo (`.agents/skills/sdd/topes-y-modos.md`). No lee `04_tasks.md`. Deuda en `.docs/003_deuda/README.md` › `## Estados`. Un ADR, si se propone, con `.agents/skills/adr/SKILL.md`. La fila del índice, en `.docs/002_specs/README.md`. La forma de la celda, la comprobación previa, los cinco criterios, quién escribe y la reapertura, en `.docs/002_specs/README.md` › «Leyenda de estatus»: se citan y no se copian. Plan contra real y la fila de tiempos, en `.agents/skills/sdd/avance-y-tiempos.md`.
 

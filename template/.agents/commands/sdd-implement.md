@@ -3,19 +3,20 @@ description: SDD · Implementa en cascada o UN paso de 04_tasks.md (uso - /sdd-i
 argument-hint: <prefijo_NombreFeature> [Fn | Fn.m]
 ---
 
-Implementa pasos de `04_tasks.md`. Carpeta: `.docs/002_specs/$1/`. Alcance: `$2`.
+Implementa pasos de `04_tasks.md`. Carpeta: `.docs/002_specs/<carpeta>/`. Alcance: la segunda palabra.
+Argumentos: $ARGUMENTS. La carpeta es su primera palabra y el alcance es la segunda. Regla: `.agents/README.md` › «Argumentos de un comando».
 
 Formas:
-- Sin `$2`: cascada de todos los pasos pendientes.
-- `$2` = `Fn`: cascada de los pasos pendientes de esa fase.
-- `$2` = `Fn.m`: un solo paso, y PARA.
+- Sin alcance: cascada de todos los pasos pendientes.
+- Alcance `Fn`: cascada de los pasos pendientes de esa fase.
+- Alcance `Fn.m`: un solo paso, y PARA.
 - En las tres, si `04_tasks.md` no está aprobado, para sin implementar nada.
 
 Qué lee, y se lo pasa al implementer como lectura mínima: el paso en `04_tasks.md` con su "Hecho cuando"; los RF que ese paso cita; la parte de `03_plan.md` que cubre el paso; las secciones de `AGENTS.md` que el rol usa; de la constitución y de la skill `sdd`, solo las secciones que el paso o el plan citan. Un documento de menos de 4 096 bytes puede leerse entero. En un lote, es la misma regla sumada para sus pasos.
 
 Un paso (`Fn.m`): ejecuta el rol **implementer** (dónde corre y el motivo del lanzamiento: `.agents/skills/sdd/SKILL.md` › «Dónde corre cada rol») solo para ese paso. Si el paso no cita ningún RF, lee la fase `Fn` y avisa. Si el plan no tiene sección que cubra el paso, lee el plan completo y avisa. Ampliar solo dentro de esta lista, con tope de 3 secciones: (a) una sección del plan o de la spec nombrada por un RF o paso citado; (b) una decisión de `05_avance.md` que el paso cite; (c) una sección de `AGENTS.md` distinta de las que el rol ya usa. El motivo de cada ampliación se devuelve a la sesión principal, que lo anota. Muestra archivos, resultado de los comandos, `sql/` que el usuario debe ejecutar y verificaciones manuales de UI pendientes. Después PARA. No empieces el siguiente paso.
 
-Cascada (sin `$2` o `Fn`):
+Cascada (sin alcance o `Fn`):
 1. Antes de arrancar, muestra una tabla con columnas Paso · Qué hago · Lote u ola · Se detiene por. «Se detiene por» lista solo lo ajeno (un `sql/` que ejecuta la persona, verificación manual, decisión o visto bueno, commit) o «—».
 2. Lotes: agrupa hasta 4 pasos pendientes.
    - Un lote junta pasos de la misma fase, o de fases distintas que tocan el mismo archivo.

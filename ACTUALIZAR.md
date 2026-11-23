@@ -561,9 +561,12 @@ en cada actualización hasta que el usuario lo marque «mantener» (`## Registro
 2. Abre una sesión: el paso 7 muestra el aviso con lo que cambió.
 3. Corre `/sdd-enlaces`: elige tus herramientas y confirma por tipo de acción; marca «visto» solo si
    termina bien. Si cambiaste de rama o clonaste de nuevo, vale lo mismo.
-4. `/sdd-estructura` sirve para comprobar (solo lectura).
-5. Si `PREFERENCIAS.md` no existe, se crea sola en la sesión (paso 10).
-6. Un hook Git post-merge es opción manual de cada persona; el kit no lo incluye (ADR 004).
+4. Si la versión crea o cambia un rol (`.agents/agents/`), espera a que tu herramienta lo cargue o
+   abre una sesión nueva. Hasta entonces, un comando con `agent: <rol>` cae sin avisar en un agente
+   genérico con el modelo de la sesión.
+5. `/sdd-estructura` sirve para comprobar (solo lectura).
+6. Si `PREFERENCIAS.md` no existe, se crea sola en la sesión (paso 10).
+7. Un hook Git post-merge es opción manual de cada persona; el kit no lo incluye (ADR 004).
 
 ## Enlaces
 

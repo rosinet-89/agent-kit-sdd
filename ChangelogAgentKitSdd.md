@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.15.0 — 2026-11-22
+- Spec `0020_RuteoDeModelos`: las tareas sin rol bajan de modelo delegándose en un subagente, sin
+  `model:` suelto. ADR 0037.
+- Nuevo rol `agents/auxiliar.md` (nivel Medio, `sonnet`; `Read`, `Glob`, `Grep` y `Bash`; nunca
+  commit, sin red ni conectores, sin escribir archivos).
+- `skills/sdd/restricciones-de-rol.md`: fila `auxiliar` en «Modelo por rol» y sección «Nivel por
+  tarea sin rol» (tabla, condiciones, regla de decisión, respaldo y prohibición de `model:` sin
+  subagente). La preparación de un commit quedó fuera tras medirla: delegada costó más.
+- `commands/sdd-status.md` y `commands/sdd-estructura.md`: delegación fija con `context: fork` y
+  `agent: auxiliar`. `skills/sdd/SKILL.md`, `agents/coordinator.md`, `commands/sdd-tasks.md` y
+  `validar-estructura.md` lo reflejan.
+- `README.md` de `.agents/` › «Argumentos de un comando»: solo `$ARGUMENTS`, la carpeta es su primera
+  palabra; los 10 comandos con carpeta dejan `$1`/`$2`. E9 rechaza `$0` a `$9`.
+- `AGENTS.md`: renglón del ruteo en «Roles y comandos». `configuracion.ejemplo.md`, `sdd-config.md`,
+  `sync-agents.md` (OpenCode), `formato-respuesta` y `avance-y-tiempos.md` (motivo «ruteo»).
+- `README.md` de la raíz: rol `auxiliar` y ruteo. `ACTUALIZAR.md`: tras crear o cambiar un rol,
+  espera a que la herramienta lo cargue o abre una sesión nueva; mientras tanto, `agent: <rol>` cae
+  sin avisar en un agente genérico con el modelo de la sesión.
+
 ## 0.14.0 — 2026-11-22
 - Spec `0019_FlujoEficiente`: menos tokens y espera por spec, sin bajar la verificación. ADR 0036.
 - `skills/sdd/SKILL.md` › «Dónde corre cada rol»: comprobación antes de cada lanzamiento (rol del kit

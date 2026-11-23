@@ -207,7 +207,7 @@ definición: remite al archivo canónico y conserva lo propio de OpenCode.
 description: <la misma description del archivo canónico de .agents/agents/>
 model: <el de la definición>
 mode: all          # coordinator
-# mode: subagent   # planner, implementer, reviewer
+# mode: subagent   # planner, implementer, reviewer, auxiliar
 color: <color del rol en la skill formato-respuesta>
 permissions:
   - action: skill
@@ -222,6 +222,7 @@ Cumple `AGENTS.md` › Guardrails sin excepción.
 - `coordinator`: `mode: all` y `subagent` permitido solo para `planner`, `implementer` y `reviewer`.
 - `planner` e `implementer`: `mode: subagent`.
 - `reviewer`: `mode: subagent`, `edit` denegado (solo lectura) y `subagent` denegado.
+- `auxiliar`: `mode: subagent`, `edit` denegado y `subagent` denegado.
 - El permiso `skill` es lo que deja al subagente cargar las skills; sin él no las ve.
 - `claudio` no se adapta: envuelve el CLI `claude`, y para E3 su ausencia en `.opencode/agents/` no es réplica
   faltante.
