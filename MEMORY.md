@@ -14,6 +14,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-11-22] En una spec de solo Markdown con implementers en olas paralelas, el real fue un 4 % del estimado en horas (`0017_PausaOrigenYContexto`: 9.25 h contra 23 min). Estima en minutos y por ola. El tercio vale para una persona que edita en una sentada.
 - [2026-11-22] La sesión principal concentra ≈90 % de los tokens (reporte del 21 y 22: 94 % de la lectura de caché, contextos de 300k a 365k); una sesión por spec y `/clear` tras plan y cierre rinden más que recortar subagentes.
 - [2026-11-22] Cada llamada a una herramienta relee todo el contexto desde la caché (~200 k en una sesión de spec): lo que se escribe a la vez (fila de Tiempos, entrada de la bitácora, avance) va en una sola escritura. Medido en `0021_BitacoraDeUso` (decisión 21): aparte suma 25–30 % de lectura de caché por spec.
+- [2026-11-22] Delegar un paso de implementer de ~1 min no ahorra: lanzar, recibir y revisar en Opus cuesta lo mismo que hacerlo en el chat (0022: F1.1 delegado $0,72 contra $0,11–0,60 en el chat). Ahorra `/clear` + Sonnet en el cierre (−50 a −60 %).
 - [2026-11-16] La leyenda de estatus de una spec se enuncia una sola vez en `.docs/002_specs/README.md` y la definición de deuda en `.docs/003_deuda/README.md`; comandos, skill, plantilla y `AGENTS.md` remiten y no copian. Detalle y alternativas: `.docs/004_adr/0024_LeyendaDeEstatusEnElIndice.md`.
 
 ## Trampas conocidas
@@ -31,6 +32,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-11-16] Antes de repartir un cambio entre varios agentes y revisores, define la fuente única de cada regla: en `0012_EstatusDeSpecYCierre` dos revisores con criterios cruzados (uno pidió la lista de archivos del criterio 2, otro pidió quitar copias) duplicaron texto y costaron tres rondas de corrección. Una regla se define una vez y todo lo demás remite.
 - [2026-11-22] Tras lanzar un subagente de un rol del kit, confirma `agentType` y `model` en `subagents/*.meta.json`: si el rol aún no cargó (rol recién creado o cambiado), cae sin aviso en `general-purpose` con el modelo de la sesión. Pasó en la 0020 (decisión 27).
 - [2026-11-22] Con lotes en paralelo, la bitácora da a cada lote los tokens de toda la ola (ventana compartida) y una ventana con dos sesiones queda «no disponible»: lee el total de la ola, no la suma de lotes. Pasó en la 0022 (decisión 22).
+- [2026-11-22] Dos entradas de la bitácora en el chat con ventanas que se solapan en el mismo minuto: la segunda suma 0, porque cada `message.id` cuenta una sola vez (0023: L2 dentro de F0.1 y L1). Para que un lote salga aparte, ciérralo en otro minuto o júntalo con la entrada vecina.
 
 ## Referencias externas
 
