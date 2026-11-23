@@ -29,7 +29,7 @@ Cascada (sin alcance o `Fn`):
 5. Al terminar cada lote, la sesión revisa su diff y el "Hecho cuando" de cada paso, y los marca uno por uno.
 6. Si un paso falla su "Hecho cuando" o llega a algo ajeno, se detienen ese paso y los que dependen de él. Los independientes siguen. Al final se informa qué falta.
 7. La cascada no hace commits ni ejecuta `sql/`.
-8. La fila de tiempos de un lote: `.agents/skills/sdd/avance-y-tiempos.md` › «Mínimo y lote».
+8. La fila de tiempos de un lote: `.agents/skills/sdd/avance-y-tiempos.md` › «Mínimo y lote». En la misma escritura, la sesión anota el real del paso o lote en la tabla Pasos con tiempos (`.agents/skills/sdd/avance-y-tiempos.md` › «Pasos con tiempos»); este comando sigue sin escribir `05_avance.md`.
 9. El tope de 4 es un umbral provisional: se revisa tras 3 usos reales.
 
 La celda del índice de `002_specs` no la escribe el implementer: ver `.docs/002_specs/README.md` › «Leyenda de estatus» › «Quién escribe».

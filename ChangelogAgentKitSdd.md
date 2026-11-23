@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.17.0 — 2026-11-22
+- Spec `0022_PlanContraRealEnVivo`: plan contra real en vivo en `05_avance.md`.
+- `skills/sdd/avance-y-tiempos.md`: sección «Pasos con tiempos» (la tabla Pasos lleva Estimado,
+  Real y Delta, se siembra al aprobar las tareas y se actualiza con cada fila de Tiempos) y fila
+  «Tiempo» en el PUNTO DE RETOMO; el cierre completa la tabla viva y escribe siempre la línea de
+  ajuste.
+- `skills/sdd/plantillas.md`: plantilla de `05_avance.md` con las columnas y la fila «Tiempo».
+- `sdd-tasks.md`, `sdd-implement.md`, `sdd-status.md` y `sdd-cierre.md`: remiten a la regla;
+  `/sdd-status` lee las horas de la tabla.
+- Leyenda de estatus (`.docs/002_specs/README.md`): la tabla viva es la del criterio 1 y sus filas
+  de fase, Total y Documentación SDD no son pasos.
+- ADR 0039.
+
 ## 0.16.0 — 2026-11-22
 - Spec `0021_BitacoraDeUso`: bitácora de uso por dev (beta): local, apagada por omisión, activable
   en `/sdd-config`.

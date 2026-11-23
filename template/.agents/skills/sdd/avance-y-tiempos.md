@@ -14,11 +14,11 @@ Aplica a `05_avance.md` de cada carpeta SDD en `.docs/002_specs/`.
 ## Estructura de `05_avance.md`
 
 1. **PUNTO DE RETOMO** (siempre primero; otro agente debe poder continuar leyendo solo esto)
-2. Pasos (espejo de `04_tasks.md` con su estado)
+2. Pasos con tiempos (espejo de `04_tasks.md` con su estado, estimado, real y delta; ver «Pasos con tiempos»)
 3. Decisiones
 4. Pruebas
 5. Tiempos
-6. Plan contra real (al cierre)
+6. Plan contra real (al cierre): la línea de qué ajustar en el siguiente plan
 
 Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 
@@ -35,6 +35,7 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Estado BD | Qué scripts `sql/NN` ya ejecutó el usuario |
 | Código | Archivos tocados / pendientes |
 | Pausa | Opcional. Solo la deja `/sdd-pausa`. Ver «Marca de pausa» |
+| Tiempo | Aparece al sembrar la tabla (ver «Pasos con tiempos»). Estimado total, real, delta, real de Documentación SDD y filas en `pausa por confirmar`. Ejemplo: `Implementación: estimado 24 min · real 10 min · delta -4 min (fases con real) · Documentación SDD: 12 min · pausa por confirmar: 0` |
 
 #### Marca de pausa
 
@@ -97,6 +98,8 @@ agrega un renglón.
 - **Bitácora:** con la bitácora activa en la spec, la sesión principal agrega la entrada al escribir la fila, según `.agents/skills/bitacora-uso/SKILL.md` › «Registro por tramo». El formato de la fila no cambia.
 - **Mínimo y lote.** En un feature abierto desde esta versión, cada paso real mide al menos 1 minuto. No se cierran varios pasos con filas en lote de 0 minutos. La única excepción es un paso trivial cuya Nota dice exactamente "sin trabajo real". En cascada (`sdd-implement.md`), un lote de pasos lleva una sola fila: nombra sus pasos (por ejemplo `F1.1, F2.4`), lleva los minutos reales del lote (al menos 1) y su Nota dice «lote». La fila cuenta en la fase de su primer paso. Un feature ya cerrado conserva sus filas; ninguna comprobación le exige reescribirlas. `001_ActualizarKit` sigue válido con las suyas.
 
+- **Tabla Pasos con tiempos:** cada fila de esta tabla alimenta también la tabla Pasos con tiempos del avance. Cómo se calcula y se escribe está solo en «Pasos con tiempos».
+
 Las reglas de pausa, de formato de la fila, de quién escribe este avance y de la leyenda de estados viven solo en este contrato. Los comandos las nombran; no las vuelven a definir. El arranque de sesión no vive aquí: su dueño es `AGENTS.md`. Cuándo se toma la otra ruta vive en la skill `sdd`, sección «Si no hay un solo paso». Aquí no se copia.
 
 ### Constancia cuando no hay un solo paso
@@ -117,19 +120,114 @@ Hasta la respuesta, el renglón queda `pausa por confirmar` y **no entra al
 total**. Un hueco de un día o de una noche es pausa salvo que el usuario diga lo
 contrario. Esperar a que el usuario ejecute un SQL no cuenta como trabajo.
 
+## Pasos con tiempos
+
+Tabla viva del avance: compara el plan contra lo real mientras se trabaja. Esta sección es la fuente
+única de la regla; ningún otro documento la copia. Modo «solo análisis»: sin tabla y sin fila «Tiempo».
+
+```
+| Paso | Estado | Estimado | Real | Delta | Nota |
+```
+
+### Forma
+
+- **Fila de fase:** Paso = `**Fn — <nombre>**`. Lleva el estimado de la fase y el subtotal real de sus
+  pasos.
+- **Fila de paso `Fn.m`:** lleva su estado y su real. El Estimado queda vacío: el estimado es por fase.
+- **Al final:** las filas `**Total implementación**` y `**Documentación SDD**` (estimado «sin
+  estimado»).
+- **Marcas:** «pendiente», «en lote <lote>», «retirado», «sin estimado» y «—» en el delta.
+- Las filas de fase, Total y Documentación SDD no son pasos. El conteo de pasos sigue en las filas de
+  paso (leyenda en `.docs/002_specs/README.md` › «Leyenda de estatus»).
+
+### Siembra
+
+- Se siembra al aprobar las tareas, con la fila «Tiempo» del PUNTO DE RETOMO.
+- **Completo:** el estimado de cada fase sale de `03_plan.md` › Fases.
+- **Ligero:** sale de `04_tasks.md`. Con un solo total, las fases quedan «sin estimado», el Total lleva
+  ese total y su delta compara contra él.
+- Si el plan no trae estimado de una fase: «sin estimado», delta «—». No se inventa.
+- Fase sin filas en Tiempos: real vacío, delta «pendiente».
+- Al sembrar, Documentación SDD arranca con la suma de las filas de flujo ya registradas.
+- **Siembra tardía:** si se registra un paso y la carpeta no tiene la tabla, se siembra en ese momento,
+  una sola vez, con lo ya escrito en Tiempos. Las carpetas cerradas no se tocan.
+
+### Actualización del real
+
+- En la misma escritura que la fila de Tiempos (y que la entrada de la bitácora, si está activa) se
+  anota el real y se rehacen el subtotal y el delta de su fase, el «Total implementación» y la fila
+  «Tiempo» del PUNTO DE RETOMO.
+- El real sale solo de la columna Minutos de Tiempos. Si la tabla no cuadra con Tiempos, manda Tiempos.
+- **Paso o fase `Fn.m` / `Fn`:** su real suma al subtotal de su fase.
+- **Lote:** el real se anota una vez, en la fila de su primer paso, y suma al subtotal de la fase de ese
+  paso. Los demás pasos del lote quedan «en lote <lote>». Si todos los pasos registrados de una fase
+  están en lotes que cuentan en otra fase, su real es «en lote» y su delta «—». Los lotes paralelos
+  suman cada uno sus minutos.
+- **Fila de flujo** (`spec`, `clarify`, `plan`, `tasks`, `validate`, `flujo`, `cierre` u otra sin id
+  `Fn`): suma a Documentación SDD. Un id `Fn` o `Fn.m` que no existe en las tareas también va ahí, con
+  un aviso de una línea.
+- **`pausa por confirmar`:** no suma hasta resolverse. Al resolverse, el real se recalcula en esa
+  escritura.
+- **Paso con Nota «sin trabajo real»:** real 0 y cuenta como registrado.
+
+### Delta
+
+- Delta = real − estimado, en la unidad del estimado. Con unidades mixtas, el total va en la unidad
+  mayor y la conversión se escribe.
+- Estimado en rango: el delta es contra el extremo superior.
+- El estimado del Total es la suma de todas las fases. Su delta compara el real solo contra las fases
+  con real o «en lote».
+- Una fase sin estimado con real suma al Total y no aporta estimado.
+
+### Cambio reaprobado
+
+Tras un cambio de requisito reaprobado se reescriben los estimados y se agregan filas; el real se
+conserva. Lo retirado queda «retirado»: su real sigue sumando y una fase retirada no aporta estimado.
+Es la única vez que se relee el plan después de sembrar.
+
+### Ejemplo
+
+Plan completo: F1 20 min, F2 30 min, F3 10 min. Tiempos: `spec` 12 min, `F1.1` 10 min, lote `F1.2, F2.1`
+15 min, `F3.1` en `pausa por confirmar`.
+
+```
+| Paso | Estado | Estimado | Real | Delta | Nota |
+| **F1 — Base** | [x] | 20 min | 25 min | +5 min | 10 + 15 del lote |
+| F1.1 | [x] | | 10 min | | |
+| F1.2 | [x] | | 15 min | | lote F1.2, F2.1 |
+| **F2 — Reglas** | [x] | 30 min | en lote | — | |
+| F2.1 | [x] | | en lote F1.2, F2.1 | | |
+| **F3 — Cierre** | [~] | 10 min | | pendiente | F3.1 en pausa por confirmar |
+| F3.1 | [~] | | | | pausa por confirmar |
+| **Total implementación** | | 60 min | 25 min | -25 min | delta contra F1 y F2 (50 min) |
+| **Documentación SDD** | | sin estimado | 12 min | — | spec |
+```
+
+Fila «Tiempo»: `Implementación: estimado 60 min · real 25 min · delta -25 min (fases con real) ·
+Documentación SDD: 12 min · pausa por confirmar: 1`.
+
 ## Plan contra real (al cierre)
 
-En `03_plan.md` cada fase lleva **tiempo estimado en horas** (aunque sea un
-rango corto, por ejemplo 2–3 h). Al cerrar, el avance agrega:
+En `03_plan.md` cada fase lleva **tiempo estimado en horas** (aunque sea un rango corto, por ejemplo
+2–3 h).
+
+- El cierre recalcula la tabla Pasos con tiempos desde Tiempos y la completa. Si no cuadra, manda
+  Tiempos.
+- Esa tabla viva es la tabla de plan contra real del criterio 1 de la leyenda (`.docs/002_specs/README.md`
+  › «Leyenda de estatus»). No se escribe otra aparte.
+- Siempre se escribe, en la sección «Plan contra real» del avance, una línea de qué ajustar en el
+  siguiente plan, o «sin ajuste». No se juzga un «desvío fuerte».
+- Carpeta sin tabla viva (sin pasos): se escribe la tabla por fase de siempre.
 
 ```
 | Fase | Estimado | Real | Delta |
 | F0   | 1 h      | 0.5 h | -0.5 h |
 ```
 
-- El real sale de la tabla de tiempos, no de un cálculo nuevo. Las fases del flujo (`spec`…`cierre`) se suman en un renglón `Documentación SDD`.
-- Si el plan no traía estimados, no se inventan hacia atrás: se anota "sin estimado" y el real queda como referencia para el próximo feature parecido.
-- Si una fase se desvió fuerte, una línea dice qué ajustar en el siguiente plan.
+- El real sale de la tabla de tiempos, no de un cálculo nuevo. Las fases del flujo (`spec`…`cierre`) se
+  suman en un renglón `Documentación SDD`.
+- Si el plan no traía estimados, no se inventan hacia atrás: se anota "sin estimado" y el real queda
+  como referencia para el próximo feature parecido.
 
 ## Anti-patrones
 
@@ -138,3 +236,5 @@ rango corto, por ejemplo 2–3 h). Al cerrar, el avance agrega:
 - Anotar una decisión solo con la fecha, sin hora.
 - Sumar un hueco mayor a 30 minutos sin preguntar si hubo pausa.
 - Inventar el tiempo estimado de un plan que no lo traía.
+- Una tabla de plan contra real aparte que duplica la tabla viva Pasos con tiempos.
+- Cerrar sin la línea de ajuste (o «sin ajuste») en «Plan contra real».

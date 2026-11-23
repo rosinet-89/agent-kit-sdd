@@ -107,9 +107,13 @@ Leyenda: `[ ]` Pendiente · `[~]` En curso · `[x]` Hecho · `[!]` Bloqueado
 | Bloqueos abiertos | Ninguno |
 | Estado BD | |
 | Código | |
+| Tiempo | (aparece al aprobar las tareas; ver [avance-y-tiempos.md](avance-y-tiempos.md) › «Pasos con tiempos») |
 | Pausa | (opcional; solo `/sdd-pausa`. Ver [avance-y-tiempos.md](avance-y-tiempos.md) › «Marca de pausa») |
 
 ## Pasos
+Forma y reglas en [avance-y-tiempos.md](avance-y-tiempos.md) › «Pasos con tiempos» (filas de fase `**Fn — <nombre>**`, filas de paso, `**Total implementación**` y `**Documentación SDD**`).
+| Paso | Estado | Estimado | Real | Delta | Nota |
+|---|---|---|---|---|---|
 ## Decisiones
 ## Pruebas
 ## Tiempos
