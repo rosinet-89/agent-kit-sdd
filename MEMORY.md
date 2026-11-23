@@ -28,6 +28,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-11-03] `.agents/` de la raíz está fuera de Git (`.git/info/exclude`): un cambio en `template/.agents` se replica con `cp` y se comprueba con `diff -rq template/.agents .agents`, que admite `napkin.md`, `skills/caveman`, desde 2026-11-16, `agents/claudio.md` (diferencia previa que la persona aceptó para la línea base) y, desde 2026-11-21, `skills/reporte-sesiones` (también aceptada; spec 0013, decisión 27). `git status` no lo muestra.
 - [2026-11-03] Un `awk` que busca la primera línea no vacía falla con CRLF: la línea en blanco es `\r` y cuenta como no vacía. Quita el `\r` con `sed` antes de `awk`.
 - [2026-11-16] Antes de repartir un cambio entre varios agentes y revisores, define la fuente única de cada regla: en `0012_EstatusDeSpecYCierre` dos revisores con criterios cruzados (uno pidió la lista de archivos del criterio 2, otro pidió quitar copias) duplicaron texto y costaron tres rondas de corrección. Una regla se define una vez y todo lo demás remite.
+- [2026-11-22] Tras lanzar un subagente de un rol del kit, confirma `agentType` y `model` en `subagents/*.meta.json`: si el rol aún no cargó (rol recién creado o cambiado), cae sin aviso en `general-purpose` con el modelo de la sesión. Pasó en la 0020 (decisión 27).
 
 ## Referencias externas
 
