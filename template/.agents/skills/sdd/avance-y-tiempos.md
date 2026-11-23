@@ -95,7 +95,7 @@ agrega un renglón.
 - **Pausa:** minutos que el usuario dijo que no fueron de este desarrollo (comida, otra tarea, junta, fin de día).
 - **Clarify:** la Nota de la fila `clarify` lleva «pasada n de N»; el tope N y qué cuenta como pasada están en [topes-y-modos.md](topes-y-modos.md).
 - **Modelo:** la Nota de cada tramo lleva el modelo que declaró el rol en su respuesta (el id que le da la herramienta) o «modelo no confirmado» si no lo conoce. Lo anota la sesión principal, no el rol. Si el tramo usó un subagente, la Nota dice también el motivo del lanzamiento: «otro modelo», «pedido», «configurado», «relanzamiento», «auditor» o «ruteo» (`SKILL.md` › «Dónde corre cada rol»). Dentro de una fase de un feature, la delegación por ruteo va en la Nota de la fila de esa fase, con su modelo; fuera de una fase basta la línea «quién responde».
-- **Bitácora:** con la bitácora activa en la spec, la sesión principal agrega la entrada al escribir la fila, según `.agents/skills/bitacora-uso/SKILL.md` › «Registro por tramo». El formato de la fila no cambia.
+- **Bitácora:** con la bitácora activa en la spec, la sesión principal agrega las entradas al escribir la fila, según `.agents/skills/bitacora-uso/SKILL.md` › «Registro por tramo». El formato de la fila no cambia.
 - **Mínimo y lote.** En un feature abierto desde esta versión, cada paso real mide al menos 1 minuto. No se cierran varios pasos con filas en lote de 0 minutos. La única excepción es un paso trivial cuya Nota dice exactamente "sin trabajo real". En cascada (`sdd-implement.md`), un lote de pasos lleva una sola fila: nombra sus pasos (por ejemplo `F1.1, F2.4`), lleva los minutos reales del lote (al menos 1) y su Nota dice «lote». La fila cuenta en la fase de su primer paso. Un feature ya cerrado conserva sus filas; ninguna comprobación le exige reescribirlas. `001_ActualizarKit` sigue válido con las suyas.
 
 - **Tabla Pasos con tiempos:** cada fila de esta tabla alimenta también la tabla Pasos con tiempos del avance. Cómo se calcula y se escribe está solo en «Pasos con tiempos».
@@ -154,7 +154,7 @@ Tabla viva del avance: compara el plan contra lo real mientras se trabaja. Esta 
 
 ### Actualización del real
 
-- En la misma escritura que la fila de Tiempos (y que la entrada de la bitácora, si está activa) se
+- En la misma escritura que la fila de Tiempos (y que las entradas de la bitácora, si está activa) se
   anota el real y se rehacen el subtotal y el delta de su fase, el «Total implementación» y la fila
   «Tiempo» del PUNTO DE RETOMO.
 - El real sale solo de la columna Minutos de Tiempos. Si la tabla no cuadra con Tiempos, manda Tiempos.

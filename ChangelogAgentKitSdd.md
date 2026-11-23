@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.18.0 — 2026-11-22
+- Spec `0023_BitacoraPorSubagente`: la bitácora de uso (beta) cuenta los tokens de quien hizo cada
+  tramo.
+- `skills/bitacora-uso/SKILL.md`: columnas «Sesión» y «Subagente»; entradas delegadas (una por
+  subagente, con su id) y una entrada de coordinación de la sesión principal por escritura; una fila
+  de Tiempos puede dar varias entradas. Al completar tokens, una delegada suma su transcript, una en
+  el chat solo su sesión y la coordinación lo que no contó ninguna entrada en el chat; cada mensaje
+  cuenta una vez. Las entradas anteriores siguen con la regla de 0.16.0. La tabla «Fuente de tokens»
+  declara el id de sesión y el transcript de cada subagente por herramienta.
+- `skills/sdd/avance-y-tiempos.md`: remite a «las entradas» de la bitácora.
+- ADR 0040 (reemplaza al 0038).
+
 ## 0.17.0 — 2026-11-22
 - Spec `0022_PlanContraRealEnVivo`: plan contra real en vivo en `05_avance.md`.
 - `skills/sdd/avance-y-tiempos.md`: sección «Pasos con tiempos» (la tabla Pasos lleva Estimado,
