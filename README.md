@@ -76,7 +76,7 @@ AGENTS.md  CLAUDE.md  MEMORY.md  .gitignore
              -validate, -flujo, -cierre, -change, -status, -pausa, -version,
              -constitucion, -enlaces, -estructura
   skills/    sdd (+ plantillas, avance y tiempos), napkin, git-commit, formato-respuesta,
-             adr, migracion-bd, seguridad-basica
+             adr, migracion-bd, seguridad-basica, bitacora-uso
 .docs/
   001_constitucion/  002_specs/ (índice)  003_deuda/ (índice)  004_adr/ (índice)
   005_contexto/ (índice)
@@ -165,6 +165,7 @@ comando `/sdd*`. Cada pieza de configuración:
 | `/sdd-constitucion` | Propone o revisa los principios innegociables | El agente, con tu aprobación | Sí |
 | `PREFERENCIAS.md` | Directivas personales según tu entorno (plantilla: [`preferencias.ejemplo.md`](template/.agents/preferencias.ejemplo.md)) | Cada dev | No (`.gitignore`) |
 | `.agents/local/configuracion.md` | Resultado de `/sdd-config` (plantilla: [`configuracion.ejemplo.md`](template/.agents/configuracion.ejemplo.md)) | `/sdd-config` o cada dev | No |
+| Bitácora de uso (beta) | Registro local por dev de tiempos y tokens; apagada por omisión, se activa con `/sdd-config`; sirve para levantar issues de rendimiento con datos reales | `/sdd-config` y los comandos `/sdd*` | No |
 | `.agents/local/entornos.md` | Destinos permitidos para las pruebas de QA (plantilla: [`entornos.ejemplo.md`](template/.agents/entornos.ejemplo.md)) | Cada dev | No |
 
 Quién lee qué:

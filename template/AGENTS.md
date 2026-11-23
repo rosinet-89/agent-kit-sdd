@@ -93,6 +93,7 @@ Antes de responder, lee y aplica la skill del tema. Si el tema cruza varias, lee
 | Decisión de arquitectura con alternativas (índice en `.docs/004_adr/README.md`) | `.agents/skills/adr/SKILL.md` |
 | Scripts SQL de un feature (`sql/`, rollback, idempotencia) | `.agents/skills/migracion-bd/SKILL.md` |
 | Secretos antes del commit y checklist de seguridad básica | `.agents/skills/seguridad-basica/SKILL.md` |
+| Bitácora de uso por dev (beta): registro por tramo y reporte de tokens | `.agents/skills/bitacora-uso/SKILL.md` |
 <!-- Las skills de dominio del proyecto se agregan aquí, una fila por skill (solo la ruta). -->
 
 Notas:

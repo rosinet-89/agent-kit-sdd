@@ -6,13 +6,13 @@ argument-hint: <prefijo_NombreFeature>
 Fase `cierre`. Carpeta: `.docs/002_specs/<carpeta>/`. La ejecuta la sesión principal.
 Argumentos: $ARGUMENTS. La carpeta es su primera palabra. Regla: `.agents/README.md` › «Argumentos de un comando».
 
-Qué lee: en `05_avance.md`, la tabla de Pasos, Pruebas y PUNTO DE RETOMO, incluida la fila de modo. La línea `Estado:` de `01_spec.md`. Solo si la fila de modo incluye flujo, si `06_flujo.md` está aprobado; sin fila de modo no se exige el flujo (`.agents/skills/sdd/topes-y-modos.md`). No lee `04_tasks.md`. Deuda en `.docs/003_deuda/README.md` › `## Estados`. Un ADR, si se propone, con `.agents/skills/adr/SKILL.md`. La fila del índice, en `.docs/002_specs/README.md`. La forma de la celda, la comprobación previa, los cinco criterios, quién escribe y la reapertura, en `.docs/002_specs/README.md` › «Leyenda de estatus»: se citan y no se copian. Plan contra real y la fila de tiempos, en `.agents/skills/sdd/avance-y-tiempos.md`.
+Qué lee: en `05_avance.md`, la tabla de Pasos, Pruebas y PUNTO DE RETOMO, incluida la fila de modo. La línea `Estado:` de `01_spec.md`. Solo si la fila de modo incluye flujo, si `06_flujo.md` está aprobado; sin fila de modo no se exige el flujo (`.agents/skills/sdd/topes-y-modos.md`). No lee `04_tasks.md`. Deuda en `.docs/003_deuda/README.md` › `## Estados`. Un ADR, si se propone, con `.agents/skills/adr/SKILL.md`. La fila del índice, en `.docs/002_specs/README.md`. La forma de la celda, la comprobación previa, los cinco criterios, quién escribe y la reapertura, en `.docs/002_specs/README.md` › «Leyenda de estatus»: se citan y no se copian. Plan contra real y la fila de tiempos, en `.agents/skills/sdd/avance-y-tiempos.md`. La bitácora de uso, en `.agents/skills/bitacora-uso/SKILL.md`.
 
 Qué hace:
 
 Hay tres caminos. La persona elige descarte o reapertura; si no, el camino es el cierre hacia `Cerrado`. Qué palabras escribe este cierre y quién escribe las demás (incluida la reapertura de un `Descartado`): línea «Quién escribe» de `.docs/002_specs/README.md` › «Leyenda de estatus», que no se repite.
 
-1. Toma la hora (`date '+%Y-%m-%d %H:%M'`).
+1. Toma la hora (`date '+%Y-%m-%d %H:%M'`). Si la spec tiene la bitácora activa (`.agents/skills/bitacora-uso/SKILL.md` › «Activación»), completa sus tokens según esa skill › «Completar tokens». Vale en los tres caminos y en cada corrida, aunque la corrida se detenga después.
 2. Si la fila del índice está duplicada, se detiene sin escribir. La fila `cierre` y la fila de modo no son esa fila.
 3. Cada celda que este cierre escribe usa la forma de `.docs/002_specs/README.md` › «Leyenda de estatus» y no la repite. No pega la tabla de las ocho palabras. Si no hay fila del índice, la crea al escribir esa celda. Si el camino exige la comprobación previa (punto 4), la crea después de ella.
 

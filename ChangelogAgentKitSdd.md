@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0 — 2026-11-22
+- Spec `0021_BitacoraDeUso`: bitácora de uso por dev (beta): local, apagada por omisión, activable
+  en `/sdd-config`.
+- Skill nueva `skills/bitacora-uso/SKILL.md`.
+- `configuracion.ejemplo.md`: paso 6 «Bitácora de uso (beta)».
+- `sdd-config.md`, `sdd-spec.md`, `sdd-cierre.md`, `avance-y-tiempos.md` y `AGENTS.md`: remiten a la
+  skill.
+- `README.md` e `INSTALAR.md`: mención de la bitácora (beta).
+- ADR 0038 (se registra en el cierre).
+
 ## 0.15.0 — 2026-11-22
 - Spec `0020_RuteoDeModelos`: las tareas sin rol bajan de modelo delegándose en un subagente, sin
   `model:` suelto. ADR 0037.

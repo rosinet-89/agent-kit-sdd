@@ -10,8 +10,9 @@ con el kit. Un valor que ya tiene fuente en el kit se cita aquí y no se copia.
 - Primera línea: `version: X.Y.Z`, la versión del kit con que se configuró. La lee el chequeo de
   arranque (`.agents/sync-agents.md` › «Chequeo de arranque»), que solo lee esa línea.
 - Luego una sección `##` por paso, con estos nombres fijos: `## Modelos`, `## Subagentes`,
-  `## Clarify`, `## Entornos`, `## Presentación`. Esta viñeta es la lista que usan el chequeo de
-  arranque y `/sdd-config` para saber qué pasos faltan; un paso nuevo del kit se agrega a ella.
+  `## Clarify`, `## Entornos`, `## Presentación`, `## Bitácora`. Esta viñeta es la lista que usan
+  el chequeo de arranque y `/sdd-config` para saber qué pasos faltan; un paso nuevo del kit se
+  agrega a ella.
 - Un paso cuya sección falta toma su valor sugerido. Un valor inválido también, con un aviso.
 - Sin credenciales: ni valores ni nombres de secretos, salvo el nombre de variable de entorno del
   auditor.
@@ -72,6 +73,14 @@ Contexto: cómo se ve cada respuesta del asistente: secciones, preguntas y tabla
 
 Sugerido: secciones con ícono fijo (✅ ⚠️ ⏳ 📋 ❓), preguntas una por una, y tabla de cascada al
 iniciar o retomar una fase.
+
+## Paso 6. Bitácora de uso (beta)
+
+Contexto: beta, local y no se versiona. Guarda solo métricas y notas cortas; qué guarda y qué no
+está en `.agents/skills/bitacora-uso/SKILL.md` › «Privacidad».
+
+Sugerido: `apagada`. La otra opción es `encendida`; efecto y reglas en
+`.agents/skills/bitacora-uso/SKILL.md` › «Activación».
 
 ## Auditor externo (beta)
 

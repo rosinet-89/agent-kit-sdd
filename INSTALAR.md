@@ -60,7 +60,7 @@ mantenimiento no lo escribe.
    `VersionAgentKitSdd`).
 7. Siguiente paso para el usuario: abrir el **proyecto** (no el kit) con su agente y correr
    `/sdd-init`. Después, cada dev puede correr `/sdd-config` para su configuración local
-   (repetible).
+   (repetible). La bitácora de uso (beta) se activa ahí y está apagada por omisión.
 
 ### A mano (sin agente)
 
