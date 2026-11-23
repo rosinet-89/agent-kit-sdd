@@ -55,5 +55,6 @@ Estados: `Propuesto` · `Aceptado` · `Reemplazado por NNN` · `Descartado`.
 | 0035 | [Sección `.docs/005_contexto/` para el contexto del proyecto bajo demanda](0035_SeccionDeContextoDelProyecto.md) | Aceptado | 2026-11-22 | `0017_PausaOrigenYContexto` |
 | 0036 | [`/sdd-implement` sin paso implementa en cascada, con lotes de hasta 4 pasos](0036_CascadaConLotesEnImplement.md) | Aceptado | 2026-11-22 | `0019_FlujoEficiente` |
 | 0037 | [Las tareas sin rol cambian de modelo con un subagente, no solo con `model:`](0037_DelegacionConSubagenteYNoSoloModelo.md) | Aceptado | 2026-11-22 | `0020_RuteoDeModelos` |
-| 0038 | [La bitácora de uso es Markdown local por spec y cuenta los tokens por la ventana del tramo](0038_BitacoraEnMarkdownLocalYTokensPorVentana.md) | Aceptado | 2026-11-22 | `0021_BitacoraDeUso` |
+| 0038 | [La bitácora de uso es Markdown local por spec y cuenta los tokens por la ventana del tramo](0038_BitacoraEnMarkdownLocalYTokensPorVentana.md) | Reemplazado por 0040 | 2026-11-22 | `0021_BitacoraDeUso` |
 | 0039 | [La tabla Pasos con tiempos es el plan contra real, viva desde las tareas](0039_TablaPasosConTiemposEsElPlanContraReal.md) | Aceptado | 2026-11-22 | `0022_PlanContraRealEnVivo` |
+| 0040 | [La bitácora de uso cuenta los tokens por id de subagente y por sesión, con la coordinación aparte](0040_BitacoraConTokensPorSubagenteYSesion.md) | Aceptado | 2026-11-22 | `0023_BitacoraPorSubagente` |

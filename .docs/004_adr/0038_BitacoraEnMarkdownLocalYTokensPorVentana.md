@@ -1,5 +1,5 @@
 # ADR 0038: La bitácora de uso es Markdown local por spec y cuenta los tokens por la ventana del tramo
-- **Estado:** Aceptado
+- **Estado:** Reemplazado por 0040
 - **Fecha:** 2026-11-22
 - **Origen:** `.docs/002_specs/0021_BitacoraDeUso/` (decisiones 2 y 5 de `03_plan.md` › 6; decisión 13 de
   `05_avance.md`, donde la persona aprobó el ADR)
