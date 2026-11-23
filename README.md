@@ -6,6 +6,19 @@ agentes, comandos y skills; **`.docs/`** guarda la constitución, los planes y l
 Funciona con Claude Code, Cursor, OpenCode y otras herramientas que lean `AGENTS.md`: las
 carpetas de cada herramienta se enlazan a `.agents/` (ver `/sdd-enlaces`).
 
+**Versión actual:** 0.18.0 · historial en [`ChangelogAgentKitSdd.md`](ChangelogAgentKitSdd.md).
+
+## Novedades
+
+- **0.18.0**: la bitácora de uso (beta) cuenta los tokens por subagente y por sesión, con la
+  coordinación de la sesión principal aparte. Spec `0023_BitacoraPorSubagente`, ADR 0040; reglas
+  en [`bitacora-uso`](template/.agents/skills/bitacora-uso/SKILL.md).
+- **0.17.0**: `05_avance.md` compara plan contra real en vivo: la tabla Pasos lleva estimado, real
+  y delta por fase, y `/sdd-status` lee de ahí las horas. Spec `0022_PlanContraRealEnVivo`, ADR
+  0039; reglas en [`avance-y-tiempos.md`](template/.agents/skills/sdd/avance-y-tiempos.md).
+
+Versiones anteriores en [`ChangelogAgentKitSdd.md`](ChangelogAgentKitSdd.md).
+
 ## Flujo general
 
 De la instalación al día a día del kit en un proyecto:
@@ -58,7 +71,7 @@ flowchart TD
 | `02_analisis_impacto.md` | Qué toca y qué depende (solo completo) |
 | `03_plan.md` | Cómo se hará (solo completo) |
 | `04_tasks.md` | Fases y pasos verificables con su «Hecho cuando» |
-| `05_avance.md` | Estado, tiempos y punto de retomo |
+| `05_avance.md` | Estado, plan contra real en vivo (estimado, real y delta), tiempos y punto de retomo |
 | `06_flujo.md` | Flujo operativo de lo implementado (solo completo) |
 | `07_casos_prueba.md` | Casos de prueba y corridas (opcional; los ejecuta `tester`) |
 
@@ -165,7 +178,7 @@ comando `/sdd*`. Cada pieza de configuración:
 | `/sdd-constitucion` | Propone o revisa los principios innegociables | El agente, con tu aprobación | Sí |
 | `PREFERENCIAS.md` | Directivas personales según tu entorno (plantilla: [`preferencias.ejemplo.md`](template/.agents/preferencias.ejemplo.md)) | Cada dev | No (`.gitignore`) |
 | `.agents/local/configuracion.md` | Resultado de `/sdd-config` (plantilla: [`configuracion.ejemplo.md`](template/.agents/configuracion.ejemplo.md)) | `/sdd-config` o cada dev | No |
-| Bitácora de uso (beta) | Registro local por dev de tiempos y tokens; apagada por omisión, se activa con `/sdd-config`; sirve para levantar issues de rendimiento con datos reales | `/sdd-config` y los comandos `/sdd*` | No |
+| Bitácora de uso (beta) | Registro local por dev de tiempos y tokens (por subagente y por sesión, con la coordinación aparte); apagada por omisión, se activa con `/sdd-config`; sirve para levantar issues de rendimiento con datos reales | `/sdd-config` y los comandos `/sdd*` | No |
 | `.agents/local/entornos.md` | Destinos permitidos para las pruebas de QA (plantilla: [`entornos.ejemplo.md`](template/.agents/entornos.ejemplo.md)) | Cada dev | No |
 
 Quién lee qué:
@@ -199,7 +212,7 @@ Un requerimiento de punta a punta (el número y el nombre son ilustrativos):
 ```
 
 Atajo: `/sdd <petición>` y el coordinator decide la fase. `/sdd-status` dice dónde estás y
-`/sdd-pausa` deja el punto de retomo.
+cuántas horas llevas; `/sdd-pausa` deja el punto de retomo.
 
 ## Actualizar
 
