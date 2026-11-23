@@ -30,6 +30,7 @@ Una entrada = una línea de índice + (si hace falta) un archivo aparte con el d
 - [2026-11-03] Un `awk` que busca la primera línea no vacía falla con CRLF: la línea en blanco es `\r` y cuenta como no vacía. Quita el `\r` con `sed` antes de `awk`.
 - [2026-11-16] Antes de repartir un cambio entre varios agentes y revisores, define la fuente única de cada regla: en `0012_EstatusDeSpecYCierre` dos revisores con criterios cruzados (uno pidió la lista de archivos del criterio 2, otro pidió quitar copias) duplicaron texto y costaron tres rondas de corrección. Una regla se define una vez y todo lo demás remite.
 - [2026-11-22] Tras lanzar un subagente de un rol del kit, confirma `agentType` y `model` en `subagents/*.meta.json`: si el rol aún no cargó (rol recién creado o cambiado), cae sin aviso en `general-purpose` con el modelo de la sesión. Pasó en la 0020 (decisión 27).
+- [2026-11-22] Con lotes en paralelo, la bitácora da a cada lote los tokens de toda la ola (ventana compartida) y una ventana con dos sesiones queda «no disponible»: lee el total de la ola, no la suma de lotes. Pasó en la 0022 (decisión 22).
 
 ## Referencias externas
 
